@@ -5,6 +5,7 @@
 ### 3. [Django](#3.-Using-Django)
 ### 4. [Integrated React](#4.-Integrated-React)
 ### 5. [Firebase/Pyrebase setup](#5.-Firebase/Pyrebase)
+### 6. [Building React](#6.-Building-React)
 
 <br>
 
@@ -138,3 +139,10 @@ pip install pyrebase
 
 <br>
 
+
+### 6. Building React
+In your root directory type the following command to run and build your react code:
+````
+npm run dev
+````
+You will see a main.js file in static/frontend folder.
