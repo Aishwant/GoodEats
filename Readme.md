@@ -1,28 +1,15 @@
 # Getting started
 
-### 1. [GIT](#1.-Using-git)
-### 2. [Anaconda Setup](#2.-To-download-Anaconda)
-### 3. [Django](#3.-Using-Django)
-### 4. [Integrated React](#4.-Integrated-React)
-### 5. [Firebase/Pyrebase setup](#5.-Firebase/Pyrebase)
-### 6. [Building React](#6.-Building-React)
+### 1. [Anaconda Setup](#1.-To-download-Anaconda)
+### 2. [Django](#2.-Using-Django)
+### 3. [Git](#3.-Using-git)
+### 4. [Integrate React](#4.-Integrated-React)
+### 5. [To Run Project](#5.-To-Run-the-Project)
+### 6. [Firebase/Pyrebase setup](#6.-Firebase/Pyrebase)
 
 <br>
 
-### 1. Using git
-After you have installed git on your computer. Change your directory were you want to clone your file to.
-Type the following command in the terminal:
-
->`git config --global user.name "Your Full Name" `<br>
-`git config --global user.email "Youremail@go.olemiss.edu"`<br>
-`git clone https://git.cs.olemiss.edu/cs387group9/mainproject.git`<br>
-`cd mainproject`
-`git checkout yourBranch` ### to be done later in the project
-
-
-<br>
-
-### 2. To download Anaconda
+## 1. To download Anaconda
 
 Setting up the virtual environment
 
@@ -43,7 +30,7 @@ To activate the environment: <br>
 To deactivate the environment: <br>
 > `conda deactivate`
 
-### 3. Using Django
+## 2. Using Django
 To install django:
 activate the environment and type the following command: <br>
 > `pip install django`
@@ -58,7 +45,7 @@ Type the following commands into the terminal:<br>
 
 ---
 
-The following part has already been done. [Clone the git](#Using-git) repository and you can start working.<br>
+The following part has already been done. [Clone the git](#Using-git) repository if you haven't.<br>
 
 Add 'rest_framework' to your INSTALLED_APPS setting.<br>
 
@@ -78,10 +65,10 @@ urlpatterns = [
 ```` 
 
 To get started with django:<br>
-````
-django-admin startproject project`<br>
-cd project
-````
+>`django-admin startproject project`<br>
+
+change directory to project
+
 
 check for the 
 
@@ -99,14 +86,35 @@ python manage.py migrate
 ````
 
 run the server again and go to the url given to see if your django is working http://127.0.0.1:8000/.
-___
-### 4. Integrated React
+
+---
+
+## 3. Using git
+After you have installed git on your computer. Change your directory were you want to clone your file to.
+Type the following command in the terminal:
+
+>`git config --global user.name "Your Full Name" `<br>
+`git config --global user.email "Youremail@go.olemiss.edu"`<br>
+`git clone https://git.cs.olemiss.edu/cs387group9/mainproject.git`<br>
+`cd mainproject`
+`git checkout yourBranch` ### to be done later in the project
+
+
+<br>
+
+---
+
+
+## 4. Integrated React
 We use react manually because we are integrating react into Django as an app.
 
 Once you have cloned the git repository, type the following commands:
 
 For the commands to work you need to have node installed on your computer.
 You can install node from here: https://nodejs.org/en/download/
+
+>Stay in your root folder. (Reference: The directory containing the Readme.md)
+
 ````
 npm init -y
 npm i -D webpack webpack-cli
@@ -129,7 +137,23 @@ For the babel plugins to work create a .babelrc in the home directory and write 
 
 ---
 
-### 5. Firebase/Pyrebase
+## 5. To Run the Project
+
+After you have completed step 1, 2, 3 and 4.
+
+In your root directory type the following command to run and build your react code:
+````
+npm run dev
+````
+This create a main.js file in the static directory.
+
+Now, in your other terminal window, run the django server from the directory consisting of manage.py.
+You can see your webpage on the localhost:8000
+
+
+---
+
+## 6. Firebase/Pyrebase
 Pyrebase is a easier version of firebase and is easier to implement.
 
 To install pyrebase:<br>
@@ -138,11 +162,3 @@ pip install pyrebase
 ````
 
 <br>
-
-
-### 6. Building React
-In your root directory type the following command to run and build your react code:
-````
-npm run dev
-````
-You will see a main.js file in static/frontend folder.
