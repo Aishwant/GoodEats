@@ -125,6 +125,9 @@ Now let's install react
 npm i react react-dom prop-types
 ````
 
+````
+npm i redux react-redux redux-thunk redux-devtools-extension
+````
 ---
 This part has already been done. Cloning the repository should have these files
 For the babel plugins to work create a .babelrc in the home directory and write the following code
