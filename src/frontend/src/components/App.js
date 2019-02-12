@@ -5,13 +5,13 @@ import Header from './layout/Header';
 
 import Dashboard from './authentication/Dashboard';
 
-import { Provider } from 'react-redux';
-import store from '../store';
+// import { Provider } from 'react-redux';
+//import store from '../store';
 
 class App extends Component {
     render(){
         return (
-            <Provider store={store}>
+            // <Provider store={store}>
                 <Fragment>
                     <Header />
                 
@@ -21,7 +21,7 @@ class App extends Component {
                     </center>
                 </div>
                 </Fragment>
-            </Provider>
+            // </Provider>
         )
     }
 }
