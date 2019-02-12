@@ -69,9 +69,7 @@ To get started with django:<br>
 
 change directory to project
 
-
-check for the 
-
+check if you are in the root directory.
 --- 
 <br>
 
