@@ -45,7 +45,7 @@ Type the following commands into the terminal:<br>
 
 ---
 
-The following part has already been done. [Clone the git](#Using-git) repository if you haven't.<br>
+The following part has already been done. [Clone the git](#Using-git) repository if you haven't and goto __to run the server__.<br>
 
 Add 'rest_framework' to your INSTALLED_APPS setting.<br>
 
@@ -69,7 +69,6 @@ To get started with django:<br>
 
 change directory to project
 
-check if you are in the root directory.
 --- 
 <br>
 
