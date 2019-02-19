@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/authentication"
-
+import { withRouter } from 'react-router-dom';
 
 export class Header extends Component {
     static propTypes = {
@@ -41,4 +41,4 @@ const mapStateToProps = state => ({
     authReducer: state.authReducer
 })
 
-export default connect(mapStateToProps, { logout })(Header);
+export default withRouter(connect(mapStateToProps, { logout })(Header));

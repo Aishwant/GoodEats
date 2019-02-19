@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { register } from "../../actions/authentication";
 import { Link, Redirect } from "react-router-dom";
-import { withRouter } from 'react-router-dom';
 
 export class Register extends Component {
   state = {
