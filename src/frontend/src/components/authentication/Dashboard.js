@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react';
-import Login from './Login';
-import Register from './Register';
+import List from './List';
+import Add from './Add';
 
 export default function Dashboard() {
   return (
     <Fragment>
-        <Login />
-        <Register />
+        <List />
+        <br />
+        <Add />
     </Fragment>
   )
 }
