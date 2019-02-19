@@ -14,16 +14,16 @@ import {
   LOGOUT_SUCCESS
 } from './types';
 
-//CHECK TOKEN & LOAD USER
+//CHECK uID & LOAD USER
 export const loadUser = () => (dispatch, getState) => {
 
   //User Loading
   dispatch({ type: USER_LOADING });
 
-  //Get token from state
-  const token = getState().authReducer.token;
+  //Get uID from state
+  const uID = getState().authReducer.uID;
 
-  if(token){
+  if(uID){
     dispatch({
       type: USER_LOADED
     });
@@ -43,7 +43,7 @@ export const loginAuth = (credentials) => dispatch => {
         });
       })
       .catch(err => {
-        localStorage.removeItem('token');
+        localStorage.removeItem('uID');
         dispatch({
           type:LOGIN_FAIL
         })
@@ -71,10 +71,10 @@ export const register = (credentials) => dispatch => {
 //LOGOUT
 export const logout = () => (dispatch, getState) => {
 
-  //Get token from state
-  const token = getState().authReducer.token;
+  //Get UID from state
+  const uID = getState().authReducer.uID;
 
-  if(token){
+  if(uID){
     dispatch({
       type: LOGOUT_SUCCESS
     });
