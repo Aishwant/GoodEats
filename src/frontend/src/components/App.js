@@ -10,7 +10,8 @@ import Header from "./layout/Header";
 import Dashboard from "./authentication/Dashboard";
 import Alerts from "./layout/Alerts";
 import Login from "./authentication/Login";
-import Register from "./authentication/Register"
+import Register from "./authentication/Register";
+import Footer from "./layout/Footer";
 
 import PrivateRoute from "./private/PrivateRoute";
 
@@ -48,6 +49,7 @@ class App extends Component {
                   </Switch>
                 </center>
               </div>
+              <Footer />
             </Fragment>
           </Router>
         </AlertProvider>
