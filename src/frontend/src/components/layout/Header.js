@@ -29,12 +29,16 @@ export class Header extends Component {
         );
 
         return (
-            <nav>
+            <nav style={navStyle}>
                 Here goes our Header
                 { isAuthenticated ? authLinks : guestLinks }
             </nav>
         )
     }
+}
+
+const navStyle={
+    backgroundColor: '#dfdfdf'
 }
 
 const mapStateToProps = state => ({

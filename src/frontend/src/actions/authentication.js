@@ -5,7 +5,6 @@ import { Redirect } from "react-router-dom";
 //Authenticate
 
 import {
-  LOG_IN,
   USER_LOADED,
   USER_LOADING,
   AUTH_ERROR,

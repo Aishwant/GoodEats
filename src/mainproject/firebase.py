@@ -18,6 +18,9 @@ def credentials():
 
     return firebase
 
+
+########################### Authentication Starts ################################
+
 # To LOGIN
 def login(request):
     auth = credentials().auth()
@@ -27,3 +30,12 @@ def login(request):
 def register(request):
     auth = credentials().auth()
     return auth.create_user_with_email_and_password(request['email'], request['pwd'])
+
+# Forgot Password
+def forgotPwd(request):
+    auth = credentials().auth()
+    return auth.send_password_reset_email(request["email"])
+
+
+########################### Authentication Ends #################################
+
