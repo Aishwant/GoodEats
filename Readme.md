@@ -87,14 +87,62 @@ run the server again and go to the url given to see if your django is working ht
 ---
 
 ## 3. Using git
-After you have installed git on your computer. Change your directory were you want to clone your file to.
+After you have installed git on your computer. Change your directory where you want to clone your file to.
 Type the following command in the terminal:
 
 >`git config --global user.name "Your Full Name" `<br>
 `git config --global user.email "Youremail@go.olemiss.edu"`<br>
 `git clone https://git.cs.olemiss.edu/cs387group9/mainproject.git`<br>
-`cd mainproject`
-`git checkout yourBranch` ### to be done later in the project
+
+## Workflow
+The following should be done every time you are starting work on a new feature:
+1. Update local repository
+2. Checkout branch for feature you are working on
+
+To update your local repository from the remote repository (gitlab)
+>`git pull origin master`<br>
+
+To checkout a branch
+>`git checkout desiredBranchName`<br>
+or to create a new branch and check it out<br>
+`git checkout -b desiredBranchName`<br>
+
+NOTE: Branch names should be specific and meaningful and if creating a new 
+branch with this command the '-u' flag will need to be used when pushing the branch 
+to the remote repo
+
+<hr>
+
+Once your local repository is up to date and you are in the correct branch (once the above section is completed):
+1. Edit
+2. Add
+3. Commit
+
+To see all new, modified, and staged files
+>`git status`<br>
+
+Control what files will be in your commit by adding them or removing them from the staging area
+>`git add fileName`<br>
+or to remove<br>
+`git reset fileName`<br>
+
+Commit staged changes
+>`git commit -m "descriptive message"`<br>
+
+To publish your branch on the remote repository
+>`git push -u origin yourBranchName"`<br>
+
+When a branch is complete a pull request can be made. From there it will be reviewed by
+the team. After review, if no further changes need to be made, it will be merged with
+the master brach. 
+
+Commits should be done as often as necessary and should always have meaningful descriptions.
+
+VSCode has a very nice interface for doing all of these actions but you must have git installed on your machine still.
+The current branch can be seen in the bottom left corner. 
+
+This workflow is known as a Feature Branch workflow and you can read more about it 
+here [Feature Branch Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow).
 
 
 <br>
@@ -125,14 +173,6 @@ npm i react react-dom prop-types
 ````
 npm i redux react-redux redux-thunk redux-devtools-extension
 ````
-
-More Plugings to install:
-````
-npm i axios
-npm i react-alert react-alert-template-basic react-transition-group
-npm i react-router-dom
-````
-
 ---
 This part has already been done. Cloning the repository should have these files
 For the babel plugins to work create a .babelrc in the home directory and write the following code
