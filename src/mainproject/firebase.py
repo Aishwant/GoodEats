@@ -1,6 +1,9 @@
 from django.shortcuts import render
 import pyrebase
 
+
+# Firebase credentials
+
 def credentials():
     config = {
         "apiKey": "AIzaSyBJJSSETfxQc9tmsbOI-dmlQOG_dbiS3_4",
@@ -15,12 +18,12 @@ def credentials():
 
     return firebase
 
+# To LOGIN
 def login(request):
     auth = credentials().auth()
-    print("reached")
     return auth.sign_in_with_email_and_password(request['email'], request['pwd'])
 
+# To REGISTER
 def register(request):
     auth = credentials().auth()
-    print("reached")
     return auth.create_user_with_email_and_password(request['email'], request['pwd'])

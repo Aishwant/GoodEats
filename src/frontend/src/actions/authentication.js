@@ -1,4 +1,6 @@
+import React, { Component } from 'react'
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 //Authenticate
 
@@ -8,7 +10,8 @@ import {
   USER_LOADING,
   AUTH_ERROR,
   LOGIN_FAIL,
-  LOGIN_SUCCESS
+  LOGIN_SUCCESS,
+  LOGOUT_SUCCESS
 } from './types';
 
 //CHECK TOKEN & LOAD USER
@@ -42,7 +45,7 @@ export const loginAuth = (credentials) => dispatch => {
       .catch(err => {
         localStorage.removeItem('token');
         dispatch({
-          type:AUTH_ERROR
+          type:LOGIN_FAIL
         })
       });
   };
@@ -54,7 +57,7 @@ export const register = (credentials) => dispatch => {
     .post("/api/auth/register", credentials)
     .then(res => {
       dispatch({
-        type: LOG_IN,
+        type: LOGIN_SUCCESS,
         payload: res.data
       });
     })
@@ -64,3 +67,18 @@ export const register = (credentials) => dispatch => {
       })
     });
 };
+
+//LOGOUT
+export const logout = () => (dispatch, getState) => {
+
+  //Get token from state
+  const token = getState().authReducer.token;
+
+  if(token){
+    dispatch({
+      type: LOGOUT_SUCCESS
+    });
+  }
+
+
+}
