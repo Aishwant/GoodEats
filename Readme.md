@@ -179,9 +179,12 @@ npm i redux react-redux redux-thunk redux-devtools-extension
 npm i axios
 npm i react-alert react-alert-template-basic react-transition-group
 npm i react-router-dom
+````
 
 ### More pip install commands for Python:
+````
 pip install django-rest-knox
+````
 
 
 ---
