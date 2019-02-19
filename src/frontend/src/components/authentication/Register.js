@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { register } from "../../actions/authentication";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 
 export class Register extends Component {
   state = {
@@ -12,19 +13,21 @@ export class Register extends Component {
   };
 
   static propTypes = {
-    register: PropTypes.func.isRequired
+    register: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
   };
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = e => {
     e.preventDefault();
-    const { email, pwd, pwd1 } = this.state;
-    const lead = { email, pwd, pwd1 };
-    this.props.register(lead);
+    this.props.register(this.state);
   };
 
   render() {
+    if(this.props.isAuthenticated){
+      return <Redirect to ="/" />
+    }
     const { email, pwd, pwd1 } = this.state;
     return (
       <form onSubmit={this.onSubmit}>
@@ -64,7 +67,12 @@ export class Register extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  isAuthenticated: state.authReducer.isAuthenticated
+});
+
+
 export default connect(
-  null,
+  mapStateToProps,
   { register }
 )(Register);
