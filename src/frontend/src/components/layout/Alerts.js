@@ -9,10 +9,11 @@ export class Alerts extends Component {
     static propTypes = {
         error: PropTypes.object.isRequired
     }
+
     componentDidUpdate(prevProps){
-        const { error } = this.props;
+        const { error, alert } = this.props;
         if(error !== prevProps.error){
-            alert.error('There is an error')
+            if(error.msg) alert.error(error.msg)
         }
     }
 

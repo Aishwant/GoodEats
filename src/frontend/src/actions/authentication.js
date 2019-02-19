@@ -8,6 +8,7 @@ import {
   USER_LOADED,
   USER_LOADING,
   AUTH_ERROR,
+  GET_ERRORS,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
   LOGOUT_SUCCESS
@@ -36,17 +37,23 @@ export const loginAuth = (credentials) => dispatch => {
     axios
       .post("/api/auth/login", credentials)
       .then(res => {
-        dispatch({
-          type: LOGIN_SUCCESS,
-          payload: res.data
-        });
+        if (!res.data.status){
+          dispatch({
+            type: LOGIN_SUCCESS,
+            payload: res.data
+          });
+        }else{
+          localStorage.removeItem('uID');
+          dispatch({
+            type:LOGIN_FAIL
+          });
+          dispatch({
+            type: GET_ERRORS,
+            payload: res.data
+          });
+        }
       })
-      .catch(err => {
-        localStorage.removeItem('uID');
-        dispatch({
-          type:LOGIN_FAIL
-        })
-      });
+      .catch(err => {});
   };
 
 
@@ -55,16 +62,23 @@ export const register = (credentials) => dispatch => {
   axios
     .post("/api/auth/register", credentials)
     .then(res => {
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: res.data
-      });
+      if (!res.data.status){
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: res.data
+        });
+      }else{
+        localStorage.removeItem('uID');
+        dispatch({
+          type:AUTH_ERROR
+        });
+        dispatch({
+          type: GET_ERRORS,
+          payload: res.data
+        });
+      }
     })
-    .catch(err => {
-      dispatch({
-        type:AUTH_ERROR
-      })
-    });
+    .catch(err => {});
 };
 
 //LOGOUT

@@ -12,11 +12,17 @@ class RegisterAPI(generics.GenericAPIView):
     ]
 
     def post(self,request):
-        firebaseResult = firebase.register(request.data)
-        if firebase:
+        try:
+            firebaseResult = firebase.register(request.data)
+            if firebase:
+                return Response({
+                    'uID': firebaseResult['localId'],
+                    'token': firebaseResult['idToken']
+                })
+        except:
             return Response({
-                'uID': firebaseResult['localId'],
-                'token': firebaseResult['idToken']
+                'status':'false',
+                'msg': "Invalid Credentials / Email already exists"
             })
 
 
@@ -27,9 +33,15 @@ class LoginAPI(generics.GenericAPIView):
     ]
 
     def post(self,request):
-        firebaseResult = firebase.login(request.data)
-        if firebase:
+        try:
+            firebaseResult = firebase.login(request.data)
+            if firebase:
+                return Response({
+                    'uID': firebaseResult['localId'],
+                    'token': firebaseResult['idToken']
+                })
+        except:
             return Response({
-                'uID': firebaseResult['localId'],
-                'token': firebaseResult['idToken']
+                'status':'false',
+                'msg': "Invalid Credentials"
             })
