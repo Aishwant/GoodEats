@@ -13,7 +13,8 @@ export class Register extends Component {
 
   static propTypes = {
     register: PropTypes.func.isRequired,
-    isAuthenticated: PropTypes.bool
+    isAuthenticated: PropTypes.bool,
+    newUser: PropTypes.bool
   };
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -29,50 +30,73 @@ export class Register extends Component {
   };
 
   render() {
-    if(this.props.isAuthenticated){
+    if(this.props.isAuthenticated && this.props.newUser){
+      return <Redirect to ="/signupinfo" />
+    }
+    else if(this.props.isAuthenticated){
       return <Redirect to ="/" />
     }
     const { email, pwd, pwd1 } = this.state;
     return (
-      <form onSubmit={this.onSubmit}>
-        Email:{" "}
-        <input
-          type="text"
-          name="email"
-          onChange={this.onChange}
-          value={email}
-        />
-        <br />
-        <br />
-        Password:{" "}
-        <input
-          type="password"
-          name="pwd"
-          onChange={this.onChange}
-          value={pwd}
-        />
-        <br />
-        <br />
-        Repeat Password:{" "}
-        <input
-          type="password"
-          name="pwd1"
-          onChange={this.onChange}
-          value={pwd1}
-        />
-        <br />
-        <br />
-        <button type="submit">Submit</button>
-        <p>
-          Already have an account? <Link to="/login">Login</Link>
-        </p>
-      </form>
+      <div className="row">
+        <div className="col-md"></div>
+        <div className="col-md"></div>
+        <div className="col-md" style={divStyle}>
+          <form onSubmit={this.onSubmit}>
+            <div className="form-group">
+              <label for="exampleInputEmail1">Email</label>
+              <input
+              type="email"
+              name="email"
+              onChange={this.onChange}
+              value={email}
+              placeholder="Enter email"
+              className="form-control"
+              />
+            </div>
+            <div className="form-group">
+              <label>Password</label>
+              <input
+              type="password"
+              name="pwd"
+              onChange={this.onChange}
+              value={pwd}
+              className="form-control"
+              placeholder="Password"
+              />
+            </div>
+            <div className="form-group">
+              <label>Retype Password</label>
+              <input
+              type="password"
+              name="pwd1"
+              onChange={this.onChange}
+              value={pwd1}
+              className="form-control"
+              placeholder="Retype Password"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <p>
+              Already have an account? <Link to="/login">Login</Link>
+            </p>
+          </form>
+        </div>
+      </div>
     );
   }
 }
 
+const divStyle = {
+  border: '3px solid #F1F467',
+  borderRadius: '10%',
+  padding: '20px',
+  margin: '5px'
+};
+
 const mapStateToProps = state => ({
-  isAuthenticated: state.authReducer.isAuthenticated
+  isAuthenticated: state.authReducer.isAuthenticated,
+  newUser: state.authReducer.newUser
 });
 
 

@@ -11,7 +11,8 @@ import {
   GET_ERRORS,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
-  LOGOUT_SUCCESS
+  LOGOUT_SUCCESS,
+  REGISTER_SUCCESS
 } from './types';
 
 //CHECK uID & LOAD USER
@@ -64,7 +65,7 @@ export const register = (credentials) => dispatch => {
     .then(res => {
       if (!res.data.status){
         dispatch({
-          type: LOGIN_SUCCESS,
+          type: REGISTER_SUCCESS,
           payload: res.data
         });
       }else{
@@ -81,6 +82,28 @@ export const register = (credentials) => dispatch => {
     .catch(err => {});
 };
 
+
+//Forgot Password
+export const forgotPwd = (email) => dispatch => {
+  axios
+  .post("/api/auth/forgotpwd",email)
+  .then(res => {
+    if(!res.data.status){
+      dispatch({
+        type: GET_ERRORS,
+        payload: res.data
+      })
+    }else{
+      dispatch({
+        type: GET_ERRORS,
+        payload: res.data
+      })
+    }
+
+  })
+  .catch(err => {});
+};
+
 //LOGOUT
 export const logout = () => (dispatch, getState) => {
 
@@ -91,7 +114,6 @@ export const logout = () => (dispatch, getState) => {
     dispatch({
       type: LOGOUT_SUCCESS
     });
-  }
-
-
+  };
 }
+

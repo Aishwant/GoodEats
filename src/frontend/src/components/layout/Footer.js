@@ -1,20 +1,19 @@
 import React, { Component } from 'react'
-
+import '../css/main.css'
 export class Footer extends Component{
 
     render(){
         return (
-            <div style={footerStyle}>
-                Footer Goes here<br />
-            <center>@Copyright <b>Debug Thugs</b></center>
-            </div>
+            <footer className="footerStyle">
+            Footer Goes here<br />
+                <div>
+                    
+                    <center>@Copyright <b>Debug Thugs</b></center>
+                </div>
+            </footer>
         )
     }
 
-}
-
-const footerStyle = {
-    backgroundColor: '#cfcfcf'
 }
 
 export default Footer;

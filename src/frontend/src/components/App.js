@@ -11,7 +11,9 @@ import Dashboard from "./authentication/Dashboard";
 import Alerts from "./layout/Alerts";
 import Login from "./authentication/Login";
 import Register from "./authentication/Register";
+import ForgotPwd from "./authentication/ForgotPwd";
 import Footer from "./layout/Footer";
+import UserDefiner from "./pages/NewUsers/UserDefiner";
 
 import PrivateRoute from "./private/PrivateRoute";
 
@@ -40,12 +42,14 @@ class App extends Component {
             <Fragment>
               <Header />
               <Alerts />
-              <div>
+              <div className="container">
                 <center>
                   <Switch>
                     <PrivateRoute exact path="/" component={Dashboard} />
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/login" component={Login} />
+                    <Route exact path = "/forgotpwd" component={ForgotPwd} />
+                    <PrivateRoute exact path = "/signupinfo" component={UserDefiner} />
                   </Switch>
                 </center>
               </div>
