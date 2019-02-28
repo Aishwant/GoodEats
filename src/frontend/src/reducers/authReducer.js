@@ -1,9 +1,10 @@
-import { USER_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS } from "../actions/types";
+import { USER_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, GET_RESTAURANTS } from "../actions/types";
 
 const initialState = {
   uID: localStorage.getItem("uID"),
   isAuthenticated: null,
   isLoading: false,
+  restaurants: ""
 };
 
 export default function(state = initialState, action) {
@@ -37,6 +38,11 @@ export default function(state = initialState, action) {
         isAuthenticated: false,
         isLoading: false,
       }
+    case GET_RESTAURANTS:
+      return{
+        ...state,
+        restaurants: action.payload
+      };
     default:
       return state;
   }
