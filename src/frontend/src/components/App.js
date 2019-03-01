@@ -7,11 +7,13 @@ import { Provider as AlertProvider } from "react-alert";
 import AlertTemplate from 'react-alert-template-basic'
 
 import Header from "./layout/Header";
-import Dashboard from "./authentication/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import Alerts from "./layout/Alerts";
 import Login from "./authentication/Login";
 import Register from "./authentication/Register";
+import ForgotPwd from "./authentication/ForgotPwd";
 import Footer from "./layout/Footer";
+import UserDefiner from "./pages/NewUsers/UserDefiner";
 
 import PrivateRoute from "./private/PrivateRoute";
 
@@ -40,14 +42,17 @@ class App extends Component {
             <Fragment>
               <Header />
               <Alerts />
-              <div>
-                <center>
+              <div className="content">
+                <div className="container">
                   <Switch>
                     <PrivateRoute exact path="/" component={Dashboard} />
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/login" component={Login} />
+                    <Route exact path = "/forgotpwd" component={ForgotPwd} />
+                    <PrivateRoute exact path = "/signupinfo" component={UserDefiner} />
                   </Switch>
-                </center>
+                  <div className="push"></div>
+                </div>
               </div>
               <Footer />
             </Fragment>

@@ -29,33 +29,53 @@ export class Login extends Component {
     }
     const { email, pwd } = this.state;
     return (
-      <form onSubmit={this.onSubmit}>
-        Email:{" "}
-        <input
-          type="text"
-          name="email"
-          onChange={this.onChange}
-          value={email}
-        />
-        <br />
-        <br />
-        Password:{" "}
-        <input
-          type="password"
-          name="pwd"
-          onChange={this.onChange}
-          value={pwd}
-        />
-        <br />
-        <br />
-        <button type="submit">Login</button>
-        <p>
-          Don't have an account? <Link to="/register">Register</Link>
-        </p>
-      </form>
+      <div className="row">
+        <div className="col-md"></div>
+        <div className="col-md"></div>
+        <div className="col-md" style={divStyle}>
+        <form onSubmit={this.onSubmit}>
+          <div className="form-group">
+            <label>Email</label>
+            <input
+            type="email"
+            name="email"
+            onChange={this.onChange}
+            value={email}
+            placeholder="Enter email"
+            className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              name="pwd"
+              onChange={this.onChange}
+              value={pwd}
+              className="form-control"
+              placeholder="Password"
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">Login</button>
+          <p>
+            Don't have an account? <Link to="/register">Register</Link>
+          </p>
+          <p>
+            <Link to="/forgotPwd">Forgot Passowrd? </Link>
+          </p>
+        </form>
+        </div>
+      </div>
     );
   }
 }
+
+const divStyle = {
+  border: '3px solid #DCE1E7',
+  borderRadius: '10%',
+  padding: '20px',
+  margin: '5px'
+};
 
 const mapStateToProps = state => ({
   isAuthenticated: state.authReducer.isAuthenticated

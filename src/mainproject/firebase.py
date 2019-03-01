@@ -39,3 +39,10 @@ def forgotPwd(request):
 
 ########################### Authentication Ends #################################
 
+
+
+########################### Database Starts ####################################
+
+def getRestaurant(request):
+    db = credentials().database()
+    return (dict(db.child("Restaurants").child("abc123").get().val()))

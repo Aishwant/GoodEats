@@ -45,3 +45,23 @@ class LoginAPI(generics.GenericAPIView):
                 'status':'false',
                 'msg': "Invalid Credentials"
             })
+
+
+#Forgot Password API
+class ForgotPwdAPI(generics.GenericAPIView):
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self,request):
+        try:
+            firebaseResult = firebase.forgotPwd(request.data)
+            if firebase:
+                return Response({
+                    'msg':"An email has been sent to your email"
+                })
+        except:
+            return Response({
+                'msg':"Invalid Email",
+                'status': 'false'
+            })
