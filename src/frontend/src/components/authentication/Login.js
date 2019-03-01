@@ -35,7 +35,7 @@ export class Login extends Component {
         <div className="col-md" style={divStyle}>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label for="exampleInputEmail1">Email</label>
+            <label>Email</label>
             <input
             type="email"
             name="email"
@@ -46,17 +46,17 @@ export class Login extends Component {
             />
           </div>
           <div className="form-group">
-            <label for="exampleInputPassword1">Password</label>
+            <label>Password</label>
             <input
-            type="password"
-            name="pwd"
-            onChange={this.onChange}
-            value={pwd}
-            className="form-control"
-            placeholder="Password"
+              type="password"
+              name="pwd"
+              onChange={this.onChange}
+              value={pwd}
+              className="form-control"
+              placeholder="Password"
             />
           </div>
-          <button type="submit" class="btn btn-primary">Login</button>
+          <button type="submit" className="btn btn-primary">Login</button>
           <p>
             Don't have an account? <Link to="/register">Register</Link>
           </p>

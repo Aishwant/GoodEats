@@ -7,7 +7,7 @@ import { Provider as AlertProvider } from "react-alert";
 import AlertTemplate from 'react-alert-template-basic'
 
 import Header from "./layout/Header";
-import Dashboard from "./authentication/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import Alerts from "./layout/Alerts";
 import Login from "./authentication/Login";
 import Register from "./authentication/Register";
@@ -42,8 +42,8 @@ class App extends Component {
             <Fragment>
               <Header />
               <Alerts />
-              <div className="container">
-                <center>
+              <div className="content">
+                <div className="container">
                   <Switch>
                     <PrivateRoute exact path="/" component={Dashboard} />
                     <Route exact path="/register" component={Register} />
@@ -51,7 +51,8 @@ class App extends Component {
                     <Route exact path = "/forgotpwd" component={ForgotPwd} />
                     <PrivateRoute exact path = "/signupinfo" component={UserDefiner} />
                   </Switch>
-                </center>
+                  <div className="push"></div>
+                </div>
               </div>
               <Footer />
             </Fragment>
