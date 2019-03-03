@@ -1,9 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Restaurant from '../customer/Restaurant';
 import store from '../../store';
 import { getUser } from '../../actions/getUser';
+import Customer from '../customer/Customer'
+import Driver from '../driver/Driver'
+import Owner from '../owner/Owner'
 
 export class Dashboard extends Component {
   static propTypes = {
@@ -21,35 +23,21 @@ export class Dashboard extends Component {
     switch(contentKeys[0]){
       case "Customer":
         return(
-          <Fragment>
-            <h1>Welcome Customer</h1>
-            <br />
-            <Restaurant />
-          </Fragment>
+          <Customer />
         );
       case "Driver":
         return(
-          <Fragment>
-            <h1>Welcome Driver</h1>
-            <br />
-            <Restaurant />
-          </Fragment>
+          <Driver />
         );
       case "Owner":
         return(
-          <Fragment>
-            <h1>Welcome Owner</h1>
-            <br />
-            <Restaurant />
-          </Fragment>
+          <Owner />
         );
       default:
           //direct to new user page so that a the account type can be determined
           return(
             <Fragment>
               <h1>NO USER TYPE</h1>
-              <br />
-              <Restaurant />
             </Fragment>
           );
     }
