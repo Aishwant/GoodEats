@@ -5,14 +5,25 @@ import Restaurant from '../customer/Restaurant';
 import store from '../../store';
 import { getRestaurantName } from '../../actions/authentication';
 
-export default function Dashboard() {
-  return(
-    <Fragment>
-        <h1>Welcome</h1>
-        <br />
-        <Restaurant />
-    </Fragment>
-
-  );
+export class Dashboard extends Component {
+  static propTypes = {
+    isCustomer: PropTypes.bool,
+    isDriver: PropTypes.bool,
+    isOwner: PropTypes.bool
+  }
+  
+  render(){
+    return(
+      <Fragment>
+          <h1>Welcome</h1>
+          <br />
+          <Restaurant />
+      </Fragment>
+  
+    );
+  }
+ 
 }
+
+export default Dashboard;
 
