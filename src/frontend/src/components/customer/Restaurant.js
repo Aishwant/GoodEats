@@ -23,20 +23,38 @@ export class Restaurant extends Component {
           [this.props.restaurants[t]].map(res =>
 
             <div className="col-md">
-              <h6>{res.Name}</h6>
-              <h6>{res.Address}</h6>
-              <h6>{res.City}</h6>
-              <h6>{res.zipcode}</h6>
-              <h6>Open:{res.Hours.Open}</h6>
-              <h6>Close:{res.Hours.Close}</h6>
+              <div className="card" style={cardWidth}>
+                <img className="card-img-top" src="..." alt="Card image cap" />
+                <div className="card-body">
+                  <h5 className="card-title">{res.Name}</h5>
+                  <p className="card-text">
+                    <h6>{res.Address}</h6>
+                    <h6>{res.City}</h6>
+                    <h6>{res.zipcode}</h6>
+                    <h6>Open:{res.Hours.Open}</h6>
+                    <h6>Close:{res.Hours.Close}</h6>
+                  </p>
+                  <a href="#" className="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
             </div>
 
           )
           
           )}
+
+        
+          
+          
+            
       </div>
+
     )
   }
+}
+
+const cardWidth = {
+  width: '18rem'
 }
 
 const mapStateToProps = state => ({
