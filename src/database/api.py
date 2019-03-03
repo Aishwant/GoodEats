@@ -11,9 +11,26 @@ class getDataAPI(generics.GenericAPIView):
 
     def get(self,request):
         try:
-            
             return Response(firebase.getRestaurant(request))
         except:
             return Response({
                 "status":"Disconnected"
+            })
+
+class pushCustomerDataAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self,request):
+        try:
+            db = firebase.addCustomer(request.data)
+            return Response({
+                "status": "success"
+            })
+        except:
+            return Response({
+                "status":"Disconnected",
+                "msg": 'There was a problem'
             })

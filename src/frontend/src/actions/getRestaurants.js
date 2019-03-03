@@ -17,7 +17,7 @@ import {
 //GET RESTAURANT NAME
 export const getRestaurant = () => (dispatch, getState) => {
     axios
-      .get("/api/data/get")
+      .get("/api/database/get")
       .then(res => {
         dispatch({
           type: GET_RESTAURANTS,

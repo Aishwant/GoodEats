@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import pyrebase
-
+import string
+import random
 
 # Firebase credentials
 
@@ -17,6 +18,17 @@ def credentials():
     firebase = pyrebase.initialize_app(config)
 
     return firebase
+
+############# Random String Creator ###############
+
+randVal =''
+def rand():
+    randVal = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(N))
+
+
+##################################################
+
+
 
 
 ########################### Authentication Starts ################################
@@ -43,6 +55,49 @@ def forgotPwd(request):
 
 ########################### Database Starts ####################################
 
+ ##### Reading From Database #####
 def getRestaurant(request):
     db = credentials().database()
     return (dict(db.child("Restaurants").get().val()))
+
+
+ ##### Writing To Database #####
+def addOwner(request):
+    db = credentials().database()
+    request.update()
+    return db.child('Users').child(request['uID']).child("Owner")
+
+def addCustomer(request):
+    db = credentials().database()
+
+    
+    if (request['data']["changeC"]==True):
+        request['data'].pop("rname")
+        request['data'].pop("changeC")
+        request['data'].pop("changeD")
+        request['data'].pop("changeO")
+        db.child('Users').child(request['uID']).child("Customer").set(request['data'])
+
+    elif(request['data']["changeO"]==True):
+        request['data'].pop("changeC")
+        request['data'].pop("changeD")
+        request['data'].pop("changeO")
+        db.child('Users').child(request['uID']).child("Owner").set(request['data'])
+
+    elif(request['data']["changeD"]==True):
+        request['data'].pop("rname")
+        request['data'].pop("changeC")
+        request['data'].pop("changeD")
+        request['data'].pop("changeO")
+        db.child('Users').child(request['uID']).child("Driver").set(request['data'])
+
+
+def addDeliveryDriver(request):
+    db = credentials().database()
+    request['data'].pop("changeC")
+    request['data'].pop("changeD")
+    request['data'].pop("changeO")
+    request['data'].pop("rname")
+    print(request)
+    return db.child('Users').child(request['uID']).child("Driver").set(request['data'])
+

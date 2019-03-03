@@ -1,6 +1,7 @@
 from django.urls import path,include
-from .api import getDataAPI
+from .api import getDataAPI, pushCustomerDataAPI
 
 urlpatterns = [
-    path('api/data/get',getDataAPI.as_view()),
+    path('api/database/get',getDataAPI.as_view()),
+    path('api/database/newuser',pushCustomerDataAPI.as_view()),
 ]

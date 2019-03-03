@@ -14,11 +14,10 @@ class RegisterAPI(generics.GenericAPIView):
     def post(self,request):
         try:
             firebaseResult = firebase.register(request.data)
-            if firebase:
-                return Response({
-                    'uID': firebaseResult['localId'],
-                    'token': firebaseResult['idToken']
-                })
+            return Response({
+                'uID': firebaseResult['localId'],
+                'token': firebaseResult['idToken']
+            })
         except:
             return Response({
                 'status':'false',

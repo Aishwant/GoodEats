@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { addNewUser } from "../../../actions/addNewUser";
+import { addUser } from "../../../actions/addNewUser";
 
 //url link as signup definer
 export class UserDefiner extends Component {
@@ -18,15 +18,27 @@ export class UserDefiner extends Component {
     changeD: false
   };
 
+
   static propTypes = {
     isAuthenticated: PropTypes.bool,
-    newUser: PropTypes.bool.isRequired
+    newUser: PropTypes.bool.isRequired,
+    addUser: PropTypes.func.isRequired
   };
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = e => {
     e.preventDefault();
+
+    if(this.state.changeC){
+      this.props.addUser(this.state);
+    }
+    else if(this.state.changeO){
+      this.props.addUser(this.state);
+    }
+    else if(this.state.changeD){
+      this.props.addUser(this.state);
+    }
   };
 
   onClickOwner() {
@@ -118,8 +130,8 @@ export class UserDefiner extends Component {
       </div>
     );
 
-    const { fname, lname, rname, address, city, zipcode, changeO, changeC, changeD } = this.state;
-
+    const { fname, lname, rname, address, city, zipcode } = this.state;
+    // const { changeO, changeC, changeD } = this.state;
     return (
       <div className="row">
         <div className="col-md"></div>
@@ -151,7 +163,7 @@ export class UserDefiner extends Component {
               onClick={this.onClickOwner.bind(this)}
               data-toggle="modal"
               data-target="#ownerModalCenter"
-              value={changeO}
+              
             >
               Owner of A resturant
             </button>{" "}
@@ -177,7 +189,7 @@ export class UserDefiner extends Component {
             {this.state.changeC ? zipcodeF:''}
             {this.state.changeD ? zipcodeF:''}
             
-            <button type="button" className="btn btn-primary" style={margin15}>Submit</button>
+            <button type="submit" className="btn btn-primary" style={margin15}>Submit</button>
 
           </form>
         </div>
@@ -198,5 +210,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addNewUser }
+  { addUser }
 )(UserDefiner);

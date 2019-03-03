@@ -12,28 +12,35 @@ import {
   LOGIN_FAIL,
   LOGIN_SUCCESS,
   LOGOUT_SUCCESS,
-  REGISTER_SUCCESS
+  REGISTER_SUCCESS,
+  CUSTOMER_ADDED
 } from './types';
 
-export const addNewUser = (info) => dispatch => {
+export const addUser = (info) => dispatch => {
+
+  const toData = {
+      uID: localStorage.getItem("uID"),
+      data: info
+    };
     axios
-      .post("/api/database/newUser", info)
+      .post("/api/database/newuser", toData)
       .then(res => {
-        if (!res.data.status){
-          dispatch({
-            type: LOGIN_SUCCESS,
-            payload: res.data
-          });
-        }else{
-          localStorage.removeItem('uID');
-          dispatch({
-            type:LOGIN_FAIL
-          });
-          dispatch({
-            type: GET_ERRORS,
-            payload: res.data
-          });
-        }
+        console.log(res.data)
+        // if (res.data.status=="success"){
+        //   dispatch({
+        //     type: CUSTOMER_ADDED,
+        //     payload: res.data
+        //   });
+        // }else{
+        //   localStorage.removeItem('uID');
+        //   dispatch({
+        //     type:LOGIN_FAIL
+        //   });
+        //   dispatch({
+        //     type: GET_ERRORS,
+        //     payload: res.data
+        //   });
+        // }
       })
       .catch(err => {});
   };
