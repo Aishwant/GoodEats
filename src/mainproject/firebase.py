@@ -45,4 +45,4 @@ def forgotPwd(request):
 
 def getRestaurant(request):
     db = credentials().database()
-    return (dict(db.child("Restaurants").child("abc123").get().val()))
+    return (dict(db.child("Restaurants").get().val()))
