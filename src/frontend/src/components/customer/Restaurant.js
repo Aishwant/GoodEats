@@ -5,7 +5,7 @@ import { getRestaurant } from '../../actions/getRestaurants';
 
 export class Restaurant extends Component {
   static propTypes = {
-    restaurants: PropTypes.array.isRequired,
+    // restaurants: PropTypes.array.isRequired,
     getRestaurantName: PropTypes.func
   };
 
@@ -14,14 +14,26 @@ export class Restaurant extends Component {
   }
 
   render() {
+    const contentKeys = Object.keys(this.props.restaurants)
+    // console.log(JSON.parse(this.props.restaurants))
     return (
-      <div>
-        {this.props.restaurants.map((res,i) => (
-            <div key={i}>
+      <div className="row">
+        {contentKeys.map(t=>
+        
+          [this.props.restaurants[t]].map(res =>
+
+            <div className="col-md">
               <h6>{res.Name}</h6>
               <h6>{res.Address}</h6>
-          </div>
-        ))}
+              <h6>{res.City}</h6>
+              <h6>{res.zipcode}</h6>
+              <h6>Open:{res.Hours.Open}</h6>
+              <h6>Close:{res.Hours.Close}</h6>
+            </div>
+
+          )
+          
+          )}
       </div>
     )
   }
