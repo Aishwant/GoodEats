@@ -5,7 +5,7 @@ export default class Customer extends Component {
   render() {
     return (
       <div>
-        <h1>Welcome Customer</h1>
+        <h1>Welcome {this.props.name}</h1>
         <br />
         <Restaurant />
       </div>

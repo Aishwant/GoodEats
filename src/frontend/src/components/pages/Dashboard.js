@@ -19,19 +19,32 @@ export class Dashboard extends Component {
   render(){
     const contentKeys = Object.keys(this.props.user)
     console.log(contentKeys)
+    console.log(this.props.user['Owner'])
     
     switch(contentKeys[0]){
       case "Customer":
         return(
-          <Customer />
+          <div>
+          {contentKeys.map(t=> [this.props.user[t]].map(res =>
+            <Customer name={res.fname}/>
+          ))}
+          </div>
         );
       case "Driver":
         return(
-          <Driver />
+          <div>
+          {contentKeys.map(t=> [this.props.user[t]].map(res =>
+            <Driver name={res.fname}/>
+          ))}
+          </div>
         );
       case "Owner":
         return(
-          <Owner />
+          <div>
+          {contentKeys.map(t=> [this.props.user[t]].map(res =>
+            <Owner name={res.fname}/>
+          ))}
+          </div>
         );
       default:
           //direct to new user page so that a the account type can be determined

@@ -5,7 +5,7 @@ export default class Owner extends Component {
   render() {
     return (
       <div>
-        <h1>Welcome Owner</h1>
+        <h1>Welcome {this.props.name}</h1>
         <br />
         <Restaurant />
       </div>
