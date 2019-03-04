@@ -9,6 +9,7 @@ export default function Dashboard() {
   return(
     <Fragment>
         <h1>Welcome</h1>
+        <h4>Restaurants near you</h4>
         <br />
         <Restaurant />
     </Fragment>
