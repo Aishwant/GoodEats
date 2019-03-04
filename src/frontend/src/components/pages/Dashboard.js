@@ -1,16 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import store from '../../store';
 import { getUser } from '../../actions/getUser';
 import Customer from '../customer/Customer'
 import Driver from '../driver/Driver'
 import Owner from '../owner/Owner'
 
 export class Dashboard extends Component {
-  static propTypes = {
-    //userType: PropTypes.number //0=customer, 1=driver, 2=owner
-  }
 
   componentDidMount(){
     this.props.getUser();
