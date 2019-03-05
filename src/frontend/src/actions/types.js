@@ -9,6 +9,7 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 
 export const GET_RESTAURANTS = 'GET_RESTAURANTS';
+export const GET_USER = 'GET_USER';
 
 export const OWNER_ADDED = "OWNER_ADDED";
 export const CUSTOMER_ADDED = "CUSTOMER_ADDED";

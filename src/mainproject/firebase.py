@@ -60,6 +60,10 @@ def getRestaurant(request):
     db = credentials().database()
     return (dict(db.child("Restaurants").get().val()))
 
+def getUser(request, uID):
+    db = credentials().database()
+    return (dict(db.child("Users").child(uID).get().val()))
+
 
  ##### Writing To Database #####
 def addOwner(request):

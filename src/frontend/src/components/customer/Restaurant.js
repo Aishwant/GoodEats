@@ -17,7 +17,7 @@ export class Restaurant extends Component {
 
   render() {
     const contentKeys = Object.keys(this.props.restaurants)
-    // console.log(JSON.parse(this.props.restaurants))
+    //console.log((this.props.restaurants))
     return (
       <div className="row">
         {contentKeys.map(t=>

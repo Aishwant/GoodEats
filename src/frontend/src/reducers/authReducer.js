@@ -1,6 +1,6 @@
 // import { USER_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, REGISTER_SUCCESS } from "../actions/types";
 
-import { USER_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, GET_RESTAURANTS, REGISTER_SUCCESS } from "../actions/types";
+import { USER_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, GET_RESTAURANTS, REGISTER_SUCCESS, GET_USER } from "../actions/types";
 
 
 const initialState = {
@@ -8,7 +8,7 @@ const initialState = {
   isAuthenticated: null,
   newUser: false,
   isLoading: false,
-  restaurants: ""
+  user: {}
 };
 
 export default function(state = initialState, action) {
@@ -53,10 +53,10 @@ export default function(state = initialState, action) {
         newUser: false,
         isLoading: false,
       }
-    case GET_RESTAURANTS:
+    case GET_USER:
       return{
         ...state,
-        restaurants: action.payload
+        user: action.payload
       };
     default:
       return state;
