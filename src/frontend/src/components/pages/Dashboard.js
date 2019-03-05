@@ -5,18 +5,7 @@ import Customer from '../customer/Customer'
 import Driver from '../driver/Driver'
 import Owner from '../owner/Owner'
 
-<<<<<<< HEAD
-export default function Dashboard() {
-  return(
-    <Fragment>
-        <h1>Welcome</h1>
-        <h4>Restaurants near you</h4>
-        <br />
-        <Restaurant />
-    </Fragment>
-=======
 export class Dashboard extends Component {
->>>>>>> 6e43f91ed7153e940b677847d05102a45f89689d
 
   componentDidMount(){
     this.props.getUser();
@@ -56,7 +45,7 @@ export class Dashboard extends Component {
           //direct to new user page so that a the account type can be determined
           return(
             <Fragment>
-              <h1>NO USER TYPE</h1>
+              {/* <h1>NO USER TYPE</h1> */}
             </Fragment>
           );
     }

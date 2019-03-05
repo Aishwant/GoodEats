@@ -46,16 +46,16 @@ class App extends Component {
                 <div className="container">
                   <Switch>
                     <PrivateRoute exact path="/" component={Dashboard} />
-                    <div className="row">
+                    {/* <div className="row">
                       <div className="col-sm-0 col-md-7 col-lg-8"  style={bgpic}>
-                      </div>
-                      <div className="col-sm-12 col-md-5 col-lg-4">
+                      </div> */}
+                      {/* <div className="col-sm-12 col-md-5 col-lg-4"> */}
                         <Route exact path="/register" component={Register} />
                         <Route exact path="/login" component={Login} />
                         <Route exact path = "/forgotpwd" component={ForgotPwd} />
                         <PrivateRoute exact path = "/signupinfo" component={UserDefiner} />
-                      </div>
-                    </div>
+                      {/* </div> */}
+                    {/* </div> */}
                   </Switch>
                 </div>
               </div>

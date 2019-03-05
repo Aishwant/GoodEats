@@ -58,6 +58,7 @@ const cardWidth = {
   width: '14rem'
 }
 
+
 const mapStateToProps = state => ({
   restaurants: state.restaurantReducer.restaurants
 });

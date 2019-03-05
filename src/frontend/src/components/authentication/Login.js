@@ -30,8 +30,8 @@ export class Login extends Component {
     const { email, pwd } = this.state;
     return (
       <div className="row">
-        {/* <div className="col-md"></div> 
-        <div className="col-md"></div> */}
+        <div className="col-md"></div> 
+        <div className="col-md"></div>
         <div className="col-md" style={divStyle}>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
