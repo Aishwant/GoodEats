@@ -30,7 +30,7 @@ export class Login extends Component {
     const { email, pwd } = this.state;
     return (
       <div className="row">
-        <div className="col-md"></div>
+        <div className="col-md"></div> 
         <div className="col-md"></div>
         <div className="col-md" style={divStyle}>
         <form onSubmit={this.onSubmit}>
@@ -72,10 +72,14 @@ export class Login extends Component {
 
 const divStyle = {
   border: '3px solid #DCE1E7',
-  borderRadius: '10%',
+  // borderRadius: '10%',
   padding: '20px',
   margin: '5px'
 };
+
+const bgpic={
+  background: 'url("https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fevanwise.jpg?alt=media&token=6986eebb-7928-42d6-9d4e-7589990f29b3")'
+}
 
 const mapStateToProps = state => ({
   isAuthenticated: state.authReducer.isAuthenticated
