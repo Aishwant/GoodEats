@@ -27,7 +27,9 @@ export class Restaurant extends Component {
                   <h5 className="card-title">{res.Name}</h5>
                   <p className="card-text">
                     <h6>{res.Address}</h6>
-                    <h6>{res.City} {res.zipcode}</h6>
+                    <h6>{res.City} {res.zipcode}</h6> 
+                    <h6>Open:{res.Open}</h6>
+                    <h6>Close:{res.Close}</h6>
                   </p>
                   <a href="#" className="btn btn-primary">Menu</a>
                 </div>
