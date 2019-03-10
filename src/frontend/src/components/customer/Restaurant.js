@@ -24,7 +24,9 @@ export class Restaurant extends Component {
     
 
     return (
-        <div>
+      <div className="row">
+      {contentKeys.map(t=>
+
           [this.props.restaurants[t]].map(res =>
             
             <div className="col-md">
