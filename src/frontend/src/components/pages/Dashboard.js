@@ -37,7 +37,7 @@ export class Dashboard extends Component {
         return(
           <div>
           {contentKeys.map(t=> [this.props.user[t]].map(res =>
-            <Owner name={res.fname}/>
+            <Owner name={res.fname} />
           ))}
           </div>
         );

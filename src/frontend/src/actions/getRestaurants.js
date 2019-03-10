@@ -12,7 +12,8 @@ import {
     LOGOUT_SUCCESS,
     REGISTER_SUCCESS,
     GET_RESTAURANTS,
-    GET_RESTAURANTS_BY_ZIP
+    GET_RESTAURANTS_BY_ZIP,
+    GET_RESTAURANTS_BY_ID
   } from './types';
 
 //GET ALL RESTAURANTS
@@ -37,6 +38,22 @@ export const getRestaurantByZip = (zip) => (dispatch, getState) => {
     .then(res => {
       dispatch({
         type: GET_RESTAURANTS_BY_ZIP,
+        payload: res.data
+      });
+    })
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+//GET RESTAURANTS BY ID
+export const getRestaurantByID = () => (dispatch, getState) => {
+  const uID = localStorage.getItem("uID")
+  axios
+    .get("/api/database/getRestByID/" + uID)
+    .then(res => {
+      dispatch({
+        type: GET_RESTAURANTS_BY_ID,
         payload: res.data
       });
     })
