@@ -65,6 +65,7 @@ export class FormRestaurant extends Component {
                                     name="Name"
                                     onChange={this.onChange}
                                     value={Name}
+                                    required
                                     />
                                 </div>
                                 <div className="form-group">
@@ -75,6 +76,7 @@ export class FormRestaurant extends Component {
                                     name="Address"
                                     onChange={this.onChange}
                                     value={Address}
+                                    required
                                     />
                                 </div>
                                 <div className="form-group">
@@ -85,6 +87,7 @@ export class FormRestaurant extends Component {
                                     name="City"
                                     onChange={this.onChange}
                                     value={City}
+                                    required
                                     />
                                 </div>
                                 <div className="form-group">
@@ -95,6 +98,7 @@ export class FormRestaurant extends Component {
                                     name="zipcode"
                                     onChange={this.onChange}
                                     value={zipcode}
+                                    required
                                     />
                                 </div>
                                 <div className="form-group">
@@ -105,6 +109,7 @@ export class FormRestaurant extends Component {
                                     name="Open"
                                     onChange={this.onChange}
                                     value={Open}
+                                    required
                                     />
                                 </div>
                                 <div className="form-group">
@@ -115,6 +120,7 @@ export class FormRestaurant extends Component {
                                     name="Close"
                                     onChange={this.onChange}
                                     value={Close}
+                                    required
                                     />
                                 </div>
                             </div>
