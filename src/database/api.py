@@ -17,6 +17,20 @@ class getDataAPI(generics.GenericAPIView):
                 "status":"Disconnected"
             })
 
+class getRestaurantByZipAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def get(self, request, zip):
+        try:
+            return Response(firebase.getRestaurantByZip(request, zip))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })
+
 class getUserAPI(generics.GenericAPIView):
 
     permission_classes=[

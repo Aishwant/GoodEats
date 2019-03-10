@@ -64,6 +64,17 @@ def getUser(request, uID):
     db = credentials().database()
     return (dict(db.child("Users").child(uID).get().val()))
 
+def getRestaurantByZip(request, zip):
+    db = credentials().database()
+    restaurants = (dict(db.child("Restaurants").get().val()))
+    data = {}
+    for key, value  in restaurants.items():
+        for k, v in value.items():  
+            if(k == "zipcode" and v == 38655):
+                data[key] = value
+    return data
+
+
 
  ##### Writing To Database #####
 def addOwner(request):

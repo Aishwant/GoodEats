@@ -11,10 +11,11 @@ import {
     LOGIN_SUCCESS,
     LOGOUT_SUCCESS,
     REGISTER_SUCCESS,
-    GET_RESTAURANTS
+    GET_RESTAURANTS,
+    GET_RESTAURANTS_BY_ZIP
   } from './types';
 
-//GET RESTAURANT NAME
+//GET ALL RESTAURANTS
 export const getRestaurant = () => (dispatch, getState) => {
     axios
       .get("/api/database/get")
@@ -28,3 +29,18 @@ export const getRestaurant = () => (dispatch, getState) => {
         dispatch(returnErrors(err.response.data, err.response.status))
       );
   };
+
+//GET RESTAURANTS BY ZIPCODE
+export const getRestaurantByZip = (zip) => (dispatch, getState) => {
+  axios
+    .get("/api/database/getRestByZip/" + zip)
+    .then(res => {
+      dispatch({
+        type: GET_RESTAURANTS_BY_ZIP,
+        payload: res.data
+      });
+    })
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
