@@ -1,30 +1,23 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getRestaurantByZip } from '../../actions/getRestaurants';
+import { getRestaurantByID } from '../../actions/getRestaurants';
 
-import { HashRouter, Route, Redirect, Link } from "react-router-dom";
 
 
 export class Restaurant extends Component {
 
-  static propTypes = {
-    // restaurants: PropTypes.array.isRequired,
-    getRestaurantName: PropTypes.func,
-    getRestaurantByZip: PropTypes.func
-  };
-
   componentDidMount(){
-    this.props.getRestaurantByZip(this.props.zip);
+    this.props.getRestaurantByID();
   }
 
   render() {
-    const contentKeys = Object.keys(this.props.restaurants);
+    const contentKeys = Object.keys(this.props.restaurants)
     //console.log((this.props.restaurants))
-    
-
     return (
-        <div>
+      <div className="row">
+        {contentKeys.map(t=>
+        
           [this.props.restaurants[t]].map(res =>
             
             <div className="col-md">
@@ -50,12 +43,12 @@ export class Restaurant extends Component {
 }
 
 const cardWidth = {
-  width: "16rem"
-};
+  width: '14rem'
+}
+
 
 const mapStateToProps = state => ({
-  restaurants: state.restaurantReducer.restaurants,
-  resName: state.restaurantReducer.resName
+  restaurants: state.restaurantReducer.restaurants
 });
 
-export default connect(mapStateToProps, { getRestaurantByZip })(Restaurant);
+export default connect(mapStateToProps, { getRestaurantByID })(Restaurant);

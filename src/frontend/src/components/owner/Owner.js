@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Restaurant from '../customer/Restaurant'
+import Restaurant_Owner from './Restaurant_Owner'
 
 export default class Owner extends Component {
   render() {
@@ -7,7 +7,7 @@ export default class Owner extends Component {
       <div>
         <h1>Welcome {this.props.name}</h1>
         <br />
-        <Restaurant />
+        <Restaurant_Owner />
       </div>
     )
   }

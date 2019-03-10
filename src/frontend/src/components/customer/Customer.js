@@ -7,7 +7,7 @@ export default class Customer extends Component {
       <div>
         <h1>Welcome {this.props.name}</h1>
         <br />
-        <Restaurant />
+        <Restaurant zip={this.props.zip}/>
       </div>
     )
   }
