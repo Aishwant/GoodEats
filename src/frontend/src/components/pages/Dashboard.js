@@ -21,7 +21,7 @@ export class Dashboard extends Component {
         return(
           <div>
           {contentKeys.map(t=> [this.props.user[t]].map(res =>
-            <Customer name={res.fname}/>
+            <Customer name={res.fname} zip={res.zipcode}/>
           ))}
           </div>
         );
@@ -37,7 +37,7 @@ export class Dashboard extends Component {
         return(
           <div>
           {contentKeys.map(t=> [this.props.user[t]].map(res =>
-            <Owner name={res.fname}/>
+            <Owner name={res.fname} />
           ))}
           </div>
         );

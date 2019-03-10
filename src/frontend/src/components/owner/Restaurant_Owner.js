@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getRestaurantByZip } from '../../actions/getRestaurants';
+import { getRestaurantByID } from '../../actions/getRestaurants';
 
 
 
 export class Restaurant extends Component {
-  static propTypes = {
-    // restaurants: PropTypes.array.isRequired,
-    getRestaurantName: PropTypes.func,
-    getRestaurantByZip: PropTypes.func
-  };
 
   componentDidMount(){
-    this.props.getRestaurantByZip(this.props.zip);
+    this.props.getRestaurantByID();
   }
 
   render() {
@@ -56,4 +51,4 @@ const mapStateToProps = state => ({
   restaurants: state.restaurantReducer.restaurants
 });
 
-export default connect(mapStateToProps, { getRestaurantByZip })(Restaurant);
+export default connect(mapStateToProps, { getRestaurantByID })(Restaurant);
