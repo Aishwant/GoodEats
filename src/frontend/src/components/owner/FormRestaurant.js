@@ -39,55 +39,94 @@ export class FormRestaurant extends Component {
     render() {
         const { Address, City, Open, Close, Name, img, zipcode } = this.state;
         return (
-            <div className="card card-body mt-4 mb-4">
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Name</label>
-                        <input
-                        className="form-control"
-                        type="text"
-                        name="Name"
-                        onChange={this.onChange}
-                        value={Name}
-                        />
+                <div>
+                    <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Add Restaurant
+                    </button>
+
+                    <form onSubmit={this.onSubmit}>
+                    <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Add Restaurant</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body"></div>
+                        <div className="ml-4 mr-4 mt-4 mb-4">
+                            
+                                <div className="form-group">
+                                    <label>Name</label>
+                                    <input
+                                    className="form-control"
+                                    type="text"
+                                    name="Name"
+                                    onChange={this.onChange}
+                                    value={Name}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>Address</label>
+                                    <input
+                                    className="form-control"
+                                    type="text"
+                                    name="Address"
+                                    onChange={this.onChange}
+                                    value={Address}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>City</label>
+                                    <input
+                                    className="form-control"
+                                    type="text"
+                                    name="City"
+                                    onChange={this.onChange}
+                                    value={City}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>Zipcode</label>
+                                    <input
+                                    className="form-control"
+                                    type="text"
+                                    name="zipcode"
+                                    onChange={this.onChange}
+                                    value={zipcode}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>Open</label>
+                                    <input 
+                                    className="form-control"
+                                    type="time"
+                                    name="Open"
+                                    onChange={this.onChange}
+                                    value={Open}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>Close</label>
+                                    <input 
+                                    className="form-control"
+                                    type="time"
+                                    name="Close"
+                                    onChange={this.onChange}
+                                    value={Close}
+                                    />
+                                </div>
+                            </div>
+                        <div className="modal-footer">
+                            <button type="button" id="cancel" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" className="btn btn-primary" >Add</button>
+                        </div>
+                        </div>
                     </div>
-                    <div className="form-group">
-                        <label>Address</label>
-                        <input
-                        className="form-control"
-                        type="text"
-                        name="Address"
-                        onChange={this.onChange}
-                        value={Address}
-                        />
                     </div>
-                    <div className="form-group">
-                        <label>City</label>
-                        <input
-                        className="form-control"
-                        type="text"
-                        name="City"
-                        onChange={this.onChange}
-                        value={City}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Zipcode</label>
-                        <input
-                        className="form-control"
-                        type="text"
-                        name="zipcode"
-                        onChange={this.onChange}
-                        value={zipcode}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <button type="submit" className="btn btn-primary">
-                        Submit
-                        </button>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
         )
     }
 }
