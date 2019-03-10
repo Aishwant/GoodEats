@@ -3,7 +3,8 @@ import {
 } from "../actions/types";
 
 const initialState = {
-    restaurants:{}
+    restaurants:{},
+    resName:""
 }
 
 export default function(state = initialState, action) {
@@ -17,4 +18,5 @@ export default function(state = initialState, action) {
         default:
             return state;
     }
+
 }

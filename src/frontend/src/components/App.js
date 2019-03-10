@@ -14,6 +14,7 @@ import Register from "./authentication/Register";
 import ForgotPwd from "./authentication/ForgotPwd";
 import Footer from "./layout/Footer";
 import UserDefiner from "./pages/NewUsers/UserDefiner";
+import CustomerMenu from "./Customer/CustomerMenu"
 
 import PrivateRoute from "./private/PrivateRoute";
 
@@ -54,6 +55,7 @@ class App extends Component {
                         <Route exact path="/login" component={Login} />
                         <Route exact path = "/forgotpwd" component={ForgotPwd} />
                         <PrivateRoute exact path = "/signupinfo" component={UserDefiner} />
+                        <PrivateRoute exact path = "/menu/:rName" component={CustomerMenu} />
                       {/* </div> */}
                     {/* </div> */}
                   </Switch>
