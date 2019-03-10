@@ -2,6 +2,7 @@ from django.shortcuts import render
 import pyrebase
 import string
 import random
+import uuid
 
 # Firebase credentials
 
@@ -25,6 +26,8 @@ randVal =''
 def rand():
     randVal = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(N))
 
+def getUniqueID():
+    return uuid.uuid1()
 
 ##################################################
 
@@ -78,6 +81,7 @@ def getRestaurantByZip(request, zip):
 #For owner dashboard
 def getRestaurantByID(request, uID):
     db = credentials().database()
+    print((dict(db.child("Users").child(uID).child("Owner").child("rIDS").get().val())))
     restaurantsOwned = (dict(db.child("Users").child(uID).child("Owner").child("rIDS").get().val()))
     print(restaurantsOwned)
     data = {}
@@ -124,4 +128,10 @@ def addDeliveryDriver(request):
     request['data'].pop("rname")
     print(request)
     return db.child('Users').child(request['uID']).child("Driver").set(request['data'])
+
+def addRestaurant(request, uID):
+    db = credentials().database()
+    rID = getUniqueID()
+    db.child('Users').child(uID).child('Owner').child('rIDS').push(str(rID))
+    return db.child('Restaurants').child(rID).set(request)
 
