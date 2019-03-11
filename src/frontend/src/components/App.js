@@ -15,8 +15,10 @@ import ForgotPwd from "./authentication/ForgotPwd";
 import Footer from "./layout/Footer";
 import UserDefiner from "./pages/NewUsers/UserDefiner";
 import CustomerMenu from "./Customer/CustomerMenu"
+import Index from "./Index"
 
 import PrivateRoute from "./private/PrivateRoute";
+import PrivateHomeRoute from "./private/PrivateHomeRoute"
 
 import { Provider } from "react-redux";
 import store from "../store";
@@ -44,22 +46,20 @@ class App extends Component {
               <Header />
               <Alerts />
               <div className="content">
-                <div className="container">
-                  <Switch>
-                    <PrivateRoute exact path="/" component={Dashboard} />
-                    {/* <div className="row">
-                      <div className="col-sm-0 col-md-7 col-lg-8"  style={bgpic}>
-                      </div> */}
-                      {/* <div className="col-sm-12 col-md-5 col-lg-4"> */}
-                        <Route exact path="/register" component={Register} />
-                        <Route exact path="/login" component={Login} />
-                        <Route exact path = "/forgotpwd" component={ForgotPwd} />
-                        <PrivateRoute exact path = "/signupinfo" component={UserDefiner} />
-                        <PrivateRoute exact path = "/menu/:rName" component={CustomerMenu} />
-                      {/* </div> */}
-                    {/* </div> */}
-                  </Switch>
-                </div>
+
+                <Switch>
+                  <PrivateHomeRoute exact path="/home" component={Index}/>      
+
+                      <PrivateRoute exact path="/" component={Dashboard} />
+                      <Route exact path="/register" component={Register} />
+                      <Route exact path="/login" component={Login} />
+                      <Route exact path = "/forgotpwd" component={ForgotPwd} />
+                      <PrivateRoute exact path = "/signupinfo" component={UserDefiner} />
+                      <PrivateRoute exact path = "/menu/:rName" component={CustomerMenu} />
+    
+                </Switch>
+                
+
               </div>
               <Footer />
             </Fragment>

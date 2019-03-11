@@ -38,61 +38,70 @@ export class Register extends Component {
     }
     const { email, pwd, pwd1 } = this.state;
     return (
-      <div className="row">
-        <div className="col-md"></div>
-        <div className="col-md"></div>
-        <div className="col-md" style={divStyle}>
-          <form onSubmit={this.onSubmit}>
-            <div className="form-group">
-              <label for="exampleInputEmail1">Email</label>
-              <input
-              type="email"
-              name="email"
-              onChange={this.onChange}
-              value={email}
-              placeholder="Enter email"
-              className="form-control"
-              />
-            </div>
-            <div className="form-group">
-              <label>Password</label>
-              <input
-              type="password"
-              name="pwd"
-              onChange={this.onChange}
-              value={pwd}
-              className="form-control"
-              placeholder="Password"
-              />
-            </div>
-            <div className="form-group">
-              <label>Retype Password</label>
-              <input
-              type="password"
-              name="pwd1"
-              onChange={this.onChange}
-              value={pwd1}
-              className="form-control"
-              placeholder="Retype Password"
-              />
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <p>
-              Already have an account? <Link to="/login">Login</Link>
-            </p>
-          </form>
+      
+      
+        <div className="row" style={bgGrey}>
+          <div className="col-md"></div>
+          <div className="col-md" style={divStyle}>
+            <center><h3>Register</h3></center>
+            <form onSubmit={this.onSubmit}>
+              <div className="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input
+                type="email"
+                name="email"
+                onChange={this.onChange}
+                value={email}
+                placeholder="Enter email"
+                className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Password</label>
+                <input
+                type="password"
+                name="pwd"
+                onChange={this.onChange}
+                value={pwd}
+                className="form-control"
+                placeholder="Password"
+                />
+              </div>
+              <div className="form-group">
+                <label>Retype Password</label>
+                <input
+                type="password"
+                name="pwd1"
+                onChange={this.onChange}
+                value={pwd1}
+                className="form-control"
+                placeholder="Retype Password"
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <p style={{marginTop:"10px"}}>
+                Already have an account? <Link to="/login">Login</Link>
+              </p>
+            </form>
+          </div>
+          <div className="col-md"></div>
         </div>
-      </div>
+      
     );
   }
 }
 
 const divStyle = {
-  border: '3px solid #F1F467',
+  border: '3px solid #DCE1E7',
   borderRadius: '10%',
   padding: '20px',
   margin: '5px'
 };
+
+const bgGrey = {
+  backgroundColor: "#fcfcfc",
+  marginTop: "5%"
+}
 
 const mapStateToProps = state => ({
   isAuthenticated: state.authReducer.isAuthenticated,

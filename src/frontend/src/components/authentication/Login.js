@@ -29,9 +29,8 @@ export class Login extends Component {
     }
     const { email, pwd } = this.state;
     return (
-      <div className="row">
+      <div className="row"  style={bgGrey}>
         <div className="col-md"></div> 
-        <div className="col-md"></div>
         <div className="col-md" style={divStyle}>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
@@ -57,7 +56,7 @@ export class Login extends Component {
             />
           </div>
           <button type="submit" className="btn btn-primary">Login</button>
-          <p>
+          <p style={{marginTop:"10px"}}>
             Don't have an account? <Link to="/register">Register</Link>
           </p>
           <p>
@@ -65,6 +64,7 @@ export class Login extends Component {
           </p>
         </form>
         </div>
+        <div className="col-md"></div>
       </div>
     );
   }
@@ -72,13 +72,18 @@ export class Login extends Component {
 
 const divStyle = {
   border: '3px solid #DCE1E7',
-  // borderRadius: '10%',
+  borderRadius: '5%',
   padding: '20px',
   margin: '5px'
 };
 
 const bgpic={
   background: 'url("https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fevanwise.jpg?alt=media&token=6986eebb-7928-42d6-9d4e-7589990f29b3")'
+}
+
+const bgGrey = {
+  backgroundColor: "#fcfcfc",
+  marginTop: "5%"
 }
 
 const mapStateToProps = state => ({

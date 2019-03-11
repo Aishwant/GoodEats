@@ -12,7 +12,7 @@ const PrivateRoute = ({ component: Component, authReducer, ...rest }) => (
             // }
             // else 
             if(!authReducer.isAuthenticated){
-                return <Redirect to="/login" />
+                return <Redirect to="/home" />
             }else{
                 return <Component {...props} />;
             }
