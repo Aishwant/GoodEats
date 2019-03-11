@@ -39,6 +39,14 @@ export class Header extends Component {
       </li>
     );
 
+    const cart = (
+      <li className="nav-item">
+        <Link to="/" className="nav-link">
+          <i className="fas fa-shopping-cart"></i>
+        </Link>
+      </li>
+    )
+
     return (
       <nav className={path?"navbar navbar-expand-lg navbar-dark bg-dark":"navbar navbar-expand-lg navbar-dark bg-dark ftco_navbar ftco-navbar-light"} id="ftco-navbar">
         <div className="container">
@@ -53,6 +61,7 @@ export class Header extends Component {
               <li className="nav-item"><a href="#" className="nav-link">Contact</a></li>
               {isAuthenticated ? authLinks : guestLinks}
               {isAuthenticated ? "" : guestLinks1}
+              {isAuthenticated ? cart : ""}
             </ul>
           </div>
         </div>

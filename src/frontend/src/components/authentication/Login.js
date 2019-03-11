@@ -77,13 +77,10 @@ const divStyle = {
   margin: '5px'
 };
 
-const bgpic={
-  background: 'url("https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fevanwise.jpg?alt=media&token=6986eebb-7928-42d6-9d4e-7589990f29b3")'
-}
-
 const bgGrey = {
   backgroundColor: "#fcfcfc",
-  marginTop: "5%"
+  marginTop: "8%",
+  marginBottom: "8%"
 }
 
 const mapStateToProps = state => ({

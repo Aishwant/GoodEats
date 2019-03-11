@@ -22,7 +22,7 @@ export class Footer extends Component{
                             <p>Jordan Kutz</p>
                             <p>Madhav Prasad Koirala</p>
                         </div>
-                        <div className="col-md-4  text-center" style={{marginTop:"5%"}}>
+                        <div className="col-md-4  text-center" style={{marginTop:"5%", fontSize:"16px"}}>
                             <Link to="/home" style={{color:"#fff"}}>Home</Link> | <Link to="" style={{color:"#fff"}}>About</Link> | <Link to="" style={{color:"#fff"}}>Contact</Link>
                         </div>
                     </div>

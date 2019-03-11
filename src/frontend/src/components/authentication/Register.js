@@ -100,7 +100,8 @@ const divStyle = {
 
 const bgGrey = {
   backgroundColor: "#fcfcfc",
-  marginTop: "5%"
+  marginTop: "5%",
+  marginBottom: "5%"
 }
 
 const mapStateToProps = state => ({
