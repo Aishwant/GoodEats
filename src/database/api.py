@@ -45,6 +45,42 @@ class getRestaurantByIDAPI(generics.GenericAPIView):
                 "status":"Disconnected"
             })
 
+class addRestaurantAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request, uID):
+        try:
+            db = firebase.addRestaurant(request.data, uID)
+            return Response({
+                "status": "success"
+            })
+        except:
+            return Response({
+                "status":"Disconnected",
+                "msg": 'There was a problem'
+            })
+
+class deleteRestaurantAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def get(self, request, rID, uID):
+        try:
+            db = firebase.deleteRestaurant(request, rID, uID)
+            return Response({
+                "status": "success"
+            })
+        except:
+            return Response({
+                "status":"Disconnected",
+                "msg": 'There was a problem'
+            })
+
 class getUserAPI(generics.GenericAPIView):
 
     permission_classes=[

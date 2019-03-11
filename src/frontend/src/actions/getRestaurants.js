@@ -3,17 +3,11 @@ import axios from "axios";
 import { Redirect } from "react-router-dom";
 
 import {
-    USER_LOADED,
-    USER_LOADING,
-    AUTH_ERROR,
-    GET_ERRORS,
-    LOGIN_FAIL,
-    LOGIN_SUCCESS,
-    LOGOUT_SUCCESS,
-    REGISTER_SUCCESS,
     GET_RESTAURANTS,
     GET_RESTAURANTS_BY_ZIP,
-    GET_RESTAURANTS_BY_ID
+    GET_RESTAURANTS_BY_ID,
+    ADD_RESTAURANT,
+    DELETE_RESTAURANT
   } from './types';
 
 //GET ALL RESTAURANTS
@@ -60,4 +54,34 @@ export const getRestaurantByID = () => (dispatch, getState) => {
     .catch(err =>
       dispatch(returnErrors(err.response.data, err.response.status))
     );
+};
+
+//ADD RESTAURANT 
+export const addRestaurant = restaurant => (dispatch, getState) => {
+  const uID = localStorage.getItem("uID")
+  axios
+    .post("/api/database/addRestaurant/" + uID, restaurant)
+    .then(res => {
+      dispatch({
+        type: ADD_RESTAURANT,
+        payload: res.data
+      });
+    })
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+//DELETE RESTAURANT
+export const deleteRestaurant = rID => (dispatch, getState) => {
+  const uID = localStorage.getItem("uID")
+  axios
+    .get(`/api/database/deleteRestaurant/` + rID + "/" + uID)
+    .then(res => {
+      dispatch({
+        type: DELETE_RESTAURANT,
+        payload: rID
+      });
+    })
+    .catch(err => console.log(err));
 };
