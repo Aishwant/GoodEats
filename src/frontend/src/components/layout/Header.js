@@ -18,7 +18,7 @@ export class Header extends Component {
     if (path.substr(path.length - 4 ) == "home") path = false
     const authLinks = (
       <li className="nav-item">
-        <Link to="/login" className="nav-link" onClick={this.props.logout}>
+        <Link to="/home" className="nav-link" onClick={this.props.logout}>
           Log Out
         </Link>
       </li>
