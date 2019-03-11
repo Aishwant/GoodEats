@@ -63,6 +63,24 @@ class addRestaurantAPI(generics.GenericAPIView):
                 "msg": 'There was a problem'
             })
 
+class deleteRestaurantAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def get(self, request, rID, uID):
+        try:
+            db = firebase.deleteRestaurant(request, rID, uID)
+            return Response({
+                "status": "success"
+            })
+        except:
+            return Response({
+                "status":"Disconnected",
+                "msg": 'There was a problem'
+            })
+
 class getUserAPI(generics.GenericAPIView):
 
     permission_classes=[

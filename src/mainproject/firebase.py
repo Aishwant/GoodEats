@@ -81,9 +81,7 @@ def getRestaurantByZip(request, zip):
 #For owner dashboard
 def getRestaurantByID(request, uID):
     db = credentials().database()
-    print((dict(db.child("Users").child(uID).child("Owner").child("rIDS").get().val())))
     restaurantsOwned = (dict(db.child("Users").child(uID).child("Owner").child("rIDS").get().val()))
-    print(restaurantsOwned)
     data = {}
     for key, value in restaurantsOwned.items():
         data[value] = db.child("Restaurants").child(value).get().val()   
@@ -135,3 +133,22 @@ def addRestaurant(request, uID):
     db.child('Users').child(uID).child('Owner').child('rIDS').push(str(rID))
     return db.child('Restaurants').child(rID).set(request)
 
+
+
+
+
+##### Delete from Database #####
+def deleteRestaurant(request, rID, uID):
+    db = credentials().database()
+    restaurantsOwned = (dict(db.child("Users").child(uID).child("Owner").child("rIDS").get().val()))
+    print(restaurantsOwned)
+    
+    for key, value in restaurantsOwned.items():
+        if(value == rID):
+            restaurantKey = key
+            print("true")
+    
+    print(restaurantKey)
+    
+    db.child("Users").child(uID).child("Owner").child("rIDS").child(restaurantKey).remove()
+    return db.child("Restaurants").child(rID).remove()

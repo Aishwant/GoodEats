@@ -2,7 +2,8 @@ import {
     GET_RESTAURANTS,
     GET_RESTAURANTS_BY_ZIP,
     GET_RESTAURANTS_BY_ID,
-    ADD_RESTAURANT
+    ADD_RESTAURANT,
+    DELETE_RESTAURANT
 } from "../actions/types";
 
 const initialState = {
@@ -33,6 +34,13 @@ export default function(state = initialState, action) {
             return{
                 ...state,
                 restaurants: [...state.restaurants, action.payload]
+            }
+        case DELETE_RESTAURANT:
+            return{
+                ...state,
+                restaurants: [...state.restaurants.splice(0, action.payload),
+                              ...state.restaurants.splice(action.payload + 1)
+                ]
             }
         default:
             return state;

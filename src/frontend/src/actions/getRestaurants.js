@@ -6,7 +6,8 @@ import {
     GET_RESTAURANTS,
     GET_RESTAURANTS_BY_ZIP,
     GET_RESTAURANTS_BY_ID,
-    ADD_RESTAURANT
+    ADD_RESTAURANT,
+    DELETE_RESTAURANT
   } from './types';
 
 //GET ALL RESTAURANTS
@@ -61,7 +62,6 @@ export const addRestaurant = restaurant => (dispatch, getState) => {
   axios
     .post("/api/database/addRestaurant/" + uID, restaurant)
     .then(res => {
-      dispatch(createMessage({ addRestaurant: "Restaurant Added" }));
       dispatch({
         type: ADD_RESTAURANT,
         payload: res.data
@@ -70,4 +70,18 @@ export const addRestaurant = restaurant => (dispatch, getState) => {
     .catch(err =>
       dispatch(returnErrors(err.response.data, err.response.status))
     );
+};
+
+//DELETE RESTAURANT
+export const deleteRestaurant = rID => (dispatch, getState) => {
+  const uID = localStorage.getItem("uID")
+  axios
+    .get(`/api/database/deleteRestaurant/` + rID + "/" + uID)
+    .then(res => {
+      dispatch({
+        type: DELETE_RESTAURANT,
+        payload: rID
+      });
+    })
+    .catch(err => console.log(err));
 };

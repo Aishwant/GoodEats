@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getRestaurantByID } from '../../actions/getRestaurants';
+import { getRestaurantByID, deleteRestaurant } from '../../actions/getRestaurants';
 
 
 
@@ -32,6 +32,13 @@ export class Restaurant extends Component {
                     <h6>Close:{res.Close}</h6>
                   </p>
                   <a href="#" className="btn btn-primary">Menu</a>
+                  <button
+                    onClick={this.props.deleteRestaurant.bind(this, t)}
+                    className="btn btn-danger ml-2"
+                  >
+                    {" "}
+                    Delete
+                  </button>
                 </div>
               </div>
             </div>
@@ -51,4 +58,4 @@ const mapStateToProps = state => ({
   restaurants: state.restaurantReducer.restaurants
 });
 
-export default connect(mapStateToProps, { getRestaurantByID })(Restaurant);
+export default connect(mapStateToProps, { getRestaurantByID, deleteRestaurant })(Restaurant);
