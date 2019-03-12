@@ -4,7 +4,6 @@ import { getUser } from '../../actions/getUser';
 import Customer from '../customer/Customer'
 import Driver from '../driver/Driver'
 import Owner from '../owner/Owner'
-import SearchBar from '../searchbar/SearchBar'
 
 export class Dashboard extends Component {
 
@@ -20,8 +19,8 @@ export class Dashboard extends Component {
     switch(contentKeys[0]){
       case "Customer":
         return(
-          <div>
-            <SearchBar />
+          <div class="container">
+            
           {contentKeys.map(t=> [this.props.user[t]].map(res =>
             <Customer name={res.fname} zip={res.zipcode}/>
           ))}
@@ -29,8 +28,8 @@ export class Dashboard extends Component {
         );
       case "Driver":
         return(
-          <div>
-            <SearchBar />
+          <div class="container">
+            
           {contentKeys.map(t=> [this.props.user[t]].map(res =>
             <Driver name={res.fname}/>
           ))}
@@ -38,8 +37,8 @@ export class Dashboard extends Component {
         );
       case "Owner":
         return(
-          <div>
-            <SearchBar />
+          <div class="container">
+            
           {contentKeys.map(t=> [this.props.user[t]].map(res =>
             <Owner name={res.fname} />
           ))}
