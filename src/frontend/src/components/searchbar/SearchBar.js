@@ -22,9 +22,7 @@ class SearchBar extends Component {
        />
        <p>{this.state.query}</p>
      </form>
-      {if(this.search == this.props.restaraunt){
-          displayRestaraunt
-}}
+      
    )
  }
 }
