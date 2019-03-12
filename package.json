@@ -37,15 +37,7 @@
     "react-transition-group": "^2.5.3",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
-<<<<<<< HEAD
     "redux-thunk": "^2.3.0",
     "style-loader": "^0.23.1"
-=======
-    "redux-thunk": "^2.3.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://git.cs.olemiss.edu/cs387group9/mainproject.git"
->>>>>>> d4604f0f32ff30cd274556c2e2aa7a01954451ac
   }
 }
