@@ -8,6 +8,7 @@ class SearchBar extends Component {
  handleInputChange = () => {
    this.setState({
      query: this.search.value
+     
    })
  }
 
@@ -21,6 +22,9 @@ class SearchBar extends Component {
        />
        <p>{this.state.query}</p>
      </form>
+      {if(this.search == this.props.restaraunt){
+          displayRestaraunt
+}}
    )
  }
 }
