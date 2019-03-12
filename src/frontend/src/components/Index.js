@@ -60,7 +60,7 @@ export class Index extends Component {
                         <div className="col-md-3">
                             <div className="item text-center">
                                 <div className="testimony-wrap p-4 pb-5">
-                                    <div className="user-img mb-4" style={{backgroundImage: "url(images/person_1.jpg)", border: "1px solid red"}}></div>
+                                    <div className="user-img mb-4" style={{backgroundImage: "url()", border: "1px solid red"}}></div>
                                     <div className="text">
                                         <p className="star-rate"><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star-half-full"></span></p>
                                         <p className="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
@@ -73,7 +73,7 @@ export class Index extends Component {
                         <div className="col-md-3">
                             <div className="item text-center">
                                 <div className="testimony-wrap p-4 pb-5">
-                                    <div className="user-img mb-4" style={{backgroundImage: "url(images/person_1.jpg)", border: "1px solid red"}}></div>
+                                    <div className="user-img mb-4" style={{backgroundImage: "url()", border: "1px solid red"}}></div>
                                     <div className="text">
                                         <p className="star-rate"><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star-half-full"></span></p>
                                         <p className="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
@@ -86,7 +86,7 @@ export class Index extends Component {
                         <div className="col-md-3">
                             <div className="item text-center">
                                 <div className="testimony-wrap p-4 pb-5">
-                                    <div className="user-img mb-4" style={{backgroundImage: "url(images/person_1.jpg)", border: "1px solid red"}}></div>
+                                    <div className="user-img mb-4" style={{backgroundImage: "url()", border: "1px solid red"}}></div>
                                     <div className="text">
                                         <p className="star-rate"><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star-half-full"></span></p>
                                         <p className="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
@@ -100,7 +100,7 @@ export class Index extends Component {
                         <div className="col-md-3">
                             <div className="item text-center">
                                 <div className="testimony-wrap p-4 pb-5">
-                                    <div className="user-img mb-4" style={{backgroundImage: "url(images/person_1.jpg)", border: "1px solid red"}}></div>
+                                    <div className="user-img mb-4" style={{backgroundImage: "url()", border: "1px solid red"}}></div>
                                     <div className="text">
                                         <p className="star-rate"><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star-half-full"></span></p>
                                         <p className="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
