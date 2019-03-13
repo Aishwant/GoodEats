@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getRestaurant } from '../../actions/getRestaurants';
 
-import { HashRouter, Route, Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 export class Restaurant extends Component {
@@ -33,7 +33,7 @@ export class Restaurant extends Component {
                 return(
                   <div className="col-md">
                     <div className="card" style={cardWidth}>
-                      <img className="card-img-top" src="https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fevanwise.jpg?alt=media&token=6986eebb-7928-42d6-9d4e-7589990f29b3" alt="Card image cap" />
+                      <img className="card-img-top" src="https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fevanwise.jpg?alt=media&token=6986eebb-7928-42d6-9d4e-7589990f29b3" alt={res.Name + " image"} />
                       <div className="card-body">
                         <h5 className="card-title">{res.Name}</h5>
                         <p className="card-text">
@@ -42,7 +42,7 @@ export class Restaurant extends Component {
                           <h6>Open:{res.Open}</h6>
                           <h6>Close:{res.Close}</h6>
                         </p>
-                        <a href="#" className="btn btn-primary">Menu</a>
+                        <Link to={{pathname: "/menu/"+res.Name ,state:{rName:res.Name}}} name={res.Name} className="btn btn-primary">Menu</Link>
                       </div>
                     </div>
                   </div>
