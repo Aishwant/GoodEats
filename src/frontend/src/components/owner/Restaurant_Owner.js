@@ -34,13 +34,14 @@ export class Restaurant extends Component {
           onChange={this.handleInputChange}
         />
        </div>
-        <p>{this.state.query}</p>
+
         {contentKeys.map(t=>
         
           [this.props.restaurants[t]].map(res =>
-           { if (this.state.query ==res.Name){
+           { if (this.state.query !== '' && this.state.query === res.Name){
              
-              return (<div className="col-md-3">
+              return (
+              <div className="col-md-3">
                 <div className="card" style={cardWidth}>
                   <img className="card-img-top" src="https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fevanwise.jpg?alt=media&token=6986eebb-7928-42d6-9d4e-7589990f29b3" alt="Card image cap" />
                   <div className="card-body">
@@ -67,6 +68,36 @@ export class Restaurant extends Component {
                   </div>
               </div>
             </div>)
+            }else{
+              return (
+                <div className="col-md-3">
+                <div className="card" style={cardWidth}>
+                  <img className="card-img-top" src="https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fevanwise.jpg?alt=media&token=6986eebb-7928-42d6-9d4e-7589990f29b3" alt="Card image cap" />
+                  <div className="card-body">
+                    <h5 className="card-title">{res.Name}</h5>
+                    <p className="card-text">
+                      <h6>{res.Address}</h6>
+                      <h6>{res.City} {res.zipcode}</h6> 
+                      <h6>Open:{res.Open}</h6>
+                      <h6>Close:{res.Close}</h6>
+                    </p>
+                    <a href="#" className="btn btn-primary">Menu</a>
+                    <button
+                      className="btn btn-warning ml-2"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={this.props.deleteRestaurant.bind(this, t)}
+                      className="btn btn-danger ml-2"
+                    >
+                      {" "}
+                      Delete
+                    </button>
+                  </div>
+              </div>
+            </div>
+              )
             }
           }
             
