@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import viewsets, permissions, generics
-import mainproject.firebase as firebase
+import goodeats9.firebase as firebase
 
 class getDataAPI(generics.GenericAPIView):
 

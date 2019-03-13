@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import viewsets, permissions, generics
-import mainproject.firebase as firebase
+import goodeats9.firebase as firebase
 
 # Register API
 class RegisterAPI(generics.GenericAPIView):
