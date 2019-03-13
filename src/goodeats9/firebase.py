@@ -71,17 +71,6 @@ def getUser(request, uID):
     db = credentials().database()
     return (dict(db.child("Users").child(uID).get().val()))
 
-#For customer dashboard
-def getRestaurantByZip(request, zip):
-    db = credentials().database()
-    restaurants = (dict(db.child("Restaurants").get().val()))
-    data = {}
-    for key, value  in restaurants.items():
-        for k, v in value.items():  
-            if(k == "zipcode" and v == (int(zip))):
-                data[key] = value
-    return data
-
 #For owner dashboard
 def getRestaurantByID(request, uID):
     db = credentials().database()
