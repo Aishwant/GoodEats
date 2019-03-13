@@ -186,6 +186,7 @@ npm i style-loader css-loader less-loader
 ### More pip install commands for Python:
 ````
 pip install django-rest-knox
+pip install whitenoise
 ````
 
 
