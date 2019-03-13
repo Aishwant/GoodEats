@@ -1,0 +1,1 @@
+web: gunicorn goodeats9.wsgi --log-file -

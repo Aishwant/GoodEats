@@ -1,0 +1,9 @@
+django
+gunicorn
+django-heroku
+djangorestframework==3.9.1
+django-filter
+Markdown
+django-rest-knox
+pyrebase
+whitenoise==4.1.2
