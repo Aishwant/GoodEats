@@ -49,6 +49,23 @@ class addRestaurantAPI(generics.GenericAPIView):
                 "msg": 'There was a problem'
             })
 
+class addMenuAPI(generics.GenericAPIView):
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request, uID):
+        try:
+            db = firebase.addMenu(request.data, uID)
+            return Response({
+                "status": "success"
+            })
+        except:
+            return Response({
+                "status":"Disconnected",
+                "msg": 'There was a problem'
+            })
+
 class deleteRestaurantAPI(generics.GenericAPIView):
 
     permission_classes=[
