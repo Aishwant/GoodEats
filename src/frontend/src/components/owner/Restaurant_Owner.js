@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getRestaurantByID, deleteRestaurant } from '../../actions/getRestaurants';
+import FormMenu from './FormMenu';
+
 
 
 
@@ -13,8 +15,13 @@ export class Restaurant extends Component {
 
   state = {
     query: '',
+    showForm:false
   }
- 
+  
+  handleClick= event =>{
+    event.preventDefault()
+    this.setState({showForm:true})
+  }
   handleInputChange = () => {
     this.setState({
       query: this.search.value
@@ -52,7 +59,13 @@ export class Restaurant extends Component {
                       <h6>Open:{res.Open}</h6>
                       <h6>Close:{res.Close}</h6>
                     </p>
-                    <a href="#" className="btn btn-primary">Menu</a>
+                    
+                    
+                    <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#MenuList">
+                    Menu
+                    </button>
+                    <FormMenu />
+
                     <button
                       className="btn btn-warning ml-2"
                     >
@@ -81,7 +94,10 @@ export class Restaurant extends Component {
                       <h6>Open:{res.Open}</h6>
                       <h6>Close:{res.Close}</h6>
                     </p>
-                    <a href="#" className="btn btn-primary">Menu</a>
+                    <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#MenuList">
+                    Menu
+                    </button>
+                    <FormMenu />
                     <button
                       className="btn btn-warning ml-2"
                     >
