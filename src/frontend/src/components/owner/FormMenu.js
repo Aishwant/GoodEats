@@ -10,7 +10,8 @@ export class FormMenu extends Component {
         Name:"",
         Description: "",
         Price:"",
-        Menu_Type:""
+        Menu_Type:"",
+        rID:""
     }
 
     static propTypes={
@@ -21,17 +22,22 @@ export class FormMenu extends Component {
     onChange=e=> this.setState({[e.target.name]:e.target.value});
     onSubmit=e=>{
         e.preventDefault();
+        
+        const { Name, Description, Price, Menu_Type, rID } = this.state;
+        const menu = { Name, Description, Price, Menu_Type, rID };
         console.log(this.state)
         this.props.addMenu(menu);
         this.setState({
             Name:"",
             Description: "",
             Price:"",
-            Menu_Type:""
-
+            Menu_Type:"",
         });
 
     }
+    componentDidMount(){
+        this.setState({rID:this.props.name})
+      }
 
 
     render(){
@@ -99,7 +105,7 @@ export class FormMenu extends Component {
                                 <select name="Item Type" id="Item-Type" value={Menu_Type} onChange={this.onChange} name="Menu_Type">
                                 <option value="None">None</option>
                                 <option value="Appetizers">Appetizers</option>
-                                <option value="Entree">Entree</option>
+                                <option value="Entrees">Entrees</option>
                                 
                                 </select>
                                 </div>

@@ -6,10 +6,9 @@ import{
     ADD_MENU,
 } from './types';
 
-export const addMenu =item =>(dispatch)=>{
-    const uID=localStorage.getItem("uID")
+export const addMenu =(item) =>(dispatch)=>{
     axios
-        .post("/api/database/addMenu/"+ uID,item)
+        .post("/api/database/addMenu", item)
         .then(res => {
             dispatch({
                 type:ADD_MENU,

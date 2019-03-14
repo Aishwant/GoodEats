@@ -54,9 +54,10 @@ class addMenuAPI(generics.GenericAPIView):
         permissions.AllowAny
     ]
 
-    def post(self, request, uID):
+    def post(self, request):
         try:
-            db = firebase.addMenu(request.data, uID)
+            print(request.data)
+            db = firebase.addMenu(request.data)
             return Response({
                 "status": "success"
             })
@@ -106,7 +107,7 @@ class pushCustomerDataAPI(generics.GenericAPIView):
 
     def post(self,request):
         try:
-            db = firebase.addCustomer(request.data)
+            firebase.addCustomer(request.data)
             return Response({
                 "status": "success"
             })

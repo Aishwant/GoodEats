@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getRestaurantByID, deleteRestaurant } from '../../actions/getRestaurants';
 import FormMenu from './FormMenu';
+import {Link} from 'react-router-dom';
 
 
 
@@ -61,10 +62,7 @@ export class Restaurant extends Component {
                     </p>
                     
                     
-                    <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#MenuList">
-                    Menu
-                    </button>
-                    <FormMenu />
+                    <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
 
                     <button
                       className="btn btn-warning ml-2"
@@ -94,10 +92,7 @@ export class Restaurant extends Component {
                       <h6>Open:{res.Open}</h6>
                       <h6>Close:{res.Close}</h6>
                     </p>
-                    <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#MenuList">
-                    Menu
-                    </button>
-                    <FormMenu />
+                    <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
                     <button
                       className="btn btn-warning ml-2"
                     >

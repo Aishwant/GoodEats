@@ -126,11 +126,18 @@ def addRestaurant(request, uID):
     db.child('Users').child(uID).child('Owner').child('rIDS').push(str(rID))
     return db.child('Restaurants').child(rID).set(request)
 
-def addMenu(request,rID):   
+def addMenu(request):   
     db=credentials().database()
-    type = request['Menu_Type']
-    request["Menu_Type"].pop()
-    return db.child('Restaurants').child(rID).child("Menu").child(type).push(request)
+    mType = request['Menu_Type']
+    rID=request['rID']
+    iID = getUniqueID()
+    
+    request.pop("Menu_Type")
+    request.pop('rID')
+   
+    print(rID)
+    print(request)
+    return db.child('Restaurants').child(rID).child("Menu").child(mType).push(request)
 
 
 
