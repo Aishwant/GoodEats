@@ -19,7 +19,7 @@ export class Dashboard extends Component {
     switch(contentKeys[0]){
       case "Customer":
         return(
-          <div class="container">
+          <div className="container">
             
           {contentKeys.map(t=> [this.props.user[t]].map(res =>
             <Customer name={res.fname} zip={res.zipcode}/>
@@ -28,7 +28,7 @@ export class Dashboard extends Component {
         );
       case "Driver":
         return(
-          <div class="container">
+          <div className="container">
             
           {contentKeys.map(t=> [this.props.user[t]].map(res =>
             <Driver name={res.fname}/>
@@ -37,7 +37,7 @@ export class Dashboard extends Component {
         );
       case "Owner":
         return(
-          <div class="container">
+          <div className="container">
             
           {contentKeys.map(t=> [this.props.user[t]].map(res =>
             <Owner name={res.fname} />

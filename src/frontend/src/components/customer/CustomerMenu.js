@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
+import queryString from 'query-string';
+import { getMenu } from '../../actions/getRestaurants';
+
+
 
 export class CustomerMenu extends Component {
   
   static propTypes = {
-    resName: PropTypes.string,
+    // menu: PropTypes.object,
+    getMenu: PropTypes.func
   };
 
   state = {
@@ -29,20 +34,24 @@ export class CustomerMenu extends Component {
     this.setState({ Appetizer: false, Main: false });
   }
 
-  render() {
-    let path = location.href+"";
-    const {id} = this.props.location.state
-    console.log(id)
-    let btnStyleA = this.state.Appetizer
-      ? { color: "#fff", backgroundColor: "#333", fontSize:"12px!important" }
-      : { backgroundColor: "#aaa", fontSize:"12px!important" };
-    let btnStyleM = this.state.Main
-      ? { color: "#fff", backgroundColor: "#333", fontSize:"12px!important" }
-      : { backgroundColor: "#aaa", fontSize:"12px!important" };
-    let btnStyleD = this.state.Drinks
-      ? { color: "#fff", backgroundColor: "#333", fontSize:"12px!important" }
-      : { backgroundColor: "#aaa", fontSize:"12px!important" };
+  componentDidMount(){
+    const rID = queryString.parse(this.props.location.search).id;
+    this.props.getMenu(rID);
     
+  }
+
+  render() {
+    
+    let btnStyleA = this.state.Appetizer
+      ? { color: "#fff", backgroundColor: "#333", fontSize:"20px!important" }
+      : { backgroundColor: "#eee", color:'#a5a5ab', fontSize:"20px!important" };
+    let btnStyleM = this.state.Main
+      ? { color: "#fff", backgroundColor: "#333", fontSize:"20px!important" }
+      : { backgroundColor: "#eee", color:'#a5a5ab', fontSize:"20px!important" };
+    let btnStyleD = this.state.Drinks
+      ? { color: "#fff", backgroundColor: "#333", fontSize:"20px!important" }
+      : { backgroundColor: "#eee", color:'#a5a5ab', fontSize:"20px!important" };
+      
     const json = {
                   item1:
                   {
@@ -65,17 +74,34 @@ export class CustomerMenu extends Component {
                     FoodN: "Asian Hoisin Pork",
                     Description:"Meat, Potatoes, Rice, Tomatoes",
                     Price: "$29"
+                  },
+                  item5:
+                  {
+                    FoodN: "Fruit Vanilla Ice Cream",
+                    Description:"Meat, Potatoes, Rice, Tomatoes",
+                    Price: "$29"
+                  },
+                  item6:
+                  {
+                    FoodN: "Grilled Beef with potatoes",
+                    Description:"Meat, Potatoes, Rice, Tomatoes",
+                    Price: "$29"
+                  },item7:{
+                    FoodN: "KFC Chicken",
+                    Description:"Fried Chicken",
+                    Price: "$19"
                   }
-                }
-
+                };
+                
+    const contentMenuKeys = Object.keys(this.props.menu);
+              
     const contentKeys = Object.keys(json);
-    console.log(contentKeys)
     const appetizers = contentKeys.map(t=>{
                         return(
                           [json[t]].map(menu=>{
                             return(
-                              <div className="col-md-6">
-                                <div className="text d-flex">
+                              <div className="col-md-6 menuItems">
+                                <div className="textM d-flex">
                                   <div className="one-half">
                                     <h3>{menu.FoodN}</h3>
                                     <p><span>{menu.Description}</span></p>
@@ -90,43 +116,60 @@ export class CustomerMenu extends Component {
                         )
                         
                       })
-                      console.log(appetizers)
     
     return (
-      <div className="container">
-        This is Menu {this.props.name}
-        <div className="text-center">
+      <div className="container text-center">
+        <h3 style={{marginTop:'50px'}}>We Serve</h3>
+        <div className="text-center" style={{marginBottom: '30px', marginTop:'40px'}}>
           <button
             type="button"
-            className="btn"
+            className="btn menuBtn"
             style={btnStyleA}
             onClick={this.onClickAppetizer.bind(this)}
             data-toggle="modal"
             data-target="#ownerModalCenter"
           >
-            Appetizer
-          </button>{" "}
+            <i class="fas fa-cookie-bite">{" "}Appetizer</i>
+          </button>
           <button
             type="button"
-            className="btn"
+            className="btn menuBtn"
             style={btnStyleM}
             onClick={this.onClickMain.bind(this)}
           >
-            Main
-          </button>{" "}
+            <i class="fas fa-utensils">{" "}Main</i>
+          </button>
           <button
             type="button"
-            className="btn"
+            className="btn menuBtn"
             style={btnStyleD}
             onClick={this.onClickDrinks.bind(this)}
           >
             <i className="fas fa-glass-cheers">{" "} Drink</i>
-          </button>{" "}
+          </button>
         </div>
         <br />
 
         <div className="row">
           {this.state.Appetizer ? appetizers:''}
+          {/* {
+            contentMenuKeys.map(t=>{
+
+              Object.keys(this.props.menu[t]).map(menu=>{
+                
+                [this.props.menu[t][menu]].map(item=>{
+                  console.log("Item"+item)
+                  return(
+                    <div>
+                      {item.Name}<br/>
+                      {item.Price}<br/>
+                    </div>
+                  )
+                })
+              })
+                          
+            })
+          } */}
         </div>
       </div>
     )
@@ -134,8 +177,8 @@ export class CustomerMenu extends Component {
 
 }
 
-const mapStateToProps = state => {
-  resName: state.restaurantReducer.resName
-}
+const mapStateToProps = state => ({
+  menu: state.restaurantReducer.menu,
+});
 
-export default connect(mapStateToProps)(CustomerMenu)
+export default connect(mapStateToProps,{ getMenu })(CustomerMenu)

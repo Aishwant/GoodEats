@@ -145,3 +145,7 @@ def deleteRestaurant(request, rID, uID):
     
     db.child("Users").child(uID).child("Owner").child("rIDS").child(restaurantKey).remove()
     return db.child("Restaurants").child(rID).remove()
+
+def getMenu(request):
+    db = credentials().database()
+    return dict(db.child('Restaurants').child(request).child('Menu').get().val())

@@ -98,3 +98,17 @@ class pushCustomerDataAPI(generics.GenericAPIView):
                 "status":"Disconnected",
                 "msg": 'There was a problem'
             })
+
+class getMenuAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def get(self, request,rID):
+        try:
+            return Response(firebase.getMenu(rID))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })
