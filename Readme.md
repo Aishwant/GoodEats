@@ -181,6 +181,7 @@ npm i react-alert react-alert-template-basic react-transition-group
 npm i react-router-dom
 
 npm i style-loader css-loader less-loader 
+npm i query-string
 ````
 
 ### More pip install commands for Python:
