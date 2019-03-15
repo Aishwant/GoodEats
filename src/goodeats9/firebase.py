@@ -144,7 +144,6 @@ def addMenu(request):
 def getMenu(request,rID):
     db = credentials().database()
     return dict(db.child('Restaurants').child(rID).child("Menu").get().val())
-    console.log(request)
 
 
 ##### Delete from Database #####

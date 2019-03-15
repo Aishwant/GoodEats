@@ -42,8 +42,7 @@ export const getRestaurantByID = () => (dispatch, getState) => {
       dispatch(returnErrors(err.response.data, err.response.status))
     );
 };
-export const getMenu = () => dispatch => {
-  const rID=localStorage.getItem("rID")
+export const getMenu = (rID) => dispatch => {
   axios.get('/api/database/getMenu/'+rID)
   .then(res => {
     dispatch({

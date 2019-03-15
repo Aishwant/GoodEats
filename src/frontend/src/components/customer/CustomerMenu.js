@@ -39,6 +39,7 @@ export class CustomerMenu extends Component {
   componentDidMount(){
     const rID = queryString.parse(this.props.location.search).id;
     this.props.getMenu(rID);
+    console.log(rID)
   }
 
   onClick = ()=> {
@@ -164,6 +165,7 @@ export class CustomerMenu extends Component {
               return(
                 <div className="text-center">
                   <h4>{t}</h4>
+                  
                   <div className="row">
                     {Object.keys(this.props.menu[t]).map(menu=>{
                       return(
