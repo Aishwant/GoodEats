@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import queryString from 'query-string';
 import { getMenu } from '../../actions/getRestaurants';
+import { Link } from 'react-router-dom'
+
 
 
 
@@ -39,6 +41,9 @@ export class CustomerMenu extends Component {
     this.props.getMenu(rID);
   }
 
+  onClick = ()=> {
+    console.log("clicked")
+  }
   render() {
     
     let btnStyleA = this.state.Appetizer
@@ -165,17 +170,18 @@ export class CustomerMenu extends Component {
 
                       [this.props.menu[t][menu]].map(item=>{
                         return(
-                          <div className="col-md-6 menuItems">
-                          <div className="textM d-flex">
-                            <div className="one-half">
-                              <h3>{item.Name}</h3>
-                              <p><span>{item.Description}</span></p>
-                            </div>
-                            <div className="one-forth">
-                              <span className="price">${item.Price}</span>
+                          <div className="col-md-6 menuItems" onClick={this.onClick}>
+                            <div className="textM d-flex">
+                              <div className="one-half">
+                                <h3>{item.Name}</h3>
+                                <p><span>{item.Description}</span></p>
+                                <p><span><Link to='/'><i class="fas fa-edit">Edit</i></Link >{"   "}<Link to='/'><i class="fas fa-trash-alt">Remove</i></Link></span></p>
+                              </div>
+                              <div className="one-forth">
+                                <span className="price">${item.Price}</span>
+                              </div>
                             </div>
                           </div>
-                        </div>
                         )
                       })
                     )
