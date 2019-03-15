@@ -16,6 +16,7 @@ import Footer from "./layout/Footer";
 import UserDefiner from "./pages/NewUsers/UserDefiner";
 import CustomerMenu from "./Customer/CustomerMenu"
 import Index from "./Index"
+import EditMenu from "./owner/EditMenu";
 
 import PrivateRoute from "./private/PrivateRoute";
 import PrivateHomeRoute from "./private/PrivateHomeRoute"
@@ -23,6 +24,7 @@ import PrivateHomeRoute from "./private/PrivateHomeRoute"
 import { Provider } from "react-redux";
 import store from "../store";
 import { loadUser } from "../actions/authentication";
+
 
 
 //Alert Options
@@ -56,6 +58,7 @@ class App extends Component {
                       <Route exact path = "/forgotpwd" component={ForgotPwd} />
                       <PrivateRoute exact path = "/signupinfo" component={UserDefiner} />
                       <PrivateRoute exact path = "/menu/:rName" component={CustomerMenu} />
+                      <PrivateRoute exact path = "/editmenu/:rName" component={EditMenu} />
     
                 </Switch>
                 

@@ -4,7 +4,7 @@ from .api import pushCustomerDataAPI
 from .api import getUserAPI 
 from .api import getRestaurantByIDAPI
 from .api import addRestaurantAPI
-from .api import deleteRestaurantAPI, getMenuAPI
+from .api import deleteRestaurantAPI, getMenuAPI, addMenuAPI
 
 urlpatterns = [
     path('api/database/get',getDataAPI.as_view()),
@@ -14,4 +14,6 @@ urlpatterns = [
     path('api/database/addRestaurant/<slug:uID>', addRestaurantAPI.as_view()),
     path('api/database/deleteRestaurant/<slug:rID>/<slug:uID>', deleteRestaurantAPI.as_view()),
     path('api/database/getMenu/<slug:rID>',getMenuAPI.as_view()),
+    path('api/database/addMenu',addMenuAPI.as_view()),
+
 ]

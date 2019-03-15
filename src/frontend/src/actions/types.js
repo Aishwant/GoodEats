@@ -19,3 +19,4 @@ export const OWNER_ADDED = "OWNER_ADDED";
 export const CUSTOMER_ADDED = "CUSTOMER_ADDED";
 export const DRIVER_ADDED = "DRIVER_ADDED";
 export const GET_MENU = 'GET_MENU';
+export const ADD_MENU = "ADD_MENU";
