@@ -48,7 +48,7 @@ export class Header extends Component {
     )
 
     return (
-      <nav className={path?"navbar navbar-expand-lg navbar-dark bg-dark":"navbar navbar-expand-lg navbar-dark bg-dark ftco_navbar ftco-navbar-light"} id="ftco-navbar">
+      <nav className={path?"navbar navbar-expand-lg navbar-dark bg-dark navSize":"navbar navbar-expand-lg navbar-dark bg-dark ftco_navbar ftco-navbar-light"} id="ftco-navbar">
         <div className="container">
           <a className="navbar-brand" style={borderStyle} href="/">GoodEats</a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">

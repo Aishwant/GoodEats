@@ -7,7 +7,8 @@ import {
     GET_RESTAURANTS_BY_ZIP,
     GET_RESTAURANTS_BY_ID,
     ADD_RESTAURANT,
-    DELETE_RESTAURANT
+    DELETE_RESTAURANT,
+    GET_MENU,
   } from './types';
 
 //GET ALL RESTAURANTS
@@ -71,3 +72,13 @@ export const deleteRestaurant = rID => (dispatch, getState) => {
     })
     .catch(err => console.log(err));
 };
+
+export const getMenu = (rID) => dispatch => {
+  axios.get('/api/database/getMenu/'+rID)
+  .then(res => {
+    dispatch({
+      type: GET_MENU,
+      payload: res.data
+    })
+  })
+}
