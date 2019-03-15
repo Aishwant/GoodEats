@@ -16,7 +16,7 @@ export class CustomerMenu extends Component {
   state = {
     Appetizer: true,
     Main: false,
-    Drinks: false
+    Drinks: false,
   };
 
   onClickAppetizer() {
@@ -37,7 +37,6 @@ export class CustomerMenu extends Component {
   componentDidMount(){
     const rID = queryString.parse(this.props.location.search).id;
     this.props.getMenu(rID);
-    
   }
 
   render() {
@@ -94,7 +93,7 @@ export class CustomerMenu extends Component {
                 };
                 
     const contentMenuKeys = Object.keys(this.props.menu);
-              
+    
     const contentKeys = Object.keys(json);
     const appetizers = contentKeys.map(t=>{
                         return(
@@ -150,27 +149,45 @@ export class CustomerMenu extends Component {
         </div>
         <br />
 
-        <div className="row">
-          {this.state.Appetizer ? appetizers:''}
-          {/* {
+          <div className="row">
+          {/* {this.state.Appetizer ? appetizers:''} */}
+          </div>
+          {
             contentMenuKeys.map(t=>{
+              // if (t === this.state.Appetizer)
+              
+              return(
+                <div className="text-center">
+                  <h4>{t}</h4>
+                  <div className="row">
+                    {Object.keys(this.props.menu[t]).map(menu=>{
+                      return(
 
-              Object.keys(this.props.menu[t]).map(menu=>{
-                
-                [this.props.menu[t][menu]].map(item=>{
-                  console.log("Item"+item)
-                  return(
-                    <div>
-                      {item.Name}<br/>
-                      {item.Price}<br/>
-                    </div>
-                  )
-                })
-              })
-                          
+                      [this.props.menu[t][menu]].map(item=>{
+                        return(
+                          <div className="col-md-6 menuItems">
+                          <div className="textM d-flex">
+                            <div className="one-half">
+                              <h3>{item.Name}</h3>
+                              <p><span>{item.Description}</span></p>
+                            </div>
+                            <div className="one-forth">
+                              <span className="price">${item.Price}</span>
+                            </div>
+                          </div>
+                        </div>
+                        )
+                      })
+                    )
+                    })
+                  }
+                </div>
+              </div>
+              )              
             })
-          } */}
-        </div>
+
+          }
+        
       </div>
     )
   }
