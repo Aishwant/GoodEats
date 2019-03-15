@@ -80,6 +80,7 @@ def getRestaurantByID(request, uID):
         data[value] = db.child("Restaurants").child(value).get().val()   
     return data
 
+
  ##### Writing To Database #####
 def addOwner(request):
     db = credentials().database()
@@ -139,7 +140,11 @@ def addMenu(request):
     print(request)
     return db.child('Restaurants').child(rID).child("Menu").child(mType).push(request)
 
-
+#For owner dashboard
+def getMenu(request,rID):
+    db = credentials().database()
+    return dict(db.child('Restaurants').child(rID).child("Menu").get().val())
+    console.log(request)
 
 
 ##### Delete from Database #####
@@ -158,6 +163,3 @@ def deleteRestaurant(request, rID, uID):
     db.child("Users").child(uID).child("Owner").child("rIDS").child(restaurantKey).remove()
     return db.child("Restaurants").child(rID).remove()
 
-def getMenu(request):
-    db = credentials().database()
-    return dict(db.child('Restaurants').child(request).child('Menu').get().val())

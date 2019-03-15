@@ -30,6 +30,19 @@ class getRestaurantByIDAPI(generics.GenericAPIView):
             return Response({
                 "status":"Disconnected"
             })
+class getMenuAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def get(self, request,rID):
+        try:
+            return Response(firebase.getMenu(request,rID))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })
 
 class addRestaurantAPI(generics.GenericAPIView):
 
@@ -117,16 +130,4 @@ class pushCustomerDataAPI(generics.GenericAPIView):
                 "msg": 'There was a problem'
             })
 
-class getMenuAPI(generics.GenericAPIView):
 
-    permission_classes=[
-        permissions.AllowAny
-    ]
-
-    def get(self, request,rID):
-        try:
-            return Response(firebase.getMenu(rID))
-        except:
-            return Response({
-                "status":"Disconnected"
-            })

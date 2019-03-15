@@ -42,6 +42,20 @@ export const getRestaurantByID = () => (dispatch, getState) => {
       dispatch(returnErrors(err.response.data, err.response.status))
     );
 };
+export const getMenu = () => dispatch => {
+  const rID=localStorage.getItem("rID")
+  axios.get('/api/database/getMenu/'+rID)
+  .then(res => {
+    dispatch({
+      type: GET_MENU,
+      payload: res.data
+    });
+    
+  })
+  .catch(err =>
+    dispatch(returnErrors(err.response.data, err.response.status))
+  );
+}
 
 //ADD RESTAURANT 
 export const addRestaurant = restaurant => (dispatch, getState) => {
@@ -73,12 +87,3 @@ export const deleteRestaurant = rID => (dispatch, getState) => {
     .catch(err => console.log(err));
 };
 
-export const getMenu = (rID) => dispatch => {
-  axios.get('/api/database/getMenu/'+rID)
-  .then(res => {
-    dispatch({
-      type: GET_MENU,
-      payload: res.data
-    })
-  })
-}

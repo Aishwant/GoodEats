@@ -9,6 +9,9 @@ import FormMenu from './FormMenu';
 
 export class EditMenu extends Component {
   
+  componentDidMount(){
+    this.props.getMenu();
+  }
   static propTypes = {
     // menu: PropTypes.object,
     getMenu: PropTypes.func
@@ -53,7 +56,7 @@ export class EditMenu extends Component {
       ? { color: "#fff", backgroundColor: "#333", fontSize:"20px!important" }
       : { backgroundColor: "#eee", color:'#a5a5ab', fontSize:"20px!important" };
       
-    const json = {
+    const json1 = {
                   item1:
                   {
                     FoodN: "Fruit Vanilla Ice Cream",
@@ -94,12 +97,13 @@ export class EditMenu extends Component {
                   }
                 };
                 
-    const contentMenuKeys = Object.keys(this.props.menu);
+    const json = Object.keys(this.props.menu);
+    
               
-    const contentKeys = Object.keys(json);
+    const contentKeys = Object.keys(json1);
     const appetizers = contentKeys.map(t=>{
                         return(
-                          [json[t]].map(menu=>{
+                          [json1[t]].map(menu=>{
                             return(
                               <div className="col-md-6 menuItems">
                                 <div className="textM d-flex">
@@ -110,7 +114,10 @@ export class EditMenu extends Component {
                                   <div className="one-forth">
                                     <span className="price">{menu.Price}</span>
                                   </div>
+                                  <button className="btn btn-warning ml-2">Edit Menu</button>
+                                <button className="btn btn-warning ml-2">Delete Menu</button>
                                 </div>
+                                
                               </div>
                             )
                           })
