@@ -55,71 +55,8 @@ export class CustomerMenu extends Component {
     let btnStyleD = this.state.Drinks
       ? { color: "#fff", backgroundColor: "#333", fontSize:"20px!important" }
       : { backgroundColor: "#eee", color:'#a5a5ab', fontSize:"20px!important" };
-      
-    const json = {
-                  item1:
-                  {
-                    FoodN: "Fruit Vanilla Ice Cream",
-                    Description:"Meat, Potatoes, Rice, Tomatoes",
-                    Price: "$29"
-                  },
-                  item2:
-                  {
-                    FoodN: "Grilled Beef with potatoes",
-                    Description:"Meat, Potatoes, Rice, Tomatoes",
-                    Price: "$29"
-                  },item3:{
-                    FoodN: "KFC Chicken",
-                    Description:"Fried Chicken",
-                    Price: "$19"
-                  },
-                  item4:
-                  {
-                    FoodN: "Asian Hoisin Pork",
-                    Description:"Meat, Potatoes, Rice, Tomatoes",
-                    Price: "$29"
-                  },
-                  item5:
-                  {
-                    FoodN: "Fruit Vanilla Ice Cream",
-                    Description:"Meat, Potatoes, Rice, Tomatoes",
-                    Price: "$29"
-                  },
-                  item6:
-                  {
-                    FoodN: "Grilled Beef with potatoes",
-                    Description:"Meat, Potatoes, Rice, Tomatoes",
-                    Price: "$29"
-                  },item7:{
-                    FoodN: "KFC Chicken",
-                    Description:"Fried Chicken",
-                    Price: "$19"
-                  }
-                };
-                
-    const contentMenuKeys = Object.keys(this.props.menu);
     
-    const contentKeys = Object.keys(json);
-    const appetizers = contentKeys.map(t=>{
-                        return(
-                          [json[t]].map(menu=>{
-                            return(
-                              <div className="col-md-6 menuItems">
-                                <div className="textM d-flex">
-                                  <div className="one-half">
-                                    <h3>{menu.FoodN}</h3>
-                                    <p><span>{menu.Description}</span></p>
-                                  </div>
-                                  <div className="one-forth">
-                                    <span className="price">{menu.Price}</span>
-                                  </div>
-                                </div>
-                              </div>
-                            )
-                          })
-                        )
-                        
-                      })
+    const contentMenuKeys = Object.keys(this.props.menu);
     
     return (
       <div className="container text-center">
@@ -154,16 +91,13 @@ export class CustomerMenu extends Component {
         </div>
         <br />
 
-          <div className="row">
-          {/* {this.state.Appetizer ? appetizers:''} */}
-          </div>
           {
             contentMenuKeys.map(t=>{
               if (t !== 'status'){
 
                 return(
                   <div className="text-center">
-                    <h4>{t}</h4>
+                    <p style={{ color: "#333", backgroundColor: "#ffb400", fontSize:"18px!important", padding:"5px", fontWeight: '700' }}>{t}</p>
                     
                     <div className="row">
                       {Object.keys(this.props.menu[t]).map(menu=>{
@@ -176,7 +110,7 @@ export class CustomerMenu extends Component {
                                 <div className="one-half">
                                   <h3>{item.Name}</h3>
                                   <p><span>{item.Description}</span></p>
-                                  <p><span><Link to='/'><i class="fas fa-edit">Edit</i></Link >{"   "}<Link to='/'><i class="fas fa-trash-alt">Remove</i></Link></span></p>
+                                  {/* <p><span><Link to='/'><i class="fas fa-edit">Edit</i></Link >{"   "}<Link to='/'><i class="fas fa-trash-alt">Remove</i></Link></span></p> */}
                                 </div>
                                 <div className="one-forth">
                                   <span className="price">${item.Price}</span>
