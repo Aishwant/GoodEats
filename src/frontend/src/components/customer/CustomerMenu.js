@@ -39,7 +39,6 @@ export class CustomerMenu extends Component {
   componentDidMount(){
     const rID = queryString.parse(this.props.location.search).id;
     this.props.getMenu(rID);
-    console.log(rID)
   }
 
   onClick = ()=> {
@@ -160,38 +159,40 @@ export class CustomerMenu extends Component {
           </div>
           {
             contentMenuKeys.map(t=>{
-              // if (t === this.state.Appetizer)
-              
-              return(
-                <div className="text-center">
-                  <h4>{t}</h4>
-                  
-                  <div className="row">
-                    {Object.keys(this.props.menu[t]).map(menu=>{
-                      return(
+              if (t !== 'status'){
 
-                      [this.props.menu[t][menu]].map(item=>{
+                return(
+                  <div className="text-center">
+                    <h4>{t}</h4>
+                    
+                    <div className="row">
+                      {Object.keys(this.props.menu[t]).map(menu=>{
                         return(
-                          <div className="col-md-6 menuItems" onClick={this.onClick}>
-                            <div className="textM d-flex">
-                              <div className="one-half">
-                                <h3>{item.Name}</h3>
-                                <p><span>{item.Description}</span></p>
-                                <p><span><Link to='/'><i class="fas fa-edit">Edit</i></Link >{"   "}<Link to='/'><i class="fas fa-trash-alt">Remove</i></Link></span></p>
-                              </div>
-                              <div className="one-forth">
-                                <span className="price">${item.Price}</span>
+  
+                        [this.props.menu[t][menu]].map(item=>{
+                          return(
+                            <div className="col-md-6 menuItems" onClick={this.onClick}>
+                              <div className="textM d-flex">
+                                <div className="one-half">
+                                  <h3>{item.Name}</h3>
+                                  <p><span>{item.Description}</span></p>
+                                  <p><span><Link to='/'><i class="fas fa-edit">Edit</i></Link >{"   "}<Link to='/'><i class="fas fa-trash-alt">Remove</i></Link></span></p>
+                                </div>
+                                <div className="one-forth">
+                                  <span className="price">${item.Price}</span>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        )
+                          )
+                        })
+                      )
                       })
-                    )
-                    })
-                  }
+                    }
+                  </div>
                 </div>
-              </div>
-              )              
+                )
+
+              }              
             })
 
           }
