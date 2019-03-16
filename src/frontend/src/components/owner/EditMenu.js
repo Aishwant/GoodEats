@@ -3,15 +3,14 @@ import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import queryString from 'query-string';
 import { getMenu } from '../../actions/getRestaurants';
+import { Link } from 'react-router-dom';
 import FormMenu from './FormMenu';
+
 
 
 
 export class EditMenu extends Component {
   
-  componentDidMount(){
-    this.props.getMenu();
-  }
   static propTypes = {
     // menu: PropTypes.object,
     getMenu: PropTypes.func
@@ -20,7 +19,7 @@ export class EditMenu extends Component {
   state = {
     Appetizer: true,
     Main: false,
-    Drinks: false
+    Drinks: false,
   };
 
   onClickAppetizer() {
@@ -41,9 +40,12 @@ export class EditMenu extends Component {
   componentDidMount(){
     const rID = queryString.parse(this.props.location.search).id;
     this.props.getMenu(rID);
-    
+    console.log(rID)
   }
 
+  onClick = ()=> {
+    console.log("clicked")
+  }
   render() {
     
     let btnStyleA = this.state.Appetizer
@@ -56,7 +58,7 @@ export class EditMenu extends Component {
       ? { color: "#fff", backgroundColor: "#333", fontSize:"20px!important" }
       : { backgroundColor: "#eee", color:'#a5a5ab', fontSize:"20px!important" };
       
-    const json1 = {
+    const json = {
                   item1:
                   {
                     FoodN: "Fruit Vanilla Ice Cream",
@@ -97,13 +99,12 @@ export class EditMenu extends Component {
                   }
                 };
                 
-    const json = Object.keys(this.props.menu);
+    const contentMenuKeys = Object.keys(this.props.menu);
     
-              
-    const contentKeys = Object.keys(json1);
+    const contentKeys = Object.keys(json);
     const appetizers = contentKeys.map(t=>{
                         return(
-                          [json1[t]].map(menu=>{
+                          [json[t]].map(menu=>{
                             return(
                               <div className="col-md-6 menuItems">
                                 <div className="textM d-flex">
@@ -114,10 +115,7 @@ export class EditMenu extends Component {
                                   <div className="one-forth">
                                     <span className="price">{menu.Price}</span>
                                   </div>
-                                  <button className="btn btn-warning ml-2">Edit Menu</button>
-                                <button className="btn btn-warning ml-2">Delete Menu</button>
                                 </div>
-                                
                               </div>
                             )
                           })
@@ -126,13 +124,12 @@ export class EditMenu extends Component {
                       })
     
     return (
-    
       <div className="container text-center">
+        <h3 style={{marginTop:'50px'}}>We Serve</h3>
         <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#MenuModal">
         Add Menu
         </button>
     <FormMenu name={queryString.parse(this.props.location.search).id} />
-        <h3 style={{marginTop:'50px'}}>We Serve</h3>
         <div className="text-center" style={{marginBottom: '30px', marginTop:'40px'}}>
           <button
             type="button"
@@ -163,27 +160,47 @@ export class EditMenu extends Component {
         </div>
         <br />
 
-        <div className="row">
-          {this.state.Appetizer ? appetizers:''}
-          {/* {
+          <div className="row">
+          {/* {this.state.Appetizer ? appetizers:''} */}
+          </div>
+          {
             contentMenuKeys.map(t=>{
+              // if (t === this.state.Appetizer)
+              
+              return(
+                <div className="text-center">
+                  <h4>{t}</h4>
+                  
+                  <div className="row">
+                    {Object.keys(this.props.menu[t]).map(menu=>{
+                      return(
 
-              Object.keys(this.props.menu[t]).map(menu=>{
-                
-                [this.props.menu[t][menu]].map(item=>{
-                  console.log("Item"+item)
-                  return(
-                    <div>
-                      {item.Name}<br/>
-                      {item.Price}<br/>
-                    </div>
-                  )
-                })
-              })
-                          
+                      [this.props.menu[t][menu]].map(item=>{
+                        return(
+                          <div className="col-md-6 menuItems" onClick={this.onClick}>
+                            <div className="textM d-flex">
+                              <div className="one-half">
+                                <h3>{item.Name}</h3>
+                                <p><span>{item.Description}</span></p>
+                                <p><span><Link to='/'><i class="fas fa-edit">Edit</i></Link >{"   "}<Link to='/'><i class="fas fa-trash-alt">Remove</i></Link></span></p>
+                              </div>
+                              <div className="one-forth">
+                                <span className="price">${item.Price}</span>
+                              </div>
+                            </div>
+                          </div>
+                        )
+                      })
+                    )
+                    })
+                  }
+                </div>
+              </div>
+              )              
             })
-          } */}
-        </div>
+
+          }
+        
       </div>
     )
   }
@@ -195,3 +212,15 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps,{ getMenu })(EditMenu)
+
+
+
+
+
+
+
+
+
+
+
+
