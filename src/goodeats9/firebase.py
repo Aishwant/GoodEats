@@ -162,3 +162,9 @@ def deleteRestaurant(request, rID, uID):
     db.child("Users").child(uID).child("Owner").child("rIDS").child(restaurantKey).remove()
     return db.child("Restaurants").child(rID).remove()
 
+##### Update Database #####
+def editRestaurant(request, rID):
+    db = credentials().database()
+    print(request)
+    print(rID)
+    return db.child("Restaurants").child(rID).update(request)

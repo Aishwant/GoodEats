@@ -24,7 +24,7 @@ export class EditRestaurant extends Component {
         e.preventDefault();
         const { Address, City, Open, Close, Name, img, zipcode } = this.state;
         const restaurant = { Address, City, Open, Close, Name, img, zipcode };
-        this.props.editRestaurant(restaurant);
+        this.props.editRestaurant(restaurant, this.props.rID);
         this.setState({
             Address: "",
             City: "",
