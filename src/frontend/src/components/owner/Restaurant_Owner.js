@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { getRestaurantByID, deleteRestaurant } from '../../actions/getRestaurants';
 import FormMenu from './FormMenu';
 import {Link} from 'react-router-dom';
+import EditRestaurant from './EditRestaurant';
 
 
 
@@ -92,19 +93,17 @@ export class Restaurant extends Component {
                       <h6>Open:{res.Open}</h6>
                       <h6>Close:{res.Close}</h6>
                     </p>
-                    <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
-                    <button
-                      className="btn btn-warning ml-2"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={this.props.deleteRestaurant.bind(this, t)}
-                      className="btn btn-danger ml-2"
-                    >
-                      {" "}
-                      Delete
-                    </button>
+                    <div className="row">
+                      <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
+                      <EditRestaurant name={res.Name} address={res.Address} city={res.City} zipcode={res.zipcode} open={res.Open} close={res.Close}/>
+                      <button
+                        onClick={this.props.deleteRestaurant.bind(this, t)}
+                        className="btn btn-danger ml-2"
+                      >
+                        {" "}
+                        Delete
+                      </button>
+                    </div>
                   </div>
               </div>
             </div>
