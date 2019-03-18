@@ -34,6 +34,7 @@ export class FormRestaurant extends Component {
             img: "",
             zipcode: ""
         });
+        window.location.reload();
     }
 
     render() {
