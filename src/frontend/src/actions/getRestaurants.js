@@ -9,6 +9,7 @@ import {
     ADD_RESTAURANT,
     DELETE_RESTAURANT,
     GET_MENU,
+    DELETE_MENU,
   } from './types';
 
 //GET ALL RESTAURANTS
@@ -56,6 +57,7 @@ export const getMenu = (rID) => dispatch => {
   );
 }
 
+
 //ADD RESTAURANT 
 export const addRestaurant = restaurant => (dispatch, getState) => {
   const uID = localStorage.getItem("uID")
@@ -86,3 +88,13 @@ export const deleteRestaurant = rID => (dispatch, getState) => {
     .catch(err => console.log(err));
 };
 
+export const deleteMenu=(ref)=> dispatch =>{
+  axios.get('/api/database/deleteMenu/'+ref.iID+'/'+ref.rID+'/'+ref.Menu_Type)
+  .then(res =>{
+    dispatch({
+      type: DELETE_MENU,
+      payload:res.data
+    });
+  })
+  .catch(err => console.log(err));
+};

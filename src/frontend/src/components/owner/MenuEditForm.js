@@ -1,11 +1,11 @@
 import React,{Component} from 'react'
 import {connect} from "react-redux"
 import propTypes from "prop-types"
-import { addMenu } from "../../actions/addMenu"
+import { editMenu } from "../../actions/addMenu"
 
 
 
-export class FormMenu extends Component {
+export class MenuEditForm extends Component {
     state={
         Name:"",
         Description: "",
@@ -15,18 +15,22 @@ export class FormMenu extends Component {
     }
 
     static propTypes={
-        addMenu: propTypes.func.isRequired
+        editMenu: propTypes.func.isRequired
 
     }
-
+    
+    
     onChange=e=> this.setState({[e.target.name]:e.target.value});
+    
+    
     onSubmit=e=>{
+        console.log("reached");
         e.preventDefault();
         
-        const { Name, Description, Price, Menu_Type, rID } = this.state;
-        const menu = { Name, Description, Price, Menu_Type, rID };
-        console.log(this.state)
-        this.props.addMenu(menu);
+        const { Name, Description, Price, rID, Menu_Type } = this.state;
+        const menu = { Name, Description, Price, Menu_Type, rID, iID:this.props.iID };
+        
+        this.props.editMenu(menu);
         this.setState({
             Name:"",
             Description: "",
@@ -86,11 +90,11 @@ export class FormMenu extends Component {
 
 
             <form onSubmit={this.onSubmit}>
-            <div className="modal fade" id="MenuModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="MenuEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                 <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">Add Items</h5>
+                    <h5 className="modal-title" id="exampleModalLabel">Edit Items</h5>
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -149,7 +153,7 @@ export class FormMenu extends Component {
 
                         <div className="modal-footer">
                             <button type="button" id="cancel" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="submit" className="btn btn-primary" >Add Item</button>
+                            <button type="submit" className="btn btn-primary" >Change Items</button>
                         </div>
 
 
@@ -161,7 +165,7 @@ export class FormMenu extends Component {
             </div>
             </div>
           
-            </form> 
+            </form>
 
             
             </div>
@@ -174,4 +178,4 @@ export class FormMenu extends Component {
 
 
 }
-export default connect(null,{addMenu})(FormMenu)
+export default connect(null,{editMenu})(MenuEditForm)

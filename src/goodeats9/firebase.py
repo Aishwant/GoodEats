@@ -140,10 +140,36 @@ def addMenu(request):
     print(request)
     return db.child('Restaurants').child(rID).child("Menu").child(mType).push(request)
 
+def editMenu(request):   
+    db=credentials().database()
+    mType = request['Menu_Type']
+    rID=request['rID']
+    iID =request['iID']
+    print(request)
+    request.pop("Menu_Type")
+    request.pop('rID')
+    request.pop('iID')
+   
+    print(rID)
+    print(iID)
+    print(mType)
+    
+    
+    return db.child('Restaurants').child(rID).child("Menu").child(mType).child(iID).update(request)
+
+def deleteMenu(rID,Menu_Type,iID):
+    
+    
+    db=credentials().database()
+    return db.child('Restaurants').child(rID).child("Menu").child(Menu_Type).child(iID).remove()
+
+
 #For owner dashboard
 def getMenu(request,rID):
     db = credentials().database()
     return dict(db.child('Restaurants').child(rID).child("Menu").get().val())
+
+
 
 
 ##### Delete from Database #####
@@ -161,4 +187,6 @@ def deleteRestaurant(request, rID, uID):
     
     db.child("Users").child(uID).child("Owner").child("rIDS").child(restaurantKey).remove()
     return db.child("Restaurants").child(rID).remove()
+
+
 

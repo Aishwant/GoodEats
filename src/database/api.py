@@ -79,6 +79,40 @@ class addMenuAPI(generics.GenericAPIView):
                 "status":"Disconnected",
                 "msg": 'There was a problem'
             })
+class editMenuAPI(generics.GenericAPIView):
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            print(request.data)
+            db = firebase.editMenu(request.data)
+            return Response({
+                "status": "success"
+            })
+        except:
+            return Response({
+                "status":"Disconnected",
+                "msg": 'There was a problem'
+            })
+
+class deleteMenuAPI(generics.GenericAPIView):
+    permission_classes=[
+        permissions.AllowAny
+    ]
+    def get(self, request,rID,Menu_Type,iID):
+        try:
+            db=firebase.deleteMenu(rID,Menu_Type,iID)
+            return Response({
+                "status":"sucess"
+
+            })
+        except:
+            return Response({
+                "status":"Disconnected"
+                 
+            })
 
 class deleteRestaurantAPI(generics.GenericAPIView):
 
@@ -98,6 +132,8 @@ class deleteRestaurantAPI(generics.GenericAPIView):
                 "msg": 'There was a problem'
             })
 
+
+            
 class getUserAPI(generics.GenericAPIView):
 
     permission_classes=[

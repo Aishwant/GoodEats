@@ -50,6 +50,7 @@ export default function(state = initialState, action) {
                 menu: action.payload
                 
             }
+            
         default:
             return state;
     }

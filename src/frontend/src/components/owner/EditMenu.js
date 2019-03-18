@@ -5,6 +5,8 @@ import queryString from 'query-string';
 import { getMenu } from '../../actions/getRestaurants';
 import { Link } from 'react-router-dom';
 import FormMenu from './FormMenu';
+import  MenuEditForm  from './MenuEditForm';
+import {deleteMenu} from '../../actions/getRestaurants';
 
 
 
@@ -17,38 +19,40 @@ export class EditMenu extends Component {
   };
 
   state = {
-    Appetizer: true,
+    Appetizers: true,
     Main: false,
     Drinks: false,
   };
 
   onClickAppetizer() {
-    this.setState({ Appetizer: !this.state.Appetizer });
+    this.setState({ Appetizers: !this.state.Appetizer });
     this.setState({ Drinks: false, Main: false });
   }
 
   onClickMain() {
     this.setState({ Main: !this.state.Main });
-    this.setState({ Drinks: false, Appetizer: false });
+    this.setState({ Drinks: false, Appetizers: false });
   }
 
   onClickDrinks() {
     this.setState({ Drinks: !this.state.Drinks });
-    this.setState({ Appetizer: false, Main: false });
+    this.setState({ Appetizers: false, Main: false });
   }
 
   componentDidMount(){
     const rID = queryString.parse(this.props.location.search).id;
     this.props.getMenu(rID);
+    
     console.log(rID)
   }
 
-  onClick = ()=> {
+  onClick = (e)=> {
+    e.preventDefault();
     console.log("clicked")
   }
   render() {
     
-    let btnStyleA = this.state.Appetizer
+    let btnStyleA = this.state.Appetizers
       ? { color: "#fff", backgroundColor: "#333", fontSize:"20px!important" }
       : { backgroundColor: "#eee", color:'#a5a5ab', fontSize:"20px!important" };
     let btnStyleM = this.state.Main
@@ -125,7 +129,7 @@ export class EditMenu extends Component {
     
     return (
       <div className="container text-center">
-        <h3 style={{marginTop:'50px'}}>We Serve</h3>
+        <h3 style={{marginTop:'50px'}}>Your Menu Lists</h3>
         <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#MenuModal">
         Add Menu
         </button>
@@ -174,18 +178,22 @@ export class EditMenu extends Component {
                   <div className="row">
                     {Object.keys(this.props.menu[t]).map(menu=>{
                       return(
-
+                        
                       [this.props.menu[t][menu]].map(item=>{
                         return(
-                          <div className="col-md-6 menuItems" onClick={this.onClick}>
+                          <div className="col-md-6 menuItems" >
                             <div className="textM d-flex">
                               <div className="one-half">
                                 <h3>{item.Name}</h3>
                                 <p><span>{item.Description}</span></p>
-                                <p><span><Link to='/'><i class="fas fa-edit">Edit</i></Link >{"   "}<Link to='/'><i class="fas fa-trash-alt">Remove</i></Link></span></p>
+                                
                               </div>
                               <div className="one-forth">
                                 <span className="price">${item.Price}</span>
+                                <p><span>
+                                  <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#MenuEditModal">Edit</button ><MenuEditForm  iID={menu} name={queryString.parse(this.props.location.search).id }/>{"   "}
+                                  <button  type="submit" onClick={()=>{this.props.deleteMenu({rID:queryString.parse(this.props.location.search).id,Menu_Type:t,iID:menu})}} className="btn btn-danger ml-2">Remove</button>
+                                </span></p>
                               </div>
                             </div>
                           </div>
@@ -211,7 +219,7 @@ const mapStateToProps = state => ({
   menu: state.restaurantReducer.menu,
 });
 
-export default connect(mapStateToProps,{ getMenu })(EditMenu)
+export default connect(mapStateToProps,{ getMenu,deleteMenu})(EditMenu)
 
 
 

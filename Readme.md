@@ -182,6 +182,7 @@ npm i react-router-dom
 
 npm i style-loader css-loader less-loader 
 npm i query-string
+npm install --save mdbreact
 ````
 
 ### More pip install commands for Python:

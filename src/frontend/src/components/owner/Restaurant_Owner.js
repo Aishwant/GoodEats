@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { getRestaurantByID, deleteRestaurant } from '../../actions/getRestaurants';
 import FormMenu from './FormMenu';
 import {Link} from 'react-router-dom';
+import { MDBCol, MDBIcon } from "mdbreact";
+import  FormRestaurant  from './FormRestaurant';
 
 
 
@@ -34,14 +36,29 @@ export class Restaurant extends Component {
     const contentKeys = Object.keys(this.props.restaurants)
     //console.log((this.props.restaurants))
     return (
-      <div className="row">
-        <div className="col-md-12">
-          <input
-          placeholder="Search anything here..."
-          ref={input => this.search = input}
-          onChange={this.handleInputChange}
-        />
-       </div>
+
+      
+      <div>
+      
+
+        <MDBCol md="6" style={{marginLeft:'auto',marginRight:'auto'}}>
+              <div className="input-group md-form form-sm form-1 pl-0" >
+                <div className="input-group-prepend">
+                </div>
+                <input className="form-control my-0 py-1"
+                placeholder="Search anything here..."
+                ref={input => this.search = input}
+                onChange={this.handleInputChange}
+                />
+                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Add Restaurant
+                    </button>
+                    <FormRestaurant />
+              </div>
+          </MDBCol>
+          <br/>
+          
+       <div className="row">
 
         {contentKeys.map(t=>
         
@@ -114,6 +131,10 @@ export class Restaurant extends Component {
             
           )
         )}
+         <br/>
+      <br/>
+      </div>
+     
       </div>
     )
   }
