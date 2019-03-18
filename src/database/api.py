@@ -104,9 +104,9 @@ class editRestaurantAPI(generics.GenericAPIView):
         permissions.AllowAny
     ]
 
-    def post(self, request, rID):
+    def post(self, request):
         try:
-            db = firebase.editMenu(request.data, rID)
+            db = firebase.editRestaurant(request.data)
             return Response({
                 "status": "success"
             })

@@ -16,6 +16,7 @@ export class EditModal extends Component {
             Name: "",
             img: "",
             zipcode: "",
+            rID: "",
             modalIsOpen: false
         };
     
@@ -36,6 +37,7 @@ export class EditModal extends Component {
         this.state.Name = this.props.name;
         this.state.img = "";
         this.state.zipcode = this.props.zipcode;
+        this.state.rID = this.props.rID;
     }
 
     onChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -56,8 +58,8 @@ export class EditModal extends Component {
 
       onSubmit = e => {
         e.preventDefault();
-        const { Address, City, Open, Close, Name, img, zipcode } = this.state;
-        const restaurant = { Address, City, Open, Close, Name, img, zipcode };
+        const { Address, City, Open, Close, Name, img, zipcode, rID } = this.state;
+        const restaurant = { Address, City, Open, Close, Name, img, zipcode, rID };
         this.props.editRestaurant(restaurant);
         this.setState({
             Address: "",

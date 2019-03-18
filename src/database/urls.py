@@ -16,6 +16,6 @@ urlpatterns = [
     path('api/database/deleteRestaurant/<slug:rID>/<slug:uID>', deleteRestaurantAPI.as_view()),
     path('api/database/getMenu/<slug:rID>',getMenuAPI.as_view()),
     path('api/database/addMenu',addMenuAPI.as_view()),
-    path('api/database/editRestaurant/<slug:rID>',editRestaurantAPI.as_view()),
+    path('api/database/editRestaurant/',editRestaurantAPI.as_view()),
 
 ]

@@ -88,9 +88,9 @@ export const deleteRestaurant = rID => (dispatch, getState) => {
 };
 
 //EDIT RESTAURANT
-export const editRestaurant = (data, rID) => (dispatch, getState) => {
+export const editRestaurant = (data) => (dispatch, getState) => {
   axios
-    .post(`/api/database/editRestaurant/` + rID, data)
+    .post(`/api/database/editRestaurant/`, data)
     .then(res => {
       dispatch({
         type: EDIT_RESTAURANT,
