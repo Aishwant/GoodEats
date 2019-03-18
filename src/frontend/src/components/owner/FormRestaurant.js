@@ -25,6 +25,7 @@ export class FormRestaurant extends Component {
         const { Address, City, Open, Close, Name, img, zipcode } = this.state;
         const restaurant = { Address, City, Open, Close, Name, img, zipcode };
         this.props.addRestaurant(restaurant);
+        this.props.restaurants.push(restaurants)
         this.setState({
             Address: "",
             City: "",
@@ -137,4 +138,8 @@ export class FormRestaurant extends Component {
     }
 }
 
-export default connect(null, { addRestaurant })(FormRestaurant);
+const mapStateToProps = state => ({
+    restaurants: state.restaurantReducer.restaurants
+  });
+
+export default connect(mapStateToProps, { addRestaurant })(FormRestaurant);

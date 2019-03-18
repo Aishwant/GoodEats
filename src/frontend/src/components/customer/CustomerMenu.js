@@ -105,7 +105,7 @@ export class CustomerMenu extends Component {
   
                         [this.props.menu[t][menu]].map(item=>{
                           return(
-                            <div className="col-md-6 menuItems" onClick={this.onClick}>
+                            <div className="col-md-6 menuItems menuChoose" onClick={this.onClick}>
                               <div className="textM d-flex">
                                 <div className="one-half">
                                   <h3>{item.Name}</h3>
