@@ -98,7 +98,18 @@ def addCustomer(request):
         request['data'].pop("changeC")
         request['data'].pop("changeD")
         request['data'].pop("changeO")
-        db.child('Users').child(request['uID']).child("Owner").set(request['data'])
+
+        restaurantData = {}
+        restaurantData['Name'] = request['data'].pop('name')
+        restaurantData['Address'] = request['data'].pop('address')
+        restaurantData['City'] = request['data'].pop('city')
+        restaurantData['zipcode'] = request['data'].pop('zipcode')
+        restaurantData['Open'] = request['data'].pop('open')
+        restaurantData['Close'] = request['data'].pop('close')
+
+        addRestaurant(restaurantData, request['uID'])
+
+        db.child('Users').child(request['uID']).child("Owner").update(request['data'])
 
     elif(request['data']["changeD"]==True):
         request['data'].pop("rname")
