@@ -22,10 +22,6 @@ def credentials():
 
 ############# Random String Creator ###############
 
-randVal =''
-def rand():
-    randVal = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(N))
-
 def getUniqueID():
     return uuid.uuid1()
 
@@ -102,7 +98,18 @@ def addCustomer(request):
         request['data'].pop("changeC")
         request['data'].pop("changeD")
         request['data'].pop("changeO")
-        db.child('Users').child(request['uID']).child("Owner").set(request['data'])
+
+        restaurantData = {}
+        restaurantData['Name'] = request['data'].pop('name')
+        restaurantData['Address'] = request['data'].pop('address')
+        restaurantData['City'] = request['data'].pop('city')
+        restaurantData['zipcode'] = request['data'].pop('zipcode')
+        restaurantData['Open'] = request['data'].pop('open')
+        restaurantData['Close'] = request['data'].pop('close')
+
+        addRestaurant(restaurantData, request['uID'])
+
+        db.child('Users').child(request['uID']).child("Owner").update(request['data'])
 
     elif(request['data']["changeD"]==True):
         request['data'].pop("rname")
@@ -162,3 +169,8 @@ def deleteRestaurant(request, rID, uID):
     db.child("Users").child(uID).child("Owner").child("rIDS").child(restaurantKey).remove()
     return db.child("Restaurants").child(rID).remove()
 
+##### Update Database #####
+def editRestaurant(request):
+    db = credentials().database()
+    rID = request.pop('rID')
+    return db.child("Restaurants").child(rID).update(request)

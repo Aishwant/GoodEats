@@ -98,6 +98,24 @@ class deleteRestaurantAPI(generics.GenericAPIView):
                 "msg": 'There was a problem'
             })
 
+class editRestaurantAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            db = firebase.editRestaurant(request.data)
+            return Response({
+                "status": "success"
+            })
+        except:
+            return Response({
+                "status":"Disconnected",
+                "msg": 'There was a problem'
+            })
+
 class getUserAPI(generics.GenericAPIView):
 
     permission_classes=[

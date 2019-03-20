@@ -5,6 +5,7 @@ import {
     ADD_RESTAURANT,
     DELETE_RESTAURANT,
     GET_MENU,
+    EDIT_RESTAURANT,
 } from "../actions/types";
 
 const initialState = {
@@ -43,6 +44,11 @@ export default function(state = initialState, action) {
                 restaurants: [...state.restaurants.splice(0, action.payload),
                               ...state.restaurants.splice(action.payload + 1)
                 ]
+            }
+        case EDIT_RESTAURANT:
+            return{
+                ...state,
+                
             }
         case GET_MENU:
             return{
