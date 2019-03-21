@@ -155,6 +155,10 @@ def getMenu(request,rID):
     db = credentials().database()
     return dict(db.child('Restaurants').child(rID).child("Menu").get().val())
 
+def addToCart(request, uID):
+    db = credentials().database()
+    return db.child("Users").child(uID).child("Customer").child("Cart").update(request)
+
 
 ##### Delete from Database #####
 def deleteRestaurant(request, rID, uID):

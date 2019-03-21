@@ -16,12 +16,13 @@ export class Cart extends Component {
   render() {
     const contentKeys = Object.keys(this.props.items);
     return (
-        <div>
+        <div className="container">
             <h2>Cart</h2>
             <table className="table table-striped">
             <thead>
                 <tr>
                 <th>Name</th>
+                <th>Description</th>
                 <th>Price</th>
                 <th />
                 </tr>
@@ -31,8 +32,9 @@ export class Cart extends Component {
 
                 [this.props.items[t]].map(res =>
                 <tr >
-                    <td>{res.name}</td>
-                    <td>{res.price}</td>
+                    <td>{res.Name}</td>
+                    <td>{res.Description}</td>
+                    <td>{res.Price}</td>
                     <td>
                     <button
                         className="btn btn-danger btn-sm"

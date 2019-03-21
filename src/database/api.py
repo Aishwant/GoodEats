@@ -162,4 +162,20 @@ class getCartAPI(generics.GenericAPIView):
                 "status":"Disconnected"
             })
 
+class addToCartAPI(generics.GenericAPIView):
 
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request, uID):
+        try:
+            db = firebase.addToCart(request.data, uID)
+            return Response({
+                "status": "success"
+            })
+        except:
+            return Response({
+                "status":"Disconnected",
+                "msg": 'There was a problem while adding item to cart'
+            })
