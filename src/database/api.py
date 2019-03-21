@@ -148,4 +148,18 @@ class pushCustomerDataAPI(generics.GenericAPIView):
                 "msg": 'There was a problem'
             })
 
+class getCartAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def get(self, request, uID):
+        try:
+            return Response(firebase.getCart(request, uID))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })
+
 

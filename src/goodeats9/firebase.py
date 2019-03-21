@@ -76,6 +76,9 @@ def getRestaurantByID(request, uID):
         data[value] = db.child("Restaurants").child(value).get().val()   
     return data
 
+def getCart(request, uID):
+    db = credentials().database()
+    return (dict(db.child("Users").child(uID).child("Customer").child("Cart").get().val()))
 
  ##### Writing To Database #####
 def addOwner(request):

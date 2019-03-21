@@ -1,11 +1,57 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { getCart } from '../../actions/orders';
 
-export default class Cart extends Component {
+export class Cart extends Component {
+    static propTypes = {
+        
+        getCart: PropTypes.func.isRequired
+    }
+
+    componentDidMount(){
+        this.props.getCart();
+    }
+
   render() {
+    const contentKeys = Object.keys(this.props.items);
     return (
-      <div>
-        This is the cart
-      </div>
+        <div>
+            <h2>Cart</h2>
+            <table className="table table-striped">
+            <thead>
+                <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th />
+                </tr>
+            </thead>
+            <tbody>
+            {contentKeys.map(t=>
+
+                [this.props.items[t]].map(res =>
+                <tr >
+                    <td>{res.name}</td>
+                    <td>{res.price}</td>
+                    <td>
+                    <button
+                        className="btn btn-danger btn-sm"
+                    >
+                        {" "}
+                        Delete
+                    </button>
+                    </td>
+                </tr>
+                ))}
+            </tbody>
+            </table>
+        </div>
     )
   }
 }
+
+const mapStateToProps = state =>({
+    items: state.cartReducer.items
+});
+
+export default connect(mapStateToProps, { getCart } )(Cart);
