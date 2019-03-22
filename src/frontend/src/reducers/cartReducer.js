@@ -1,6 +1,7 @@
 import { 
     GET_CART,
-    ADD_TO_CART
+    ADD_TO_CART,
+    DELETE_CART_ITEM
 } from "../actions/types";
 
 const initialState = {
@@ -18,6 +19,11 @@ export default function(state = initialState, action) {
             return{
                 ...state,
                 items: [...state.items, action.payload]
+            };
+        case DELETE_CART_ITEM:
+            return{
+                ...state,
+                items: state.items.filter(item => item !== action.payload)
             };
         default:
             return state;

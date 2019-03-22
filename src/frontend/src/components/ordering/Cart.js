@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getCart } from '../../actions/orders';
+import { getCart, deleteCartItem } from '../../actions/orders';
 
 export class Cart extends Component {
     static propTypes = {
-        
-        getCart: PropTypes.func.isRequired
+        getCart: PropTypes.func.isRequired,
+        deleteCartItem: PropTypes.func.isRequired
     }
 
     componentDidMount(){
@@ -38,6 +38,7 @@ export class Cart extends Component {
                     <td>
                     <button
                         className="btn btn-danger btn-sm"
+                        onClick={this.props.deleteCartItem.bind(this, t)}
                     >
                         {" "}
                         Delete
@@ -56,4 +57,4 @@ const mapStateToProps = state =>({
     items: state.cartReducer.items
 });
 
-export default connect(mapStateToProps, { getCart } )(Cart);
+export default connect(mapStateToProps, { getCart, deleteCartItem } )(Cart);

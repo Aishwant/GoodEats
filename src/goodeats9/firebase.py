@@ -164,17 +164,17 @@ def addToCart(request, uID):
 def deleteRestaurant(request, rID, uID):
     db = credentials().database()
     restaurantsOwned = (dict(db.child("Users").child(uID).child("Owner").child("rIDS").get().val()))
-    print(restaurantsOwned)
     
     for key, value in restaurantsOwned.items():
         if(value == rID):
             restaurantKey = key
-            print("true")
-    
-    print(restaurantKey)
     
     db.child("Users").child(uID).child("Owner").child("rIDS").child(restaurantKey).remove()
     return db.child("Restaurants").child(rID).remove()
+
+def deleteCartItem(request, itemID, uID):
+    db = credentials().database()
+    return db.child("Users").child(uID).child("Customer").child("Cart").child(itemID).remove()
 
 ##### Update Database #####
 def editRestaurant(request):
