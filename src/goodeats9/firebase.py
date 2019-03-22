@@ -91,10 +91,12 @@ def addCustomer(request):
 
     
     if (request['data']["changeC"]==True):
-        request['data'].pop("rname")
         request['data'].pop("changeC")
         request['data'].pop("changeD")
         request['data'].pop("changeO")
+        request['data'].pop("open")
+        request['data'].pop("close")
+        request['data'].pop("name")
         db.child('Users').child(request['uID']).child("Customer").set(request['data'])
 
     elif(request['data']["changeO"]==True):
@@ -115,10 +117,14 @@ def addCustomer(request):
         db.child('Users').child(request['uID']).child("Owner").update(request['data'])
 
     elif(request['data']["changeD"]==True):
-        request['data'].pop("rname")
         request['data'].pop("changeC")
         request['data'].pop("changeD")
         request['data'].pop("changeO")
+        request['data'].pop("open")
+        request['data'].pop("close")
+        request['data'].pop("address")
+        request['data'].pop("name")
+        request['data'].pop("city")
         db.child('Users').child(request['uID']).child("Driver").set(request['data'])
 
 
