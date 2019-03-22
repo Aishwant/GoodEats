@@ -6,7 +6,7 @@ import FormMenu from './FormMenu';
 import {Link} from 'react-router-dom';
 import { MDBCol,MDBIcon } from "mdbreact";
 import  FormRestaurant  from './FormRestaurant';
-import Dropdown from 'react-bootstrap/Dropdown';
+
 
 
 
@@ -57,17 +57,7 @@ export class Restaurant extends Component {
                     Add Restaurant
                     </button>
                     <FormRestaurant />
-                    <Dropdown style={{marginRight:0}}>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
-                  Your Orders
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                  <Dropdown.Item href="#/newOrders">New Orders</Dropdown.Item>
-                  <Dropdown.Item href="#/pendingOrders">Pending Orders</Dropdown.Item>
-                 
-                </Dropdown.Menu>
-              </Dropdown>
+                    
                 
               </div>
               
