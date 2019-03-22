@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import queryString from 'query-string';
 import { getMenu } from '../../actions/getRestaurants';
 import { Link } from 'react-router-dom'
+import { addToCart } from '../../actions/orders';
 
 
 
@@ -12,7 +13,8 @@ export class CustomerMenu extends Component {
   
   static propTypes = {
     // menu: PropTypes.object,
-    getMenu: PropTypes.func
+    getMenu: PropTypes.func,
+    addToCart: PropTypes.func.isRequired
   };
 
   state = {
@@ -41,8 +43,10 @@ export class CustomerMenu extends Component {
     this.props.getMenu(rID);
   }
 
-  onClick = ()=> {
+  onClickButton = (item) => {
     console.log("clicked")
+    const data = { 'itemID': item }
+    this.props.addToCart(data)
   }
   render() {
     
@@ -105,8 +109,10 @@ export class CustomerMenu extends Component {
   
                         [this.props.menu[t][menu]].map(item=>{
                           return(
-                            <div className="col-md-6 menuItems menuChoose" onClick={this.onClick}>
+            
+                            <div className="col-md-6 menuItems menuChoose" >
                               <div className="textM d-flex">
+                              <button className="btn btn-dark"  onClick={this.props.addToCart.bind(this, this.props.menu[t])}>Add To Cart</button>
                                 <div className="one-half">
                                   <h3>{item.Name}</h3>
                                   <p><span>{item.Description}</span></p>
@@ -141,4 +147,4 @@ const mapStateToProps = state => ({
   menu: state.restaurantReducer.menu,
 });
 
-export default connect(mapStateToProps,{ getMenu })(CustomerMenu)
+export default connect(mapStateToProps,{ getMenu, addToCart })(CustomerMenu)

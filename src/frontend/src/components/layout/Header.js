@@ -41,7 +41,7 @@ export class Header extends Component {
 
     const cart = (
       <li className="nav-item">
-        <Link to="/" className="nav-link">
+        <Link to="/cart" className="nav-link">
           <i className="fas fa-shopping-cart"></i>
         </Link>
       </li>

@@ -21,3 +21,7 @@ export const CUSTOMER_ADDED = "CUSTOMER_ADDED";
 export const DRIVER_ADDED = "DRIVER_ADDED";
 export const GET_MENU = 'GET_MENU';
 export const ADD_MENU = "ADD_MENU";
+
+export const GET_CART = "GET_CART";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const DELETE_CART_ITEM = "DELETE_CART_ITEM";
