@@ -191,7 +191,7 @@ export class EditMenu extends Component {
                               <div className="one-forth">
                                 <span className="price">${item.Price}</span>
                                 <p><span>
-                                  <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#MenuEditModal">Edit</button ><MenuEditForm  iID={menu} name={queryString.parse(this.props.location.search).id }/>{"   "}
+                                  <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#MenuEditModal">Edit</button ><MenuEditForm itemID={menu} restID={queryString.parse(this.props.location.search).id }/>{"   "}
                                   <button  type="submit" onClick={()=>{this.props.deleteMenu({rID:queryString.parse(this.props.location.search).id,Menu_Type:t,iID:menu})}} className="btn btn-danger ml-2">Remove</button>
                                 </span></p>
                               </div>

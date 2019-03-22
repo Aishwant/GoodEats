@@ -150,9 +150,7 @@ def editMenu(request):
     request.pop('rID')
     request.pop('iID')
    
-    print(rID)
-    print(iID)
-    print(mType)
+    
     
     
     return db.child('Restaurants').child(rID).child("Menu").child(mType).child(iID).update(request)

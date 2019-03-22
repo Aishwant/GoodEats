@@ -24,6 +24,9 @@ import PrivateHomeRoute from "./private/PrivateHomeRoute"
 import { Provider } from "react-redux";
 import store from "../store";
 import { loadUser } from "../actions/authentication";
+import  newOrder  from "./owner/newOrder";
+import pendingOrders from './owner/pendingOrders';
+
 
 
 
@@ -59,6 +62,10 @@ class App extends Component {
                       <PrivateRoute exact path = "/signupinfo" component={UserDefiner} />
                       <PrivateRoute exact path = "/menu/:rName" component={CustomerMenu} />
                       <PrivateRoute exact path = "/editmenu/:rName" component={EditMenu} />
+                      <Route exact path="/newOrders" component={newOrder} />
+                      <Route exact path="/pendingOrders" component={pendingOrders} />
+             
+
     
                 </Switch>
                 
