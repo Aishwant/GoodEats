@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types"
 import Category from "./Category";
 import { addCategory } from "../../actions/menu";
+import queryString from 'query-string';
 
 export class Menu_Owner extends Component {
     state = {
@@ -18,7 +19,8 @@ export class Menu_Owner extends Component {
     onSubmit = e => {
         e.preventDefault();
         const { newCategory } = this.state;
-        const data = { newCategory }
+        const rID = queryString.parse(this.props.location.search).id;
+        const data = { newCategory, "rID":rID }
         this.props.addCategory(data);
     }
 

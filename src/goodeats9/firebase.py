@@ -167,7 +167,10 @@ def addToCart(request, uID):
 
 def addCategory(request):
     db = credentials().database()
-    return print(request)
+    placeholderItemID = getUniqueID()
+    placeholderItem = {str(placeholderItemID) : {"Name":"Item Name", "Description":"Item Description", "Price":"Item Price", "Quantity":"Item Quantity"}}
+    print(placeholderItem)
+    return db.child("Restaurants").child(request['rID']).child("Menu").child(request['newCategory']).set(placeholderItem)
 
 
 ##### Delete from Database #####
