@@ -62,7 +62,7 @@ class App extends Component {
                       <PrivateRoute exact path = "/signupinfo" component={UserDefiner} />
                       <PrivateRoute exact path = "/menu/:rName" component={CustomerMenu} />
                       <PrivateRoute exact path = "/editmenu/:rName" component={EditMenu} />
-                      <Route exact path="/newOrders" component={newOrder} />
+                      <Route exact path="/newOrder/:rName" component={newOrder} />
                       <Route exact path="/pendingOrders" component={pendingOrders} />
              
 

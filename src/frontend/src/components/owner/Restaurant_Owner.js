@@ -76,7 +76,7 @@ export class Restaurant extends Component {
                               return (
                               <div className="col-md-3">
                                 <div className="card" style={cardWidth}>
-                                <Link to={`/newOrders`} >
+                                <Link to={`/newOrder/${res.Name}?id=${t}`} >
                                   <img className="card-img-top" src="https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fevanwise.jpg?alt=media&token=6986eebb-7928-42d6-9d4e-7589990f29b3" alt="Card image cap" />
                                   </Link>
                                   <div className="card-body">
@@ -114,7 +114,7 @@ export class Restaurant extends Component {
                               return (
                                 <div className="col-md-3">
                                 <div className="card" style={cardWidth}>
-                                <Link to={`/newOrders`}>
+                                <Link to={`/newOrder/${res.Name}?id=${t}`} name={res.Name}>
 
                                   <img className="card-img-top" src="https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fevanwise.jpg?alt=media&token=6986eebb-7928-42d6-9d4e-7589990f29b3" alt="Card image cap" />
                                   </Link>
