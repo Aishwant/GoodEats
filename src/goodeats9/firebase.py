@@ -180,6 +180,13 @@ def addCategory(request):
     print(placeholderItem)
     return db.child("Restaurants").child(request['rID']).child("Menu").child(request['newCategory']).set(placeholderItem)
 
+def addItem(request):
+    db = credentials().database()
+    rID = request.pop("rID")
+    category = request.pop("category")
+    itemID = getUniqueID()
+    return db.child("Restaurants").child(rID).child("Menu").child(category).child(str(itemID)).set(request)
+
 
 ##### Delete from Database #####
 def deleteRestaurant(request, rID, uID):

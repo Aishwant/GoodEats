@@ -32,15 +32,20 @@ export class Menu_Owner extends Component {
     const { newCategory } = this.state
     const contentKeys = Object.keys(this.props.categories)
     return (
-      <div className="container">
-        <form onSubmit={this.onSubmit} className="form-inline">
-            <input type="text" name="newCategory" onChange={this.onChange} value={newCategory} className="form-control" placeholder="Category Name" required/>
-            <button type="submit" className="btn btn-primary">Add Category</button>
-        </form>
+      <div className="container text-center">
+        <div className="row justify-content-center">
+          <div className="col-xl-6">
+            <form onSubmit={this.onSubmit} className="form-inline">
+              <div className="form-group">
+                <input type="text" name="newCategory" onChange={this.onChange} value={newCategory} className="form-control input-large" placeholder="Category Name" required/>
+              </div>
+              <button type="submit" className="btn btn-primary mb-2">Add Category</button>
+            </form>
+          </div>
+        </div>
         {contentKeys.map(t=>
-          <div className="row">
+          <div>
             <Category name={t} rID={this.state.rID}/>
-            <button className="btn btn-danger">Delete</button>
           </div>
         )}
       </div>

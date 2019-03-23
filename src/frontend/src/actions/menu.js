@@ -5,7 +5,8 @@ import {
     ADD_CATEGORY,
     DELETE_CATEGORY,
     EDIT_CATEGORY,
-    GET_ITEMS
+    GET_ITEMS,
+    ADD_ITEM
   } from './types';
 
   //Add a new category to the menu of the given restaurant
@@ -41,6 +42,19 @@ import {
       .then(res => {
         dispatch({
           type: GET_ITEMS,
+          payload: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  //Add a new category to the menu of the given restaurant
+  export const addItemToCategory = item => (dispatch) => {
+    axios
+      .post("/api/database/addItemToCategory", item)
+      .then(res => {
+        dispatch({
+          type: ADD_ITEM,
           payload: res.data
         });
       })

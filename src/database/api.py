@@ -242,3 +242,17 @@ class getItemsAPI(generics.GenericAPIView):
             return Response({
                 "status":"Disconnected"
             })
+
+class addItemAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            return Response(firebase.addItem(request.data))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })
