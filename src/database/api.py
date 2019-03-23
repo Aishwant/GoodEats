@@ -214,3 +214,31 @@ class addCategoryAPI(generics.GenericAPIView):
                 "status":"Disconnected",
                 "msg": 'There was a problem'
             })
+
+class getCategoriesAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def get(self, request, rID):
+        try:
+            return Response(firebase.getCategories(request, rID))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })
+
+class getItemsAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            return Response(firebase.getItems(request.data))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })

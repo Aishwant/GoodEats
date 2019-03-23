@@ -80,6 +80,14 @@ def getCart(request, uID):
     db = credentials().database()
     return (dict(db.child("Users").child(uID).child("Customer").child("Cart").get().val()))
 
+def getCategories(request, rID):
+    db = credentials().database()
+    return (dict(db.child("Restaurants").child(rID).child("Menu").get().val()))
+
+def getItems(request):
+    db = credentials().database()
+    return (dict(db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).get().val()))
+
  ##### Writing To Database #####
 def addOwner(request):
     db = credentials().database()

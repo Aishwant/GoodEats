@@ -5,6 +5,7 @@ import {
     ADD_CATEGORY,
     DELETE_CATEGORY,
     EDIT_CATEGORY,
+    GET_ITEMS
   } from './types';
 
   //Add a new category to the menu of the given restaurant
@@ -14,6 +15,32 @@ import {
       .then(res => {
         dispatch({
           type: ADD_CATEGORY,
+          payload: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  //Get all categories from given restaurant
+  export const getCategories = (rID) => (dispatch) => {
+    axios
+      .get("/api/database/getCategories/" + rID)
+      .then(res => {
+        dispatch({
+          type: GET_CATEGORIES,
+          payload: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  //Get all the items from the given category
+  export const getItems = data => (dispatch) => {
+    axios
+      .post("/api/database/getItems", data)
+      .then(res => {
+        dispatch({
+          type: GET_ITEMS,
           payload: res.data
         });
       })
