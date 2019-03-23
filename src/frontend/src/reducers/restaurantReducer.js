@@ -12,6 +12,7 @@ const initialState = {
     restaurants:{},
     resName:"",
     menu:{},
+    categories: {}
 }
 
 export default function(state = initialState, action) {

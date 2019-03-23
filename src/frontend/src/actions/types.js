@@ -25,3 +25,8 @@ export const ADD_MENU = "ADD_MENU";
 export const GET_CART = "GET_CART";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_CART_ITEM = "DELETE_CART_ITEM";
+
+export const ADD_CATEGORY = "ADD_CATEGORY";
+export const GET_CATEGORIES = "GET_CATEGORIES";
+export const DELETE_CATEGORY = "DELETE_CATEGORY";
+export const EDIT_CATEGORY = "EDIT_CATEGORY";

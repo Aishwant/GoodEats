@@ -17,6 +17,7 @@ import UserDefiner from "./pages/NewUsers/UserDefiner";
 import CustomerMenu from "./Customer/CustomerMenu"
 import Index from "./Index"
 import EditMenu from "./owner/EditMenu";
+import Menu_Owner from "./owner/Menu_Owner";
 import Cart from "./ordering/Cart";
 
 import PrivateRoute from "./private/PrivateRoute";
@@ -59,7 +60,7 @@ class App extends Component {
                       <Route exact path = "/forgotpwd" component={ForgotPwd} />
                       <PrivateRoute exact path = "/signupinfo" component={UserDefiner} />
                       <PrivateRoute exact path = "/menu/:rName" component={CustomerMenu} />
-                      <PrivateRoute exact path = "/editmenu/:rName" component={EditMenu} />
+                      <PrivateRoute exact path = "/editmenu/:rName" component={Menu_Owner} />
                       <PrivateRoute exact path = "/cart" component={Cart} />
     
                 </Switch>

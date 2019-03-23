@@ -165,6 +165,10 @@ def addToCart(request, uID):
     db = credentials().database()
     return db.child("Users").child(uID).child("Customer").child("Cart").update(request)
 
+def addCategory(request):
+    db = credentials().database()
+    return print(request)
+
 
 ##### Delete from Database #####
 def deleteRestaurant(request, rID, uID):

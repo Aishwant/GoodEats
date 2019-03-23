@@ -197,3 +197,20 @@ class deleteCartItemAPI(generics.GenericAPIView):
                 "status":"Disconnected",
                 "msg": 'There was a problem deleting the item from the cart'
             })
+
+class addCategoryAPI(generics.GenericAPIView):
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            db = firebase.addCategory(request.data)
+            return Response({
+                "status": "success"
+            })
+        except:
+            return Response({
+                "status":"Disconnected",
+                "msg": 'There was a problem'
+            })
