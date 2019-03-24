@@ -205,16 +205,13 @@ def deleteCartItem(request, itemID, uID):
     db = credentials().database()
     return db.child("Users").child(uID).child("Customer").child("Cart").child(itemID).remove()
 
-def deleteCategory(request, category, rID):
+def deleteCategory(request):
     db = credentials().database()
-    return db.child("Restaurants").child(rID).child("Menu").child(category).remove()
+    return db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).remove()
 
-def deleteItem(request, rID, category, item):
+def deleteItem(request):
     db = credentials().database()
-    print(rID)
-    print(category)
-    print(item)
-    return db.child("Restaurants").child(rID).child("Menu").child(category).child(item).remove()
+    return db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).child(request['item']).remove()
 
 ##### Update Database #####
 def editRestaurant(request):

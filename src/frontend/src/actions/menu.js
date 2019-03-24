@@ -65,8 +65,9 @@ import {
 
   //Delete a given category
   export const deleteCategory = (category, rID) => (dispatch) => {
+    const data = {category , rID}
     axios
-      .get(`/api/database/deleteCategory/` + category + "/" + rID)
+      .post('/api/database/deleteCategory', data)
       .then(res => {
         dispatch({
           type: DELETE_CATEGORY,
@@ -78,8 +79,9 @@ import {
 
   //Delete a given item from a restaurants menu
   export const deleteItem = (rID, category, item) => (dispatch) => {
+    const data = {category , rID, item}
     axios
-      .get(`/api/database/deleteItem/` + rID + "/" + category + "/" + item)
+      .post(`/api/database/deleteItem`, data)
       .then(res => {
         dispatch({
           type: DELETE_ITEM,

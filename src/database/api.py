@@ -263,9 +263,9 @@ class deleteCategoryAPI(generics.GenericAPIView):
         permissions.AllowAny
     ]
 
-    def get(self, request, category, rID):
+    def post(self, request):
         try:
-            db = firebase.deleteCategory(request, category, rID)
+            db = firebase.deleteCategory(request.data)
             return Response({
                 "status": "success"
             })
@@ -281,9 +281,9 @@ class deleteItemAPI(generics.GenericAPIView):
         permissions.AllowAny
     ]
 
-    def get(self, request, rID, category, item):
+    def post(self, request):
         try:
-            db = firebase.deleteItem(request, rID, category, item)
+            db = firebase.deleteItem(request.data)
             return Response({
                 "status": "success"
             })

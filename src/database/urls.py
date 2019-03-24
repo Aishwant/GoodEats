@@ -27,8 +27,8 @@ urlpatterns = [
     path('api/database/getCategories/<slug:rID>',getCategoriesAPI.as_view()),
     path('api/database/getItems', getItemsAPI.as_view()),
     path('api/database/addItemToCategory', addItemAPI.as_view()),
-    path('api/database/deleteCategory/<slug:category>/<slug:rID>', deleteCategoryAPI.as_view()),
-    path('api/database/deleteItem/<slug:rID>/<slug:category>/<slug:item>', deleteItemAPI.as_view()),
+    path('api/database/deleteCategory', deleteCategoryAPI.as_view()),
+    path('api/database/deleteItem', deleteItemAPI.as_view()),
     path('api/database/editItem', editItemAPI.as_view()),
     path('api/database/editCategory', editCategoryAPI.as_view()),
 ]
