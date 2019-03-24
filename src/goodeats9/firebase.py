@@ -221,3 +221,10 @@ def editRestaurant(request):
     db = credentials().database()
     rID = request.pop('rID')
     return db.child("Restaurants").child(rID).update(request)
+
+def editItem(request):
+    db = credentials().database()
+    rID = request.pop('rID')
+    category = request.pop('category')
+    itemID = request.pop('itemID')
+    return db.child("Restaurants").child(rID).child("Menu").child(category).child(itemID).update(request)

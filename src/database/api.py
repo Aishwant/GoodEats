@@ -292,3 +292,17 @@ class deleteItemAPI(generics.GenericAPIView):
                 "status":"Disconnected",
                 "msg": 'There was a problem deleting the item from the menu'
             })
+
+class editItemAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            return Response(firebase.editItem(request.data))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })

@@ -5,6 +5,7 @@ import Category from "./Category";
 import { addCategory, getCategories, deleteCategory, deleteItem } from "../../actions/menu";
 import queryString from 'query-string';
 import AddItemModal from "./AddItemModal";
+import EditItemModal from "./EditItemModal";
 
 export class Menu_Owner extends Component {
     state = {
@@ -60,6 +61,7 @@ export class Menu_Owner extends Component {
                     <div className="col-md-6 menuItems">
                       <div className="textM d-flex">
                         <button onClick={this.props.deleteItem.bind(this, this.state.rID, i, j)} className="btn btn-danger btn-sm">Delete</button>
+                        <EditItemModal Name={item.Name} Description={item.Description} Price={item.Price} category={i} rID={this.state.rID} itemID={j}/>
                         <div className="one-half"> 
                           <h3>{item.Name}</h3>
                           <p><span>{item.Description}</span></p>
