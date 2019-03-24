@@ -1,21 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
-import { addRestaurant } from "../../actions/getRestaurants"
+import { editRestaurant } from "../../actions/getRestaurants"
 
-export class FormRestaurant extends Component {
+export class EditRestaurant extends Component {
     state = {
-        Address: "",
-        City: "",
-        Cpen: "",
-        Close: "",
-        Name: "",
+        Address: this.props.address,
+        City: this.props.city,
+        Open: this.props.open,
+        Close: this.props.close,
+        Name: this.props.name,
         img: "",
-        zipcode: ""
+        zipcode: this.props.zipcode
     }
 
     static propTypes = {
-        addRestaurant: PropTypes.func.isRequired
+        editRestaurant: PropTypes.func.isRequired
     }
 
     onChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -24,8 +24,7 @@ export class FormRestaurant extends Component {
         e.preventDefault();
         const { Address, City, Open, Close, Name, img, zipcode } = this.state;
         const restaurant = { Address, City, Open, Close, Name, img, zipcode };
-        this.props.addRestaurant(restaurant);
-        this.props.restaurants.push(restaurants)
+        this.props.editRestaurant(restaurant, this.props.rID);
         this.setState({
             Address: "",
             City: "",
@@ -35,23 +34,22 @@ export class FormRestaurant extends Component {
             img: "",
             zipcode: ""
         });
-        window.location.reload();
     }
 
     render() {
         const { Address, City, Open, Close, Name, img, zipcode } = this.state;
         return (
                 <div>
-                    <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Add Restaurant
+                    <button type="button" className="btn btn-warning ml-2" data-toggle="modal" data-target="#editModal">
+                    Edit
                     </button>
 
                     <form onSubmit={this.onSubmit}>
-                    <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Add Restaurant</h5>
+                            <h5 className="modal-title" id="exampleModalLabel">Edit Restaurant</h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
@@ -128,7 +126,7 @@ export class FormRestaurant extends Component {
                             </div>
                         <div className="modal-footer">
                             <button type="button" id="cancel" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="submit" className="btn btn-primary" >Add</button>
+                            <button type="submit" className="btn btn-primary" >Save</button>
                         </div>
                         </div>
                     </div>
@@ -139,8 +137,4 @@ export class FormRestaurant extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    restaurants: state.restaurantReducer.restaurants
-  });
-
-export default connect(mapStateToProps, { addRestaurant })(FormRestaurant);
+export default connect(null, { editRestaurant })(EditRestaurant);

@@ -9,6 +9,7 @@ import {
     ADD_RESTAURANT,
     DELETE_RESTAURANT,
     GET_MENU,
+    EDIT_RESTAURANT
   } from './types';
 
 //GET ALL RESTAURANTS
@@ -81,6 +82,19 @@ export const deleteRestaurant = rID => (dispatch, getState) => {
       dispatch({
         type: DELETE_RESTAURANT,
         payload: rID
+      });
+    })
+    .catch(err => console.log(err));
+};
+
+//EDIT RESTAURANT
+export const editRestaurant = (data) => (dispatch, getState) => {
+  axios
+    .post(`/api/database/editRestaurant/`, data)
+    .then(res => {
+      dispatch({
+        type: EDIT_RESTAURANT,
+        payload: res.data
       });
     })
     .catch(err => console.log(err));

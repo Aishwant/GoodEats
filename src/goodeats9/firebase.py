@@ -22,10 +22,6 @@ def credentials():
 
 ############# Random String Creator ###############
 
-randVal =''
-def rand():
-    randVal = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(N))
-
 def getUniqueID():
     return uuid.uuid1()
 
@@ -162,3 +158,8 @@ def deleteRestaurant(request, rID, uID):
     db.child("Users").child(uID).child("Owner").child("rIDS").child(restaurantKey).remove()
     return db.child("Restaurants").child(rID).remove()
 
+##### Update Database #####
+def editRestaurant(request):
+    db = credentials().database()
+    rID = request.pop('rID')
+    return db.child("Restaurants").child(rID).update(request)
