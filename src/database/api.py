@@ -256,3 +256,21 @@ class addItemAPI(generics.GenericAPIView):
             return Response({
                 "status":"Disconnected"
             })
+
+class deleteCategoryAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def get(self, request, category, rID):
+        try:
+            db = firebase.deleteCategory(request, category, rID)
+            return Response({
+                "status": "success"
+            })
+        except:
+            return Response({
+                "status":"Disconnected",
+                "msg": 'There was a problem deleting the category'
+            })

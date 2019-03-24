@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types"
 import Category from "./Category";
-import { addCategory, getCategories } from "../../actions/menu";
+import { addCategory, getCategories, deleteCategory } from "../../actions/menu";
 import queryString from 'query-string';
+import AddItemModal from "./AddItemModal";
 
 export class Menu_Owner extends Component {
     state = {
@@ -43,9 +44,34 @@ export class Menu_Owner extends Component {
             </form>
           </div>
         </div>
-        {contentKeys.map(t=>
+        <hr/>
+        {contentKeys.map(i=>
+          
           <div>
-            <Category name={t} rID={this.state.rID}/>
+            <div className="text-center">
+              <div className="row justify-content-center">
+                <h4>{i}</h4>
+                <AddItemModal category={i} rID={this.state.rID}/>
+                <button onClick={this.props.deleteCategory.bind(this, i, this.state.rID)} className="btn btn-danger btn-sm">Delete</button>
+              </div>
+              <div className="row">
+                {Object.keys(this.props.categories[i]).map(j => 
+                  [this.props.categories[i][j]].map(item => 
+                    <div className="col-md-6 menuItems">
+                      <div className="textM d-flex">
+                        <div className="one-half"> 
+                          <h3>{item.Name}</h3>
+                          <p><span>{item.Description}</span></p>
+                        </div>
+                        <div className="one-forth">
+                          <span className="price">${item.Price}</span>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                )}
+          </div>
+          </div>
           </div>
         )}
       </div>
@@ -57,4 +83,4 @@ const mapStateToProps = state => ({
     categories: state.restaurantReducer.categories
   });
 
-export default connect(mapStateToProps, { addCategory, getCategories })(Menu_Owner);
+export default connect(mapStateToProps, { addCategory, getCategories, deleteCategory })(Menu_Owner);

@@ -60,3 +60,16 @@ import {
       })
       .catch(err => console.log(err));
   };
+
+  //Delete a given category
+  export const deleteCategory = (category, rID) => (dispatch) => {
+    axios
+      .get(`/api/database/deleteCategory/` + category + "/" + rID)
+      .then(res => {
+        dispatch({
+          type: DELETE_CATEGORY,
+          payload: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  };

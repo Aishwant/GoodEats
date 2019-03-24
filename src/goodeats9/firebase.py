@@ -86,6 +86,7 @@ def getCategories(request, rID):
 
 def getItems(request):
     db = credentials().database()
+    print((dict(db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).get().val())))
     return (dict(db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).get().val()))
 
  ##### Writing To Database #####
@@ -203,6 +204,10 @@ def deleteRestaurant(request, rID, uID):
 def deleteCartItem(request, itemID, uID):
     db = credentials().database()
     return db.child("Users").child(uID).child("Customer").child("Cart").child(itemID).remove()
+
+def deleteCategory(request, category, rID):
+    db = credentials().database()
+    return db.child("Restaurants").child(rID).child("Menu").child(category).remove()
 
 ##### Update Database #####
 def editRestaurant(request):

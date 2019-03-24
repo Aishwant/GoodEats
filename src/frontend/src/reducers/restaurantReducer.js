@@ -10,7 +10,8 @@ import {
     EDIT_CATEGORY,
     DELETE_CATEGORY,
     GET_CATEGORIES,
-    GET_ITEMS
+    GET_ITEMS,
+    ADD_ITEM
 } from "../actions/types";
 
 const initialState = {
@@ -73,10 +74,11 @@ export default function(state = initialState, action) {
                 ...state,
                 categories: action.payload
             }
-        case GET_ITEMS:
+        case DELETE_CATEGORY:
             return{
                 ...state,
-                items: action.payload
+                categories: [...state.categories.splice(0, action.payload),
+                              ...state.categories.splice(action.payload + 1)]
             }
         default:
             return state;
