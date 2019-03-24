@@ -53,7 +53,7 @@ export class EditItemModal extends Component {
         const { Name, Description, Price } = this.state;
         return (
           <div>
-            <button className="btn btn-warning btn-sm ml-2" onClick={this.openModal}>Edit</button>
+            <button className="btn btn-secondary btn-sm btn-block mt-2" onClick={this.openModal}>Edit</button>
             <Modal
               isOpen={this.state.modalIsOpen}
               onAfterOpen={this.afterOpenModal}

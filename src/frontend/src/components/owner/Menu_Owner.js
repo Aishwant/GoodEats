@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types"
 import Category from "./Category";
-import { addCategory, getCategories, deleteCategory, deleteItem } from "../../actions/menu";
+import { addCategory, getCategories, deleteCategory, deleteItem, pressButton } from "../../actions/menu";
 import queryString from 'query-string';
 import AddItemModal from "./AddItemModal";
 import EditItemModal from "./EditItemModal";
 import EditCategoryModal from "./EditCategoryModal";
+import { Link } from 'react-router-dom';
+
 
 export class Menu_Owner extends Component {
     state = {
         newCategory: "",
-        rID: queryString.parse(this.props.location.search).id
+        rID: queryString.parse(this.props.location.search).id,
     };
 
     static propTypes = {
@@ -29,23 +31,31 @@ export class Menu_Owner extends Component {
         const { newCategory } = this.state;
         const data = { newCategory, "rID":this.state.rID }
         this.props.addCategory(data);
+        //console.log(this.props.location.search);
+        //this.props.pressButton(true);
     }
 
   render() {
     const { newCategory } = this.state
     const contentKeys = Object.keys(this.props.categories)
+    /*if(this.props.isPressed){
+      console.log("redirecting")
+      return <Redirect to="/cart"/>
+    }*/
     return (
       <div className="container text-center">
-        <div className="row justify-content-center">
-          <div className="col-xl-6">
-            <form onSubmit={this.onSubmit} className="form-inline">
-              <div className="form-group">
-                <input type="text" name="newCategory" onChange={this.onChange} value={newCategory} className="form-control input-large" placeholder="Category Name" required/>
+        
+            <form onSubmit={this.onSubmit} >
+              <div className="form-group row mt-5">
+                <Link to={`/`} className="btn btn-dark btn-sm col-md-1">Back To Restaurants</Link>
+                <h2 className="col-md-6">Restaurant Name's Menu</h2>
+                <input type="text" name="newCategory" onChange={this.onChange} value={newCategory} className="form-control input-large col-md-3" placeholder="Category Name" required/>
+                <div className="col-md-2">
+                  <button type="submit" className="btn btn-primary mb-2">Add Category</button>
+                </div>
               </div>
-              <button type="submit" className="btn btn-primary mb-2">Add Category</button>
             </form>
-          </div>
-        </div>
+          
         <hr/>
         {contentKeys.map(i=>
           
@@ -53,17 +63,27 @@ export class Menu_Owner extends Component {
             <div className="text-center">
               <div className="row justify-content-center">
                 <h4>{i}</h4>
-                <AddItemModal category={i} rID={this.state.rID}/>
-                <button onClick={this.props.deleteCategory.bind(this, i, this.state.rID)} className="btn btn-danger btn-sm">Delete</button>
-                <EditCategoryModal category={i} rID={this.state.rID}/>
+                <div className="dropdown">
+                  <button className="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  
+                  </button>
+                  <div className="dropdown-menu">
+                    <AddItemModal category={i} rID={this.state.rID}/>
+                    <EditCategoryModal category={i} rID={this.state.rID}/>
+                    <div className="dropdown-divider"></div>
+                    <button onClick={this.props.deleteCategory.bind(this, i, this.state.rID)} className="dropdown-item">Delete</button>
+                  </div>
+                </div>
               </div>
               <div className="row">
                 {Object.keys(this.props.categories[i]).map(j => 
                   [this.props.categories[i][j]].map(item => 
                     <div className="col-md-6 menuItems">
                       <div className="textM d-flex">
-                        <button onClick={this.props.deleteItem.bind(this, this.state.rID, i, j)} className="btn btn-danger btn-sm">Delete</button>
-                        <EditItemModal Name={item.Name} Description={item.Description} Price={item.Price} category={i} rID={this.state.rID} itemID={j}/>
+                        <div className="one-forth">
+                          <button onClick={this.props.deleteItem.bind(this, this.state.rID, i, j)} className="btn btn-danger btn-sm btn-block">Delete</button>
+                          <EditItemModal Name={item.Name} Description={item.Description} Price={item.Price} category={i} rID={this.state.rID} itemID={j}/>
+                        </div>
                         <div className="one-half"> 
                           <h3>{item.Name}</h3>
                           <p><span>{item.Description}</span></p>
@@ -85,7 +105,8 @@ export class Menu_Owner extends Component {
 }
 
 const mapStateToProps = state => ({
-    categories: state.restaurantReducer.categories
+    categories: state.restaurantReducer.categories,
+    isPressed: state.restaurantReducer.isPressed
   });
 
-export default connect(mapStateToProps, { addCategory, getCategories, deleteCategory, deleteItem })(Menu_Owner);
+export default connect(mapStateToProps, { addCategory, getCategories, deleteCategory, deleteItem, pressButton })(Menu_Owner);

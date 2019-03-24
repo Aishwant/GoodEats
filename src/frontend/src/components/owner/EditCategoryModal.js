@@ -51,7 +51,7 @@ export class EditCategoryModal extends Component {
         const { Name } = this.state;
         return (
           <div>
-            <button className="btn btn-warning btn-sm ml-2" onClick={this.openModal}>Edit</button>
+            <button className="dropdown-item" onClick={this.openModal}>Edit</button>
             <Modal
               isOpen={this.state.modalIsOpen}
               onAfterOpen={this.afterOpenModal}

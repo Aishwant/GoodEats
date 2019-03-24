@@ -51,7 +51,7 @@ export class AddItemModal extends Component {
         const { Name, Description, Price } = this.state;
         return (
           <div>
-            <button className="btn btn-primary btn-sm ml-2" onClick={this.openModal}>Add Item</button>
+            <button className="dropdown-item" onClick={this.openModal}>Add Item</button>
             <Modal
               isOpen={this.state.modalIsOpen}
               onAfterOpen={this.afterOpenModal}
