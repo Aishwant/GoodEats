@@ -306,3 +306,17 @@ class editItemAPI(generics.GenericAPIView):
             return Response({
                 "status":"Disconnected"
             })
+
+class editCategoryAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            return Response(firebase.editCategory(request.data))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })

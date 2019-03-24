@@ -101,3 +101,16 @@ import {
       })
       .catch(err => console.log(err));
   };
+
+  //Edit that name of a given category
+  export const editCategory = category => (dispatch) => {
+    axios
+      .post("/api/database/editCategory", category)
+      .then(res => {
+        dispatch({
+          type: EDIT_CATEGORY,
+          payload: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  };

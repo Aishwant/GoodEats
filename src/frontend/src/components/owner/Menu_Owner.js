@@ -6,6 +6,7 @@ import { addCategory, getCategories, deleteCategory, deleteItem } from "../../ac
 import queryString from 'query-string';
 import AddItemModal from "./AddItemModal";
 import EditItemModal from "./EditItemModal";
+import EditCategoryModal from "./EditCategoryModal";
 
 export class Menu_Owner extends Component {
     state = {
@@ -54,6 +55,7 @@ export class Menu_Owner extends Component {
                 <h4>{i}</h4>
                 <AddItemModal category={i} rID={this.state.rID}/>
                 <button onClick={this.props.deleteCategory.bind(this, i, this.state.rID)} className="btn btn-danger btn-sm">Delete</button>
+                <EditCategoryModal category={i} rID={this.state.rID}/>
               </div>
               <div className="row">
                 {Object.keys(this.props.categories[i]).map(j => 

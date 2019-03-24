@@ -228,3 +228,12 @@ def editItem(request):
     category = request.pop('category')
     itemID = request.pop('itemID')
     return db.child("Restaurants").child(rID).child("Menu").child(category).child(itemID).update(request)
+
+def editCategory(request):
+    db = credentials().database()
+    rID = request.pop('rID')
+    category = request.pop('category')
+    Name = request.pop('Name')
+    newCategory = { Name : (dict(db.child("Restaurants").child(rID).child("Menu").child(category).get().val()))}
+    db.child("Restaurants").child(rID).child("Menu").child(category).remove()
+    return db.child("Restaurants").child(rID).child("Menu").update(newCategory)
