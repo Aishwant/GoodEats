@@ -274,3 +274,21 @@ class deleteCategoryAPI(generics.GenericAPIView):
                 "status":"Disconnected",
                 "msg": 'There was a problem deleting the category'
             })
+
+class deleteItemAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def get(self, request, rID, category, item):
+        try:
+            db = firebase.deleteItem(request, rID, category, item)
+            return Response({
+                "status": "success"
+            })
+        except:
+            return Response({
+                "status":"Disconnected",
+                "msg": 'There was a problem deleting the item from the menu'
+            })

@@ -209,6 +209,13 @@ def deleteCategory(request, category, rID):
     db = credentials().database()
     return db.child("Restaurants").child(rID).child("Menu").child(category).remove()
 
+def deleteItem(request, rID, category, item):
+    db = credentials().database()
+    print(rID)
+    print(category)
+    print(item)
+    return db.child("Restaurants").child(rID).child("Menu").child(category).child(item).remove()
+
 ##### Update Database #####
 def editRestaurant(request):
     db = credentials().database()

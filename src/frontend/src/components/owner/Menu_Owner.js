@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types"
 import Category from "./Category";
-import { addCategory, getCategories, deleteCategory } from "../../actions/menu";
+import { addCategory, getCategories, deleteCategory, deleteItem } from "../../actions/menu";
 import queryString from 'query-string';
 import AddItemModal from "./AddItemModal";
 
@@ -59,6 +59,7 @@ export class Menu_Owner extends Component {
                   [this.props.categories[i][j]].map(item => 
                     <div className="col-md-6 menuItems">
                       <div className="textM d-flex">
+                        <button onClick={this.props.deleteItem.bind(this, this.state.rID, i, j)} className="btn btn-danger btn-sm">Delete</button>
                         <div className="one-half"> 
                           <h3>{item.Name}</h3>
                           <p><span>{item.Description}</span></p>
@@ -83,4 +84,4 @@ const mapStateToProps = state => ({
     categories: state.restaurantReducer.categories
   });
 
-export default connect(mapStateToProps, { addCategory, getCategories, deleteCategory })(Menu_Owner);
+export default connect(mapStateToProps, { addCategory, getCategories, deleteCategory, deleteItem })(Menu_Owner);

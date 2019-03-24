@@ -6,7 +6,8 @@ import {
     DELETE_CATEGORY,
     EDIT_CATEGORY,
     GET_ITEMS,
-    ADD_ITEM
+    ADD_ITEM,
+    DELETE_ITEM
   } from './types';
 
   //Add a new category to the menu of the given restaurant
@@ -68,6 +69,19 @@ import {
       .then(res => {
         dispatch({
           type: DELETE_CATEGORY,
+          payload: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  //Delete a given item from a restaurants menu
+  export const deleteItem = (rID, category, item) => (dispatch) => {
+    axios
+      .get(`/api/database/deleteItem/` + rID + "/" + category + "/" + item)
+      .then(res => {
+        dispatch({
+          type: DELETE_ITEM,
           payload: res.data
         });
       })
