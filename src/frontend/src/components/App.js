@@ -17,6 +17,7 @@ import UserDefiner from "./pages/NewUsers/UserDefiner";
 import CustomerMenu from "./Customer/CustomerMenu"
 import Index from "./Index"
 import EditMenu from "./owner/EditMenu";
+import Cart from "./ordering/Cart";
 
 import PrivateRoute from "./private/PrivateRoute";
 import PrivateHomeRoute from "./private/PrivateHomeRoute"
@@ -59,6 +60,7 @@ class App extends Component {
                       <PrivateRoute exact path = "/signupinfo" component={UserDefiner} />
                       <PrivateRoute exact path = "/menu/:rName" component={CustomerMenu} />
                       <PrivateRoute exact path = "/editmenu/:rName" component={EditMenu} />
+                      <PrivateRoute exact path = "/cart" component={Cart} />
     
                 </Switch>
                 

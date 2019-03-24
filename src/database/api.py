@@ -148,4 +148,52 @@ class pushCustomerDataAPI(generics.GenericAPIView):
                 "msg": 'There was a problem'
             })
 
+class getCartAPI(generics.GenericAPIView):
 
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def get(self, request, uID):
+        try:
+            return Response(firebase.getCart(request, uID))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })
+
+class addToCartAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request, uID):
+        try:
+            db = firebase.addToCart(request.data, uID)
+            return Response({
+                "status": "success"
+            })
+        except:
+            return Response({
+                "status":"Disconnected",
+                "msg": 'There was a problem while adding item to cart'
+            })
+
+class deleteCartItemAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def get(self, request, itemID, uID):
+        try:
+            db = firebase.deleteCartItem(request, itemID, uID)
+            return Response({
+                "status": "success"
+            })
+        except:
+            return Response({
+                "status":"Disconnected",
+                "msg": 'There was a problem deleting the item from the cart'
+            })

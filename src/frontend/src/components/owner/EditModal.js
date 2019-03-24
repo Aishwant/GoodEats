@@ -74,10 +74,15 @@ export class EditModal extends Component {
               onAfterOpen={this.afterOpenModal}
               onRequestClose={this.closeModal}
               contentLabel="Example Modal"
+              className="modal-dialog "
             >
-    
-              <h2 ref={subtitle => this.subtitle = subtitle}>Edit</h2>
-              <div>{this.props.name}</div>
+              <div className="modal-content">
+                <div className="modal-header">
+                <h5 className="text-dark" ref={subtitle => this.subtitle = subtitle}>Edit Restaurant</h5>
+                  <button type="button" className="close" onClick={this.closeModal} aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
               <form onSubmit={this.onSubmit}>
               <div className="ml-4 mr-4 mt-4 mb-4">
                             
@@ -148,9 +153,12 @@ export class EditModal extends Component {
                                 />
                             </div>
                         </div>
-                        <button onClick={this.closeModal} className="btn btn-secondary">cancel</button>
-                        <button type="submit" className="btn btn-primary" >Save</button>
+                        <div className="modal-footer">
+                          <button onClick={this.closeModal} className="btn btn-secondary">Cancel</button>
+                          <button type="submit" className="btn btn-primary" >Save</button>
+                        </div>
               </form>
+              </div>
             </Modal>
           </div>
         );

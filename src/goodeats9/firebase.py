@@ -76,6 +76,9 @@ def getRestaurantByID(request, uID):
         data[value] = db.child("Restaurants").child(value).get().val()   
     return data
 
+def getCart(request, uID):
+    db = credentials().database()
+    return (dict(db.child("Users").child(uID).child("Customer").child("Cart").get().val()))
 
  ##### Writing To Database #####
 def addOwner(request):
@@ -88,23 +91,40 @@ def addCustomer(request):
 
     
     if (request['data']["changeC"]==True):
-        request['data'].pop("rname")
         request['data'].pop("changeC")
         request['data'].pop("changeD")
         request['data'].pop("changeO")
+        request['data'].pop("open")
+        request['data'].pop("close")
+        request['data'].pop("name")
         db.child('Users').child(request['uID']).child("Customer").set(request['data'])
 
     elif(request['data']["changeO"]==True):
         request['data'].pop("changeC")
         request['data'].pop("changeD")
         request['data'].pop("changeO")
-        db.child('Users').child(request['uID']).child("Owner").set(request['data'])
+
+        restaurantData = {}
+        restaurantData['Name'] = request['data'].pop('name')
+        restaurantData['Address'] = request['data'].pop('address')
+        restaurantData['City'] = request['data'].pop('city')
+        restaurantData['zipcode'] = request['data'].pop('zipcode')
+        restaurantData['Open'] = request['data'].pop('open')
+        restaurantData['Close'] = request['data'].pop('close')
+
+        addRestaurant(restaurantData, request['uID'])
+
+        db.child('Users').child(request['uID']).child("Owner").update(request['data'])
 
     elif(request['data']["changeD"]==True):
-        request['data'].pop("rname")
         request['data'].pop("changeC")
         request['data'].pop("changeD")
         request['data'].pop("changeO")
+        request['data'].pop("open")
+        request['data'].pop("close")
+        request['data'].pop("address")
+        request['data'].pop("name")
+        request['data'].pop("city")
         db.child('Users').child(request['uID']).child("Driver").set(request['data'])
 
 
@@ -141,22 +161,26 @@ def getMenu(request,rID):
     db = credentials().database()
     return dict(db.child('Restaurants').child(rID).child("Menu").get().val())
 
+def addToCart(request, uID):
+    db = credentials().database()
+    return db.child("Users").child(uID).child("Customer").child("Cart").update(request)
+
 
 ##### Delete from Database #####
 def deleteRestaurant(request, rID, uID):
     db = credentials().database()
     restaurantsOwned = (dict(db.child("Users").child(uID).child("Owner").child("rIDS").get().val()))
-    print(restaurantsOwned)
     
     for key, value in restaurantsOwned.items():
         if(value == rID):
             restaurantKey = key
-            print("true")
-    
-    print(restaurantKey)
     
     db.child("Users").child(uID).child("Owner").child("rIDS").child(restaurantKey).remove()
     return db.child("Restaurants").child(rID).remove()
+
+def deleteCartItem(request, itemID, uID):
+    db = credentials().database()
+    return db.child("Users").child(uID).child("Customer").child("Cart").child(itemID).remove()
 
 ##### Update Database #####
 def editRestaurant(request):

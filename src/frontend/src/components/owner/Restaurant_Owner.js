@@ -146,8 +146,7 @@ export class Restaurant extends Component {
                       </p>
                       <div className="row">
                         <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
-
-                        <EditModal mID={this.modalID} name={res.Name} address={res.Address} city={res.City} zipcode={res.zipcode} open={res.Open} close={res.Close} rID={t}/>
+                        <EditModal name={res.Name} address={res.Address} city={res.City} zipcode={res.zipcode} open={res.Open} close={res.Close} rID={t}/>
                         <button
                           onClick={this.props.deleteRestaurant.bind(this, t)}
                           className="btn btn-danger ml-2"

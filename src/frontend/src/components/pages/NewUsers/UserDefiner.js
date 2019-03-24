@@ -9,10 +9,12 @@ export class UserDefiner extends Component {
   state = {
     fname: "",
     lname: "",
-    rname: "",
+    name: "",
     address: "",
     city: "",
     zipcode: "",
+    open: "",
+    close: "",
     changeO: false,
     changeC: false,
     changeD: false
@@ -39,6 +41,7 @@ export class UserDefiner extends Component {
     else if(this.state.changeD){
       this.props.addUser(this.state);
     }
+    window.location.reload();
   };
 
   onClickOwner() {
@@ -78,11 +81,12 @@ export class UserDefiner extends Component {
     const ownerForm = (
       <div style={margin15}>
         Let's add your first resturant
+        <br /><br />
         <input
           type="text"
-          name="rname"
+          name="name"
           onChange={this.onChange}
-          value={rname}
+          value={name}
           placeholder="Restaurant's Name"
           className="form-control"
         />
@@ -113,6 +117,24 @@ export class UserDefiner extends Component {
           placeholder="Zip code"
           className="form-control"
         />
+        <br />
+        <label>Open</label>
+        <input
+          type="time"
+          name="open"
+          onChange={this.onChange}
+          value={open}
+          className="form-control"
+        />
+        <br />
+        <label>Close</label>
+        <input
+          type="time"
+          name="close"
+          onChange={this.onChange}
+          value={close}
+          className="form-control"
+        />
       </div>
     );
 
@@ -130,13 +152,14 @@ export class UserDefiner extends Component {
       </div>
     );
 
-    const { fname, lname, rname, address, city, zipcode } = this.state;
+    const { fname, lname, name, address, city, zipcode, open, close } = this.state;
     // const { changeO, changeC, changeD } = this.state;
     return (
       <div className="row">
         <div className="col-md"></div>
         <div className="col-auto">
           <h3>Let's Get to know you better</h3>
+          <br />
           <form onSubmit={this.onSubmit}>
             <input
               type="text"

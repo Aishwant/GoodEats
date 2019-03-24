@@ -2,9 +2,11 @@ import { combineReducers } from "redux";
 import errors from "./errors";
 import authReducer from "./authReducer";
 import restaurantReducer from "./restaurantReducer";
+import cartReducer from "./cartReducer";
 
 export default combineReducers({
   errors,
   authReducer,
-  restaurantReducer
+  restaurantReducer,
+  cartReducer
 });
