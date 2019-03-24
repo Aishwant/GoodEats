@@ -24,6 +24,7 @@ export class Restaurant extends Component {
     zipcodeS: false,
     cityS:false,
     closeS:false,
+    cuisineTypeS:false,
     filter:'nameS'
   }
   
@@ -41,13 +42,15 @@ export class Restaurant extends Component {
       })
     }
     if(this.state.filter=="nameS"){
-      this.setState({nameS:true,zipcodeS:false,cityS:false,closeS:false});
+      this.setState({nameS:true,zipcodeS:false,cityS:false,closeS:false,cuisineTypeS:false});
     }else if(this.state.filter=="zipcodeS"){
-      this.setState({nameS:false,zipcodeS:true,cityS:false,closeS:false});
+      this.setState({nameS:false,zipcodeS:true,cityS:false,closeS:false,cuisineTypeS:false});
     }else if(this.state.filter=="cityS"){
-      this.setState({nameS:false,zipcodeS:false,cityS:true,closeS:false})
+      this.setState({nameS:false,zipcodeS:false,cityS:true,closeS:false,cuisineTypeS:false})
     }else if(this.state.filter=="closeS"){
-      this.setState({nameS:false,zipcodeS:false,cityS:false,closeS:true})
+      this.setState({nameS:false,zipcodeS:false,cityS:false,closeS:true,cuisineTypeS:false})
+    }else if(this.state.filter=="cusineTypeS"){
+      this.setState({nameS:false,zipcodeS:false,cityS:false,closeS:false,cuisineTypeS:true})
     }
   }
 
@@ -78,7 +81,8 @@ export class Restaurant extends Component {
               <option value="nameS" selected>Name</option>
               <option value="zipcodeS">Zipcode</option>
               <option value="cityS">City</option>
-              <option value="closeS">CloseTime</option>
+              <option value="closeS">Close Time</option>
+              <option value="cuisineTypeS">Cuisine Type</option>
             </select>
           </div>
           </div>
@@ -95,7 +99,8 @@ export class Restaurant extends Component {
                   (this.state.nameS && res.Name.toUpperCase().includes(this.state.query.toUpperCase()))||
                   (this.state.zipcodeS && res.zipcode.toUpperCase().includes(this.state.query.toUpperCase())) ||
                   (this.state.cityS && res.City.includes(this.state.query))||
-                  (this.state.closeS && res.Close.includes(this.state.query))
+                  (this.state.closeS && res.Close.includes(this.state.query)) ||
+                  (this.state.cuisineTypeS && res.CuisineType.includes(this.state.query))
                 )
               )
               {
@@ -109,8 +114,9 @@ export class Restaurant extends Component {
                     <p className="card-text">
                       <h6>{res.Address}</h6>
                       <h6>{res.City} {res.zipcode}</h6> 
-                      <h6>Open:{res.Open}</h6>
-                      <h6>Close:{res.Close}</h6>
+                      <h6>Type: {res.CuisineType}</h6>
+                      <h6>Open: {res.Open}</h6>
+                      <h6>Close: {res.Close}</h6>
                     </p>
                     <div className="row">
                       <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
@@ -140,9 +146,10 @@ export class Restaurant extends Component {
                       <h5 className="card-title">{res.Name}</h5>
                       <p className="card-text">
                         <h6>{res.Address}</h6>
-                        <h6>{res.City} {res.zipcode}</h6> 
-                        <h6>Open:{res.Open}</h6>
-                        <h6>Close:{res.Close}</h6>
+                        <h6>{res.City} {res.zipcode}</h6>
+                        <h6>Type: {res.CuisineType}</h6> 
+                        <h6>Open: {res.Open}</h6>
+                        <h6>Close: {res.Close}</h6>
                       </p>
                       <div className="row">
                         <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
