@@ -17,6 +17,7 @@ export class EditModal extends Component {
             img: "",
             zipcode: "",
             rID: "",
+            CuisineType: "",
             modalIsOpen: false
         };
     
@@ -38,6 +39,7 @@ export class EditModal extends Component {
         this.state.img = "";
         this.state.zipcode = this.props.zipcode;
         this.state.rID = this.props.rID;
+        this.state.CuisineType = this.props.cuisineType;
     }
 
     onChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -58,14 +60,14 @@ export class EditModal extends Component {
 
       onSubmit = e => {
         e.preventDefault();
-        const { Address, City, Open, Close, Name, img, zipcode, rID } = this.state;
-        const restaurant = { Address, City, Open, Close, Name, img, zipcode, rID };
+        const { Address, City, Open, Close, Name, img, zipcode, rID, CuisineType } = this.state;
+        const restaurant = { Address, City, Open, Close, Name, img, zipcode, rID, CuisineType };
         this.props.editRestaurant(restaurant);
         window.location.reload();
     }
     
       render() {
-        const { Address, City, Open, Close, Name, img, zipcode } = this.state;
+        const { Address, City, Open, Close, Name, img, zipcode, CuisineType } = this.state;
         return (
           <div>
             <button className="btn btn-warning ml-2" onClick={this.openModal}>Edit</button>
@@ -94,6 +96,17 @@ export class EditModal extends Component {
                                 name="Name"
                                 onChange={this.onChange}
                                 value={Name}
+                                required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Cuisine Type</label>
+                                <input
+                                className="form-control"
+                                type="text"
+                                name="CuisineType"
+                                onChange={this.onChange}
+                                value={CuisineType}
                                 required
                                 />
                             </div>
