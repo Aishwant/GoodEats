@@ -67,7 +67,7 @@ export class Restaurant extends Component {
     return (
       <div className="row">
         <div className="col-md-12">
-          <div className="col-md-6 mt-2" style={{marginBottom:"20px"}}>
+          <div className="col-md-6 mt-2" style={divStyle}>
           <div className="input-group">
           <input
           type="text"
@@ -156,6 +156,10 @@ export class Restaurant extends Component {
         </div>
       )
   }
+}
+
+const divStyle = {
+  marginBottom:"20px",
 }
 
 const cardWidth = {
