@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getRestaurantByID, deleteRestaurant } from '../../actions/getRestaurants';
-import FormMenu from './FormMenu';
 import {Link} from 'react-router-dom';
-import EditRestaurant from './EditRestaurant';
 import EditModal from './EditModal';
 
 

@@ -4,14 +4,21 @@ import {
     GET_RESTAURANTS_BY_ID,
     ADD_RESTAURANT,
     DELETE_RESTAURANT,
-    GET_MENU,
     EDIT_RESTAURANT,
+    ADD_CATEGORY,
+    EDIT_CATEGORY,
+    DELETE_CATEGORY,
+    GET_CATEGORIES,
+    GET_ITEMS,
+    ADD_ITEM
 } from "../actions/types";
 
 const initialState = {
     restaurants:{},
     resName:"",
     menu:{},
+    categories: {},
+    items: {}
 }
 
 export default function(state = initialState, action) {
@@ -50,11 +57,21 @@ export default function(state = initialState, action) {
                 ...state,
                 
             }
-        case GET_MENU:
+        case ADD_CATEGORY:
             return{
                 ...state,
-                menu: action.payload
-                
+                categories: [...state.categories, action.payload]
+            }
+        case GET_CATEGORIES:
+            return{
+                ...state,
+                categories: action.payload
+            }
+        case DELETE_CATEGORY:
+            return{
+                ...state,
+                categories: [...state.categories.splice(0, action.payload),
+                              ...state.categories.splice(action.payload + 1)]
             }
         default:
             return state;
