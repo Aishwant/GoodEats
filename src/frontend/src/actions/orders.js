@@ -18,9 +18,9 @@ export const getCart = () => (dispatch) => {
 };
 
 //Add item to users's cart
-export const addToCart = (item) => (dispatch) => {
+export const addToCart = (itemID, itemData) => (dispatch) => {
   const uID = localStorage.getItem("uID")
-  const data = item
+  const data = { itemID, itemData}
   axios
     .post("/api/database/addToCart/" + uID, data)
     .then(res => {

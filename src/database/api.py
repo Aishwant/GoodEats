@@ -197,3 +197,126 @@ class deleteCartItemAPI(generics.GenericAPIView):
                 "status":"Disconnected",
                 "msg": 'There was a problem deleting the item from the cart'
             })
+
+class addCategoryAPI(generics.GenericAPIView):
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            db = firebase.addCategory(request.data)
+            return Response({
+                "status": "success"
+            })
+        except:
+            return Response({
+                "status":"Disconnected",
+                "msg": 'There was a problem'
+            })
+
+class getCategoriesAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def get(self, request, rID):
+        try:
+            return Response(firebase.getCategories(request, rID))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })
+
+class getItemsAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            return Response(firebase.getItems(request.data))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })
+
+class addItemAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            return Response(firebase.addItem(request.data))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })
+
+class deleteCategoryAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            db = firebase.deleteCategory(request.data)
+            return Response({
+                "status": "success"
+            })
+        except:
+            return Response({
+                "status":"Disconnected",
+                "msg": 'There was a problem deleting the category'
+            })
+
+class deleteItemAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            db = firebase.deleteItem(request.data)
+            return Response({
+                "status": "success"
+            })
+        except:
+            return Response({
+                "status":"Disconnected",
+                "msg": 'There was a problem deleting the item from the menu'
+            })
+
+class editItemAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            return Response(firebase.editItem(request.data))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })
+
+class editCategoryAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            return Response(firebase.editCategory(request.data))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })

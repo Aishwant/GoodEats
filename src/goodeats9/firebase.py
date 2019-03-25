@@ -80,6 +80,15 @@ def getCart(request, uID):
     db = credentials().database()
     return (dict(db.child("Users").child(uID).child("Customer").child("Cart").get().val()))
 
+def getCategories(request, rID):
+    db = credentials().database()
+    return (dict(db.child("Restaurants").child(rID).child("Menu").get().val()))
+
+def getItems(request):
+    db = credentials().database()
+    print((dict(db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).get().val())))
+    return (dict(db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).get().val()))
+
  ##### Writing To Database #####
 def addOwner(request):
     db = credentials().database()
@@ -163,7 +172,22 @@ def getMenu(request,rID):
 
 def addToCart(request, uID):
     db = credentials().database()
-    return db.child("Users").child(uID).child("Customer").child("Cart").update(request)
+    data = { request['itemID'] : request['itemData']}
+    return db.child("Users").child(uID).child("Customer").child("Cart").update(data) 
+
+def addCategory(request):
+    db = credentials().database()
+    placeholderItemID = getUniqueID()
+    placeholderItem = {str(placeholderItemID) : {"Name":"Item Name", "Description":"Item Description", "Price":"Item Price", "Quantity":"Item Quantity"}}
+    print(placeholderItem)
+    return db.child("Restaurants").child(request['rID']).child("Menu").child(request['newCategory']).set(placeholderItem)
+
+def addItem(request):
+    db = credentials().database()
+    rID = request.pop("rID")
+    category = request.pop("category")
+    itemID = getUniqueID()
+    return db.child("Restaurants").child(rID).child("Menu").child(category).child(str(itemID)).set(request)
 
 
 ##### Delete from Database #####
@@ -182,8 +206,32 @@ def deleteCartItem(request, itemID, uID):
     db = credentials().database()
     return db.child("Users").child(uID).child("Customer").child("Cart").child(itemID).remove()
 
+def deleteCategory(request):
+    db = credentials().database()
+    return db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).remove()
+
+def deleteItem(request):
+    db = credentials().database()
+    return db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).child(request['item']).remove()
+
 ##### Update Database #####
 def editRestaurant(request):
     db = credentials().database()
     rID = request.pop('rID')
     return db.child("Restaurants").child(rID).update(request)
+
+def editItem(request):
+    db = credentials().database()
+    rID = request.pop('rID')
+    category = request.pop('category')
+    itemID = request.pop('itemID')
+    return db.child("Restaurants").child(rID).child("Menu").child(category).child(itemID).update(request)
+
+def editCategory(request):
+    db = credentials().database()
+    rID = request.pop('rID')
+    category = request.pop('category')
+    Name = request.pop('Name')
+    newCategory = { Name : (dict(db.child("Restaurants").child(rID).child("Menu").child(category).get().val()))}
+    db.child("Restaurants").child(rID).child("Menu").child(category).remove()
+    return db.child("Restaurants").child(rID).child("Menu").update(newCategory)
