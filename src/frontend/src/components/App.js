@@ -14,10 +14,10 @@ import Register from "./authentication/Register";
 import ForgotPwd from "./authentication/ForgotPwd";
 import Footer from "./layout/Footer";
 import UserDefiner from "./pages/NewUsers/UserDefiner";
-import CustomerMenu from "./Customer/CustomerMenu"
 import Index from "./Index"
-import EditMenu from "./owner/EditMenu";
 import Menu_Owner from "./owner/Menu_Owner";
+import Menu_Customer from "./customer/Menu_Customer";
+import CustomerMenu from "./customer/CustomerMenu";
 import Cart from "./ordering/Cart";
 
 import PrivateRoute from "./private/PrivateRoute";
@@ -59,8 +59,8 @@ class App extends Component {
                       <Route exact path="/login" component={Login} />
                       <Route exact path = "/forgotpwd" component={ForgotPwd} />
                       <PrivateRoute exact path = "/signupinfo" component={UserDefiner} />
-                      <PrivateRoute exact path = "/menu/:rName" component={CustomerMenu} />
-                      <PrivateRoute exact path = "/editmenu/:rName" component={Menu_Owner} />
+                      <PrivateRoute exact path = "/menu/:rName" component={Menu_Customer} />
+                      <PrivateRoute exact path = "/editmenu/:rName" component={Menu_Owner}/>
                       <PrivateRoute exact path = "/cart" component={Cart} />
     
                 </Switch>
