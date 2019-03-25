@@ -4,7 +4,6 @@ import {
     GET_RESTAURANTS_BY_ID,
     ADD_RESTAURANT,
     DELETE_RESTAURANT,
-    GET_MENU,
     EDIT_RESTAURANT,
     ADD_CATEGORY,
     EDIT_CATEGORY,
@@ -56,12 +55,6 @@ export default function(state = initialState, action) {
         case EDIT_RESTAURANT:
             return{
                 ...state,
-                
-            }
-        case GET_MENU:
-            return{
-                ...state,
-                menu: action.payload
                 
             }
         case ADD_CATEGORY:

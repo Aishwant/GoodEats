@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types"
-import Category from "./Category";
-import { addCategory, getCategories, deleteCategory, deleteItem, pressButton } from "../../actions/menu";
+import { addCategory, getCategories, deleteCategory, deleteItem } from "../../actions/menu";
 import queryString from 'query-string';
 import AddItemModal from "./AddItemModal";
 import EditItemModal from "./EditItemModal";
@@ -109,4 +108,4 @@ const mapStateToProps = state => ({
     isPressed: state.restaurantReducer.isPressed
   });
 
-export default connect(mapStateToProps, { addCategory, getCategories, deleteCategory, deleteItem, pressButton })(Menu_Owner);
+export default connect(mapStateToProps, { addCategory, getCategories, deleteCategory, deleteItem })(Menu_Owner);
