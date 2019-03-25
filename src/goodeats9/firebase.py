@@ -90,11 +90,6 @@ def getItems(request):
     return (dict(db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).get().val()))
 
  ##### Writing To Database #####
-def addOwner(request):
-    db = credentials().database()
-    request.update()
-    return db.child('Users').child(request['uID']).child("Owner")
-
 def addCustomer(request):
     db = credentials().database()
 
@@ -136,39 +131,11 @@ def addCustomer(request):
         request['data'].pop("city")
         db.child('Users').child(request['uID']).child("Driver").set(request['data'])
 
-
-def addDeliveryDriver(request):
-    db = credentials().database()
-    request['data'].pop("changeC")
-    request['data'].pop("changeD")
-    request['data'].pop("changeO")
-    request['data'].pop("rname")
-    print(request)
-    return db.child('Users').child(request['uID']).child("Driver").set(request['data'])
-
 def addRestaurant(request, uID):
     db = credentials().database()
     rID = getUniqueID()
     db.child('Users').child(uID).child('Owner').child('rIDS').push(str(rID))
     return db.child('Restaurants').child(rID).set(request)
-
-def addMenu(request):   
-    db=credentials().database()
-    mType = request['Menu_Type']
-    rID=request['rID']
-    iID = getUniqueID()
-    
-    request.pop("Menu_Type")
-    request.pop('rID')
-   
-    print(rID)
-    print(request)
-    return db.child('Restaurants').child(rID).child("Menu").child(mType).push(request)
-
-#For owner dashboard
-def getMenu(request,rID):
-    db = credentials().database()
-    return dict(db.child('Restaurants').child(rID).child("Menu").get().val())
 
 def addToCart(request, uID):
     db = credentials().database()
