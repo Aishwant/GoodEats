@@ -172,7 +172,8 @@ def getMenu(request,rID):
 
 def addToCart(request, uID):
     db = credentials().database()
-    return db.child("Users").child(uID).child("Customer").child("Cart").update(request)
+    data = { request['itemID'] : request['itemData']}
+    return db.child("Users").child(uID).child("Customer").child("Cart").update(data) 
 
 def addCategory(request):
     db = credentials().database()
