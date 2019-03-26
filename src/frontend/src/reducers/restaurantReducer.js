@@ -79,6 +79,17 @@ export default function(state = initialState, action) {
                 categories: [...state.categories.splice(0, action.payload),
                               ...state.categories.splice(action.payload + 1)]
             }
+        case ADD_ITEM:
+            return {
+                ...state,
+                categories: {
+                    ...state.categories,
+                    [action.categoryName]: {
+                        ...state.categories[action.categoryName],
+                        [action.iID] : action.item
+                    }
+                }
+            }
         default:
             return state;
     }

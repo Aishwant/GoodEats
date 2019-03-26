@@ -149,10 +149,7 @@ def addCategory(request):
 
 def addItem(request):
     db = credentials().database()
-    rID = request.pop("rID")
-    category = request.pop("category")
-    itemID = getUniqueID()
-    return db.child("Restaurants").child(rID).child("Menu").child(category).child(str(itemID)).set(request)
+    return db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).update(request['newItem'])
 
 
 ##### Delete from Database #####

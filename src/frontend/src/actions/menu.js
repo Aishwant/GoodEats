@@ -57,13 +57,19 @@ import {
   };
 
   //Add a new category to the menu of the given restaurant
-  export const addItemToCategory = item => (dispatch) => {
+  export const addItemToCategory = data => (dispatch) => {
+    const uuidv4 = require('uuid/v4');
+    const itemID = uuidv4();
+    const newItem = {[itemID] : {"Name":data['Name'], "Description":data['Description'], "Price":data['Price']}};
+    data['newItem'] = newItem;
     axios
-      .post("/api/database/addItemToCategory", item)
+      .post("/api/database/addItemToCategory", data)
       .then(res => {
         dispatch({
           type: ADD_ITEM,
-          payload: res.data
+          categoryName: data['category'],
+          iID: itemID,
+          item: newItem[itemID]
         });
       })
       .catch(err => console.log(err));
