@@ -47,12 +47,14 @@ export default function(state = initialState, action) {
                 }
             }
         case DELETE_RESTAURANT:
-            return{
-                ...state,
-                restaurants: [...state.restaurants.splice(0, action.payload),
-                              ...state.restaurants.splice(action.payload + 1)
-                ]
-            }
+            return Object.assign({}, state, {
+                restaurants: Object.keys(state.restaurants).reduce((result, key) => {
+                    if (key !== action.payload) {
+                        result[key] = state.restaurants[key];
+                    }
+                    return result;
+                }, {})
+            });
         case EDIT_RESTAURANT:
             return{
                 ...state,

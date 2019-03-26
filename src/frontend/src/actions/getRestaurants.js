@@ -82,7 +82,6 @@ export const deleteRestaurant = rID => (dispatch, getState) => {
       });
     })
     .catch(err => console.log(err));
-    window.location.reload();
 };
 
 //EDIT RESTAURANT
