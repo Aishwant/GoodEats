@@ -58,10 +58,9 @@ export default function(state = initialState, action) {
                 }, {})
             });
         case EDIT_RESTAURANT:
-            return{
-                ...state,
-                
-            }
+            return produce(state, draft => {
+                draft['restaurants'][action.resID] = action.restaurantData
+            })
         case ADD_CATEGORY:
             return {
                 ...state,
