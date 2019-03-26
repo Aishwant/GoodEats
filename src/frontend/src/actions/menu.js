@@ -92,12 +92,15 @@ import {
   //Delete a given item from a restaurants menu
   export const deleteItem = (rID, category, item) => (dispatch) => {
     const data = {category , rID, item}
+    console.log(category)
+    console.log(item)
     axios
       .post(`/api/database/deleteItem`, data)
       .then(res => {
         dispatch({
           type: DELETE_ITEM,
-          payload: res.data
+          categoryName: category,
+          itemID: item
         });
       })
       .catch(err => console.log(err));

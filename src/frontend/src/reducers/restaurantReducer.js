@@ -1,3 +1,4 @@
+import produce from "immer"
 import { 
     GET_RESTAURANTS,
     GET_RESTAURANTS_BY_ZIP,
@@ -10,7 +11,8 @@ import {
     DELETE_CATEGORY,
     GET_CATEGORIES,
     GET_ITEMS,
-    ADD_ITEM
+    ADD_ITEM,
+    DELETE_ITEM
 } from "../actions/types";
 
 const initialState = {
@@ -95,6 +97,10 @@ export default function(state = initialState, action) {
                     }
                 }
             }
+        case DELETE_ITEM:
+            return produce( state, draft => {
+                delete draft["categories"][action.categoryName][action.itemID]
+            })
         default:
             return state;
     }
