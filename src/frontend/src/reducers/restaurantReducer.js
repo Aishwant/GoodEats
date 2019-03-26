@@ -76,11 +76,14 @@ export default function(state = initialState, action) {
                 categories: action.payload
             }
         case DELETE_CATEGORY:
-            return{
-                ...state,
-                categories: [...state.categories.splice(0, action.payload),
-                              ...state.categories.splice(action.payload + 1)]
-            }
+            return Object.assign({}, state, {
+                categories: Object.keys(state.categories).reduce((result, key) => {
+                    if (key !== action.payload) {
+                        result[key] = state.categories[key];
+                    }
+                    return result;
+                }, {})
+            });
         case ADD_ITEM:
             return {
                 ...state,

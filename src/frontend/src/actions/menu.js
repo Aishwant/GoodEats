@@ -83,7 +83,7 @@ import {
       .then(res => {
         dispatch({
           type: DELETE_CATEGORY,
-          payload: res.data
+          payload: category
         });
       })
       .catch(err => console.log(err));
