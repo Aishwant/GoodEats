@@ -133,9 +133,11 @@ def addCustomer(request):
 
 def addRestaurant(request, uID):
     db = credentials().database()
-    rID = getUniqueID()
-    db.child('Users').child(uID).child('Owner').child('rIDS').push(str(rID))
-    return db.child('Restaurants').child(rID).set(request)
+    for key in request:
+        rID = key
+    db.child('Restaurants').update(request)
+    return db.child('Users').child(uID).child('Owner').child('rIDS').push(rID)
+    
 
 def addToCart(request, uID):
     db = credentials().database()
