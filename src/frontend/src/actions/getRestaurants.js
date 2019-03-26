@@ -22,9 +22,7 @@ export const getRestaurant = () => (dispatch, getState) => {
           payload: res.data
         });
       })
-      .catch(err =>
-        dispatch(returnErrors(err.response.data, err.response.status))
-      );
+      .catch(err => console.log(err));
   };
 
 
@@ -39,9 +37,7 @@ export const getRestaurantByID = () => (dispatch, getState) => {
         payload: res.data
       });
     })
-    .catch(err =>
-      dispatch(returnErrors(err.response.data, err.response.status))
-    );
+    .catch(err => console.log(err));
 };
 export const getMenu = (rID) => dispatch => {
   axios.get('/api/database/getMenu/'+rID)
@@ -52,9 +48,7 @@ export const getMenu = (rID) => dispatch => {
     });
     
   })
-  .catch(err =>
-    dispatch(returnErrors(err.response.data, err.response.status))
-  );
+  .catch(err => console.log(err));
 }
 
 //ADD RESTAURANT 
@@ -68,9 +62,7 @@ export const addRestaurant = restaurant => (dispatch, getState) => {
         payload: res.data
       });
     })
-    .catch(err =>
-      dispatch(returnErrors(err.response.data, err.response.status))
-    );
+    .catch(err => console.log(err));
 };
 
 //DELETE RESTAURANT
