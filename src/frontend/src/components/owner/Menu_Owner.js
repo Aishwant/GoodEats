@@ -29,18 +29,13 @@ export class Menu_Owner extends Component {
         e.preventDefault();
         const { newCategory } = this.state;
         const data = { newCategory, "rID":this.state.rID }
+        console.log(data);
         this.props.addCategory(data);
-        //console.log(this.props.location.search);
-        //this.props.pressButton(true);
     }
 
   render() {
     const { newCategory } = this.state
     const contentKeys = Object.keys(this.props.categories)
-    /*if(this.props.isPressed){
-      console.log("redirecting")
-      return <Redirect to="/cart"/>
-    }*/
     return (
       <div className="container text-center">
         
@@ -105,7 +100,6 @@ export class Menu_Owner extends Component {
 
 const mapStateToProps = state => ({
     categories: state.restaurantReducer.categories,
-    isPressed: state.restaurantReducer.isPressed
   });
 
 export default connect(mapStateToProps, { addCategory, getCategories, deleteCategory, deleteItem })(Menu_Owner);

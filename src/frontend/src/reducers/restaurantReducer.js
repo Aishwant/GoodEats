@@ -15,8 +15,6 @@ import {
 
 const initialState = {
     restaurants:{},
-    resName:"",
-    menu:{},
     categories: {},
     items: {}
 }
@@ -41,13 +39,13 @@ export default function(state = initialState, action) {
                 restaurants: action.payload
             };
         case ADD_RESTAURANT:
-        return {
-            ...state,
-            restaurants: {
-              ...state.restaurants,
-              [action.key]: action.value
+            return {
+                ...state,
+                restaurants: {
+                    ...state.restaurants,
+                    [action.key]: action.value
+                }
             }
-          }
         case DELETE_RESTAURANT:
             return{
                 ...state,
@@ -61,9 +59,14 @@ export default function(state = initialState, action) {
                 
             }
         case ADD_CATEGORY:
-            return{
+            return {
                 ...state,
-                categories: [...state.categories, action.payload]
+                categories: {
+                    ...state.categories,
+                    [action.categoryName]: {
+                        [action.iID] : action.item
+                    }
+                }
             }
         case GET_CATEGORIES:
             return{

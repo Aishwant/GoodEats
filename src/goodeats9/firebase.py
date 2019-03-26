@@ -137,7 +137,6 @@ def addRestaurant(request, uID):
         rID = key
     db.child('Restaurants').update(request)
     return db.child('Users').child(uID).child('Owner').child('rIDS').push(rID)
-    
 
 def addToCart(request, uID):
     db = credentials().database()
@@ -146,10 +145,7 @@ def addToCart(request, uID):
 
 def addCategory(request):
     db = credentials().database()
-    placeholderItemID = getUniqueID()
-    placeholderItem = {str(placeholderItemID) : {"Name":"Item Name", "Description":"Item Description", "Price":"Item Price", "Quantity":"Item Quantity"}}
-    print(placeholderItem)
-    return db.child("Restaurants").child(request['rID']).child("Menu").child(request['newCategory']).set(placeholderItem)
+    return db.child("Restaurants").child(request['rID']).child("Menu").child(request['newCategory']).set(request['placeholderItem'])
 
 def addItem(request):
     db = credentials().database()
