@@ -154,6 +154,10 @@ def addItem(request):
     rID = request.pop("rID")
     category = request.pop("category")
     itemID = getUniqueID()
+    print((dict(db.child("Restaurants").child(rID).get().val())['tags']))
+    # if val:
+    #     val
+    # db.child("Restaurants").child(rID).child(val)
     return db.child("Restaurants").child(rID).child("Menu").child(category).child(str(itemID)).set(request)
 
 
