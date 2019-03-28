@@ -183,6 +183,7 @@ npm i react-router-dom
 npm i style-loader css-loader less-loader 
 npm i query-string
 npm i react-modal
+npm i uuid
 ````
 
 ### More pip install commands for Python:

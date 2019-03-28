@@ -41,10 +41,13 @@ export default function(state = initialState, action) {
                 restaurants: action.payload
             };
         case ADD_RESTAURANT:
-            return{
-                ...state,
-                restaurants: [...state.restaurants, action.payload]
+        return {
+            ...state,
+            restaurants: {
+              ...state.restaurants,
+              [action.key]: action.value
             }
+          }
         case DELETE_RESTAURANT:
             return{
                 ...state,

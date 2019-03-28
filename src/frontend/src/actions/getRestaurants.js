@@ -22,9 +22,7 @@ export const getRestaurant = () => (dispatch, getState) => {
           payload: res.data
         });
       })
-      .catch(err =>
-        dispatch(returnErrors(err.response.data, err.response.status))
-      );
+      .catch(err => console.log(err));
   };
 
 
@@ -39,9 +37,7 @@ export const getRestaurantByID = () => (dispatch, getState) => {
         payload: res.data
       });
     })
-    .catch(err =>
-      dispatch(returnErrors(err.response.data, err.response.status))
-    );
+    .catch(err => console.log(err));
 };
 export const getMenu = (rID) => dispatch => {
   axios.get('/api/database/getMenu/'+rID)
@@ -52,25 +48,26 @@ export const getMenu = (rID) => dispatch => {
     });
     
   })
-  .catch(err =>
-    dispatch(returnErrors(err.response.data, err.response.status))
-  );
+  .catch(err => console.log(err));
 }
 
 //ADD RESTAURANT 
 export const addRestaurant = restaurant => (dispatch, getState) => {
   const uID = localStorage.getItem("uID")
+  const uuidv4 = require('uuid/v4');
+  const rID = uuidv4();
+  const data = {[rID] : restaurant};
+  console.log(data);
   axios
-    .post("/api/database/addRestaurant/" + uID, restaurant)
+    .post("/api/database/addRestaurant/" + uID, data)
     .then(res => {
       dispatch({
         type: ADD_RESTAURANT,
-        payload: res.data
+        key: rID,
+        value: restaurant
       });
     })
-    .catch(err =>
-      dispatch(returnErrors(err.response.data, err.response.status))
-    );
+    .catch(err => console.log(err));
 };
 
 //DELETE RESTAURANT
