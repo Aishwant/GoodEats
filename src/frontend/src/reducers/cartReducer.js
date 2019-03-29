@@ -19,11 +19,13 @@ export default function(state = initialState, action) {
             };
         case ADD_TO_CART:
             return produce(state, draft => {
-                draft['items'][action.item] = [action.data]
+                draft['items'][action.item] = [action.data];
+                draft.itemCount++;
             })
         case DELETE_CART_ITEM:
             return produce(state, draft => {
-                delete draft['items'][action.payload]
+                delete draft['items'][action.payload];
+                draft.itemCount--;
             })
         default:
             return state;
