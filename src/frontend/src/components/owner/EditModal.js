@@ -63,7 +63,6 @@ export class EditModal extends Component {
         const { Address, City, Open, Close, Name, img, zipcode, rID, CuisineType } = this.state;
         const restaurant = { Address, City, Open, Close, Name, img, zipcode, rID, CuisineType };
         this.props.editRestaurant(restaurant);
-        window.location.reload();
     }
     
       render() {

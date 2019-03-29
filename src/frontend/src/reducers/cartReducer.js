@@ -1,3 +1,4 @@
+import produce from "immer"
 import { 
     GET_CART,
     ADD_TO_CART,
@@ -5,7 +6,8 @@ import {
 } from "../actions/types";
 
 const initialState = {
-    items:{}
+    items:{},
+    itemCount: 0
 }
 
 export default function(state = initialState, action) {
@@ -16,15 +18,15 @@ export default function(state = initialState, action) {
                 items: action.payload
             };
         case ADD_TO_CART:
-            return{
-                ...state,
-                items: [...state.items, action.payload]
-            };
+            return produce(state, draft => {
+                draft['items'][action.item] = [action.data];
+                draft.itemCount++;
+            })
         case DELETE_CART_ITEM:
-            return{
-                ...state,
-                items: state.items.filter(item => item !== action.payload)
-            };
+            return produce(state, draft => {
+                delete draft['items'][action.payload];
+                draft.itemCount--;
+            })
         default:
             return state;
     }
