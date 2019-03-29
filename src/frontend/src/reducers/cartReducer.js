@@ -1,3 +1,4 @@
+import produce from "immer"
 import { 
     GET_CART,
     ADD_TO_CART,
@@ -21,10 +22,9 @@ export default function(state = initialState, action) {
                 items: [...state.items, action.payload]
             };
         case DELETE_CART_ITEM:
-            return{
-                ...state,
-                items: state.items.filter(item => item !== action.payload)
-            };
+            return produce(state, draft => {
+                delete draft['items'][action.payload]
+            })
         default:
             return state;
     }
