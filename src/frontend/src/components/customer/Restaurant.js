@@ -118,7 +118,7 @@ export class Restaurant extends Component {
                             <h6>Close: {res.Close}</h6>
                           </div>
                           <div className="row">
-                            <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
+                            <Link to={`/menu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
                           </div>
                         </div>
                     </div>
@@ -142,7 +142,7 @@ export class Restaurant extends Component {
                                 <h6>Close: {res.Close}</h6>
                               </div>
                               <div className="row">
-                                <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
+                                <Link to={`/menu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
                               </div>
                             </div>
                           </div>
