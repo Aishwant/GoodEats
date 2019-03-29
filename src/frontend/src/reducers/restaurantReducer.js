@@ -12,7 +12,8 @@ import {
     GET_CATEGORIES,
     GET_ITEMS,
     ADD_ITEM,
-    DELETE_ITEM
+    DELETE_ITEM,
+    EDIT_ITEM
 } from "../actions/types";
 
 const initialState = {
@@ -99,6 +100,10 @@ export default function(state = initialState, action) {
         case DELETE_ITEM:
             return produce( state, draft => {
                 delete draft["categories"][action.categoryName][action.itemID]
+            })
+        case EDIT_ITEM:
+            return produce(state, draft => {
+                draft['categories'][action.categ][action.item] = action.data
             })
         default:
             return state;

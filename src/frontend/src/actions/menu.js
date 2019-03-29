@@ -108,12 +108,19 @@ import {
 
   //Add a new category to the menu of the given restaurant
   export const editItem = item => (dispatch) => {
+    const itemData = JSON.parse(JSON.stringify(item))
+    const category = itemData.category
+    delete itemData.category
+    const itemID = itemData.itemID
+    delete itemData.itemID
     axios
       .post("/api/database/editItem", item)
       .then(res => {
         dispatch({
           type: EDIT_ITEM,
-          payload: res.data
+          item: itemID,
+          categ: category,
+          data: itemData
         });
       })
       .catch(err => console.log(err));
