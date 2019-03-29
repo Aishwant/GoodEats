@@ -6,7 +6,8 @@ import {
 } from "../actions/types";
 
 const initialState = {
-    items:{}
+    items:{},
+    itemCount: 0
 }
 
 export default function(state = initialState, action) {
@@ -17,10 +18,9 @@ export default function(state = initialState, action) {
                 items: action.payload
             };
         case ADD_TO_CART:
-            return{
-                ...state,
-                items: [...state.items, action.payload]
-            };
+            return produce(state, draft => {
+                draft['items'][action.item] = [action.data]
+            })
         case DELETE_CART_ITEM:
             return produce(state, draft => {
                 delete draft['items'][action.payload]
