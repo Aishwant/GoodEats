@@ -89,6 +89,16 @@ def getItems(request):
     print((dict(db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).get().val())))
     return (dict(db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).get().val()))
 
+def getItemCount(request, uID):
+    db = credentials().database()
+    items = db.child('Users').child(uID).child('Customer').child('Cart').get().val()
+    itemCount = 0
+    for k1, v1 in items.items():
+        for k2, v2 in v1.items():
+            if(k2 == "Quantity"):
+                itemCount += int(v2)
+    return itemCount
+
  ##### Writing To Database #####
 def addCustomer(request):
     db = credentials().database()

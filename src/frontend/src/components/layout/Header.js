@@ -4,12 +4,17 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/authentication";
 import { withRouter } from "react-router-dom";
+import { getItemCount } from "../../actions/orders";
 
 export class Header extends Component {
   static propTypes = {
     authReducer: PropTypes.object.isRequired,
     logout: PropTypes.func.isRequired
   };
+
+  componentDidMount(){
+    this.props.getItemCount();
+  }
 
   render() {
     const { isAuthenticated } = this.props.authReducer;
@@ -106,6 +111,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { logout }
+    { logout, getItemCount }
   )(Header)
 );

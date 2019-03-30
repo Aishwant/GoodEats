@@ -1,11 +1,10 @@
 import axios from "axios";
 
-import {GET_CART, ADD_TO_CART, DELETE_CART_ITEM} from './types.js';
+import {GET_CART, ADD_TO_CART, DELETE_CART_ITEM, GET_ITEM_COUNT} from './types.js';
 
 //Get user's cart
 export const getCart = () => (dispatch) => {
     const uID = localStorage.getItem("uID");
-    console.log("Test1");
     axios
       .get("/api/database/getCart/" + uID)
       .then(res => {
@@ -44,6 +43,20 @@ export const deleteCartItem = (itemID, Quantity) => (dispatch) => {
         type: DELETE_CART_ITEM,
         payload: itemID,
         qty: Quantity
+      });
+    })
+    .catch(err => console.log(err));
+};
+
+//Get the total number of items in the cart when loading the page
+export const getItemCount = () => (dispatch) => {
+  const uID = localStorage.getItem("uID");
+  axios
+    .get("/api/database/getItemCount/" + uID)
+    .then(res => {
+      dispatch({
+        type: GET_ITEM_COUNT,
+        payload: res.data
       });
     })
     .catch(err => console.log(err));
