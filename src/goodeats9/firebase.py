@@ -118,6 +118,7 @@ def addCustomer(request):
         request['data'].pop("changeD")
         request['data'].pop("changeO")
 
+        rID = request.pop('resID') 
         restaurantData = {}
         restaurantData['Name'] = request['data'].pop('name')
         restaurantData['Address'] = request['data'].pop('address')
@@ -125,8 +126,9 @@ def addCustomer(request):
         restaurantData['zipcode'] = request['data'].pop('zipcode')
         restaurantData['Open'] = request['data'].pop('open')
         restaurantData['Close'] = request['data'].pop('close')
+        formattedData = {rID : restaurantData}
 
-        addRestaurant(restaurantData, request['uID'])
+        addRestaurant(formattedData, request['uID'])
 
         db.child('Users').child(request['uID']).child("Owner").update(request['data'])
 

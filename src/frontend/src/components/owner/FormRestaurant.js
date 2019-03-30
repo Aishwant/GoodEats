@@ -98,6 +98,7 @@ export class FormRestaurant extends Component {
                                     name="zipcode"
                                     onChange={this.onChange}
                                     value={zipcode}
+                                    pattern="^\d{5}(?:[-\s]\d{4})?$"
                                     required
                                     />
                                 </div>
