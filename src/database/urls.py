@@ -9,6 +9,7 @@ from .api import editRestaurantAPI
 from .api import getCartAPI, addToCartAPI, deleteCartItemAPI
 from .api import addCategoryAPI, getCategoriesAPI, deleteCategoryAPI, editCategoryAPI
 from .api import getItemsAPI, addItemAPI, deleteItemAPI, editItemAPI
+from .api import getItemCountAPI
 
 urlpatterns = [
     path('api/database/get',getDataAPI.as_view()),
@@ -29,4 +30,5 @@ urlpatterns = [
     path('api/database/deleteItem', deleteItemAPI.as_view()),
     path('api/database/editItem', editItemAPI.as_view()),
     path('api/database/editCategory', editCategoryAPI.as_view()),
+    path('api/database/getItemCount/<slug:uID>', getItemCountAPI.as_view()),
 ]

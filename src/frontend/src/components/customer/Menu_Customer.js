@@ -5,11 +5,14 @@ import { addCategory, getCategories, deleteCategory, deleteItem, pressButton } f
 import { addToCart } from '../../actions/orders';
 import queryString from 'query-string';
 import { Link } from 'react-router-dom';
+import Quantity from './Quantity';
 
 
 export class Menu_Customer extends Component {
     state = {
         rID: queryString.parse(this.props.location.search).id,
+        Quantity: 0,
+        restaurantName: ""
     };
 
     static propTypes = {
@@ -18,6 +21,8 @@ export class Menu_Customer extends Component {
 
     componentDidMount(){
       this.props.getCategories(this.state.rID);
+      const { rName } = this.props.match.params;
+      this.setState({restaurantName: rName});
     }
 
     onChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -29,11 +34,9 @@ export class Menu_Customer extends Component {
         this.props.addCategory(data);
     }
 
-    onClickButton = (item) => {
-        console.log("clicked")
-        const data = { 'itemID': item }
-        this.props.addToCart(data)
-      }
+    addToCartParent = (itemID, itemData, Quantity) => {
+      this.props.addToCart(itemID, itemData, Quantity)
+    }
 
   render() {
     const { newCategory } = this.state
@@ -43,7 +46,7 @@ export class Menu_Customer extends Component {
         <div className="row mt-5">
             <Link to={`/`} className="btn btn-dark btn-sm col-md-1">Back To Restaurants</Link>
             <div className="col-md-2"></div>
-            <h2 className="col-md-6">Restaurant Name's Menu</h2>
+            <h2 className="col-md-6">{this.state.restaurantName}'s Menu</h2>
         </div>  
         <hr/>
         {contentKeys.map(i=>
@@ -59,7 +62,7 @@ export class Menu_Customer extends Component {
                     <div className="col-md-6 menuItems">
                       <div className="textM d-flex">
                         <div className="one-forth">
-                        <button className="btn btn-success btn-sm mt-1"  onClick={this.props.addToCart.bind(this, j, item)}>Add To Cart</button>
+                          <Quantity itemID={j} itemData={item} addToCartChild={this.addToCartParent}/>
                         </div>
                         <div className="one-half"> 
                           <h3>{item.Name}</h3>

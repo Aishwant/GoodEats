@@ -289,3 +289,17 @@ class editCategoryAPI(generics.GenericAPIView):
             return Response({
                 "status":"Disconnected"
             })
+
+class getItemCountAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def get(self, request, uID):
+        try:
+            return Response(firebase.getItemCount(request, uID))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })
