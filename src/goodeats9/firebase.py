@@ -86,7 +86,6 @@ def getCategories(request, rID):
 
 def getItems(request):
     db = credentials().database()
-    print((dict(db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).get().val())))
     return (dict(db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).get().val()))
 
 def getItemCount(request, uID):

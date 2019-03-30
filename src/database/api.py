@@ -128,7 +128,7 @@ class getCartAPI(generics.GenericAPIView):
             return Response(firebase.getCart(request, uID))
         except:
             return Response({
-                "status":"Disconnected"
+                # "status":"Disconnected"
             })
 
 class addToCartAPI(generics.GenericAPIView):
