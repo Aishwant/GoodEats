@@ -101,6 +101,7 @@ export class EditItemModal extends Component {
                                 name="Price"
                                 onChange={this.onChange}
                                 value={Price}
+                                pattern="^([0-9]{0,2}((.)[0-9]{0,2}))$"
                                 required
                                 />
                             </div>
