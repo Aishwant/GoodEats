@@ -1,3 +1,4 @@
+import produce from "immer"
 import { 
     GET_RESTAURANTS,
     GET_RESTAURANTS_BY_ZIP,
@@ -10,13 +11,13 @@ import {
     DELETE_CATEGORY,
     GET_CATEGORIES,
     GET_ITEMS,
-    ADD_ITEM
+    ADD_ITEM,
+    DELETE_ITEM,
+    EDIT_ITEM
 } from "../actions/types";
 
 const initialState = {
     restaurants:{},
-    resName:"",
-    menu:{},
     categories: {},
     items: {}
 }
@@ -41,29 +42,35 @@ export default function(state = initialState, action) {
                 restaurants: action.payload
             };
         case ADD_RESTAURANT:
-        return {
-            ...state,
-            restaurants: {
-              ...state.restaurants,
-              [action.key]: action.value
+            return {
+                ...state,
+                restaurants: {
+                    ...state.restaurants,
+                    [action.key]: action.value
+                }
             }
-          }
         case DELETE_RESTAURANT:
-            return{
-                ...state,
-                restaurants: [...state.restaurants.splice(0, action.payload),
-                              ...state.restaurants.splice(action.payload + 1)
-                ]
-            }
+            return Object.assign({}, state, {
+                restaurants: Object.keys(state.restaurants).reduce((result, key) => {
+                    if (key !== action.payload) {
+                        result[key] = state.restaurants[key];
+                    }
+                    return result;
+                }, {})
+            });
         case EDIT_RESTAURANT:
-            return{
-                ...state,
-                
-            }
+            return produce(state, draft => {
+                draft['restaurants'][action.resID] = action.restaurantData
+            })
         case ADD_CATEGORY:
-            return{
+            return {
                 ...state,
-                categories: [...state.categories, action.payload]
+                categories: {
+                    ...state.categories,
+                    [action.categoryName]: {
+                        [action.iID] : action.item
+                    }
+                }
             }
         case GET_CATEGORIES:
             return{
@@ -71,11 +78,33 @@ export default function(state = initialState, action) {
                 categories: action.payload
             }
         case DELETE_CATEGORY:
-            return{
+            return Object.assign({}, state, {
+                categories: Object.keys(state.categories).reduce((result, key) => {
+                    if (key !== action.payload) {
+                        result[key] = state.categories[key];
+                    }
+                    return result;
+                }, {})
+            });
+        case ADD_ITEM:
+            return {
                 ...state,
-                categories: [...state.categories.splice(0, action.payload),
-                              ...state.categories.splice(action.payload + 1)]
+                categories: {
+                    ...state.categories,
+                    [action.categoryName]: {
+                        ...state.categories[action.categoryName],
+                        [action.iID] : action.item
+                    }
+                }
             }
+        case DELETE_ITEM:
+            return produce( state, draft => {
+                delete draft["categories"][action.categoryName][action.itemID]
+            })
+        case EDIT_ITEM:
+            return produce(state, draft => {
+                draft['categories'][action.categ][action.item] = action.data
+            })
         default:
             return state;
     }

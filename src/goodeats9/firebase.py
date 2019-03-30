@@ -89,6 +89,16 @@ def getItems(request):
     print((dict(db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).get().val())))
     return (dict(db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).get().val()))
 
+def getItemCount(request, uID):
+    db = credentials().database()
+    items = db.child('Users').child(uID).child('Customer').child('Cart').get().val()
+    itemCount = 0
+    for k1, v1 in items.items():
+        for k2, v2 in v1.items():
+            if(k2 == "Quantity"):
+                itemCount += int(v2)
+    return itemCount
+
  ##### Writing To Database #####
 def addCustomer(request):
     db = credentials().database()
@@ -137,26 +147,22 @@ def addRestaurant(request, uID):
         rID = key
     db.child('Restaurants').update(request)
     return db.child('Users').child(uID).child('Owner').child('rIDS').push(rID)
-    
 
 def addToCart(request, uID):
     db = credentials().database()
-    data = { request['itemID'] : request['itemData']}
+    itemID = request.pop("itemID")
+    itemData = request['itemData']
+    itemData['Quantity'] = request['Quantity']
+    data = { itemID : itemData}
     return db.child("Users").child(uID).child("Customer").child("Cart").update(data) 
 
 def addCategory(request):
     db = credentials().database()
-    placeholderItemID = getUniqueID()
-    placeholderItem = {str(placeholderItemID) : {"Name":"Item Name", "Description":"Item Description", "Price":"Item Price", "Quantity":"Item Quantity"}}
-    print(placeholderItem)
-    return db.child("Restaurants").child(request['rID']).child("Menu").child(request['newCategory']).set(placeholderItem)
+    return db.child("Restaurants").child(request['rID']).child("Menu").child(request['newCategory']).set(request['placeholderItem'])
 
 def addItem(request):
     db = credentials().database()
-    rID = request.pop("rID")
-    category = request.pop("category")
-    itemID = getUniqueID()
-    return db.child("Restaurants").child(rID).child("Menu").child(category).child(str(itemID)).set(request)
+    return db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).update(request['newItem'])
 
 
 ##### Delete from Database #####

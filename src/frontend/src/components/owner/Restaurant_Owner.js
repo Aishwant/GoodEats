@@ -10,10 +10,6 @@ import EditModal from './EditModal';
 
 export class Restaurant extends Component {
 
-  componentDidMount(){
-    this.props.getRestaurantByID();
-  }
-
   state = {
     query: '',
     showForm:false,
@@ -24,6 +20,10 @@ export class Restaurant extends Component {
     closeS:false,
     cuisineTypeS:false,
     filter:'nameS'
+  }
+
+  componentDidMount(){
+    this.props.getRestaurantByID();
   }
   
   handleClick= event =>{
@@ -55,8 +55,6 @@ export class Restaurant extends Component {
   onChange=e=> {
     this.setState({filter:e.target.value});
   }
-
-  modalID = 0;
 
   render() {
     const contentKeys = Object.keys(this.props.restaurants)

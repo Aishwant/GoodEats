@@ -13,6 +13,7 @@ export class Menu_Owner extends Component {
     state = {
         newCategory: "",
         rID: queryString.parse(this.props.location.search).id,
+        restaurantName: ""
     };
 
     static propTypes = {
@@ -21,6 +22,8 @@ export class Menu_Owner extends Component {
 
     componentDidMount(){
       this.props.getCategories(this.state.rID);
+      const { rName } = this.props.match.params;
+      this.setState({restaurantName: rName});
     }
 
     onChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -30,24 +33,18 @@ export class Menu_Owner extends Component {
         const { newCategory } = this.state;
         const data = { newCategory, "rID":this.state.rID }
         this.props.addCategory(data);
-        //console.log(this.props.location.search);
-        //this.props.pressButton(true);
     }
 
   render() {
     const { newCategory } = this.state
     const contentKeys = Object.keys(this.props.categories)
-    /*if(this.props.isPressed){
-      console.log("redirecting")
-      return <Redirect to="/cart"/>
-    }*/
     return (
       <div className="container text-center">
         
             <form onSubmit={this.onSubmit} >
               <div className="form-group row mt-5">
                 <Link to={`/`} className="btn btn-dark btn-sm col-md-1">Back To Restaurants</Link>
-                <h2 className="col-md-6">Restaurant Name's Menu</h2>
+                <h2 className="col-md-6">{this.state.restaurantName}'s Menu</h2>
                 <input type="text" name="newCategory" onChange={this.onChange} value={newCategory} className="form-control input-large col-md-3" placeholder="Category Name" required/>
                 <div className="col-md-2">
                   <button type="submit" className="btn btn-primary mb-2">Add Category</button>
@@ -105,7 +102,6 @@ export class Menu_Owner extends Component {
 
 const mapStateToProps = state => ({
     categories: state.restaurantReducer.categories,
-    isPressed: state.restaurantReducer.isPressed
   });
 
 export default connect(mapStateToProps, { addCategory, getCategories, deleteCategory, deleteItem })(Menu_Owner);
