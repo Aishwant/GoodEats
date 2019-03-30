@@ -75,8 +75,9 @@ export class EditModal extends Component {
               onAfterOpen={this.afterOpenModal}
               onRequestClose={this.closeModal}
               contentLabel="Example Modal"
-              className="modal-dialog "
+              className="pre-scrollable"
             >
+              <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
                 <h5 className="text-dark" ref={subtitle => this.subtitle = subtitle}>Edit Restaurant</h5>
@@ -170,6 +171,7 @@ export class EditModal extends Component {
                           <button type="submit" className="btn btn-primary" >Save</button>
                         </div>
               </form>
+              </div>
               </div>
             </Modal>
           </div>
