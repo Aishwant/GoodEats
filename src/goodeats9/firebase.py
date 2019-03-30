@@ -140,7 +140,10 @@ def addRestaurant(request, uID):
 
 def addToCart(request, uID):
     db = credentials().database()
-    data = { request['itemID'] : request['itemData']}
+    itemID = request.pop("itemID")
+    itemData = request['itemData']
+    itemData['Quantity'] = request['Quantity']
+    data = { itemID : itemData}
     return db.child("Users").child(uID).child("Customer").child("Cart").update(data) 
 
 def addCategory(request):

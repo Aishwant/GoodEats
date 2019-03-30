@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 export class Menu_Customer extends Component {
     state = {
         rID: queryString.parse(this.props.location.search).id,
+        Quantity: 0
     };
 
     static propTypes = {
@@ -35,6 +36,14 @@ export class Menu_Customer extends Component {
         this.props.addToCart(data)
       }
 
+    incrementQuantity = () => {
+      this.setState({Quantity: this.state.Quantity + 1})
+    }
+
+    decrementQuantity = () => {
+      this.setState({Quantity: this.state.Quantity - 1})
+    }
+
   render() {
     const { newCategory } = this.state
     const contentKeys = Object.keys(this.props.categories)
@@ -59,7 +68,26 @@ export class Menu_Customer extends Component {
                     <div className="col-md-6 menuItems">
                       <div className="textM d-flex">
                         <div className="one-forth">
-                        <button className="btn btn-success btn-sm mt-1"  onClick={this.props.addToCart.bind(this, j, item)}>Add To Cart</button>
+                        <button className="btn btn-success btn-sm mt-1"  onClick={this.props.addToCart.bind(this, j, item, this.state.Quantity)}>Add To Cart</button>
+                        
+                        
+                        <div className="row">
+                        <div className="input-group">
+                          <span className="input-group-btn">
+                              <button type="button" className="btn btn-default btn-number" onClick={this.decrementQuantity.bind(this)}>
+                                  -
+                              </button>
+                          </span>
+                          {this.state.Quantity}
+                          <span className="input-group-btn">
+                              <button type="button" className="btn btn-default btn-number" onClick={this.incrementQuantity.bind(this)}>
+                              +
+                              </button>
+                          </span>
+                        </div>
+                        </div>
+                        
+                        
                         </div>
                         <div className="one-half"> 
                           <h3>{item.Name}</h3>
