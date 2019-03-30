@@ -57,7 +57,7 @@ export const addRestaurant = restaurant => (dispatch) => {
   const uuidv4 = require('uuid/v4');
   const rID = uuidv4();
   const data = {[rID] : restaurant};
-  console.log(data);
+
   axios
     .post("/api/database/addRestaurant/" + uID, data)
     .then(res => {

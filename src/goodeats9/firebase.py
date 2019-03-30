@@ -136,6 +136,7 @@ def addRestaurant(request, uID):
     for key in request:
         rID = key
     db.child('Restaurants').update(request)
+    
     return db.child('Users').child(uID).child('Owner').child('rIDS').push(rID)
 
 def addToCart(request, uID):
@@ -149,6 +150,11 @@ def addCategory(request):
 
 def addItem(request):
     db = credentials().database()
+    tags = db.child("Restaurants").child(request['rID']).child('tags').get().val()
+    if(tags):
+        db.child("Restaurants").child(request['rID']).child('tags').set(request['tags']+", "+tags)    
+    else:
+        db.child("Restaurants").child(request['rID']).child('tags').set(request['tags'])
     return db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).update(request['newItem'])
 
 

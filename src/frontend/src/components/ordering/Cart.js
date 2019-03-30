@@ -31,7 +31,8 @@ export class Cart extends Component {
             {contentKeys.map(t=>
 
                 [this.props.items[t]].map(res =>
-                <tr >
+                
+                {if(res){<tr >
                     <td>{res.Name}</td>
                     <td>{res.Description}</td>
                     <td>{res.Price}</td>
@@ -44,7 +45,7 @@ export class Cart extends Component {
                         Delete
                     </button>
                     </td>
-                </tr>
+                </tr>}}
                 ))}
             </tbody>
             </table>

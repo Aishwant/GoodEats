@@ -61,6 +61,7 @@ import {
     const uuidv4 = require('uuid/v4');
     const itemID = uuidv4();
     const newItem = {[itemID] : {"Name":data['Name'], "Description":data['Description'], "Price":data['Price']}};
+    data['tags'] = data['Name'];
     data['newItem'] = newItem;
     axios
       .post("/api/database/addItemToCategory", data)
