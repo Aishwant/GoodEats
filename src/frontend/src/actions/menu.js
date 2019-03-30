@@ -13,12 +13,18 @@ import {
 
   //Add a new category to the menu of the given restaurant
   export const addCategory = category => (dispatch) => {
+    const uuidv4 = require('uuid/v4');
+    const itemID = uuidv4();
+    const placeholderItem = {[itemID] : {"Name":"Item Name", "Description":"Item Description", "Price":"Item Price", "Quantity":"Item Quantity"}};
+    category["placeholderItem"] = placeholderItem;
     axios
       .post("/api/database/addCategory", category)
       .then(res => {
         dispatch({
           type: ADD_CATEGORY,
-          payload: res.data
+          categoryName: category['newCategory'],
+          iID: itemID,
+          item: placeholderItem[itemID]
         });
       })
       .catch(err => console.log(err));
@@ -51,13 +57,20 @@ import {
   };
 
   //Add a new category to the menu of the given restaurant
-  export const addItemToCategory = item => (dispatch) => {
+  export const addItemToCategory = data => (dispatch) => {
+    const uuidv4 = require('uuid/v4');
+    const itemID = uuidv4();
+    const newItem = {[itemID] : {"Name":data['Name'], "Description":data['Description'], "Price":data['Price']}};
+    data['tags'] = data['Name'];
+    data['newItem'] = newItem;
     axios
-      .post("/api/database/addItemToCategory", item)
+      .post("/api/database/addItemToCategory", data)
       .then(res => {
         dispatch({
           type: ADD_ITEM,
-          payload: res.data
+          categoryName: data['category'],
+          iID: itemID,
+          item: newItem[itemID]
         });
       })
       .catch(err => console.log(err));
@@ -71,7 +84,7 @@ import {
       .then(res => {
         dispatch({
           type: DELETE_CATEGORY,
-          payload: res.data
+          payload: category
         });
       })
       .catch(err => console.log(err));
@@ -80,12 +93,15 @@ import {
   //Delete a given item from a restaurants menu
   export const deleteItem = (rID, category, item) => (dispatch) => {
     const data = {category , rID, item}
+    console.log(category)
+    console.log(item)
     axios
       .post(`/api/database/deleteItem`, data)
       .then(res => {
         dispatch({
           type: DELETE_ITEM,
-          payload: res.data
+          categoryName: category,
+          itemID: item
         });
       })
       .catch(err => console.log(err));
@@ -93,12 +109,19 @@ import {
 
   //Add a new category to the menu of the given restaurant
   export const editItem = item => (dispatch) => {
+    const itemData = JSON.parse(JSON.stringify(item))
+    const category = itemData.category
+    delete itemData.category
+    const itemID = itemData.itemID
+    delete itemData.itemID
     axios
       .post("/api/database/editItem", item)
       .then(res => {
         dispatch({
           type: EDIT_ITEM,
-          payload: res.data
+          item: itemID,
+          categ: category,
+          data: itemData
         });
       })
       .catch(err => console.log(err));

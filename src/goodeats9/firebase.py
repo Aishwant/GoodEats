@@ -86,8 +86,17 @@ def getCategories(request, rID):
 
 def getItems(request):
     db = credentials().database()
-    print((dict(db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).get().val())))
     return (dict(db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).get().val()))
+
+def getItemCount(request, uID):
+    db = credentials().database()
+    items = db.child('Users').child(uID).child('Customer').child('Cart').get().val()
+    itemCount = 0
+    for k1, v1 in items.items():
+        for k2, v2 in v1.items():
+            if(k2 == "Quantity"):
+                itemCount += int(v2)
+    return itemCount
 
  ##### Writing To Database #####
 def addCustomer(request):
@@ -136,31 +145,29 @@ def addRestaurant(request, uID):
     for key in request:
         rID = key
     db.child('Restaurants').update(request)
-    return db.child('Users').child(uID).child('Owner').child('rIDS').push(rID)
     
+    return db.child('Users').child(uID).child('Owner').child('rIDS').push(rID)
 
 def addToCart(request, uID):
     db = credentials().database()
-    data = { request['itemID'] : request['itemData']}
+    itemID = request.pop("itemID")
+    itemData = request['itemData']
+    itemData['Quantity'] = request['Quantity']
+    data = { itemID : itemData}
     return db.child("Users").child(uID).child("Customer").child("Cart").update(data) 
 
 def addCategory(request):
     db = credentials().database()
-    placeholderItemID = getUniqueID()
-    placeholderItem = {str(placeholderItemID) : {"Name":"Item Name", "Description":"Item Description", "Price":"Item Price", "Quantity":"Item Quantity"}}
-    print(placeholderItem)
-    return db.child("Restaurants").child(request['rID']).child("Menu").child(request['newCategory']).set(placeholderItem)
+    return db.child("Restaurants").child(request['rID']).child("Menu").child(request['newCategory']).set(request['placeholderItem'])
 
 def addItem(request):
     db = credentials().database()
-    rID = request.pop("rID")
-    category = request.pop("category")
-    itemID = getUniqueID()
-    print((dict(db.child("Restaurants").child(rID).get().val())['tags']))
-    # if val:
-    #     val
-    # db.child("Restaurants").child(rID).child(val)
-    return db.child("Restaurants").child(rID).child("Menu").child(category).child(str(itemID)).set(request)
+    tags = db.child("Restaurants").child(request['rID']).child('tags').get().val()
+    if(tags):
+        db.child("Restaurants").child(request['rID']).child('tags').set(request['tags']+", "+tags)    
+    else:
+        db.child("Restaurants").child(request['rID']).child('tags').set(request['tags'])
+    return db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).update(request['newItem'])
 
 
 ##### Delete from Database #####

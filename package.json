@@ -22,6 +22,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "css-loader": "^2.1.0",
+    "immer": "^2.1.4",
     "js-cookie": "^2.2.0",
     "less-loader": "^4.1.0",
     "prop-types": "^15.6.2",

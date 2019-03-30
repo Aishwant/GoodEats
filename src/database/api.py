@@ -128,7 +128,7 @@ class getCartAPI(generics.GenericAPIView):
             return Response(firebase.getCart(request, uID))
         except:
             return Response({
-                "status":"Disconnected"
+                # "status":"Disconnected"
             })
 
 class addToCartAPI(generics.GenericAPIView):
@@ -285,6 +285,20 @@ class editCategoryAPI(generics.GenericAPIView):
     def post(self, request):
         try:
             return Response(firebase.editCategory(request.data))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })
+
+class getItemCountAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def get(self, request, uID):
+        try:
+            return Response(firebase.getItemCount(request, uID))
         except:
             return Response({
                 "status":"Disconnected"

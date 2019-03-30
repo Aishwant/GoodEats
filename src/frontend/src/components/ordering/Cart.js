@@ -23,6 +23,7 @@ export class Cart extends Component {
                 <tr>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Qty</th>
                 <th>Price</th>
                 <th />
                 </tr>
@@ -31,20 +32,29 @@ export class Cart extends Component {
             {contentKeys.map(t=>
 
                 [this.props.items[t]].map(res =>
-                <tr >
-                    <td>{res.Name}</td>
-                    <td>{res.Description}</td>
-                    <td>{res.Price}</td>
-                    <td>
-                    <button
-                        className="btn btn-danger btn-sm"
-                        onClick={this.props.deleteCartItem.bind(this, t)}
-                    >
-                        {" "}
-                        Delete
-                    </button>
-                    </td>
-                </tr>
+                
+                // {
+                    // if(res.status){
+                    //     ''
+                    // }
+                    // else{
+                        <tr >
+                            <td>{res.Name}</td>
+                            <td>{res.Description}</td>
+                            <td>{res.Quantity}</td>
+                            <td>{res.Price}</td>
+                            <td>
+                            <button
+                                className="btn btn-danger btn-sm"
+                                onClick={this.props.deleteCartItem.bind(this, t, res.Quantity)}
+                            >
+                                {" "}
+                                Delete
+                            </button>
+                            </td>
+                        </tr>
+                //     }
+                // }
                 ))}
             </tbody>
             </table>

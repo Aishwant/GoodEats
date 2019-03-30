@@ -4,12 +4,17 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/authentication";
 import { withRouter } from "react-router-dom";
+import { getItemCount } from "../../actions/orders";
 
 export class Header extends Component {
   static propTypes = {
     authReducer: PropTypes.object.isRequired,
     logout: PropTypes.func.isRequired
   };
+
+  componentDidMount(){
+    this.props.getItemCount();
+  }
 
   render() {
     const { isAuthenticated } = this.props.authReducer;
@@ -39,13 +44,26 @@ export class Header extends Component {
       </li>
     );
 
-    const cart = (
+    const nonemptyCart = (
       <li className="nav-item">
         <Link to="/cart" className="nav-link">
-          <i className="fas fa-shopping-cart"></i>
+          <i className="fas fa-shopping-cart">
+            <span className="badge badge-pill badge-danger">{this.props.itemCount}</span>
+          </i>
         </Link>
       </li>
-    )
+    );
+    
+    const emptyCart = (
+        <li className="nav-item">
+          <Link to="/cart" className="nav-link">
+            <i className="fas fa-shopping-cart">
+            </i>
+          </Link>
+        </li>
+    );
+
+    const cart = this.props.itemCount > 0 ? nonemptyCart : emptyCart
 
     return (
       <nav className={path?"navbar navbar-expand-lg navbar-dark bg-dark navSize":"navbar navbar-expand-lg navbar-dark bg-dark ftco_navbar ftco-navbar-light"} id="ftco-navbar">
@@ -86,12 +104,13 @@ const colorWhite ={
 }
 
 const mapStateToProps = state => ({
-  authReducer: state.authReducer
+  authReducer: state.authReducer,
+  itemCount:  state.cartReducer.itemCount
 });
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { logout }
+    { logout, getItemCount }
   )(Header)
 );

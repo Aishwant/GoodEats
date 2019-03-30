@@ -284,3 +284,8 @@ body{
 .menuChoose .textM:hover{
   background-color: #ffb400;
 }
+
+.pre-scrollable {
+  max-height: 700px;
+  overflow-y: scroll;
+}
