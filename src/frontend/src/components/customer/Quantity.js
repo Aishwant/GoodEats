@@ -11,7 +11,11 @@ export class Quantity extends Component {
     }
   
     decrementQuantity = () => {
-        this.setState({Quantity: this.state.Quantity - 1})
+        if(this.state.Quantity == 1){
+            this.setState({Quantity: 1})
+        }else{
+            this.setState({Quantity: this.state.Quantity - 1})
+        }
     }
 
   render() {
