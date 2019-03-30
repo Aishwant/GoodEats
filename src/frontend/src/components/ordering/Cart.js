@@ -40,7 +40,7 @@ export class Cart extends Component {
                     <td>
                     <button
                         className="btn btn-danger btn-sm"
-                        onClick={this.props.deleteCartItem.bind(this, t)}
+                        onClick={this.props.deleteCartItem.bind(this, t, res.Quantity)}
                     >
                         {" "}
                         Delete

@@ -59,12 +59,7 @@ export class Menu_Customer extends Component {
                     <div className="col-md-6 menuItems">
                       <div className="textM d-flex">
                         <div className="one-forth">
-                        
-                        
-                        
                           <Quantity itemID={j} itemData={item} addToCartChild={this.addToCartParent}/>
-                        
-                        
                         </div>
                         <div className="one-half"> 
                           <h3>{item.Name}</h3>
