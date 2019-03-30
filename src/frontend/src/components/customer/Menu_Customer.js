@@ -5,6 +5,7 @@ import { addCategory, getCategories, deleteCategory, deleteItem, pressButton } f
 import { addToCart } from '../../actions/orders';
 import queryString from 'query-string';
 import { Link } from 'react-router-dom';
+import Quantity from './Quantity';
 
 
 export class Menu_Customer extends Component {
@@ -30,18 +31,8 @@ export class Menu_Customer extends Component {
         this.props.addCategory(data);
     }
 
-    onClickButton = (item) => {
-        console.log("clicked")
-        const data = { 'itemID': item }
-        this.props.addToCart(data)
-      }
-
-    incrementQuantity = () => {
-      this.setState({Quantity: this.state.Quantity + 1})
-    }
-
-    decrementQuantity = () => {
-      this.setState({Quantity: this.state.Quantity - 1})
+    addToCartParent = (itemID, itemData, Quantity) => {
+      this.props.addToCart(itemID, itemData, Quantity)
     }
 
   render() {
@@ -68,24 +59,10 @@ export class Menu_Customer extends Component {
                     <div className="col-md-6 menuItems">
                       <div className="textM d-flex">
                         <div className="one-forth">
-                        <button className="btn btn-success btn-sm mt-1"  onClick={this.props.addToCart.bind(this, j, item, this.state.Quantity)}>Add To Cart</button>
                         
                         
-                        <div className="row">
-                        <div className="input-group">
-                          <span className="input-group-btn">
-                              <button type="button" className="btn btn-default btn-number" onClick={this.decrementQuantity.bind(this)}>
-                                  -
-                              </button>
-                          </span>
-                          {this.state.Quantity}
-                          <span className="input-group-btn">
-                              <button type="button" className="btn btn-default btn-number" onClick={this.incrementQuantity.bind(this)}>
-                              +
-                              </button>
-                          </span>
-                        </div>
-                        </div>
+                        
+                          <Quantity itemID={j} itemData={item} addToCartChild={this.addToCartParent}/>
                         
                         
                         </div>
