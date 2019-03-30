@@ -119,6 +119,7 @@ export class UserDefiner extends Component {
           placeholder="Zip code"
           className="form-control"
           pattern="^\d{5}(?:[-\s]\d{4})?$"
+          title="Not a valid zipcode"
           required
         />
         <br />
@@ -155,6 +156,7 @@ export class UserDefiner extends Component {
           placeholder="Zip code"
           className="form-control"
           pattern="^\d{5}(?:[-\s]\d{4})?$"
+          title="Not a valid zipcode"
           required
         />
       </div>
