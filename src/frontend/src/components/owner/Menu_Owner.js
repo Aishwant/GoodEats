@@ -74,21 +74,23 @@ export class Menu_Owner extends Component {
               <div className="row">
                 {Object.keys(this.props.categories[i]).map(j => 
                   [this.props.categories[i][j]].map(item => 
-                    <div className="col-md-6 menuItems">
-                      <div className="textM d-flex">
-                        <div className="one-forth">
-                          <button onClick={this.props.deleteItem.bind(this, this.state.rID, i, j)} className="btn btn-danger btn-sm btn-block">Delete</button>
-                          <EditItemModal Name={item.Name} Description={item.Description} Price={item.Price} category={i} rID={this.state.rID} itemID={j}/>
-                        </div>
-                        <div className="one-half"> 
-                          <h3>{item.Name}</h3>
-                          <p><span>{item.Description}</span></p>
-                        </div>
-                        <div className="one-forth">
-                          <span className="price">${item.Price}</span>
+                    {if(item.Name !== "Item Name"){ return(
+                      <div className="col-md-6 menuItems">
+                        <div className="textM d-flex">
+                          <div className="one-forth">
+                            <button onClick={this.props.deleteItem.bind(this, this.state.rID, i, j)} className="btn btn-danger btn-sm btn-block">Delete</button>
+                            <EditItemModal Name={item.Name} Description={item.Description} Price={item.Price} category={i} rID={this.state.rID} itemID={j}/>
+                          </div>
+                          <div className="one-half"> 
+                            <h3>{item.Name}</h3>
+                            <p><span>{item.Description}</span></p>
+                          </div>
+                          <div className="one-forth">
+                            <span className="price">${item.Price}</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    )}}
                   )
                 )}
           </div>
