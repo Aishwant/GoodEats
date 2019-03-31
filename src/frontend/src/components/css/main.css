@@ -156,21 +156,17 @@ body{
     height: calc(100vh - 117px);
   }
 
-.carouselStyle{
-
-}
-
 
 /* Guest Reviews */
 .testimony-section {
     position: relative; }
-    .testimony-section .owl-carousel {
+    .testimony-section{
       margin: 0; }
-    .testimony-section .owl-carousel .owl-stage-outer {
+    .testimony-section {
       padding-top: 3.5em;
       padding-bottom: 1em;
       position: relative; }
-      .testimony-section .owl-carousel .owl-stage-outer:before {
+      .testimony-section {
         position: absolute;
         top: 0;
         left: 0;
@@ -181,7 +177,7 @@ body{
         -moz-box-shadow: inset 105px 0px 70px -60px white;
         box-shadow: inset 105px 0px 70px -60px white;
         z-index: 1; }
-      .testimony-section .owl-carousel .owl-stage-outer:after {
+      .testimony-section {
         position: absolute;
         top: 0;
         right: 0;
@@ -192,7 +188,7 @@ body{
         -moz-box-shadow: inset -105px 0px 70px -60px white;
         box-shadow: inset -105px 0px 70px -60px white; }
       @media (max-width: 767.98px) {
-        .testimony-section .owl-carousel .owl-stage-outer:before, .testimony-section .owl-carousel .owl-stage-outer:after {
+        .testimony-section {
           display: none; } }
   
 .testimony-wrap {
@@ -288,4 +284,8 @@ body{
 .pre-scrollable {
   max-height: 100%;
   overflow-y: scroll;
+}
+
+.card-img-top {
+  height: 180px;
 }

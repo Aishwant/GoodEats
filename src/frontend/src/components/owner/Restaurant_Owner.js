@@ -99,7 +99,7 @@ export class Restaurant extends Component {
                   (this.state.query !== '' &&
                     (
                       (this.state.nameS && res.Name.toUpperCase().includes(this.state.query.toUpperCase()))||
-                      (this.state.zipcodeS && res.zipcode.toUpperCase().includes(this.state.query.toUpperCase())) ||
+                      (this.state.zipcodeS && res.zipcode.includes(this.state.query)) ||
                       (this.state.cityS && res.City.includes(this.state.query))||
                       (this.state.closeS && res.Close.includes(this.state.query)) ||
                       (this.state.cuisineTypeS && res.CuisineType.toUpperCase().includes(this.state.query.toUpperCase()))
@@ -119,18 +119,18 @@ export class Restaurant extends Component {
                           <h6>Type: {res.CuisineType}</h6>
                           <h6>Open: {res.Open}</h6>
                           <h6>Close: {res.Close}</h6>
-                        </div>
-                        <div className="row">
-                          <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
+                          <div className="row">
+                            <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
 
-                          <EditModal mID={this.modalID} name={res.Name} address={res.Address} city={res.City} zipcode={res.zipcode} open={res.Open} close={res.Close} rID={t} cuisineType={res.CuisineType}/>
-                          <button
-                            onClick={this.props.deleteRestaurant.bind(this, t)}
-                            className="btn btn-danger ml-2"
-                          >
-                            {" "}
-                            Delete
-                          </button>
+                            <EditModal mID={this.modalID} name={res.Name} address={res.Address} city={res.City} zipcode={res.zipcode} open={res.Open} close={res.Close} rID={t} cuisineType={res.CuisineType}/>
+                            <button
+                              onClick={this.props.deleteRestaurant.bind(this, t)}
+                              className="btn btn-danger ml-2"
+                            >
+                              {" "}
+                              Delete
+                            </button>
+                          </div>
                         </div>
                       </div>
                   </div>
@@ -152,17 +152,18 @@ export class Restaurant extends Component {
                             <h6>Type: {res.CuisineType}</h6> 
                             <h6>Open: {res.Open}</h6>
                             <h6>Close: {res.Close}</h6>
-                          </div>
-                          <div className="row">
-                            <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
-                            <EditModal mID={this.modalID} name={res.Name} address={res.Address} city={res.City} zipcode={res.zipcode} open={res.Open} close={res.Close} rID={t} cuisineType={res.CuisineType}/>
-                            <button
-                              onClick={this.props.deleteRestaurant.bind(this, t)}
-                              className="btn btn-danger ml-2"
-                            >
-                              {" "}
-                              Delete
-                            </button>
+
+                            <div className="row" style={{marginLeft:"2px"}}>
+                              <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
+                              <EditModal mID={this.modalID} name={res.Name} address={res.Address} city={res.City} zipcode={res.zipcode} open={res.Open} close={res.Close} rID={t} cuisineType={res.CuisineType}/>
+                              <button
+                                onClick={this.props.deleteRestaurant.bind(this, t)}
+                                className="btn btn-danger ml-2"
+                              >
+                                {" "}
+                                Delete
+                              </button>
+                            </div>
                           </div>
                       </div>
                     </div>
