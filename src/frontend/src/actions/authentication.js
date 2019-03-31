@@ -117,19 +117,3 @@ export const logout = () => (dispatch, getState) => {
     });
   };
 }
-
-
-//GET RESTAURANT NAME
-export const getRestaurantName = () => (dispatch, getState) => {
-  axios
-    .get("https://csci387.firebaseio.com/Restaurants/abc123/Name.json")
-    .then(res => {
-      dispatch({
-        type: GET_RESTAURANTS,
-        payload: res.data
-      });
-    })
-    .catch(err =>
-      dispatch(returnErrors(err.response.data, err.response.status))
-    );
-};

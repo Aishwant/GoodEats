@@ -47,6 +47,7 @@ export class EditItemModal extends Component {
         const { Name, Description, Price } = this.state;
         const item = { Name, Description, Price, "itemID":this.props.itemID, "category":this.props.category, "rID":this.props.rID };
         this.props.editItem(item);
+        this.closeModal();
     }
     
       render() {
@@ -68,7 +69,7 @@ export class EditItemModal extends Component {
                   <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-              <form onSubmit={this.onSubmit}>
+              <form>
               <div className="ml-4 mr-4 mt-4 mb-4">
                             
                             <div className="form-group">
@@ -101,13 +102,15 @@ export class EditItemModal extends Component {
                                 name="Price"
                                 onChange={this.onChange}
                                 value={Price}
+                                pattern="(\d+\.\d{1,2})"
+                                title="Price must contain either one or two decimal places e.g. 10.99 or 10.5"
                                 required
                                 />
                             </div>
                         </div>
                         <div className="modal-footer">
                           <button onClick={this.closeModal} className="btn btn-secondary">Cancel</button>
-                          <button type="submit" className="btn btn-primary" >Save</button>
+                          <button type="submit" className="btn btn-primary" onClick={this.onSubmit}>Save</button>
                         </div>
               </form>
               </div>

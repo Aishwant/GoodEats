@@ -98,6 +98,7 @@ export class UserDefiner extends Component {
           value={address}
           placeholder="Street Address"
           className="form-control"
+          required
         />
         <br />
         <input
@@ -107,6 +108,7 @@ export class UserDefiner extends Component {
           value={city}
           placeholder="City"
           className="form-control"
+          required
         />
         <br />
         <input
@@ -116,6 +118,9 @@ export class UserDefiner extends Component {
           value={zipcode}
           placeholder="Zip code"
           className="form-control"
+          pattern="^\d{5}(?:[-\s]\d{4})?$"
+          title="Not a valid zipcode"
+          required
         />
         <br />
         <label>Open</label>
@@ -125,6 +130,7 @@ export class UserDefiner extends Component {
           onChange={this.onChange}
           value={open}
           className="form-control"
+          required
         />
         <br />
         <label>Close</label>
@@ -134,6 +140,7 @@ export class UserDefiner extends Component {
           onChange={this.onChange}
           value={close}
           className="form-control"
+          required
         />
       </div>
     );
@@ -148,6 +155,9 @@ export class UserDefiner extends Component {
           value={zipcode}
           placeholder="Zip code"
           className="form-control"
+          pattern="^\d{5}(?:[-\s]\d{4})?$"
+          title="Not a valid zipcode"
+          required
         />
       </div>
     );
@@ -168,6 +178,7 @@ export class UserDefiner extends Component {
               value={fname}
               placeholder="First Name"
               className="form-control"
+              required
             />
             <br />
             <input
@@ -177,6 +188,7 @@ export class UserDefiner extends Component {
               value={lname}
               placeholder="Last Name"
               className="form-control"
+              required
             />
             <br />
             <button
