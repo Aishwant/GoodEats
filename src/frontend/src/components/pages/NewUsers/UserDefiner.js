@@ -15,6 +15,7 @@ export class UserDefiner extends Component {
     zipcode: "",
     open: "",
     close: "",
+    CuisineType: "",
     changeO: false,
     changeC: false,
     changeD: false
@@ -93,6 +94,15 @@ export class UserDefiner extends Component {
         <br />
         <input
           type="text"
+          name="CuisineType"
+          onChange={this.onChange}
+          value={CuisineType}
+          placeholder="Restaurant's Cuisine Type"
+          className="form-control"
+        />
+        <br />
+        <input
+          type="text"
           name="address"
           onChange={this.onChange}
           value={address}
@@ -162,7 +172,7 @@ export class UserDefiner extends Component {
       </div>
     );
 
-    const { fname, lname, name, address, city, zipcode, open, close } = this.state;
+    const { fname, lname, name, address, city, zipcode, open, close, CuisineType } = this.state;
     // const { changeO, changeC, changeD } = this.state;
     return (
       <div className="row">

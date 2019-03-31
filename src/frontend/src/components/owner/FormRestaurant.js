@@ -11,7 +11,8 @@ export class FormRestaurant extends Component {
         Close: "",
         Name: "",
         img: "",
-        zipcode: ""
+        zipcode: "",
+        CuisineType: "",
     }
 
     static propTypes = {
@@ -22,8 +23,8 @@ export class FormRestaurant extends Component {
 
     onSubmit = e => {
         e.preventDefault();
-        const { Address, City, Open, Close, Name, img, zipcode } = this.state;
-        const restaurant = { Address, City, Open, Close, Name, img, zipcode };
+        const { Address, City, Open, Close, Name, img, zipcode, CuisineType } = this.state;
+        const restaurant = { Address, City, Open, Close, Name, img, zipcode, CuisineType };
         this.props.addRestaurant(restaurant);
         this.setState({
             Address: "",
@@ -37,7 +38,7 @@ export class FormRestaurant extends Component {
     }
 
     render() {
-        const { Address, City, Open, Close, Name, img, zipcode } = this.state;
+        const { Address, City, Open, Close, Name, img, zipcode, CuisineType } = this.state;
         return (
                 <div>
                     <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -65,6 +66,17 @@ export class FormRestaurant extends Component {
                                     name="Name"
                                     onChange={this.onChange}
                                     value={Name}
+                                    required
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>Cuisine Type</label>
+                                    <input
+                                    className="form-control"
+                                    type="text"
+                                    name="CuisineType"
+                                    onChange={this.onChange}
+                                    value={CuisineType}
                                     required
                                     />
                                 </div>
