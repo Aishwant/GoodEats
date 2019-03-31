@@ -127,12 +127,26 @@ body{
       .ftco-navbar-light.scrolled .navbar-brand {
         color: #fff; }
   
-  .navbar-brand {
-    font-weight: 600;
-    border: 2px solid #fff;
-    line-height: 1;
-    padding: 5px 10px; }
-  
+.navbar-brand {
+  font-weight: 600;
+  border: 2px solid #fff;
+  line-height: 1;
+  padding: 5px 10px; 
+}
+
+.dropdown-menu{
+  background: #404044 !important;
+}
+
+.dropdown-item{
+  background: #404044 !important;
+  color: rgba(255,255,255,.5);
+}
+
+.dropdown-item:hover{
+  color: #f0f0f0;
+}
+
 
 
 .footerStyle{
