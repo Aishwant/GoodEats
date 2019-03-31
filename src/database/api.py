@@ -195,7 +195,6 @@ class getCategoriesAPI(generics.GenericAPIView):
             return Response(firebase.getCategories(request, rID))
         except:
             return Response({
-                "status":"Disconnected"
             })
 
 class getItemsAPI(generics.GenericAPIView):
