@@ -17,6 +17,7 @@ export class Header extends Component {
   }
 
   render() {
+    const contentKeys = Object.keys(this.props.user)
     const { isAuthenticated } = this.props.authReducer;
     let path = location.href+"";
 
@@ -79,7 +80,7 @@ export class Header extends Component {
               <li className="nav-item"><a href="#" className="nav-link">Contact</a></li>
               {isAuthenticated ? authLinks : guestLinks}
               {isAuthenticated ? "" : guestLinks1}
-              {isAuthenticated ? cart : ""}
+              {isAuthenticated && contentKeys[0] === "Customer" ? cart : ""}
             </ul>
           </div>
         </div>
@@ -105,7 +106,8 @@ const colorWhite ={
 
 const mapStateToProps = state => ({
   authReducer: state.authReducer,
-  itemCount:  state.cartReducer.itemCount
+  itemCount:  state.cartReducer.itemCount,
+  user: state.authReducer.user
 });
 
 export default withRouter(

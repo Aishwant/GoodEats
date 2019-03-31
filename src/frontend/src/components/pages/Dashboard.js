@@ -13,8 +13,6 @@ export class Dashboard extends Component {
   
   render(){
     const contentKeys = Object.keys(this.props.user)
-    console.log(contentKeys)
-    console.log(this.props.user['Owner'])
     
     switch(contentKeys[0]){
       case "Customer":
