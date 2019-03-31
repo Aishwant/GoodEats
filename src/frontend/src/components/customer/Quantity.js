@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import SpecialInstructions from './SpecialInstructions'
 
 export class Quantity extends Component {
 
@@ -21,7 +22,7 @@ export class Quantity extends Component {
   render() {
     return (
         <div>
-        <button className="btn btn-success btn-sm btn-block mt-1"  onClick={this.props.addToCartChild.bind(this, this.props.itemID, this.props.itemData, this.state.Quantity)}>Add</button>
+        <SpecialInstructions itemID={this.props.itemID} itemData={this.props.itemData} Quantity={this.state.Quantity} addToCart={this.props.addToCartChild}/>
         <div className="row">
         <div className="input-group mt-1">
           <span className="input-group-btn">
