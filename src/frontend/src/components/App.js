@@ -25,7 +25,9 @@ import { Provider } from "react-redux";
 import store from "../store";
 import { loadUser } from "../actions/authentication";
 import  newOrder  from "./owner/newOrder";
-import pendingOrders from './owner/pendingOrders';
+import DriverDeliveryHistory from "./driver/DriverDeliveryHistory";
+import DriverPendingOrders from "./driver/DriverPendingOrders";
+
 
 
 
@@ -63,7 +65,9 @@ class App extends Component {
                       <PrivateRoute exact path = "/menu/:rName" component={CustomerMenu} />
                       <PrivateRoute exact path = "/editmenu/:rName" component={EditMenu} />
                       <Route exact path="/newOrder/:rName" component={newOrder} />
-                      <Route exact path="/pendingOrders" component={pendingOrders} />
+                      <Route exact path="/pendingOrders" component={DriverPendingOrders} />
+                      <Route exact path="/deliveryHistory" component={DriverDeliveryHistory} />
+                     
              
 
     

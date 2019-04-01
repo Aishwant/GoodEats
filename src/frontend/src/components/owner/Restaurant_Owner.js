@@ -6,6 +6,8 @@ import FormMenu from './FormMenu';
 import {Link} from 'react-router-dom';
 import { MDBCol,MDBIcon } from "mdbreact";
 import  FormRestaurant  from './FormRestaurant';
+import  OwnerPendingOrder  from './OwnerPendingOrder';
+
 
 
 
@@ -62,9 +64,16 @@ export class Restaurant extends Component {
               </div>
               
           </MDBCol>
-
-          </row>
           <br/>
+          <h4 style= {{textAlign:'center'}}>Your New Order</h4>
+          <br />
+          <OwnerPendingOrder />
+          <br/>
+          </row>
+      
+          
+
+    
           <row>
           <div class="wrapper" style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(250px, 1fr))',gridGap:'3px',gridRowGap:'15px'}}>
               

@@ -9,6 +9,7 @@ import {
     ADD_RESTAURANT,
     DELETE_RESTAURANT,
     GET_MENU,
+    GET_ORDER,
     DELETE_MENU,
   } from './types';
 
