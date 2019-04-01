@@ -59,6 +59,7 @@ export class Menu_Customer extends Component {
               <div className="row">
                 {Object.keys(this.props.categories[i]).map(j => 
                   [this.props.categories[i][j]].map(item => 
+                    {if(item.Name !== "Item Name"){ return(
                     <div className="col-md-6 menuItems">
                       <div className="textM d-flex">
                         <div className="one-forth">
@@ -73,6 +74,7 @@ export class Menu_Customer extends Component {
                         </div>
                       </div>
                     </div>
+                    )}}
                   )
                 )}
           </div>
