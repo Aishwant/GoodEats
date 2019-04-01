@@ -44,8 +44,8 @@ export class Cart extends Component {
                             <td>{res.Description}</td>
                             <td>{res.Quantity}</td>
                             <td>{res.Price}</td>
-                            <td><EditInstructionsModal itemID={t} Instructions={res.Instructions}/></td>
-                            <td>
+                            <td className="text-right">
+                            <div className="row"><EditInstructionsModal itemID={t} Instructions={res.Instructions}/>
                             <button
                                 className="btn btn-danger btn-sm"
                                 onClick={this.props.deleteCartItem.bind(this, t, res.Quantity)}
@@ -53,6 +53,7 @@ export class Cart extends Component {
                                 {" "}
                                 Delete
                             </button>
+                            </div>
                             </td>
                         </tr>
                 //     }
