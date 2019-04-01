@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getCart, deleteCartItem } from '../../actions/orders';
+import EditInstructionsModal from './EditInstructionsModal';
 
 export class Cart extends Component {
     static propTypes = {
@@ -43,6 +44,7 @@ export class Cart extends Component {
                             <td>{res.Description}</td>
                             <td>{res.Quantity}</td>
                             <td>{res.Price}</td>
+                            <td><EditInstructionsModal itemID={t} Instructions={res.Instructions}/></td>
                             <td>
                             <button
                                 className="btn btn-danger btn-sm"
