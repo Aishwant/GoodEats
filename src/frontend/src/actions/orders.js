@@ -52,15 +52,17 @@ export const deleteCartItem = (itemID, Quantity) => (dispatch) => {
 //Get the total number of items in the cart when loading the page
 export const getItemCount = () => (dispatch) => {
   const uID = localStorage.getItem("uID");
-  axios
-    .get("/api/database/getItemCount/" + uID)
-    .then(res => {
-      dispatch({
-        type: GET_ITEM_COUNT,
-        payload: res.data
-      });
-    })
-    .catch(err => console.log(err));
+  if(uID !== null){
+    axios
+      .get("/api/database/getItemCount/" + uID)
+      .then(res => {
+        dispatch({
+          type: GET_ITEM_COUNT,
+          payload: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  }
 };
 
 //Get the total number of items in the cart when loading the page

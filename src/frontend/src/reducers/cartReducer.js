@@ -30,9 +30,10 @@ export default function(state = initialState, action) {
                 draft.itemCount -= action.qty;
             })
         case GET_ITEM_COUNT:
-            return produce(state, draft => {
-                draft.itemCount = action.payload;
-            })
+            return{
+                ...state,
+                itemCount: action.payload
+            };
         case EDIT_INSTRUCTIONS:
             return produce(state, draft => {
                 draft['items'][action.id]['Instructions'] = action.instructions

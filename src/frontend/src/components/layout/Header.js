@@ -3,18 +3,14 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/authentication";
+import { getItemCount } from "../../actions/orders"
 import { withRouter } from "react-router-dom";
-import { getItemCount } from "../../actions/orders";
 
 export class Header extends Component {
   static propTypes = {
     authReducer: PropTypes.object.isRequired,
     logout: PropTypes.func.isRequired
   };
-
-  componentDidMount(){
-    this.props.getItemCount();
-  }
 
   render() {
     const contentKeys = Object.keys(this.props.user)

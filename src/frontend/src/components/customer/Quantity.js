@@ -22,7 +22,7 @@ export class Quantity extends Component {
   render() {
     return (
         <div>
-        <SpecialInstructions itemID={this.props.itemID} itemData={this.props.itemData} Quantity={this.state.Quantity} addToCart={this.props.addToCartChild}/>
+        <SpecialInstructions itemID={this.props.itemID} itemData={this.props.itemData} passQuantity={this.state.Quantity} addToCart={this.props.addToCartChild}/>
         <div className="row">
         <div className="input-group mt-1">
           <span className="input-group-btn">
