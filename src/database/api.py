@@ -302,3 +302,17 @@ class getItemCountAPI(generics.GenericAPIView):
             return Response({
                 "status":"Disconnected"
             })
+
+class editInstructionsAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            return Response(firebase.editInstructions(request.data))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })

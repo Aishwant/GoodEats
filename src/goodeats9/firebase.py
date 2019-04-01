@@ -120,6 +120,7 @@ def addCustomer(request):
         rID = request.pop('resID') 
         restaurantData = {}
         restaurantData['Name'] = request['data'].pop('name')
+        restaurantData['CuisineType'] = request['data'].pop('CuisineType')
         restaurantData['Address'] = request['data'].pop('address')
         restaurantData['City'] = request['data'].pop('city')
         restaurantData['zipcode'] = request['data'].pop('zipcode')
@@ -217,3 +218,8 @@ def editCategory(request):
     newCategory = { Name : (dict(db.child("Restaurants").child(rID).child("Menu").child(category).get().val()))}
     db.child("Restaurants").child(rID).child("Menu").child(category).remove()
     return db.child("Restaurants").child(rID).child("Menu").update(newCategory)
+
+def editInstructions(request):
+    db = credentials().database()
+    data = {"Instructions" : request['Instructions']}
+    return db.child("Users").child(request['uID']).child("Customer").child("Cart").child(request['itemID']).update(data)
