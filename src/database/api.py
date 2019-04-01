@@ -296,12 +296,7 @@ class getItemCountAPI(generics.GenericAPIView):
     ]
 
     def get(self, request, uID):
-        try:
-            return Response(firebase.getItemCount(request, uID))
-        except:
-            return Response({
-                "status":"Disconnected"
-            })
+        return Response(firebase.getItemCount(request, uID))
 
 class editInstructionsAPI(generics.GenericAPIView):
 

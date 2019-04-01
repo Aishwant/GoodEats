@@ -155,7 +155,13 @@ def addToCart(request, uID):
     db = credentials().database()
     itemID = request.pop("itemID")
     itemData = request['itemData']
-    itemData['Quantity'] = request['Quantity']
+    existingQuantity = db.child("Users").child(uID).child("Customer").child("Cart").child(itemID).child("Quantity").get().val()
+    if(existingQuantity != None):
+        newQuantity = int(request['Quantity'])+int(existingQuantity)
+        itemData['Quantity'] = newQuantity
+    else:
+        itemData['Quantity'] = request['Quantity']
+
     data = { itemID : itemData}
     return db.child("Users").child(uID).child("Customer").child("Cart").update(data) 
 

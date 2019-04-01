@@ -47,7 +47,7 @@ export class EditInstructionsModal extends Component {
         const { Instructions } = this.state;
         return (
           <div>
-            <button onClick={this.openModal}>Instructions</button>
+            <button className="btn btn-light btn-sm" onClick={this.openModal}>Instructions</button>
             <Modal
               isOpen={this.state.modalIsOpen}
               onAfterOpen={this.afterOpenModal}

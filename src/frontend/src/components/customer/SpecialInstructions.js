@@ -34,7 +34,7 @@ export class SpecialInstructions extends Component {
       onSubmit = e => {
         e.preventDefault();
         this.props.itemData['Instructions'] = this.state.Instructions;
-        this.props.addToCart(this.props.itemID, this.props.itemData, this.props.Quantity);
+        this.props.addToCart(this.props.itemID, this.props.itemData, this.props.passQuantity);
         this.closeModal();
     }
     

@@ -4,11 +4,13 @@ import { getUser } from '../../actions/getUser';
 import Customer from '../customer/Customer'
 import Driver from '../driver/Driver'
 import Owner from '../owner/Owner'
+import { getItemCount } from "../../actions/orders"
 
 export class Dashboard extends Component {
 
   componentDidMount(){
     this.props.getUser();
+    this.props.getItemCount();
   }
   
   render(){
@@ -57,5 +59,5 @@ const mapStateToProps = state => ({
   user: state.authReducer.user
 });
 
-export default connect(mapStateToProps, { getUser })(Dashboard);
+export default connect(mapStateToProps, { getUser, getItemCount })(Dashboard);
 
