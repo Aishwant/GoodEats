@@ -18,6 +18,7 @@ export class EditModal extends Component {
             zipcode: "",
             rID: "",
             CuisineType: "",
+            imgURL: "",
             modalIsOpen: false
         };
     
@@ -40,6 +41,7 @@ export class EditModal extends Component {
         this.state.zipcode = this.props.zipcode;
         this.state.rID = this.props.rID;
         this.state.CuisineType = this.props.cuisineType;
+        this.state.imgURL = this.props.imgURL
     }
 
     onChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -60,13 +62,13 @@ export class EditModal extends Component {
 
       onSubmit = e => {
         e.preventDefault();
-        const { Address, City, Open, Close, Name, img, zipcode, rID, CuisineType } = this.state;
-        const restaurant = { Address, City, Open, Close, Name, img, zipcode, rID, CuisineType };
+        const { Address, City, Open, Close, Name, img, zipcode, rID, CuisineType, imgURL } = this.state;
+        const restaurant = { Address, City, Open, Close, Name, img, zipcode, rID, CuisineType, imgURL };
         this.props.editRestaurant(restaurant);
     }
     
       render() {
-        const { Address, City, Open, Close, Name, img, zipcode, CuisineType } = this.state;
+        const { Address, City, Open, Close, Name, img, zipcode, CuisineType, imgURL } = this.state;
         return (
           <div>
             <button className="btn btn-warning ml-2" onClick={this.openModal}>Edit</button>
@@ -164,6 +166,17 @@ export class EditModal extends Component {
                                 value={Close}
                                 required
                                 />
+                            </div>
+                            <div className="form-group">
+                                  <label>Restaurant Image</label>
+                                  <input 
+                                  className="form-control"
+                                  type="text"
+                                  name="imgURL"
+                                  onChange={this.onChange}
+                                  value={imgURL}
+                                  required
+                                  />
                             </div>
                         </div>
                         <div className="modal-footer">
