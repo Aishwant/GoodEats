@@ -59,7 +59,7 @@ export class Restaurant extends Component {
   render() {
     const contentKeys = Object.keys(this.props.restaurants)
     const { filter } = this.state;
-    
+
     return (
       <Fragment>
         <div className="col-md-12" style={{borderBottom:"solid 3px #ddd", paddingBottom:'25px', margin:"25px auto"}}>
@@ -122,7 +122,7 @@ export class Restaurant extends Component {
                           <div className="row">
                             <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
 
-                            <EditModal mID={this.modalID} name={res.Name} address={res.Address} city={res.City} zipcode={res.zipcode} open={res.Open} close={res.Close} rID={t} cuisineType={res.CuisineType}/>
+                            <EditModal mID={this.modalID} name={res.Name} address={res.Address} city={res.City} zipcode={res.zipcode} open={res.Open} close={res.Close} rID={t} cuisineType={res.CuisineType} imgURL={res.imgURL}/>
                             <button
                               onClick={this.props.deleteRestaurant.bind(this, t)}
                               className="btn btn-danger ml-2"
@@ -155,7 +155,7 @@ export class Restaurant extends Component {
                       </div>
                       <div className="row">
                         <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
-                        <EditModal mID={this.modalID} name={res.Name} address={res.Address} city={res.City} zipcode={res.zipcode} open={res.Open} close={res.Close} rID={t} cuisineType={res.CuisineType}/>
+                        <EditModal mID={this.modalID} name={res.Name} address={res.Address} city={res.City} zipcode={res.zipcode} open={res.Open} close={res.Close} rID={t} cuisineType={res.CuisineType} imgURL={res.imgURL}/>
                         <button
                           onClick={this.props.deleteRestaurant.bind(this, t)}
                           className="btn btn-danger ml-2"

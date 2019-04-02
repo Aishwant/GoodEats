@@ -33,14 +33,14 @@ export class FormRestaurant extends Component {
             Open: "",
             Close: "",
             Name: "",
-            img: "",
             zipcode: "",
+            CuisineType:"",
             imgURL: ""
         });
     }
 
     render() {
-        const { Address, City, Open, Close, Name, img, zipcode, imgURL } = this.state;
+        const { Address, City, Open, Close, Name, zipcode, CuisineType, imgURL } = this.state;
         return (
                 <div>
                     <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
