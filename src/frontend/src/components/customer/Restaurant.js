@@ -103,7 +103,7 @@ export class Restaurant extends Component {
                 (
                   (this.state.nameS && res.Name.toUpperCase().includes(this.state.query.toUpperCase()))||
                   (this.state.zipcodeS && res.zipcode.toUpperCase().includes(this.state.query.toUpperCase())) ||
-                  (this.state.cityS && res.City.includes(this.state.query))||
+                  (this.state.cityS && res.City.toUpperCase().includes(this.state.query.toUpperCase()))||
                   (this.state.closeS && res.Close.includes(this.state.query)) ||
                   (this.state.cuisineTypeS && res.CuisineType.toUpperCase().includes(this.state.query.toUpperCase())) ||
                   (this.state.tagS && res.tags.toUpperCase().includes(this.state.query.toUpperCase()))
