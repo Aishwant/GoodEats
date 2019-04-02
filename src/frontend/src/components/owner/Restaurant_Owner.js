@@ -59,7 +59,7 @@ export class Restaurant extends Component {
   render() {
     const contentKeys = Object.keys(this.props.restaurants)
     const { filter } = this.state;
-    //console.log((this.props.restaurants))
+    
     return (
       <Fragment>
         <div className="col-md-12" style={{borderBottom:"solid 3px #ddd", paddingBottom:'25px', margin:"25px auto"}}>
@@ -110,7 +110,7 @@ export class Restaurant extends Component {
                   return (
                   <div className="col-md-3" key={res.Name} style={{marginBottom:'15px'}}>
                     <div className="card" style={cardWidth}>
-                      <img className="card-img-top" src="https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fevanwise.jpg?alt=media&token=6986eebb-7928-42d6-9d4e-7589990f29b3" alt="Card image cap" />
+                      <img className="card-img-top" src={res.imgURL} alt={res.Name} />
                       <div className="card-body">
                         <h5 className="card-title">{res.Name}</h5>
                         <div className="card-text">
@@ -136,38 +136,37 @@ export class Restaurant extends Component {
                   </div>
                   </div>
                 )
-                }else{
-                  if(this.state.query){
-                    return('')
-                  }else{
-                    return (
-                      <div className="col-md-3" key={res.Name} style={{marginBottom:'15px'}}>
-                        <div className="card" style={cardWidth}>
-                        <img className="card-img-top" src="https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fevanwise.jpg?alt=media&token=6986eebb-7928-42d6-9d4e-7589990f29b3" alt="Card image cap" />
-                        <div className="card-body">
-                          <h5 className="card-title">{res.Name}</h5>
-                          <div className="card-text">
-                            <h6>{res.Address}</h6>
-                            <h6>{res.City} {res.zipcode}</h6>
-                            <h6>Type: {res.CuisineType}</h6> 
-                            <h6>Open: {res.Open}</h6>
-                            <h6>Close: {res.Close}</h6>
-
-                            <div className="row" style={{marginLeft:"2px"}}>
-                              <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
-                              <EditModal mID={this.modalID} name={res.Name} address={res.Address} city={res.City} zipcode={res.zipcode} open={res.Open} close={res.Close} rID={t} cuisineType={res.CuisineType}/>
-                              <button
-                                onClick={this.props.deleteRestaurant.bind(this, t)}
-                                className="btn btn-danger ml-2"
-                              >
-                                {" "}
-                                Delete
-                              </button>
-                            </div>
-                          </div>
+            }else{
+              if(this.state.query){
+                return('')
+              }else{
+                return (
+                  <div className="col-md-3" key={res.Name} style={{marginTop: '15px'}}>
+                    <div className="card" style={cardWidth}>
+                    <img className="card-img-top" src={res.imgURL} alt={res.Name} />
+                    <div className="card-body">
+                      <h5 className="card-title">{res.Name}</h5>
+                      <div className="card-text">
+                        <h6>{res.Address}</h6>
+                        <h6>{res.City} {res.zipcode}</h6>
+                        <h6>Type: {res.CuisineType}</h6> 
+                        <h6>Open: {res.Open}</h6>
+                        <h6>Close: {res.Close}</h6>
+                      </div>
+                      <div className="row">
+                        <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
+                        <EditModal mID={this.modalID} name={res.Name} address={res.Address} city={res.City} zipcode={res.zipcode} open={res.Open} close={res.Close} rID={t} cuisineType={res.CuisineType}/>
+                        <button
+                          onClick={this.props.deleteRestaurant.bind(this, t)}
+                          className="btn btn-danger ml-2"
+                        >
+                          {" "}
+                          Delete
+                        </button>
+                        </div>
+                      </div>
                       </div>
                     </div>
-                  </div>
                 )
               }
             }
