@@ -119,7 +119,7 @@ export class Restaurant extends Component {
                           <h6>Type: {res.CuisineType}</h6>
                           <h6>Open: {res.Open}</h6>
                           <h6>Close: {res.Close}</h6>
-                          <div className="row">
+                          <div className="row" style={{marginLeft:"2px"}}>
                             <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
 
                             <EditModal mID={this.modalID} name={res.Name} address={res.Address} city={res.City} zipcode={res.zipcode} open={res.Open} close={res.Close} rID={t} cuisineType={res.CuisineType} imgURL={res.imgURL}/>
@@ -153,7 +153,7 @@ export class Restaurant extends Component {
                         <h6>Open: {res.Open}</h6>
                         <h6>Close: {res.Close}</h6>
                       </div>
-                      <div className="row">
+                      <div className="row" style={{marginLeft:"2px"}}>
                         <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
                         <EditModal mID={this.modalID} name={res.Name} address={res.Address} city={res.City} zipcode={res.zipcode} open={res.Open} close={res.Close} rID={t} cuisineType={res.CuisineType} imgURL={res.imgURL}/>
                         <button
