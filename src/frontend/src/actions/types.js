@@ -13,6 +13,7 @@ export const GET_RESTAURANTS_BY_ZIP = 'GET_RESTAURANTS_BY_ZIP';
 export const GET_RESTAURANTS_BY_ID = 'GET_RESTAURANTS_BY_ID';
 export const ADD_RESTAURANT = 'ADD_RESTAURANT';
 export const DELETE_RESTAURANT = 'DELETE_RESTAURANT'
+export const EDIT_RESTAURANT = 'EDIT_RESTAURANT';
 export const GET_USER = 'GET_USER';
 
 export const OWNER_ADDED = "OWNER_ADDED";
@@ -20,5 +21,19 @@ export const CUSTOMER_ADDED = "CUSTOMER_ADDED";
 export const DRIVER_ADDED = "DRIVER_ADDED";
 export const GET_MENU = 'GET_MENU';
 export const ADD_MENU = "ADD_MENU";
-export const DELETE_MENU = "DELETE_MENU";
-export const EDIT_MENU = "EDIT_MENU";
+
+export const GET_CART = "GET_CART";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const DELETE_CART_ITEM = "DELETE_CART_ITEM";
+
+export const ADD_CATEGORY = "ADD_CATEGORY";
+export const GET_CATEGORIES = "GET_CATEGORIES";
+export const DELETE_CATEGORY = "DELETE_CATEGORY";
+export const EDIT_CATEGORY = "EDIT_CATEGORY";
+export const GET_ITEMS = "GET_ITEMS";
+export const ADD_ITEM = "ADD_ITEM";
+export const DELETE_ITEM = "DELETE_ITEM";
+export const EDIT_ITEM = "EDIT_ITEM";
+export const GET_ITEM_COUNT = "GET_ITEM_COUNT";
+export const EDIT_INSTRUCTIONS = "EDIT_INSTRUCTIONS";
+

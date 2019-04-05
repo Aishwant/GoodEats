@@ -1,21 +1,18 @@
 import React, { Component } from 'react'
 import Restaurant_Owner from './Restaurant_Owner'
-import FormRestaurant from './FormRestaurant'
+
 
 
 export default class Owner extends Component {
   render() {
 
     return (
-
-      <div className="container">
-      
-        <h1>Welcome {this.props.name}</h1>
+      <div className="row">
+        <div className="col-md-12">
+          <h1>Welcome {this.props.name}</h1>
+        </div>
         
-        <FormRestaurant />
-        
-        <br />
-        <Restaurant_Owner />
+          <Restaurant_Owner />
       </div>
     )
   }

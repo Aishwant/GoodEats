@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/authentication";
+import { getItemCount } from "../../actions/orders"
 import { withRouter } from "react-router-dom";
 
 export class Header extends Component {
@@ -12,6 +13,7 @@ export class Header extends Component {
   };
 
   render() {
+    const contentKeys = Object.keys(this.props.user)
     const { isAuthenticated } = this.props.authReducer;
     let path = location.href+"";
 
@@ -19,7 +21,7 @@ export class Header extends Component {
     const authLinks = (
       <li className="nav-item">
         <Link to="/home" className="nav-link" onClick={this.props.logout}>
-          Log Out
+          Log Out <i className="fas fa-sign-out-alt"></i>
         </Link>
       </li>
     );
@@ -39,13 +41,44 @@ export class Header extends Component {
       </li>
     );
 
-    const cart = (
+    const nonemptyCart = (
       <li className="nav-item">
-        <Link to="/" className="nav-link">
-          <i className="fas fa-shopping-cart"></i>
+        <Link to="/cart" className="nav-link">
+          <i className="fas fa-shopping-cart">
+            <span className="badge badge-pill badge-danger">{this.props.itemCount}</span>
+          </i>
         </Link>
       </li>
+    );
+    
+    const emptyCart = (
+        <li className="nav-item">
+          <Link to="/cart" className="nav-link">
+            <i className="fas fa-shopping-cart">
+            </i>
+          </Link>
+        </li>
+    );
+
+    const settings = (
+      <li className="nav-item dropdown">
+        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i className="fas fa-user-cog"></i>
+        </a>
+        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a className="dropdown-item" href="#">My Orders</a>
+          <a className="dropdown-item" href="#">My Profile</a>
+          <div className="dropdown-divider"></div>
+          <li className="dropdown-item">
+            <Link to="/home" className="dropdown-item" onClick={this.props.logout}>
+              Log Out <i className="fas fa-sign-out-alt"></i>
+            </Link>
+          </li>
+        </div>
+      </li>
     )
+
+    const cart = this.props.itemCount > 0 ? nonemptyCart : emptyCart
 
     return (
       <nav className={path?"navbar navbar-expand-lg navbar-dark bg-dark navSize":"navbar navbar-expand-lg navbar-dark bg-dark ftco_navbar ftco-navbar-light"} id="ftco-navbar">
@@ -59,9 +92,10 @@ export class Header extends Component {
             <ul className="navbar-nav ml-auto">
               <li className="nav-item"><Link to="/home" className="nav-link">Home</Link></li>
               <li className="nav-item"><a href="#" className="nav-link">Contact</a></li>
-              {isAuthenticated ? authLinks : guestLinks}
+              {isAuthenticated ? "" : guestLinks}
               {isAuthenticated ? "" : guestLinks1}
-              {isAuthenticated ? cart : ""}
+              {isAuthenticated && contentKeys[0] === "Customer" ? cart : ""}
+              {isAuthenticated ? settings : ""}
             </ul>
           </div>
         </div>
@@ -86,12 +120,14 @@ const colorWhite ={
 }
 
 const mapStateToProps = state => ({
-  authReducer: state.authReducer
+  authReducer: state.authReducer,
+  itemCount:  state.cartReducer.itemCount,
+  user: state.authReducer.user
 });
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { logout }
+    { logout, getItemCount }
   )(Header)
 );

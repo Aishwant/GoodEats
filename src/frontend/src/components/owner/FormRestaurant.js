@@ -11,7 +11,9 @@ export class FormRestaurant extends Component {
         Close: "",
         Name: "",
         img: "",
-        zipcode: ""
+        zipcode: "",
+        CuisineType: "",
+        imgURL: ""
     }
 
     static propTypes = {
@@ -22,8 +24,8 @@ export class FormRestaurant extends Component {
 
     onSubmit = e => {
         e.preventDefault();
-        const { Address, City, Open, Close, Name, img, zipcode } = this.state;
-        const restaurant = { Address, City, Open, Close, Name, img, zipcode };
+        const { Address, City, Open, Close, Name, img, zipcode, CuisineType, imgURL } = this.state;
+        const restaurant = { Address, City, Open, Close, Name, img, zipcode, CuisineType, imgURL };
         this.props.addRestaurant(restaurant);
         this.setState({
             Address: "",
@@ -31,19 +33,20 @@ export class FormRestaurant extends Component {
             Open: "",
             Close: "",
             Name: "",
-            img: "",
-            zipcode: ""
+            zipcode: "",
+            CuisineType:"",
+            imgURL: ""
         });
     }
 
     render() {
-        const { Address, City, Open, Close, Name, img, zipcode } = this.state;
+        const { Address, City, Open, Close, Name, zipcode, CuisineType, imgURL } = this.state;
         return (
                 <div>
                     
 
                     <form onSubmit={this.onSubmit}>
-                    <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal fade text-left" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                         <div className="modal-header">
@@ -63,6 +66,17 @@ export class FormRestaurant extends Component {
                                     name="Name"
                                     onChange={this.onChange}
                                     value={Name}
+                                    required
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>Cuisine Type</label>
+                                    <input
+                                    className="form-control"
+                                    type="text"
+                                    name="CuisineType"
+                                    onChange={this.onChange}
+                                    value={CuisineType}
                                     required
                                     />
                                 </div>
@@ -96,6 +110,8 @@ export class FormRestaurant extends Component {
                                     name="zipcode"
                                     onChange={this.onChange}
                                     value={zipcode}
+                                    pattern="^\d{5}(?:[-\s]\d{4})?$"
+                                    title="Not a valid zipcode"
                                     required
                                     />
                                 </div>
@@ -120,6 +136,17 @@ export class FormRestaurant extends Component {
                                     value={Close}
                                     required
                                     />
+                                    </div>
+                                <div className="form-group">
+                                    <label>Restaurant Image</label>
+                                    <input 
+                                    className="form-control"
+                                    type="text"
+                                    name="imgURL"
+                                    onChange={this.onChange}
+                                    value={imgURL}
+                                    required
+                                    />    
                                 </div>
                             </div>
                         <div className="modal-footer">
@@ -135,4 +162,8 @@ export class FormRestaurant extends Component {
     }
 }
 
-export default connect(null, { addRestaurant })(FormRestaurant);
+const mapStateToProps = state => ({
+    restaurants: state.restaurantReducer.restaurants
+  });
+
+export default connect(mapStateToProps, { addRestaurant })(FormRestaurant);

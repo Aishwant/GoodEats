@@ -1,27 +1,29 @@
-import React,{ Component} from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getRestaurantByID, deleteRestaurant } from '../../actions/getRestaurants';
-import FormMenu from './FormMenu';
 import {Link} from 'react-router-dom';
-import { MDBCol,MDBIcon } from "mdbreact";
-import  FormRestaurant  from './FormRestaurant';
-import  OwnerPendingOrder  from './OwnerPendingOrder';
-
-
-
+import EditModal from './EditModal';
+import FormRestaurant from './FormRestaurant'
 
 
 
 export class Restaurant extends Component {
 
-  componentDidMount(){
-    this.props.getRestaurantByID();
-  }
-
   state = {
     query: '',
-    showForm:false
+    showForm:false,
+    search: false,
+    nameS: true,
+    zipcodeS: false,
+    cityS:false,
+    closeS:false,
+    cuisineTypeS:false,
+    filter:'nameS'
+  }
+
+  componentDidMount(){
+    this.props.getRestaurantByID();
   }
   
   handleClick= event =>{
@@ -30,148 +32,154 @@ export class Restaurant extends Component {
   }
   handleInputChange = () => {
     this.setState({
-      query: this.search.value
-      
+      query: this.search.value,
     })
+    if(this.state.query!==''){
+      this.setState({
+        search: true
+      })
+    }
+    if(this.state.filter=="nameS"){
+      this.setState({nameS:true,zipcodeS:false,cityS:false,closeS:false,cuisineTypeS:false});
+    }else if(this.state.filter=="zipcodeS"){
+      this.setState({nameS:false,zipcodeS:true,cityS:false,closeS:false,cuisineTypeS:false});
+    }else if(this.state.filter=="cityS"){
+      this.setState({nameS:false,zipcodeS:false,cityS:true,closeS:false,cuisineTypeS:false})
+    }else if(this.state.filter=="closeS"){
+      this.setState({nameS:false,zipcodeS:false,cityS:false,closeS:true,cuisineTypeS:false})
+    }else if(this.state.filter=="cusineTypeS"){
+      this.setState({nameS:false,zipcodeS:false,cityS:false,closeS:false,cuisineTypeS:true})
+    }
+  }
+
+  onChange=e=> {
+    this.setState({filter:e.target.value});
   }
 
   render() {
     const contentKeys = Object.keys(this.props.restaurants)
-    //console.log((this.props.restaurants))
+    const { filter } = this.state;
+
     return (
+      <Fragment>
+        <div className="col-md-12" style={{borderBottom:"solid 3px #ddd", paddingBottom:'25px', margin:"25px auto"}}>
+          <div className="row">
 
-      
-      <div>
-
-        <row>
-      
-
-        <MDBCol md="6" style={{marginLeft:'auto',marginRight:'auto',borderRadius:'5'}}>
-              <div className="input-group md-form form-sm form-1 pl-0" >
-                <div className="input-group-prepend">
-                </div>
-                <input className="form-control my-0 py-1"
-                placeholder="Search anything here..."
+            <div className="col-md-6">
+              <div className="input-group">
+                <input
+                type="text"
+                placeholder="Search with"
                 ref={input => this.search = input}
                 onChange={this.handleInputChange}
+                className="form-control"
+                aria-label="Text input with dropdown button"
                 />
-                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Add Restaurant
-                    </button>
-                    <FormRestaurant />
-                    
+                <select className="input-group-append" id="inlineFormCustomSelect" value={filter} onChange={this.onChange}>
+                  <option value="nameS">Name</option>
+                  <option value="zipcodeS">Zipcode</option>
+                  <option value="cityS">City</option>
+                  <option value="closeS">Close Time</option>
+                  <option value="cuisineTypeS">Cuisine Type</option>
+                </select>
+              </div>
+            </div>
+            <div className="col-md-6 text-right">
+              <FormRestaurant />
+            </div>
+
+          </div>
+        </div>
+        <div className="col-md-12">
+          <div className="row">
+            {contentKeys.map(t=>
+            
+              [this.props.restaurants[t]].map(res =>
+              { if 
+                  (this.state.query !== '' &&
+                    (
+                      (this.state.nameS && res.Name.toUpperCase().includes(this.state.query.toUpperCase()))||
+                      (this.state.zipcodeS && res.zipcode.includes(this.state.query)) ||
+                      (this.state.cityS && res.City.includes(this.state.query))||
+                      (this.state.closeS && res.Close.includes(this.state.query)) ||
+                      (this.state.cuisineTypeS && res.CuisineType.toUpperCase().includes(this.state.query.toUpperCase()))
+                    )
+                  )
+                  {
                 
-              </div>
-              
-          </MDBCol>
-          <br/>
-          <h4 style= {{textAlign:'center'}}>Your New Order</h4>
-          <br />
-          <OwnerPendingOrder />
-          <br/>
-          </row>
-      
-          
+                  return (
+                  <div className="col-md-3" key={res.Name} style={{marginBottom:'15px'}}>
+                    <div className="card" style={cardWidth}>
+                      <img className="card-img-top" src={res.imgURL} alt={res.Name} />
+                      <div className="card-body">
+                        <h5 className="card-title">{res.Name}</h5>
+                        <div className="card-text">
+                          <h6>{res.Address}</h6>
+                          <h6>{res.City} {res.zipcode}</h6> 
+                          <h6>Type: {res.CuisineType}</h6>
+                          <h6>Open: {res.Open}</h6>
+                          <h6>Close: {res.Close}</h6>
+                          <div className="row" style={{marginLeft:"2px"}}>
+                            <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
 
-    
-          <row>
-          <div class="wrapper" style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(250px, 1fr))',gridGap:'3px',gridRowGap:'15px'}}>
-              
-              {contentKeys.map(t=>
-        
-                          [this.props.restaurants[t]].map(res =>
-                          { if (this.state.query !== '' && this.state.query === res.Name){
-                            
-                              return (
-                              <div className="col-md-3">
-                                <div className="card" style={cardWidth}>
-                                <Link to={`/newOrder/${res.Name}?id=${t}`} >
-                                  <img className="card-img-top" src="https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fevanwise.jpg?alt=media&token=6986eebb-7928-42d6-9d4e-7589990f29b3" alt="Card image cap" />
-                                  </Link>
-                                  <div className="card-body">
-                                    <h5 className="card-title" style={{marginLeft:'auto',marginRight:'auto'}}>{res.Name}</h5>
-                                    <p className="card-text">
-                                      <h7>{res.Address},{res.City},{res.zipcode}</h7>
-                                      
-                                      <ul><h6>Open:{res.Open}</h6>
-                                      <h6>Close:{res.Close}</h6></ul>
-                                      
-                                    </p>
-                                    <ul>
-                                    <li><Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link></li>
-                                    <li><button
-                                      className="btn btn-warning ml-2"
-                                    >
-                                      Edit
-                                    </button></li>
-                                    <li><button
-                                      onClick={this.props.deleteRestaurant.bind(this, t)}
-                                      className="btn btn-danger ml-2"
-                                    >
-                                      {" "}
-                                      Delete
-                                    </button></li>
-
-                                    
-                                    
-                                    </ul>
-                                  </div>
-                              </div>
-                              <br/>
-                            </div>)
-                            }else{
-                              return (
-                                <div className="col-md-3">
-                                <div className="card" style={cardWidth}>
-                                <Link to={`/newOrder/${res.Name}?id=${t}`} name={res.Name}>
-
-                                  <img className="card-img-top" src="https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fevanwise.jpg?alt=media&token=6986eebb-7928-42d6-9d4e-7589990f29b3" alt="Card image cap" />
-                                  </Link>
-                                  <div className="card-body">
-                                    <h5 className="card-title">{res.Name}</h5>
-                                    <p className="card-text">
-                                      <h6>{res.Address}</h6>
-                                      <h6>{res.City} {res.zipcode}</h6> 
-                                      <h6>Open:{res.Open}</h6>
-                                      <h6>Close:{res.Close}</h6>
-                                    </p>
-                                    <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
-                                    <button
-                                      className="btn btn-warning ml-2"
-                                    >
-                                      Edit
-                                    </button>
-                                    <button
-                                      onClick={this.props.deleteRestaurant.bind(this, t)}
-                                      className="btn btn-danger ml-2"
-                                    >
-                                      {" "}
-                                      Delete
-                                    </button>
-                                  </div>
-                              </div>
-                              
-                            </div>
-                              )
-                            }
-                          }
-                            
-                          )
-                        )}
-                        
-
-                   
-              
-              </div>
-          </row>
-
-
-          
-             
-      </div> 
+                            <EditModal mID={this.modalID} name={res.Name} address={res.Address} city={res.City} zipcode={res.zipcode} open={res.Open} close={res.Close} rID={t} cuisineType={res.CuisineType} imgURL={res.imgURL}/>
+                            <button
+                              onClick={this.props.deleteRestaurant.bind(this, t)}
+                              className="btn btn-danger ml-2"
+                            >
+                              {" "}
+                              Delete
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  </div>
+                )
+            }else{
+              if(this.state.query){
+                return('')
+              }else{
+                return (
+                  <div className="col-md-3" key={res.Name} style={{marginTop: '15px'}}>
+                    <div className="card" style={cardWidth}>
+                    <img className="card-img-top" src={res.imgURL} alt={res.Name} />
+                    <div className="card-body">
+                      <h5 className="card-title">{res.Name}</h5>
+                      <div className="card-text">
+                        <h6>{res.Address}</h6>
+                        <h6>{res.City} {res.zipcode}</h6>
+                        <h6>Type: {res.CuisineType}</h6> 
+                        <h6>Open: {res.Open}</h6>
+                        <h6>Close: {res.Close}</h6>
+                      </div>
+                      <div className="row" style={{marginLeft:"2px"}}>
+                        <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
+                        <EditModal mID={this.modalID} name={res.Name} address={res.Address} city={res.City} zipcode={res.zipcode} open={res.Open} close={res.Close} rID={t} cuisineType={res.CuisineType} imgURL={res.imgURL}/>
+                        <button
+                          onClick={this.props.deleteRestaurant.bind(this, t)}
+                          className="btn btn-danger ml-2"
+                        >
+                          {" "}
+                          Delete
+                        </button>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                )
+              }
+            }
+          }
+          )
+          )}
+          </div>
+        </div>
+      </Fragment>
     )
   }
 }
+        
 
 const cardWidth = {
   width: '250px'

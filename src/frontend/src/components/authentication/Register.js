@@ -65,6 +65,9 @@ export class Register extends Component {
                 value={pwd}
                 className="form-control"
                 placeholder="Password"
+                pattern="(?=^.{8,255}$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*"
+                title="Your password must be atleast 8 characters long and contain a lowecase letter, uppercase letter, number"
+                required
                 />
               </div>
               <div className="form-group">

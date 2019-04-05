@@ -127,12 +127,26 @@ body{
       .ftco-navbar-light.scrolled .navbar-brand {
         color: #fff; }
   
-  .navbar-brand {
-    font-weight: 600;
-    border: 2px solid #fff;
-    line-height: 1;
-    padding: 5px 10px; }
-  
+.navbar-brand {
+  font-weight: 600;
+  border: 2px solid #fff;
+  line-height: 1;
+  padding: 5px 10px; 
+}
+
+.dropdown-menu{
+  background: #404044 !important;
+}
+
+.dropdown-item{
+  background: #404044 !important;
+  color: rgba(255,255,255,.5);
+}
+
+.dropdown-item:hover{
+  color: #f0f0f0;
+}
+
 
 
 .footerStyle{
@@ -156,21 +170,17 @@ body{
     height: calc(100vh - 117px);
   }
 
-.carouselStyle{
-
-}
-
 
 /* Guest Reviews */
 .testimony-section {
     position: relative; }
-    .testimony-section .owl-carousel {
+    .testimony-section{
       margin: 0; }
-    .testimony-section .owl-carousel .owl-stage-outer {
+    .testimony-section {
       padding-top: 3.5em;
       padding-bottom: 1em;
       position: relative; }
-      .testimony-section .owl-carousel .owl-stage-outer:before {
+      .testimony-section {
         position: absolute;
         top: 0;
         left: 0;
@@ -181,7 +191,7 @@ body{
         -moz-box-shadow: inset 105px 0px 70px -60px white;
         box-shadow: inset 105px 0px 70px -60px white;
         z-index: 1; }
-      .testimony-section .owl-carousel .owl-stage-outer:after {
+      .testimony-section {
         position: absolute;
         top: 0;
         right: 0;
@@ -192,7 +202,7 @@ body{
         -moz-box-shadow: inset -105px 0px 70px -60px white;
         box-shadow: inset -105px 0px 70px -60px white; }
       @media (max-width: 767.98px) {
-        .testimony-section .owl-carousel .owl-stage-outer:before, .testimony-section .owl-carousel .owl-stage-outer:after {
+        .testimony-section {
           display: none; } }
   
 .testimony-wrap {
@@ -281,18 +291,15 @@ body{
   padding: 15px;
 }
 
-.menuBtn{
-  border-radius: 0;
-  margin-bottom: 0;
-  background: white;
-  -webkit-box-shadow: 0px 4px 18px -12px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 4px 18px -12px rgba(0, 0, 0, 0.75);
-  -ms-box-shadow: 0px 4px 18px -12px rgba(0, 0, 0, 0.75);
-  -o-box-shadow: 0px 4px 18px -12px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 4px 18px -12px rgba(0, 0, 0, 0.75);
-  margin-left: 4px;
-  margin-right: 4px;
-  /* color: #a5a5ab; */
-  font-weight: 700;
-  padding: 15px;
+.menuChoose .textM:hover{
+  background-color: #ffb400;
+}
+
+.pre-scrollable {
+  max-height: 100%;
+  overflow-y: scroll;
+}
+
+.card-img-top {
+  height: 180px;
 }
