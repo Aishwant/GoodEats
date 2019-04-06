@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import { getRestaurantByID, deleteRestaurant } from '../../actions/getRestaurants';
 import {Link} from 'react-router-dom';
 import EditModal from './EditModal';
-import FormRestaurant from './FormRestaurant'
+import FormRestaurant from './FormRestaurant';
+import Websocket from 'react-websocket';
 
 
 
@@ -56,7 +57,22 @@ export class Restaurant extends Component {
     this.setState({filter:e.target.value});
   }
 
+  handleData(data) {
+    let result = JSON.parse(data);
+    console.log(result);
+    console.log(result['message']);
+  }
+
+  sendMessage(message){
+    console.log("Clicked send");
+    this.refWebSocket.sendMessage(JSON.stringify({
+      'message': message
+    }));
+  }
+
+
   render() {
+
     const contentKeys = Object.keys(this.props.restaurants)
     const { filter } = this.state;
 
@@ -175,6 +191,17 @@ export class Restaurant extends Component {
           )}
           </div>
         </div>
+        
+        <button onClick={() => this.sendMessage("Hello")} >Send Message</button>
+        <Websocket 
+          url={'ws://'+window.location.host+'/ws/notifyOwner'} 
+          onMessage={this.handleData.bind(this)} onOpen={console.log("connected")}
+          onClose={console.log('disconnected')}
+          debug = {true}
+          ref={Websocket => {
+            this.refWebSocket = Websocket;
+          }}
+        />
       </Fragment>
     )
   }
