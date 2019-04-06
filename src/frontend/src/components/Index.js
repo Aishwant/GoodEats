@@ -53,7 +53,7 @@ export class Index extends Component {
                 <div className="container">
                     <div className="row justify-content-center mb-5 pb-5">
                         <div className="col-md-7 text-center heading-section ftco-animate">
-                            <h3>Our Satisfied Guests says</h3>
+                            <h3>Our Satisfied Guests say</h3>
                         </div>
                     </div>
                     <div className="row">
@@ -63,7 +63,7 @@ export class Index extends Component {
                                     <div className="user-img mb-4" style={{backgroundImage: "url()", border: "1px solid red"}}></div>
                                     <div className="text">
                                         <p className="star-rate"><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star-half-full"></span></p>
-                                        <p className="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                        <p className="mb-5">They somehow delivered my food instantly? *dab*</p>
                                         <p className="name">Dennis Green</p>
                                         <span className="position">Guests from Italy</span>
                                     </div>

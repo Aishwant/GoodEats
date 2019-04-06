@@ -80,7 +80,7 @@ export class UserDefiner extends Component {
 
     const ownerForm = (
       <div style={margin15}>
-        Let's add your first resturant
+        Let's add your first restaurant
         <br /><br />
         <input
           type="text"
@@ -140,7 +140,7 @@ export class UserDefiner extends Component {
 
     const zipcodeF = (
       <div style={margin15}>
-        <h6>For us To give you better options</h6>
+        <h6>For us to give you better options</h6>
         <input 
           type="text"
           name="zipcode"
@@ -158,7 +158,7 @@ export class UserDefiner extends Component {
       <div className="row">
         <div className="col-md"></div>
         <div className="col-auto">
-          <h3>Let's Get to know you better</h3>
+          <h3>Let's get to know you better</h3>
           <br />
           <form onSubmit={this.onSubmit}>
             <input
@@ -188,7 +188,7 @@ export class UserDefiner extends Component {
               data-target="#ownerModalCenter"
               
             >
-              Owner of A resturant
+              Owner of a restaurant
             </button>{" "}
             <button
               type="button"
@@ -204,7 +204,7 @@ export class UserDefiner extends Component {
               style={btnStyleD}
               onClick={this.onClickDelivery.bind(this)}
             >
-              Deliver Driver
+              Delivery Driver
             </button>{" "}
             <br />
 
