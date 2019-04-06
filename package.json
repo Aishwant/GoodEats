@@ -40,6 +40,7 @@
     "react-native-vector-icons": "^6.3.0",
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
+    "react-scrollspy": "^3.4.0",
     "react-sidebar": "^3.0.2",
     "react-tabs": "^3.0.0",
     "react-transition-group": "^2.7.1",

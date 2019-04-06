@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import Button from 'react-bootstrap/Button'
+
 
 
 
@@ -29,11 +31,10 @@ export default class DriverCard extends Component{
                         <h4 class="card-title">{CID}</h4>
                         <p class="card-text"><h5>{RID}</h5></p>
                         {/* <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> */}
-                    
-                        <button type="button" onClick={() => {this.props.removeOrder(OrderID);this.props.showOrder(OrderID)}}class="btn btn-success btn-sm" style={{width:'50%'}}>Accept</button> 
-                        
+                        <Button variant="outline-success"onClick={() => {this.props.removeOrder(OrderID);this.props.showOrder(OrderID)}}style={{width:'33%'}}><i class="fas fa-check-circle"></i><br/>Accept</Button>
+                        <Button variant="outline-primary"style={{width:'33%'}}><i class="fas fa-book-open"></i><br/>View</Button>
+                        <Button variant="outline-danger"style={{width:'33%'}}><i class="far fa-times-circle"></i><br/>Decline</Button>
                      
-                        <button type="button" class="btn btn-danger btn-sm" style={{width:'50%'}}>Decline</button>
                     </div>
                 </div>
             </div>
