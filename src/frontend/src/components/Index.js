@@ -9,13 +9,13 @@ export class Index extends Component {
             <div id="carouselExampleControls" className="carousel slide carouselStyle" data-ride="carousel">
                 <div className="carousel-inner height-70">
                     <div className="carousel-item active">
-                        <img src="https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fbg_3.jpg?alt=media&token=8b38bbbb-5195-423e-8783-c731314a5245" className="d-block w-100" alt="..." />
-                    </div>
-                    <div className="carousel-item">
                         <img src="https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fbg_2.jpg?alt=media&token=55ec4eaa-a298-4c8d-81d2-58cb8971779d" className="d-block w-100" alt="..." />
                     </div>
                     <div className="carousel-item">
                         <img src="https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fbg_1.jpg?alt=media&token=774c39f0-dca2-4dbe-a628-1770b7b19d3d" className="d-block w-100" alt="..." />
+                    </div>
+                    <div className="carousel-item">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fbg_3.jpg?alt=media&token=8b38bbbb-5195-423e-8783-c731314a5245" className="d-block w-100" alt="..." />
                     </div>
                 </div>
                 <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">

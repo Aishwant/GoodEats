@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getRestaurant } from '../../actions/getRestaurants';
@@ -67,18 +67,18 @@ export class Restaurant extends Component {
     const { filter } = this.state;
     //console.log((this.props.restaurants))
     return (
-      <div className="row">
-        <div className="col-md-12">
-          <div className="col-md-6 mt-2" style={{marginBottom:"20px"}}>
-          <div className="input-group">
-          <input
-          type="text"
-          placeholder="Search with"
-          ref={input => this.search = input}
-          onChange={this.handleInputChange}
-          className="form-control"
-          aria-label="Text input with dropdown button"
-        />
+      <Fragment>
+        <div className="col-md-6" style={{borderBottom:"solid 3px #ddd", paddingBottom:"15px", marginBottom:"25px"}}>
+          <div className="row mt-2" style={{marginBottom:"20px"}}>
+            <div className="input-group">
+              <input
+              type="text"
+              placeholder="Search with"
+              ref={input => this.search = input}
+              onChange={this.handleInputChange}
+              className="form-control"
+              aria-label="Text input with dropdown button"
+            />
             <select className="input-group-append" id="inlineFormCustomSelect" value={filter} onChange={this.onChange}>
               <option value="nameS">Name</option>
               <option value="zipcodeS">Zipcode</option>
@@ -93,6 +93,8 @@ export class Restaurant extends Component {
           
         </div>
 
+        <div className="col-md-12">
+        <div className="row">
         {contentKeys.map(t=>
         
           [this.props.restaurants[t]].map(res =>
@@ -110,9 +112,9 @@ export class Restaurant extends Component {
               {
              
               return (
-              <div className="col-md-3" key={res.Name} style={{marginTop: '10px'}}>
+              <div className="col-md-3" key={res.Name} style={{marginBottom:'15px'}}>
                 <div className="card" style={cardWidth}>
-                  <img className="card-img-top" src="https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fevanwise.jpg?alt=media&token=6986eebb-7928-42d6-9d4e-7589990f29b3" alt="Card image cap" />
+                  <img className="card-img-top" src={res.imgURL} alt={res.Name} />
                   <div className="card-body">
                     <h5 className="card-title">{res.Name}</h5>
                     <div className="card-text">
@@ -121,8 +123,6 @@ export class Restaurant extends Component {
                       <h6>Type: {res.CuisineType}</h6>
                       <h6>Open: {res.Open}</h6>
                       <h6>Close: {res.Close}</h6>
-                    </div>
-                    <div className="row">
                       <Link to={`/menu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
                     </div>
                   </div>
@@ -134,9 +134,9 @@ export class Restaurant extends Component {
                 return('')
               }else{
                 return (
-                  <div className="col-md-3" key={res.Name} style={{marginTop: '15px'}}>
+                  <div className="col-md-3" key={res.Name} style={{marginBottom:'15px'}}>
                     <div className="card" style={cardWidth}>
-                    <img className="card-img-top" src="https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fevanwise.jpg?alt=media&token=6986eebb-7928-42d6-9d4e-7589990f29b3" alt="Card image cap" />
+                    <img className="card-img-top" src={res.imgURL} alt={res.Name} />
                     <div className="card-body">
                       <h5 className="card-title">{res.Name}</h5>
                       <div className="card-text">
@@ -145,8 +145,6 @@ export class Restaurant extends Component {
                         <h6>Type: {res.CuisineType}</h6> 
                         <h6>Open: {res.Open}</h6>
                         <h6>Close: {res.Close}</h6>
-                      </div>
-                      <div className="row">
                         <Link to={`/menu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
                       </div>
                   </div>
@@ -159,6 +157,8 @@ export class Restaurant extends Component {
       )
       )}
       </div>
+      </div>
+      </Fragment>
     )
   }
 }

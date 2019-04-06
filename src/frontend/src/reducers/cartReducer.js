@@ -3,7 +3,8 @@ import {
     GET_CART,
     ADD_TO_CART,
     DELETE_CART_ITEM,
-    GET_ITEM_COUNT
+    GET_ITEM_COUNT,
+    EDIT_INSTRUCTIONS
 } from "../actions/types";
 
 const initialState = {
@@ -29,8 +30,13 @@ export default function(state = initialState, action) {
                 draft.itemCount -= action.qty;
             })
         case GET_ITEM_COUNT:
+            return{
+                ...state,
+                itemCount: action.payload
+            };
+        case EDIT_INSTRUCTIONS:
             return produce(state, draft => {
-                draft.itemCount = action.payload;
+                draft['items'][action.id]['Instructions'] = action.instructions
             })
         default:
             return state;

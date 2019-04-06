@@ -17,7 +17,6 @@ import UserDefiner from "./pages/NewUsers/UserDefiner";
 import Index from "./Index"
 import Menu_Owner from "./owner/Menu_Owner";
 import Menu_Customer from "./customer/Menu_Customer";
-import CustomerMenu from "./customer/CustomerMenu";
 import Cart from "./ordering/Cart";
 
 import PrivateRoute from "./private/PrivateRoute";

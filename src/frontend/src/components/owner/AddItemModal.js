@@ -99,6 +99,8 @@ export class AddItemModal extends Component {
                                 name="Price"
                                 onChange={this.onChange}
                                 value={Price}
+                                pattern="(\d+\.\d{1,2})"
+                                title="Price must contain either one or two decimal places e.g. 10.99 or 10.5"
                                 required
                                 />
                             </div>

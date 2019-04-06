@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {GET_CART, ADD_TO_CART, DELETE_CART_ITEM, GET_ITEM_COUNT} from './types.js';
+import {GET_CART, ADD_TO_CART, DELETE_CART_ITEM, GET_ITEM_COUNT, EDIT_INSTRUCTIONS} from './types.js';
 
 //Get user's cart
 export const getCart = () => (dispatch) => {
@@ -52,12 +52,30 @@ export const deleteCartItem = (itemID, Quantity) => (dispatch) => {
 //Get the total number of items in the cart when loading the page
 export const getItemCount = () => (dispatch) => {
   const uID = localStorage.getItem("uID");
+  if(uID !== null){
+    axios
+      .get("/api/database/getItemCount/" + uID)
+      .then(res => {
+        dispatch({
+          type: GET_ITEM_COUNT,
+          payload: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  }
+};
+
+//Get the total number of items in the cart when loading the page
+export const editInstructions = (itemID, Instructions) => (dispatch) => {
+  const uID = localStorage.getItem("uID");
+  const data = { uID, itemID, Instructions };
   axios
-    .get("/api/database/getItemCount/" + uID)
+    .post("/api/database/editInstructions", data)
     .then(res => {
       dispatch({
-        type: GET_ITEM_COUNT,
-        payload: res.data
+        type: EDIT_INSTRUCTIONS,
+        id: itemID,
+        instructions: Instructions
       });
     })
     .catch(err => console.log(err));

@@ -12,6 +12,7 @@ export class FormRestaurant extends Component {
         Name: "",
         img: "",
         zipcode: "",
+        CuisineType: "",
         imgURL: ""
     }
 
@@ -23,8 +24,8 @@ export class FormRestaurant extends Component {
 
     onSubmit = e => {
         e.preventDefault();
-        const { Address, City, Open, Close, Name, img, zipcode, imgURL } = this.state;
-        const restaurant = { Address, City, Open, Close, Name, img, zipcode, imgURL };
+        const { Address, City, Open, Close, Name, img, zipcode, CuisineType, imgURL } = this.state;
+        const restaurant = { Address, City, Open, Close, Name, img, zipcode, CuisineType, imgURL };
         this.props.addRestaurant(restaurant);
         this.setState({
             Address: "",
@@ -32,14 +33,14 @@ export class FormRestaurant extends Component {
             Open: "",
             Close: "",
             Name: "",
-            img: "",
             zipcode: "",
+            CuisineType:"",
             imgURL: ""
         });
     }
 
     render() {
-        const { Address, City, Open, Close, Name, img, zipcode, imgURL } = this.state;
+        const { Address, City, Open, Close, Name, zipcode, CuisineType, imgURL } = this.state;
         return (
                 <div>
                     <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -47,7 +48,7 @@ export class FormRestaurant extends Component {
                     </button>
 
                     <form onSubmit={this.onSubmit}>
-                    <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal fade text-left" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                         <div className="modal-header">
@@ -67,6 +68,17 @@ export class FormRestaurant extends Component {
                                     name="Name"
                                     onChange={this.onChange}
                                     value={Name}
+                                    required
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>Cuisine Type</label>
+                                    <input
+                                    className="form-control"
+                                    type="text"
+                                    name="CuisineType"
+                                    onChange={this.onChange}
+                                    value={CuisineType}
                                     required
                                     />
                                 </div>
@@ -100,6 +112,8 @@ export class FormRestaurant extends Component {
                                     name="zipcode"
                                     onChange={this.onChange}
                                     value={zipcode}
+                                    pattern="^\d{5}(?:[-\s]\d{4})?$"
+                                    title="Not a valid zipcode"
                                     required
                                     />
                                 </div>

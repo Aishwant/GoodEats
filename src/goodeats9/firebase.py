@@ -117,15 +117,18 @@ def addCustomer(request):
         request['data'].pop("changeD")
         request['data'].pop("changeO")
 
+        rID = request.pop('resID') 
         restaurantData = {}
         restaurantData['Name'] = request['data'].pop('name')
+        restaurantData['CuisineType'] = request['data'].pop('CuisineType')
         restaurantData['Address'] = request['data'].pop('address')
         restaurantData['City'] = request['data'].pop('city')
         restaurantData['zipcode'] = request['data'].pop('zipcode')
         restaurantData['Open'] = request['data'].pop('open')
         restaurantData['Close'] = request['data'].pop('close')
+        formattedData = {rID : restaurantData}
 
-        addRestaurant(restaurantData, request['uID'])
+        addRestaurant(formattedData, request['uID'])
 
         db.child('Users').child(request['uID']).child("Owner").update(request['data'])
 
@@ -152,7 +155,13 @@ def addToCart(request, uID):
     db = credentials().database()
     itemID = request.pop("itemID")
     itemData = request['itemData']
-    itemData['Quantity'] = request['Quantity']
+    existingQuantity = db.child("Users").child(uID).child("Customer").child("Cart").child(itemID).child("Quantity").get().val()
+    if(existingQuantity != None):
+        newQuantity = int(request['Quantity'])+int(existingQuantity)
+        itemData['Quantity'] = newQuantity
+    else:
+        itemData['Quantity'] = request['Quantity']
+
     data = { itemID : itemData}
     return db.child("Users").child(uID).child("Customer").child("Cart").update(data) 
 
@@ -215,3 +224,8 @@ def editCategory(request):
     newCategory = { Name : (dict(db.child("Restaurants").child(rID).child("Menu").child(category).get().val()))}
     db.child("Restaurants").child(rID).child("Menu").child(category).remove()
     return db.child("Restaurants").child(rID).child("Menu").update(newCategory)
+
+def editInstructions(request):
+    db = credentials().database()
+    data = {"Instructions" : request['Instructions']}
+    return db.child("Users").child(request['uID']).child("Customer").child("Cart").child(request['itemID']).update(data)

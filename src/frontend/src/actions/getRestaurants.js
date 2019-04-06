@@ -39,17 +39,6 @@ export const getRestaurantByID = () => (dispatch) => {
     })
     .catch(err => console.log(err));
 };
-export const getMenu = (rID) => dispatch => {
-  axios.get('/api/database/getMenu/'+rID)
-  .then(res => {
-    dispatch({
-      type: GET_MENU,
-      payload: res.data
-    });
-    
-  })
-  .catch(err => console.log(err));
-}
 
 //ADD RESTAURANT 
 export const addRestaurant = restaurant => (dispatch) => {
