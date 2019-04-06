@@ -16,11 +16,17 @@ export class UserDefiner extends Component {
     open: "",
     close: "",
     CuisineType: "",
+    owner_ID: "",
     changeO: false,
     changeC: false,
     changeD: false
   };
 
+  componentDidMount(){
+    this.setState({
+      owner_ID: this.props.uID
+    });
+  }
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
@@ -250,7 +256,8 @@ const margin15 = {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.authReducer.isAuthenticated,
-  newUser: state.authReducer.newUser
+  newUser: state.authReducer.newUser,
+  uID: state.authReducer.uID
 });
 
 export default connect(

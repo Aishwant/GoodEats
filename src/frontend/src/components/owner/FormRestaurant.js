@@ -26,6 +26,7 @@ export class FormRestaurant extends Component {
         e.preventDefault();
         const { Address, City, Open, Close, Name, img, zipcode, CuisineType, imgURL } = this.state;
         const restaurant = { Address, City, Open, Close, Name, img, zipcode, CuisineType, imgURL };
+        restaurant['owner_ID'] = this.props.uID;
         this.props.addRestaurant(restaurant);
         this.setState({
             Address: "",
@@ -165,7 +166,8 @@ export class FormRestaurant extends Component {
 }
 
 const mapStateToProps = state => ({
-    restaurants: state.restaurantReducer.restaurants
+    restaurants: state.restaurantReducer.restaurants,
+    uID: state.authReducer.uID
   });
 
 export default connect(mapStateToProps, { addRestaurant })(FormRestaurant);

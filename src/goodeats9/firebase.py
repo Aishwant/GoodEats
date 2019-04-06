@@ -110,6 +110,7 @@ def addCustomer(request):
         request['data'].pop("open")
         request['data'].pop("close")
         request['data'].pop("name")
+        request['data'].pop('owner_ID')
         db.child('Users').child(request['uID']).child("Customer").set(request['data'])
 
     elif(request['data']["changeO"]==True):
@@ -126,6 +127,7 @@ def addCustomer(request):
         restaurantData['zipcode'] = request['data'].pop('zipcode')
         restaurantData['Open'] = request['data'].pop('open')
         restaurantData['Close'] = request['data'].pop('close')
+        restaurantData['owner_ID'] = request['data'].pop('owner_ID')
         formattedData = {rID : restaurantData}
 
         addRestaurant(formattedData, request['uID'])
@@ -141,6 +143,7 @@ def addCustomer(request):
         request['data'].pop("address")
         request['data'].pop("name")
         request['data'].pop("city")
+        request['data'].pop('owner_ID')
         db.child('Users').child(request['uID']).child("Driver").set(request['data'])
 
 def addRestaurant(request, uID):
