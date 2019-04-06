@@ -81,7 +81,7 @@ export default class DriverCard extends Component{
                                 
                             </Modal.Footer>
                             </Modal>
-                        <Button variant="outline-danger"style={{width:'33%'}}><i class="far fa-times-circle fa-lg" fa-lg></i><br/>Decline</Button>
+                        <Button variant="outline-danger"onClick={() => {this.props.removeOrder(OrderID)}} style={{width:'33%'}}><i class="far fa-times-circle fa-lg" fa-lg></i><br/>Decline</Button>
                      
                     </div>
                 </div>

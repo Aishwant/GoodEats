@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import RestaurantCard from "./RestaurantCard";
+import DriverCard from "./DriverCard";
 
 
 
@@ -9,7 +9,7 @@ import RestaurantCard from "./RestaurantCard";
 
 
 
-export class OwnerPendingOrder extends Component{
+export class DriverCurrentOrders extends Component{
 
     constructor() {
         super();
@@ -56,17 +56,16 @@ export class OwnerPendingOrder extends Component{
         }
       } 
 
-      removeOrder(OrderID) {
+      showOrder(OrderID) {
         
-        this.setState({ Orderslist: this.state.Orderslist.filter(order => order.OrderID !== OrderID )});
-        
+        this.setState({ Orderslist: this.state.Orderslist.filter(order => order.OrderID == OrderID )});
         
       }
     render(){
         let dCard = this.state.Orderslist.map(order => {
             return (
               
-                <RestaurantCard key={order.OrderID} removeOrder={this.removeOrder.bind(this)} indOrder={order}/>
+                <DriverCard key={order.OrderID} showOrder={this.showOrder.bind(this)} indOrder={order}/>
                
                 
             
@@ -88,4 +87,4 @@ export class OwnerPendingOrder extends Component{
     }
 }
 
-export default OwnerPendingOrder;
+export default DriverCurrentOrders;
