@@ -18,7 +18,7 @@ export class Cart extends Component {
     const contentKeys = Object.keys(this.props.items);
     return (
         <div className="container">
-            <h2>Cart</h2>
+            <h2 className="mt-3">Cart</h2>
             <table className="table table-striped">
             <thead>
                 <tr>
@@ -43,7 +43,7 @@ export class Cart extends Component {
                             <td>{res.Name}</td>
                             <td>{res.Description}</td>
                             <td>{res.Quantity}</td>
-                            <td>{res.Price}</td>
+                            <td>${res.Price}</td>
                             <td className="text-right">
                             <div className="row"><EditInstructionsModal itemID={t} Instructions={res.Instructions}/>
                             <button

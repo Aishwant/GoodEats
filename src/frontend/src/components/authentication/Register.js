@@ -52,7 +52,7 @@ export class Register extends Component {
                 name="email"
                 onChange={this.onChange}
                 value={email}
-                placeholder="Enter email"
+                placeholder="Enter Email"
                 className="form-control"
                 />
               </div>

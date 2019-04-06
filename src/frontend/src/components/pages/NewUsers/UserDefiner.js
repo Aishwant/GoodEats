@@ -126,14 +126,14 @@ export class UserDefiner extends Component {
           name="zipcode"
           onChange={this.onChange}
           value={zipcode}
-          placeholder="Zip code"
+          placeholder="Zip Code"
           className="form-control"
           pattern="^\d{5}(?:[-\s]\d{4})?$"
-          title="Not a valid zipcode"
+          title="Not a valid Zip Code"
           required
         />
         <br />
-        <label>Open</label>
+        <label>Open time</label>
         <input
           type="time"
           name="open"
@@ -143,7 +143,7 @@ export class UserDefiner extends Component {
           required
         />
         <br />
-        <label>Close</label>
+        <label>Close time</label>
         <input
           type="time"
           name="close"
@@ -157,16 +157,16 @@ export class UserDefiner extends Component {
 
     const zipcodeF = (
       <div style={margin15}>
-        <h6>For us to give you better options</h6>
+        <h6>Help us give you localized options</h6>
         <input 
           type="text"
           name="zipcode"
           onChange={this.onChange}
           value={zipcode}
-          placeholder="Zip code"
+          placeholder="Zip Code"
           className="form-control"
           pattern="^\d{5}(?:[-\s]\d{4})?$"
-          title="Not a valid zipcode"
+          title="Not a valid Zip Code"
           required
         />
       </div>
@@ -178,7 +178,7 @@ export class UserDefiner extends Component {
       <div className="row">
         <div className="col-md"></div>
         <div className="col-auto">
-          <h3>Let's get to know you better</h3>
+          <h3 className="mb-2 mt-3">Let's get to know you better</h3>
           <br />
           <form onSubmit={this.onSubmit}>
             <input

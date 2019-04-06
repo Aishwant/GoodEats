@@ -81,7 +81,7 @@ export class Restaurant extends Component {
             />
             <select className="input-group-append" id="inlineFormCustomSelect" value={filter} onChange={this.onChange}>
               <option value="nameS">Name</option>
-              <option value="zipcodeS">Zipcode</option>
+              <option value="zipcodeS">Zip Code</option>
               <option value="cityS">City</option>
               <option value="closeS">Close Time</option>
               <option value="cuisineTypeS">Cuisine Type</option>
