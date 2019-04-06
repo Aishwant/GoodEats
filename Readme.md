@@ -185,12 +185,16 @@ npm i query-string
 npm i react-modal
 npm i uuid
 npm i immer
+npm i react-websocket
 ````
 
 ### More pip install commands for Python:
 ````
 pip install django-rest-knox
 pip install whitenoise
+pip install channels
+pip install service_identity (optional)
+pip install channels_redis
 ````
 
 
