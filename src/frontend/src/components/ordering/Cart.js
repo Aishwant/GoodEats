@@ -3,8 +3,19 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getCart, deleteCartItem } from '../../actions/orders';
 import EditInstructionsModal from './EditInstructionsModal';
+import Total from './Total';
 
 export class Cart extends Component {
+    state = {
+        total: 0
+    }
+
+    addToTotal(price){
+        this.setState({
+            total: total+price
+        })
+    }
+
     static propTypes = {
         getCart: PropTypes.func.isRequired,
         deleteCartItem: PropTypes.func.isRequired
@@ -22,7 +33,7 @@ export class Cart extends Component {
             {contentKeys.map(i =>
 
                 <div>
-                <h2>Cart</h2>
+                <h2>{this.props.restaurants[i].Name} Cart</h2>
                 <table className="table table-striped">
                 <thead>
                     <tr>
@@ -37,16 +48,17 @@ export class Cart extends Component {
                 
                     {Object.keys(this.props.items[i]).map(j => 
                         [this.props.items[i][j]].map(item =>
+                        {if(j !== "total"){ return(
                         <tr >
                             <td>{item.Name}</td>
                             <td>{item.Description}</td>
                             <td>{item.Quantity}</td>
                             <td>{item.Price}</td>
                             <td className="text-right">
-                            <div className="row"><EditInstructionsModal itemID={j} Instructions={item.Instructions}/>
+                            <div className="row"><EditInstructionsModal rID={i} itemID={j} Instructions={item.Instructions}/>
                             <button
                                 className="btn btn-danger btn-sm"
-                                onClick={this.props.deleteCartItem.bind(this, j, item.Quantity)}
+                                onClick={this.props.deleteCartItem.bind(this, i, j, item.Quantity)}
                             >
                                 {" "}
                                 Delete
@@ -54,6 +66,17 @@ export class Cart extends Component {
                             </div>
                             </td>
                         </tr>
+                        )}
+                        else{return(
+                            <tr className="table-info">
+                                <td></td>
+                                <td></td>
+                                <td>Total</td>
+                                <td><Total total={this.props.items[i][j]}/></td>
+                                <td><button className="btn btn-sm btn-dark">Place Order</button></td>
+                            </tr>
+                        )}
+                    }
                     ))}
                 </tbody>
                 </table>
@@ -66,6 +89,7 @@ export class Cart extends Component {
 }
 
 const mapStateToProps = state =>({
+    restaurants: state.restaurantReducer.restaurants,
     items: state.cartReducer.items
 });
 

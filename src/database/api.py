@@ -155,9 +155,9 @@ class deleteCartItemAPI(generics.GenericAPIView):
         permissions.AllowAny
     ]
 
-    def get(self, request, itemID, uID):
+    def get(self, request, rID, itemID, uID):
         try:
-            db = firebase.deleteCartItem(request, itemID, uID)
+            db = firebase.deleteCartItem(request, rID, itemID, uID)
             return Response({
                 "status": "success"
             })

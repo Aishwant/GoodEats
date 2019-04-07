@@ -38,13 +38,14 @@ export const addToCart = (itemID, itemData, Quantity) => (dispatch) => {
 };
 
 //Delete an item from the user's cart
-export const deleteCartItem = (itemID, Quantity) => (dispatch) => {
+export const deleteCartItem = (rID, itemID, Quantity) => (dispatch) => {
   const uID = localStorage.getItem("uID")
   axios
-    .get(`/api/database/deleteCartItem/` + itemID + "/" + uID)
+    .get(`/api/database/deleteCartItem/` + rID + "/"+ itemID + "/" + uID)
     .then(res => {
       dispatch({
         type: DELETE_CART_ITEM,
+        resID: rID,
         payload: itemID,
         qty: Quantity
       });
@@ -69,14 +70,15 @@ export const getItemCount = () => (dispatch) => {
 };
 
 //Get the total number of items in the cart when loading the page
-export const editInstructions = (itemID, Instructions) => (dispatch) => {
+export const editInstructions = (rID, itemID, Instructions) => (dispatch) => {
   const uID = localStorage.getItem("uID");
-  const data = { uID, itemID, Instructions };
+  const data = { uID, rID, itemID, Instructions };
   axios
     .post("/api/database/editInstructions", data)
     .then(res => {
       dispatch({
         type: EDIT_INSTRUCTIONS,
+        resID: rID,
         id: itemID,
         instructions: Instructions
       });

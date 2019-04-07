@@ -94,9 +94,10 @@ def getItemCount(request, uID):
     itemCount = 0
     for k1, v1 in items.items():
         for k2, v2 in v1.items():
-            for k3, v3 in v2.items():
-                if(k3 == "Quantity"):
-                    itemCount += int(v3)
+            if(k2 != "total"):
+                for k3, v3 in v2.items():
+                    if(k3 == "Quantity"):
+                        itemCount += int(v3)
     return itemCount
 
  ##### Writing To Database #####
@@ -174,6 +175,17 @@ def addToCart(request, uID):
 
     rID = itemData['rID']
     data = { itemID : itemData}
+
+    total = float(db.child("Users").child(uID).child("Customer").child("Cart").child(rID).child("total").get().val())
+    if(total != None):
+        total += float(itemData['Price'])*float(itemData['Quantity'])
+    else: 
+        total = 0
+        total += float(itemData['Price'])*float(itemData['Quantity'])
+
+    print(total)
+    db.child("Users").child(uID).child("Customer").child("Cart").child(rID).child("total").set(str(total))
+
     return db.child("Users").child(uID).child("Customer").child("Cart").child(rID).update(data) 
 
 def addCategory(request):
@@ -202,9 +214,14 @@ def deleteRestaurant(request, rID, uID):
     db.child("Users").child(uID).child("Owner").child("rIDS").child(restaurantKey).remove()
     return db.child("Restaurants").child(rID).remove()
 
-def deleteCartItem(request, itemID, uID):
+def deleteCartItem(request, rID, itemID, uID):
     db = credentials().database()
-    return db.child("Users").child(uID).child("Customer").child("Cart").child(itemID).remove()
+
+    total = float(db.child("Users").child(uID).child("Customer").child("Cart").child(rID).child("total").get().val())
+    priceToRemove = float(db.child("Users").child(uID).child("Customer").child("Cart").child(rID).child(itemID).child("Price").get().val())
+    newTotal = total - priceToRemove
+    db.child("Users").child(uID).child("Customer").child("Cart").child(rID).child("total").set(newTotal)
+    return db.child("Users").child(uID).child("Customer").child("Cart").child(rID).child(itemID).remove()
 
 def deleteCategory(request):
     db = credentials().database()
@@ -239,9 +256,10 @@ def editCategory(request):
 def editInstructions(request):
     db = credentials().database()
     data = {"Instructions" : request['Instructions']}
-    return db.child("Users").child(request['uID']).child("Customer").child("Cart").child(request['itemID']).update(data)
-
+    return db.child("Users").child(request['uID']).child("Customer").child("Cart").child(request['rID']).child(request['itemID']).update(data)
+    
 def editMyProfile(request):
     db = credentials().database()
     print("reached")
     return db.child("Users").child(request['uID']).child(request["data"].pop('user_id')).update(request['data'])
+    
