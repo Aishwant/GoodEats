@@ -22,7 +22,7 @@ export class Cart extends Component {
             {contentKeys.map(i =>
 
                 <div>
-                <h2>Cart</h2>
+                <h2>{this.props.restaurants[i].Name} Cart</h2>
                 <table className="table table-striped">
                 <thead>
                     <tr>
@@ -66,6 +66,7 @@ export class Cart extends Component {
 }
 
 const mapStateToProps = state =>({
+    restaurants: state.restaurantReducer.restaurants,
     items: state.cartReducer.items
 });
 
