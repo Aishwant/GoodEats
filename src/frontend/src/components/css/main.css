@@ -304,3 +304,7 @@ body{
 .card-img-top {
   height: 180px;
 }
+
+.modal-dialog-1{
+  min-width: 900px!important;
+}

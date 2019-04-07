@@ -64,9 +64,8 @@ class App extends Component {
                       <PrivateRoute exact path = "/editmenu/:rName" component={Menu_Owner}/>
                       <PrivateRoute exact path = "/cart" component={Cart} />
                       <PrivateRoute exact path = "/myProfile" component={MyProfile} />
-                
+     
                 </Switch>
-                
 
               </div>
               <Footer />
@@ -78,12 +77,5 @@ class App extends Component {
   }
 }
 
-const bgpic={
-  background: 'url("https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fevanwise.jpg?alt=media&token=6986eebb-7928-42d6-9d4e-7589990f29b3") no-repeat center center fixed',
-  WebkitBackgroundSize: 'cover',
-  MozBackgroundSize: 'cover',
-  OBackgroundSize: 'cover',
-  BackgroundSize: 'cover',
-}
 
 ReactDom.render(<App />, document.getElementById("app"));
