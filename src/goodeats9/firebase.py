@@ -233,4 +233,4 @@ def editCategory(request):
 def editInstructions(request):
     db = credentials().database()
     data = {"Instructions" : request['Instructions']}
-    return db.child("Users").child(request['uID']).child("Customer").child("Cart").child(request['itemID']).update(data)
+    return db.child("Users").child(request['uID']).child("Customer").child("Cart").child(request['rID']).child(request['itemID']).update(data)

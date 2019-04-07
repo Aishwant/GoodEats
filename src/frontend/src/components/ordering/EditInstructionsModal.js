@@ -39,7 +39,7 @@ export class EditInstructionsModal extends Component {
 
       onSubmit = e => {
         e.preventDefault();
-        this.props.editInstructions(this.props.itemID, this.state.Instructions);
+        this.props.editInstructions(this.props.rID, this.props.itemID, this.state.Instructions);
         this.closeModal();
     }
     

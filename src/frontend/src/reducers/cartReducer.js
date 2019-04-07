@@ -36,7 +36,7 @@ export default function(state = initialState, action) {
             };
         case EDIT_INSTRUCTIONS:
             return produce(state, draft => {
-                draft['items'][action.id]['Instructions'] = action.instructions
+                draft['items'][action.resID][action.id]['Instructions'] = action.instructions
             })
         default:
             return state;

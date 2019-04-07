@@ -70,14 +70,15 @@ export const getItemCount = () => (dispatch) => {
 };
 
 //Get the total number of items in the cart when loading the page
-export const editInstructions = (itemID, Instructions) => (dispatch) => {
+export const editInstructions = (rID, itemID, Instructions) => (dispatch) => {
   const uID = localStorage.getItem("uID");
-  const data = { uID, itemID, Instructions };
+  const data = { uID, rID, itemID, Instructions };
   axios
     .post("/api/database/editInstructions", data)
     .then(res => {
       dispatch({
         type: EDIT_INSTRUCTIONS,
+        resID: rID,
         id: itemID,
         instructions: Instructions
       });
