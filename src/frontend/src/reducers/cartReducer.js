@@ -21,7 +21,7 @@ export default function(state = initialState, action) {
             };
         case ADD_TO_CART:
             return produce(state, draft => {
-                draft['items'][action.item] = [action.data];
+                draft['items'][action.rID] = [action.fd];
                 draft.itemCount += action.qty;
             })
         case DELETE_CART_ITEM:

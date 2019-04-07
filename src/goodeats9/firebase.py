@@ -94,8 +94,9 @@ def getItemCount(request, uID):
     itemCount = 0
     for k1, v1 in items.items():
         for k2, v2 in v1.items():
-            if(k2 == "Quantity"):
-                itemCount += int(v2)
+            for k3, v3 in v2.items():
+                if(k3 == "Quantity"):
+                    itemCount += int(v3)
     return itemCount
 
  ##### Writing To Database #####
@@ -110,12 +111,7 @@ def addCustomer(request):
         request['data'].pop("open")
         request['data'].pop("close")
         request['data'].pop("name")
-        request['data'].pop("CuisineType")
-        request['data'].pop("address")
-        request['data']['Address1'] = ""
-        request['data']['Address2'] = ""
-        request['data']['Phone'] = ""
-        request['data']['email'] = credentials().auth().get_account_info(request['token'])['users'][0]['email']
+        request['data'].pop('owner_ID')
         db.child('Users').child(request['uID']).child("Customer").set(request['data'])
 
     elif(request['data']["changeO"]==True):
@@ -132,6 +128,7 @@ def addCustomer(request):
         restaurantData['zipcode'] = request['data'].pop('zipcode')
         restaurantData['Open'] = request['data'].pop('open')
         restaurantData['Close'] = request['data'].pop('close')
+        restaurantData['owner_ID'] = request['data'].pop('owner_ID')
         formattedData = {rID : restaurantData}
 
         addRestaurant(formattedData, request['uID'])
@@ -152,14 +149,8 @@ def addCustomer(request):
         request['data'].pop("close")
         request['data'].pop("address")
         request['data'].pop("name")
-        request['data'].pop('CuisineType')
-
-        request['data']['Address1'] = ""
-        request['data']['Address2'] = ""
-        request['data']['Phone'] = ""
-        request['data']['zipcode'] = ""
-        request['data']['email'] = credentials().auth().get_account_info(request['token'])['users'][0]['email']
-        
+        request['data'].pop("city")
+        request['data'].pop('owner_ID')
         db.child('Users').child(request['uID']).child("Driver").set(request['data'])
 
 def addRestaurant(request, uID):
@@ -181,8 +172,9 @@ def addToCart(request, uID):
     else:
         itemData['Quantity'] = request['Quantity']
 
+    rID = itemData['rID']
     data = { itemID : itemData}
-    return db.child("Users").child(uID).child("Customer").child("Cart").update(data) 
+    return db.child("Users").child(uID).child("Customer").child("Cart").child(rID).update(data) 
 
 def addCategory(request):
     db = credentials().database()

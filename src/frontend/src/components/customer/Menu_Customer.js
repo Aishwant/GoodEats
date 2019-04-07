@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types"
-import { addCategory, getCategories, deleteCategory, deleteItem, pressButton } from "../../actions/menu";
+import { getCategories } from "../../actions/menu";
 import { addToCart } from '../../actions/orders';
 import queryString from 'query-string';
 import { Link } from 'react-router-dom';
@@ -35,6 +35,8 @@ export class Menu_Customer extends Component {
     }
 
     addToCartParent = (itemID, itemData, Quantity) => {
+      itemData['rID'] = this.state.rID;
+      itemData['owner_ID'] = this.props.restaurants[this.state.rID].owner_ID
       this.props.addToCart(itemID, itemData, Quantity)
     }
 
@@ -88,7 +90,7 @@ export class Menu_Customer extends Component {
 
 const mapStateToProps = state => ({
     categories: state.restaurantReducer.categories,
-    isPressed: state.restaurantReducer.isPressed
+    restaurants: state.restaurantReducer.restaurants
   });
 
 export default connect(mapStateToProps, { getCategories, addToCart })(Menu_Customer);
