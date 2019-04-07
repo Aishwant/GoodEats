@@ -197,6 +197,9 @@ pip install service_identity (optional)
 pip install channels_redis
 ````
 
+install redis for the conda environment.
+For mac: brew install redis
+For windows: https://github.com/dmajkic/redis/downloads
 
 ---
 This part has already been done. Cloning the repository should have these files
