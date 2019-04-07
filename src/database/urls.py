@@ -22,7 +22,7 @@ urlpatterns = [
     path('api/database/editRestaurant/',editRestaurantAPI.as_view()),
     path('api/database/getCart/<slug:uID>',getCartAPI.as_view()),
     path('api/database/addToCart/<slug:uID>',addToCartAPI.as_view()),
-    path('api/database/deleteCartItem/<slug:itemID>/<slug:uID>', deleteCartItemAPI.as_view()),
+    path('api/database/deleteCartItem/<slug:rID>/<slug:itemID>/<slug:uID>', deleteCartItemAPI.as_view()),
     path('api/database/addCategory',addCategoryAPI.as_view()),
     path('api/database/getCategories/<slug:rID>',getCategoriesAPI.as_view()),
     path('api/database/getItems', getItemsAPI.as_view()),

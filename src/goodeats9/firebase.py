@@ -196,9 +196,9 @@ def deleteRestaurant(request, rID, uID):
     db.child("Users").child(uID).child("Owner").child("rIDS").child(restaurantKey).remove()
     return db.child("Restaurants").child(rID).remove()
 
-def deleteCartItem(request, itemID, uID):
+def deleteCartItem(request, rID, itemID, uID):
     db = credentials().database()
-    return db.child("Users").child(uID).child("Customer").child("Cart").child(itemID).remove()
+    return db.child("Users").child(uID).child("Customer").child("Cart").child(rID).child(itemID).remove()
 
 def deleteCategory(request):
     db = credentials().database()

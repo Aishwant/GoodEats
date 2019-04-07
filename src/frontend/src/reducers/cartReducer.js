@@ -26,7 +26,7 @@ export default function(state = initialState, action) {
             })
         case DELETE_CART_ITEM:
             return produce(state, draft => {
-                delete draft['items'][action.payload];
+                delete draft['items'][action.resID][action.payload];
                 draft.itemCount -= action.qty;
             })
         case GET_ITEM_COUNT:

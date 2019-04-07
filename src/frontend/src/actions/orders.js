@@ -38,13 +38,14 @@ export const addToCart = (itemID, itemData, Quantity) => (dispatch) => {
 };
 
 //Delete an item from the user's cart
-export const deleteCartItem = (itemID, Quantity) => (dispatch) => {
+export const deleteCartItem = (rID, itemID, Quantity) => (dispatch) => {
   const uID = localStorage.getItem("uID")
   axios
-    .get(`/api/database/deleteCartItem/` + itemID + "/" + uID)
+    .get(`/api/database/deleteCartItem/` + rID + "/"+ itemID + "/" + uID)
     .then(res => {
       dispatch({
         type: DELETE_CART_ITEM,
+        resID: rID,
         payload: itemID,
         qty: Quantity
       });
