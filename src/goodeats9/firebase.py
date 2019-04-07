@@ -94,8 +94,9 @@ def getItemCount(request, uID):
     itemCount = 0
     for k1, v1 in items.items():
         for k2, v2 in v1.items():
-            if(k2 == "Quantity"):
-                itemCount += int(v2)
+            for k3, v3 in v2.items():
+                if(k3 == "Quantity"):
+                    itemCount += int(v3)
     return itemCount
 
  ##### Writing To Database #####

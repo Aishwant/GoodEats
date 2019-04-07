@@ -17,38 +17,36 @@ export class Cart extends Component {
   render() {
     const contentKeys = Object.keys(this.props.items);
     return (
+        
         <div className="container">
-            <h2>Cart</h2>
-            <table className="table table-striped">
-            <thead>
-                <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Qty</th>
-                <th>Price</th>
-                <th />
-                </tr>
-            </thead>
-            <tbody>
-            {contentKeys.map(t=>
+            {contentKeys.map(i =>
 
-                [this.props.items[t]].map(res =>
+                <div>
+                <h2>Cart</h2>
+                <table className="table table-striped">
+                <thead>
+                    <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th />
+                    </tr>
+                </thead>
+                <tbody>
                 
-                // {
-                    // if(res.status){
-                    //     ''
-                    // }
-                    // else{
+                    {Object.keys(this.props.items[i]).map(j => 
+                        [this.props.items[i][j]].map(item =>
                         <tr >
-                            <td>{res.Name}</td>
-                            <td>{res.Description}</td>
-                            <td>{res.Quantity}</td>
-                            <td>{res.Price}</td>
+                            <td>{item.Name}</td>
+                            <td>{item.Description}</td>
+                            <td>{item.Quantity}</td>
+                            <td>{item.Price}</td>
                             <td className="text-right">
-                            <div className="row"><EditInstructionsModal itemID={t} Instructions={res.Instructions}/>
+                            <div className="row"><EditInstructionsModal itemID={j} Instructions={item.Instructions}/>
                             <button
                                 className="btn btn-danger btn-sm"
-                                onClick={this.props.deleteCartItem.bind(this, t, res.Quantity)}
+                                onClick={this.props.deleteCartItem.bind(this, j, item.Quantity)}
                             >
                                 {" "}
                                 Delete
@@ -56,12 +54,13 @@ export class Cart extends Component {
                             </div>
                             </td>
                         </tr>
-                //     }
-                // }
-                ))}
-            </tbody>
-            </table>
+                    ))}
+                </tbody>
+                </table>
+                </div>
+            )} 
         </div>
+        
     )
   }
 }
