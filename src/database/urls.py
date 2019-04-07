@@ -11,6 +11,7 @@ from .api import addCategoryAPI, getCategoriesAPI, deleteCategoryAPI, editCatego
 from .api import getItemsAPI, addItemAPI, deleteItemAPI, editItemAPI
 from .api import getItemCountAPI
 from .api import editInstructionsAPI
+from .api import editMyProfileAPI
 
 urlpatterns = [
     path('api/database/get',getDataAPI.as_view()),
@@ -33,4 +34,5 @@ urlpatterns = [
     path('api/database/editCategory', editCategoryAPI.as_view()),
     path('api/database/getItemCount/<slug:uID>', getItemCountAPI.as_view()),
     path('api/database/editInstructions', editInstructionsAPI.as_view()),
+    path('api/database/editmyprofile',editMyProfileAPI.as_view())
 ]

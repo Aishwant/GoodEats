@@ -194,7 +194,7 @@ export class Restaurant extends Component {
         
         <button onClick={() => this.sendMessage("Hello")} >Send Message</button>
         <Websocket 
-          url={'ws://'+window.location.host+'/ws/notifyOwner'} 
+          url={'ws://'+window.location.host+'/ws/order/123/'} 
           onMessage={this.handleData.bind(this)} onOpen={console.log("connected")}
           onClose={console.log('disconnected')}
           debug = {true}

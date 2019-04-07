@@ -67,7 +67,7 @@ export class Header extends Component {
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
           <a className="dropdown-item" href="#">My Orders</a>
-          <a className="dropdown-item" href="#">My Profile</a>
+          <Link to="/myProfile" className="dropdown-item">My Profile</Link>
           <div className="dropdown-divider"></div>
           <li className="dropdown-item">
             <Link to="/home" className="dropdown-item" onClick={this.props.logout}>
