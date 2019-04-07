@@ -165,8 +165,9 @@ def addToCart(request, uID):
     else:
         itemData['Quantity'] = request['Quantity']
 
+    rID = itemData['rID']
     data = { itemID : itemData}
-    return db.child("Users").child(uID).child("Customer").child("Cart").update(data) 
+    return db.child("Users").child(uID).child("Customer").child("Cart").child(rID).update(data) 
 
 def addCategory(request):
     db = credentials().database()
