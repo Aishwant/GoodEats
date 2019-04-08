@@ -21,13 +21,15 @@ export const addToCart = (itemID, itemData, Quantity) => (dispatch) => {
   const uID = localStorage.getItem("uID")
   const data = { itemID, itemData, Quantity}
   const formattedData = { [itemID] : itemData }
+  const newTotal = itemData.Price
   dispatch({
     type: ADD_TO_CART,
     rID: itemData.rID,
     item: itemID,
     data: itemData,
     qty: Quantity,
-    fd: formattedData
+    fd: formattedData,
+    toBeAdded: newTotal
   });
   axios
     .post("/api/database/addToCart/" + uID, data)
@@ -38,8 +40,9 @@ export const addToCart = (itemID, itemData, Quantity) => (dispatch) => {
 };
 
 //Delete an item from the user's cart
-export const deleteCartItem = (rID, itemID, Quantity) => (dispatch) => {
+export const deleteCartItem = (rID, itemID, Quantity, Price) => (dispatch) => {
   const uID = localStorage.getItem("uID")
+  const toBeRemoved = Quantity*Price
   axios
     .get(`/api/database/deleteCartItem/` + rID + "/"+ itemID + "/" + uID)
     .then(res => {
@@ -47,7 +50,8 @@ export const deleteCartItem = (rID, itemID, Quantity) => (dispatch) => {
         type: DELETE_CART_ITEM,
         resID: rID,
         payload: itemID,
-        qty: Quantity
+        qty: Quantity,
+        price: toBeRemoved
       });
     })
     .catch(err => console.log(err));

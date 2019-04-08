@@ -166,24 +166,25 @@ def addToCart(request, uID):
     db = credentials().database()
     itemID = request.pop("itemID")
     itemData = request['itemData']
-    existingQuantity = db.child("Users").child(uID).child("Customer").child("Cart").child(itemID).child("Quantity").get().val()
+    rID = itemData['rID']
+    existingQuantity = db.child("Users").child(uID).child("Customer").child("Cart").child(rID).child(itemID).child("Quantity").get().val()
     if(existingQuantity != None):
         newQuantity = int(request['Quantity'])+int(existingQuantity)
         itemData['Quantity'] = newQuantity
     else:
         itemData['Quantity'] = request['Quantity']
 
-    rID = itemData['rID']
     data = { itemID : itemData}
 
-    total = float(db.child("Users").child(uID).child("Customer").child("Cart").child(rID).child("total").get().val())
+    total = db.child("Users").child(uID).child("Customer").child("Cart").child(rID).child("total").get().val()
     if(total != None):
-        total += float(itemData['Price'])*float(itemData['Quantity'])
+        total = float(total)
+        total += float(itemData['Price'])*float(request['Quantity'])
     else: 
-        total = 0
-        total += float(itemData['Price'])*float(itemData['Quantity'])
+        total = 0.0
+        total += float(itemData['Price'])*float(request['Quantity'])
 
-    print(total)
+    total = round(total, 2)
     db.child("Users").child(uID).child("Customer").child("Cart").child(rID).child("total").set(str(total))
 
     return db.child("Users").child(uID).child("Customer").child("Cart").child(rID).update(data) 
@@ -219,7 +220,11 @@ def deleteCartItem(request, rID, itemID, uID):
 
     total = float(db.child("Users").child(uID).child("Customer").child("Cart").child(rID).child("total").get().val())
     priceToRemove = float(db.child("Users").child(uID).child("Customer").child("Cart").child(rID).child(itemID).child("Price").get().val())
-    newTotal = total - priceToRemove
+    quantityToRemove = float(db.child("Users").child(uID).child("Customer").child("Cart").child(rID).child(itemID).child("Quantity").get().val())
+    newTotal = total - priceToRemove*quantityToRemove
+    newTotal = round(newTotal, 2)
+    if(newTotal == 0):
+        return db.child("Users").child(uID).child("Customer").child("Cart").child(rID).remove()
     db.child("Users").child(uID).child("Customer").child("Cart").child(rID).child("total").set(newTotal)
     return db.child("Users").child(uID).child("Customer").child("Cart").child(rID).child(itemID).remove()
 

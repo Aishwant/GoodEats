@@ -22,11 +22,14 @@ export default function(state = initialState, action) {
         case ADD_TO_CART:
             return produce(state, draft => {
                 draft['items'][action.rID] = [action.fd];
+                //draft['items'][action.rID]['total'] += action.toBeAdded;
                 draft.itemCount += action.qty;
             })
         case DELETE_CART_ITEM:
             return produce(state, draft => {
                 delete draft['items'][action.resID][action.payload];
+                draft['items'][action.resID]['total'] -= action.price;
+                draft['items'][action.resID]['total'] = draft['items'][action.resID]['total'].toFixed(2);
                 draft.itemCount -= action.qty;
             })
         case GET_ITEM_COUNT:
