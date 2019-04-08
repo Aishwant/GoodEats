@@ -48,7 +48,7 @@ export class Menu_Customer extends Component {
         <div className="row mt-5">
             <Link to={`/`} className="btn btn-dark btn-sm col-md-1">Back To Restaurants</Link>
             <div className="col-md-2"></div>
-            <h2 className="col-md-6">{this.state.restaurantName}'s Menu</h2>
+            <h2 className="col-md-6">{this.state.restaurantName} Menu</h2>
         </div>  
         <hr/>
         {contentKeys.map(i=>

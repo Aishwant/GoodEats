@@ -24,6 +24,7 @@ export class Restaurant extends Component {
     nameS: true,
     zipcodeS: false,
     cityS:false,
+    openS:false,
     closeS:false,
     cuisineTypeS:false,
     tagS:false,
@@ -44,17 +45,19 @@ export class Restaurant extends Component {
       })
     }
     if(this.state.filter=="nameS"){
-      this.setState({nameS:true,zipcodeS:false,cityS:false,closeS:false,cuisineTypeS:false,tagS:false});
+      this.setState({nameS:true,zipcodeS:false,cityS:false,openS:false,closeS:false,cuisineTypeS:false,tagS:false});
     }else if(this.state.filter=="zipcodeS"){
-      this.setState({nameS:false,zipcodeS:true,cityS:false,closeS:false,cuisineTypeS:false,tagS:false});
+      this.setState({nameS:false,zipcodeS:true,cityS:false,openS:false,closeS:false,cuisineTypeS:false,tagS:false});
     }else if(this.state.filter=="cityS"){
-      this.setState({nameS:false,zipcodeS:false,cityS:true,closeS:false,cuisineTypeS:false,tagS:false})
+      this.setState({nameS:false,zipcodeS:false,cityS:true,openS:false,closeS:false,cuisineTypeS:false,tagS:false})
     }else if(this.state.filter=="closeS"){
-      this.setState({nameS:false,zipcodeS:false,cityS:false,closeS:true,cuisineTypeS:false,tagS:false})
+      this.setState({nameS:false,zipcodeS:false,cityS:false,openS:false,closeS:true,cuisineTypeS:false,tagS:false})
+    }else if(this.state.filter=="openS"){
+      this.setState({nameS:false,zipcodeS:false,cityS:false,openS:true,closeS:false,cuisineTypeS:false,tagS:false})
     }else if(this.state.filter=="cusineTypeS"){
-      this.setState({nameS:false,zipcodeS:false,cityS:false,closeS:false,cuisineTypeS:true,tagS:false})
+      this.setState({nameS:false,zipcodeS:false,cityS:false,openS:false,closeS:false,cuisineTypeS:true,tagS:false})
     }else if(this.state.filter=="tagS"){
-      this.setState({nameS:false,zipcodeS:false,cityS:false,closeS:false,cuisineTypeS:false,tagS:true})
+      this.setState({nameS:false,zipcodeS:false,cityS:false,openS:false,closeS:false,cuisineTypeS:false,tagS:true})
     }
   }
 
@@ -81,9 +84,10 @@ export class Restaurant extends Component {
             />
             <select className="input-group-append" id="inlineFormCustomSelect" value={filter} onChange={this.onChange}>
               <option value="nameS">Name</option>
-              <option value="zipcodeS">Zipcode</option>
+              <option value="zipcodeS">Zip Code</option>
               <option value="cityS">City</option>
               <option value="closeS">Close Time</option>
+              <option value="openS">Open Time</option>
               <option value="cuisineTypeS">Cuisine Type</option>
               <option value="tagS">Menu Items</option>
             </select>
@@ -103,8 +107,9 @@ export class Restaurant extends Component {
                 (
                   (this.state.nameS && res.Name.toUpperCase().includes(this.state.query.toUpperCase()))||
                   (this.state.zipcodeS && res.zipcode.toUpperCase().includes(this.state.query.toUpperCase())) ||
-                  (this.state.cityS && res.City.includes(this.state.query))||
+                  (this.state.cityS && res.City.toUpperCase().includes(this.state.query.toUpperCase()))||
                   (this.state.closeS && res.Close.includes(this.state.query)) ||
+                  (this.state.openS && res.Open.includes(this.state.query)) ||
                   (this.state.cuisineTypeS && res.CuisineType.toUpperCase().includes(this.state.query.toUpperCase())) ||
                   (this.state.tagS && res.tags.toUpperCase().includes(this.state.query.toUpperCase()))
                 )

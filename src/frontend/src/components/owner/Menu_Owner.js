@@ -44,7 +44,7 @@ export class Menu_Owner extends Component {
             <form onSubmit={this.onSubmit} >
               <div className="form-group row mt-5">
                 <Link to={`/`} className="btn btn-dark btn-sm col-md-1">Back To Restaurants</Link>
-                <h2 className="col-md-6">{this.state.restaurantName}'s Menu</h2>
+                <h2 className="col-md-6">{this.state.restaurantName} Menu</h2>
                 <input type="text" name="newCategory" onChange={this.onChange} value={newCategory} className="form-control input-large col-md-3" placeholder="Category Name" required/>
                 <div className="col-md-2">
                   <button type="submit" className="btn btn-primary mb-2">Add Category</button>

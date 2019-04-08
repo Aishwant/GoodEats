@@ -52,7 +52,7 @@ export class Register extends Component {
                 name="email"
                 onChange={this.onChange}
                 value={email}
-                placeholder="Enter email"
+                placeholder="Enter Email"
                 className="form-control"
                 />
               </div>
@@ -66,7 +66,7 @@ export class Register extends Component {
                 className="form-control"
                 placeholder="Password"
                 pattern="(?=^.{8,255}$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*"
-                title="Your password must be atleast 8 characters long and contain a lowecase letter, uppercase letter, number"
+                title="Your password must be atleast 8 characters long and contain a lowercase letter, uppercase letter, and a number"
                 required
                 />
               </div>
@@ -79,9 +79,10 @@ export class Register extends Component {
                 value={pwd1}
                 className="form-control"
                 placeholder="Retype Password"
+                
                 />
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" className="btn btn-primary">Submit</button>
               <p style={{marginTop:"10px"}}>
                 Already have an account? <Link to="/login">Login</Link>
               </p>

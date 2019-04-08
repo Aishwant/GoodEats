@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { getRestaurantByID, deleteRestaurant } from '../../actions/getRestaurants';
 import {Link} from 'react-router-dom';
 import EditModal from './EditModal';
-import FormRestaurant from './FormRestaurant'
+import FormRestaurant from './FormRestaurant';
 
 
 
@@ -57,6 +57,7 @@ export class Restaurant extends Component {
   }
 
   render() {
+
     const contentKeys = Object.keys(this.props.restaurants)
     const { filter } = this.state;
 
@@ -77,7 +78,7 @@ export class Restaurant extends Component {
                 />
                 <select className="input-group-append" id="inlineFormCustomSelect" value={filter} onChange={this.onChange}>
                   <option value="nameS">Name</option>
-                  <option value="zipcodeS">Zipcode</option>
+                  <option value="zipcodeS">Zip Code</option>
                   <option value="cityS">City</option>
                   <option value="closeS">Close Time</option>
                   <option value="cuisineTypeS">Cuisine Type</option>
@@ -175,6 +176,7 @@ export class Restaurant extends Component {
           )}
           </div>
         </div>
+
       </Fragment>
     )
   }

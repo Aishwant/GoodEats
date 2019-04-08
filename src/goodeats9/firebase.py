@@ -134,6 +134,12 @@ def addCustomer(request):
 
         addRestaurant(formattedData, request['uID'])
 
+        request['data']['Address1'] = ""
+        request['data']['Address2'] = ""
+        request['data']['Phone'] = ""
+        request['data']['city'] = ""
+        request['data']['zipcode'] = ""
+        request['data']['email'] = credentials().auth().get_account_info(request['token'])['users'][0]['email']
         db.child('Users').child(request['uID']).child("Owner").update(request['data'])
 
     elif(request['data']["changeD"]==True):
@@ -256,3 +262,9 @@ def editInstructions(request):
     db = credentials().database()
     data = {"Instructions" : request['Instructions']}
     return db.child("Users").child(request['uID']).child("Customer").child("Cart").child(request['rID']).child(request['itemID']).update(data)
+    
+def editMyProfile(request):
+    db = credentials().database()
+    print("reached")
+    return db.child("Users").child(request['uID']).child(request["data"].pop('user_id')).update(request['data'])
+    

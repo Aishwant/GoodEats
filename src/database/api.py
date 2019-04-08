@@ -311,3 +311,18 @@ class editInstructionsAPI(generics.GenericAPIView):
             return Response({
                 "status":"Disconnected"
             })
+
+class editMyProfileAPI(generics.GenericAPIView):
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            print("reached")
+            print(request.data)
+            return Response(firebase.editMyProfile(request.data))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })

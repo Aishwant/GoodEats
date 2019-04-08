@@ -5,12 +5,29 @@ import PropTypes from "prop-types";
 import { logout } from "../../actions/authentication";
 import { getItemCount } from "../../actions/orders"
 import { withRouter } from "react-router-dom";
+import OrdersPending from "../owner/OrdersPending";
+
+import Websocket from 'react-websocket';
 
 export class Header extends Component {
   static propTypes = {
     authReducer: PropTypes.object.isRequired,
     logout: PropTypes.func.isRequired
   };
+
+  handleData(data) {
+    let result = JSON.parse(data);
+    console.log(result);
+    console.log(result['message']);
+  }
+
+  sendMessage(message){
+    console.log("Clicked send");
+    this.refWebSocket.sendMessage(JSON.stringify({
+      'message': message
+    }));
+  }
+
 
   render() {
     const contentKeys = Object.keys(this.props.user)
@@ -67,7 +84,7 @@ export class Header extends Component {
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
           <a className="dropdown-item" href="#">My Orders</a>
-          <a className="dropdown-item" href="#">My Profile</a>
+          <Link to="/myProfile" className="dropdown-item">My Profile</Link>
           <div className="dropdown-divider"></div>
           <li className="dropdown-item">
             <Link to="/home" className="dropdown-item" onClick={this.props.logout}>
@@ -75,6 +92,12 @@ export class Header extends Component {
             </Link>
           </li>
         </div>
+      </li>
+    )
+
+    const ordersPending = (
+      <li className="nav-item">
+        <OrdersPending />
       </li>
     )
 
@@ -95,10 +118,23 @@ export class Header extends Component {
               {isAuthenticated ? "" : guestLinks}
               {isAuthenticated ? "" : guestLinks1}
               {isAuthenticated && contentKeys[0] === "Customer" ? cart : ""}
+              {isAuthenticated && contentKeys[0] === "Owner" ? ordersPending : ""}
               {isAuthenticated ? settings : ""}
             </ul>
           </div>
         </div>
+
+        {/* <button onClick={() => this.sendMessage("Hello")} >Send Message</button> */}
+        <Websocket 
+                  url={'ws://'+window.location.host+'/ws/order/owner/'} 
+                  onMessage={this.handleData.bind(this)} onOpen={console.log("connected")}
+                  onClose={console.log('disconnected')}
+                  debug = {true}
+                  ref={Websocket => {
+                    this.refWebSocket = Websocket;
+                  }}
+                />
+
       </nav>
 
     );

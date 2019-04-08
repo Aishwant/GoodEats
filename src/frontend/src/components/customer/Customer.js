@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import Restaurant from '../customer/Restaurant'
+import { getItemCount } from "../../actions/orders"
+import { connect } from 'react-redux';
 
-export default class Customer extends Component {
+export class Customer extends Component {
+  componentDidMount(){
+    this.props.getItemCount();
+  }
   render() {
     return (
       <div className="row">
@@ -16,3 +21,5 @@ export default class Customer extends Component {
     )
   }
 }
+
+export default connect(null, { getItemCount })(Customer);

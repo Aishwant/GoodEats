@@ -157,6 +157,7 @@ body{
     background: #27272b;
     color: #fff;
     margin-top: 20px;
+    /* bottom: 0; */
 }
 
 
@@ -302,4 +303,8 @@ body{
 
 .card-img-top {
   height: 180px;
+}
+
+.modal-dialog-1{
+  min-width: 900px!important;
 }
