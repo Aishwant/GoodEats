@@ -16,7 +16,7 @@ export class DriverPlacedOrder extends Component{
         this.state = {
           Orderslist: [
             {
-                OrderID:parseInt("001"),
+              OrderID:parseInt("001"),
               CID:123,
               DeliveryEst:"",
               DeliveryInstructions:"Door",
@@ -61,10 +61,12 @@ export class DriverPlacedOrder extends Component{
         this.setState({ Orderslist: this.state.Orderslist.filter(order => order.OrderID !== OrderID )});
         
       }
+
+      
     render(){
         let dCard = this.state.Orderslist.map(order => {
             return (
-              
+
                 <DriverCard key={order.OrderID} removeOrder={this.removeOrder.bind(this)} indOrder={order}/>
                
                 

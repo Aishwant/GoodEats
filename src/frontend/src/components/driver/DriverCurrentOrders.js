@@ -1,13 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import DriverCard from "./DriverCard";
-
-
-
-
-
-
+import DriverCurrentCard from "./DriverCurrentCard";
 
 export class DriverCurrentOrders extends Component{
 
@@ -57,18 +51,16 @@ export class DriverCurrentOrders extends Component{
       } 
 
       showOrder(OrderID) {
-        
-        this.setState({ Orderslist: this.state.Orderslist.filter(order => order.OrderID == OrderID )});
+       
+        this.setState({ Orderslist: this.state.Orderslist.filter(currentOrder => currentOrder.OrderID === OrderID )});
         
       }
     render(){
-        let dCard = this.state.Orderslist.map(order => {
+        let dCard = this.state.Orderslist.map(currentOrder => {
             return (
               
-                <DriverCard key={order.OrderID} showOrder={this.showOrder.bind(this)} indOrder={order}/>
+                <DriverCurrentCard keyNew={currentOrder.OrderID} passCurrentOrder={currentOrder}/>
                
-                
-            
             )
           })
 

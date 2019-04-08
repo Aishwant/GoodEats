@@ -27,7 +27,7 @@ import store from "../store";
 import { loadUser } from "../actions/authentication";
 import  newOrder  from "./owner/newOrder";
 import DriverDeliveryHistory from "./driver/DriverDeliveryHistory";
-import DriverPendingOrders from "./driver/DriverPendingOrders";
+
 
 
 
