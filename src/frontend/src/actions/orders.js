@@ -93,22 +93,24 @@ export const editInstructions = (rID, itemID, Instructions) => (dispatch) => {
 //Send an order request to the owner of the restaurant the user is ordering from
 export const placeOrder = (orderData) => (dispatch) => {
   const keys = Object.keys(orderData);
-  orderData['ownner_ID'] = orderData[keys[0]].owner_ID
-  orderData['rID'] = orderData[keys[0]].rID
+  const owner_ID = orderData[keys[0]].owner_ID
+  const rID = orderData[keys[0]].rID
+  const total = orderData.total
+  delete orderData.total
+  const uID = localStorage.getItem("uID");
   const uuidv4 = require('uuid/v4');
   const orderID = uuidv4();
-  orderData['orderID'] = { [orderID] : "Order Data"}
-  orderData['uID'] = localStorage.getItem("uID");
-  console.log(orderData)
-  /*axios
-    .post("/api/database/placeOrder", orderData)
+  const order = { [orderID] : {'rID':rID, 'rName':'placeholderName', 'owner_ID':owner_ID, 'uID':uID, 'total':total, 'user_info':{ address: "123",phone: "123",email: "test@test.com"}, 'items':orderData}}
+  console.log(order)
+  axios
+    .post("/api/database/placeOrder", order)
     .then(res => {
       dispatch({
         type: PLACE_ORDER,
-        resID: orderData.rID
+        resID: rID
       });
     })
-    .catch(err => console.log(err));*/
+    .catch(err => console.log(err));
 };
 
 //Add an order to the users list of pending orders

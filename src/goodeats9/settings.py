@@ -36,11 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'channels',
+    # 'channels',
     'frontend',
     'authentication',
     'database',
-    'liveNotifyer',
     
     'rest_framework',
     'knox',
@@ -76,16 +75,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'goodeats9.wsgi.application'
-ASGI_APPLICATION = 'goodeats9.routing.application'
+# ASGI_APPLICATION = 'goodeats9.routing.application'
 
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [('127.0.0.1',6379)],
-        },
-    },
-}
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             "hosts": [('127.0.0.1',6379)],
+#         },
+#     },
+# }
 
 
 # Database
