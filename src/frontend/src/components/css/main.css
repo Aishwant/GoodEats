@@ -312,3 +312,9 @@ body{
 Button{
   margin: 2px;
 }
+
+@media(min-width: 800px){
+.driver-tabs{
+  width:80%;
+}
+}

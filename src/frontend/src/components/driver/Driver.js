@@ -19,7 +19,7 @@ export default class Driver extends Component {
   }
   render() {
     return (
-      <div className="container h-100 align-items-center">
+      <div className="container h-100 align-items-center driver-tabs">
       <Tabs 
         id="controlled-tab-example"
         activeKey={this.state.key}
