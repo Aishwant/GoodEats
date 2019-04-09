@@ -13,6 +13,11 @@ export default function(state = initialState, action) {
             return produce(state, draft => {
                 draft['pendingOrders'] = action.payload
             })
+
+        case REJECT_PENDING_ORDER:
+            return produce(state, draft =>{
+                delete draft['pendingOrders'][action.payload];
+            })
         default:
             return state;
     }

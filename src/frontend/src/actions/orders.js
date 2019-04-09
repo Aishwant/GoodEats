@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {GET_CART, ADD_TO_CART, DELETE_CART_ITEM, GET_ITEM_COUNT, EDIT_INSTRUCTIONS, PLACE_ORDER, ADD_PENDING_ORDER} from './types.js';
+import {GET_CART, ADD_TO_CART, DELETE_CART_ITEM, GET_ITEM_COUNT, EDIT_INSTRUCTIONS, PLACE_ORDER, ADD_PENDING_ORDER, REJECT_PENDING_ORDER } from './types.js';
 
 //Get user's cart
 export const getCart = () => (dispatch) => {
@@ -100,7 +100,7 @@ export const placeOrder = (orderData) => (dispatch) => {
   orderData['orderID'] = { [orderID] : "Order Data"}
   orderData['uID'] = localStorage.getItem("uID");
   console.log(orderData)
-  /*axios
+  *axios
     .post("/api/database/placeOrder", orderData)
     .then(res => {
       dispatch({
@@ -108,7 +108,7 @@ export const placeOrder = (orderData) => (dispatch) => {
         resID: orderData.rID
       });
     })
-    .catch(err => console.log(err));*/
+    .catch(err => console.log(err));
 };
 
 //Add an order to the users list of pending orders
@@ -117,5 +117,20 @@ export const addPendingOrder = (orderData) => (dispatch) => {
   dispatch({
     type: ADD_PENDING_ORDER,
     payload: orderData
+  })
+}
+
+//When the user rejects the pending orders
+export const rejectPendingOrder = (orderID) => (dispatch) => {
+  const data = {
+    ownerID = localStorage.getItem['uID'],
+    orderID = orderID
+  }
+  axios.post('/api/database/rejectPendingOrder',orderID)
+  .then(res => {
+    dispatch({
+      type: REJECT_PENDING_ORDER,
+      payload: orderID
+    })
   })
 }

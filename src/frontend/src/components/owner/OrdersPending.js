@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import PropTypes from "prop-types"
 import Modal from 'react-modal';
 import { getRestaurantByID } from "../../actions/getRestaurants";
+import { acceptPendingOrder, rejectPendingOrder } from '../../actions/orders';
 
 export class OrdersPending extends Component {
     constructor() {
@@ -124,8 +125,8 @@ export class OrdersPending extends Component {
                 <div id="accordion">
                 {
                   
-                    Object.keys(this.props.pendingOrders).map(t=>
-                        [this.props.pendingOrders[t]].map(orders=>{
+                    Object.keys(this.pendingOrders).map(t=>
+                        [this.pendingOrders[t]].map(orders=>{
                             if (this.state.res_IDs.includes(orders.rid)){
                             return(
                                 <div className="card">
@@ -134,7 +135,7 @@ export class OrdersPending extends Component {
                                         <button className="btn btn-link collapsed" data-toggle="collapse" data-target={"#collapse"+t} aria-expanded="false" aria-controls={"collapse"+t}>
                                         Restaurant Name: {orders.rName} {" "} Total: {orders.total} {" "}
                                         </button>
-                                        <button className="btn btn-success">Accept</button> | <button className="btn btn-danger">Reject</button>
+                                        <button className="btn btn-success" onClick={this.props.acceptPendingOrder(t)}>Accept</button> | <button className="btn btn-danger" onClick={this.props.rejectPendingOrder(t)}>Reject</button>
                                     </h5>
                                     </div>
 

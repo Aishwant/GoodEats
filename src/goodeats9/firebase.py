@@ -274,7 +274,10 @@ def editMyProfile(request):
 
 def placeOrder(request):
     db = credentials().database()
-    print(request)
     db.child("Users").child(request['uID']).child("Customer").child("Cart").child(request['rID']).remove()
     return db.child("Users").child(request['ownerID']).child("Owner").child("Orders").update(request['orderID'])
     
+
+def rejectPendingOrder(request):
+    db = credentials().database()
+    return db.child("Users").child(request['ownerID']).child("Owner").child("Orders").child(request['orderID']).remove()
