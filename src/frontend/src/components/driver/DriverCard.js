@@ -42,14 +42,14 @@ export default class DriverCard extends Component{
 
         return(
             
-            <div class="container">
+            <div class="container" style={{marginTop: "10px"}}>
                 <div class="card" style={{width:'100%',borderRadius:'2%', border: '4px solid darkgreen'}}>
                     <div class="card-body" style={{textAlign:'center'}}>
                         <h4 class="card-title">{CID}</h4>
                         <p class="card-text"><h5>{RID}</h5></p>
                         {/* <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> */}
-                        <Button variant="outline-success"onClick={() => {this.props.removeOrder(OrderID);this.props.showOrder(OrderID)}}style={{width:'33%'}}><i class="fas fa-check-circle fa-lg"></i><br/>Accept</Button>
-                        <Button variant="outline-primary" onClick={this.handleShow} style={{width:'33%'}}><i class="fas fa-book-open fa-lg" fa-lg></i><br/>View</Button>
+                        <Button variant="outline-success"onClick={() => {this.props.removeOrder(OrderID);this.props.showOrder(OrderID)}} style={{padding:'auto 8%'}}><i class="fas fa-check-circle fa-lg"></i><br/>Accept</Button>
+                        <Button variant="outline-primary" onClick={this.handleShow} style={{padding:'auto 8%'}}><i class="fas fa-book-open fa-lg" fa-lg></i><br/>View</Button>
 
                         <Modal size="lg" show={this.state.show} onHide={this.handleClose}  dialogClassName="modal-90w"
           >
@@ -81,7 +81,7 @@ export default class DriverCard extends Component{
                                 
                             </Modal.Footer>
                             </Modal>
-                        <Button variant="outline-danger"onClick={() => {this.props.removeOrder(OrderID)}} style={{width:'33%'}}><i class="far fa-times-circle fa-lg" fa-lg></i><br/>Decline</Button>
+                        <Button variant="outline-danger"onClick={() => {this.props.removeOrder(OrderID)}} style={{padding:'auto 8%'}}><i class="far fa-times-circle fa-lg" fa-lg></i><br/>Decline</Button>
                      
                     </div>
                 </div>

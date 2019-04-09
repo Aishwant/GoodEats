@@ -308,3 +308,7 @@ body{
 .modal-dialog-1{
   min-width: 900px!important;
 }
+
+Button{
+  margin: 2px;
+}
