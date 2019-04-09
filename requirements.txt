@@ -7,7 +7,3 @@ Markdown
 django-rest-knox
 pyrebase
 whitenoise==4.1.2
-channels=2.1.7
-service_identity
-channels_redis==2.3.3
-redis
