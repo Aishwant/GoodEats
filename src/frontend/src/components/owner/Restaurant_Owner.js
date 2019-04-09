@@ -5,6 +5,8 @@ import { getRestaurantByID, deleteRestaurant } from '../../actions/getRestaurant
 import {Link} from 'react-router-dom';
 import EditModal from './EditModal';
 import FormRestaurant from './FormRestaurant';
+import { addPendingOrder } from '../../actions/orders'
+import * as firebase from 'firebase';
 
 
 
@@ -24,6 +26,12 @@ export class Restaurant extends Component {
 
   componentDidMount(){
     this.props.getRestaurantByID();
+
+    const rootRef = firebase.database().ref().child('Users').child("7tXRHUVp2uNScdBm1gwHrmDdoB92").child("Owner");
+    const orderRef = rootRef.child('Orders');
+    orderRef.on('value', snap => {
+      this.props.addPendingOrder(snap.val())
+    })
   }
   
   handleClick= event =>{
@@ -189,7 +197,8 @@ const cardWidth = {
 
 
 const mapStateToProps = state => ({
-  restaurants: state.restaurantReducer.restaurants
+  restaurants: state.restaurantReducer.restaurants,
+  pendingOrders: state.orderReducer.pendingOrders
 });
 
-export default connect(mapStateToProps, { getRestaurantByID, deleteRestaurant })(Restaurant);
+export default connect(mapStateToProps, { getRestaurantByID, deleteRestaurant, addPendingOrder })(Restaurant);

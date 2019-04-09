@@ -88,46 +88,32 @@ export class OrdersPending extends Component {
               <div className="modal-dialog modal-dialog-1">
               <div className="modal-content">
                 <div className="modal-header">
-                <h5 className="text-dark" ref={subtitle => this.subtitle = subtitle}>Edit Restaurant</h5>
+                <h5 className="text-dark" ref={subtitle => this.subtitle = subtitle}>Orders Pending</h5>
                   <button type="button" className="close" onClick={this.closeModal} aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div id="accordion">
                 {
-                    Object.keys(this.orders).map(t=>
-                        [this.orders[t]].map(orders=>{
-                            if (this.state.res_IDs.includes(orders.rid)){
+                    Object.keys(this.props.pendingOrders).map(t=>
+                        [this.props.pendingOrders[t]].map(orders=>{
+                            
                             return(
                                 <div class="card">
                                     <div class="card-header" id="headingOne">
                                     <h5 class="mb-0">
-                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Restaurant Name: {orders.rName} {" "} Total: {orders.total} {" "}
+                                        <button class="btn btn-link" data-toggle="collapse" data-target={"#" + t} aria-expanded="true" aria-controls="collapseOne">
+                                        {t}
                                         </button>
                                         <button className="btn btn-success">Accept</button> | <button className="btn btn-danger">Reject</button>
                                     </h5>
                                     </div>
 
-                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div id={t} class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                     <div class="card-body">
                                     {
-                                        Object.keys(orders.items).map(i =>
-                                            [orders.items[i]].map(item=>{
-
-                                                return(
-                                                
-                                                    <div>
-                                                        Name: {item.Name} <br />
-                                                        Description: {item.Description} <br />
-                                                        Instructions: {item.Instructions} <br />
-                                                        Quantity: {item.Quantity} <br />
-                                                        Price: {item.Price} <br />
-                                                    </div>
-                                                )
-
-                                            })
-                                        )
+                                        
+                                          <p>Placeholder data</p>
                                     
                                     }
                                     </div>
@@ -135,7 +121,7 @@ export class OrdersPending extends Component {
                                 </div>
                             )
                         }
-                        })
+                        )
                     
                         )
                     
@@ -179,7 +165,8 @@ export class OrdersPending extends Component {
 }
 
 const mapStateToProps = state => ({
-    restaurants: state.restaurantReducer.restaurants
+    restaurants: state.restaurantReducer.restaurants,
+    pendingOrders: state.orderReducer.pendingOrders
   });
 
 export default connect(mapStateToProps, { getRestaurantByID })(OrdersPending);

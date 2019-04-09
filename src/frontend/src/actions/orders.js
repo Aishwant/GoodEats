@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {GET_CART, ADD_TO_CART, DELETE_CART_ITEM, GET_ITEM_COUNT, EDIT_INSTRUCTIONS} from './types.js';
+import {GET_CART, ADD_TO_CART, DELETE_CART_ITEM, GET_ITEM_COUNT, EDIT_INSTRUCTIONS, PLACE_ORDER, ADD_PENDING_ORDER} from './types.js';
 
 //Get user's cart
 export const getCart = () => (dispatch) => {
@@ -89,3 +89,27 @@ export const editInstructions = (rID, itemID, Instructions) => (dispatch) => {
     })
     .catch(err => console.log(err));
 };
+
+//Send an order request to the owner of the restaurant the user is ordering from
+export const placeOrder = (orderData) => (dispatch) => {
+  const uuidv4 = require('uuid/v4');
+  const orderID = uuidv4();
+  orderData['orderID'] = { [orderID] : "Order Data"}
+  axios
+    .post("/api/database/placeOrder", orderData)
+    .then(res => {
+      dispatch({
+        type: PLACE_ORDER,
+      });
+    })
+    .catch(err => console.log(err));
+};
+
+//Add an order to the users list of pending orders
+export const addPendingOrder = (orderData) => (dispatch) => {
+  console.log(orderData)
+  dispatch({
+    type: ADD_PENDING_ORDER,
+    payload: orderData
+  })
+}
