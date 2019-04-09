@@ -123,8 +123,8 @@ export const addPendingOrder = (orderData) => (dispatch) => {
 //When the user rejects the pending orders
 export const rejectPendingOrder = (orderID) => (dispatch) => {
   const data = {
-    ownerID = localStorage.getItem['uID'],
-    orderID = orderID
+    ownerID: localStorage.getItem['uID'],
+    orderID: orderID
   }
   axios.post('/api/database/rejectPendingOrder',orderID)
   .then(res => {
