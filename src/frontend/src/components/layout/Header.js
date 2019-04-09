@@ -123,18 +123,6 @@ export class Header extends Component {
             </ul>
           </div>
         </div>
-
-        {/* <button onClick={() => this.sendMessage("Hello")} >Send Message</button> */}
-        <Websocket 
-                  url={'ws://'+window.location.host+'/ws/order/owner/'} 
-                  onMessage={this.handleData.bind(this)} onOpen={console.log("connected")}
-                  onClose={console.log('disconnected')}
-                  debug = {true}
-                  ref={Websocket => {
-                    this.refWebSocket = Websocket;
-                  }}
-                />
-
       </nav>
 
     );

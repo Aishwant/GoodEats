@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Restaurant_Owner from './Restaurant_Owner'
 
-
 export default class Owner extends Component {
   render() {
     return (

@@ -267,4 +267,14 @@ def editMyProfile(request):
     db = credentials().database()
     print("reached")
     return db.child("Users").child(request['uID']).child(request["data"].pop('user_id')).update(request['data'])
+
+
+
+###################### ORDER FUNCTIONS HERE ##############################
+
+def placeOrder(request):
+    db = credentials().database()
+    print(request)
+    db.child("Users").child(request['uID']).child("Customer").child("Cart").child(request['rID']).remove()
+    return db.child("Users").child(request['ownerID']).child("Owner").child("Orders").update(request['orderID'])
     

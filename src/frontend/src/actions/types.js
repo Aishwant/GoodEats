@@ -37,3 +37,6 @@ export const EDIT_ITEM = "EDIT_ITEM";
 export const GET_ITEM_COUNT = "GET_ITEM_COUNT";
 export const EDIT_INSTRUCTIONS = "EDIT_INSTRUCTIONS";
 
+export const PLACE_ORDER = "PLACE_ORDER";
+export const ADD_PENDING_ORDER = "ADD_PENDING_ORDER";
+

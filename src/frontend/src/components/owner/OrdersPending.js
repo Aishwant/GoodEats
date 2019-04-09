@@ -116,7 +116,7 @@ export class OrdersPending extends Component {
               <div className="modal-dialog modal-dialog-1">
               <div className="modal-content">
                 <div className="modal-header">
-                <h5 className="text-dark" ref={subtitle => this.subtitle = subtitle}>Edit Restaurant</h5>
+                <h5 className="text-dark" ref={subtitle => this.subtitle = subtitle}>Orders Pending</h5>
                   <button type="button" className="close" onClick={this.closeModal} aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                   </button>
@@ -124,8 +124,8 @@ export class OrdersPending extends Component {
                 <div id="accordion">
                 {
                   
-                    Object.keys(this.orders).map(t=>
-                        [this.orders[t]].map(orders=>{
+                    Object.keys(this.props.pendingOrders).map(t=>
+                        [this.props.pendingOrders[t]].map(orders=>{
                             if (this.state.res_IDs.includes(orders.rid)){
                             return(
                                 <div className="card">
@@ -179,10 +179,15 @@ export class OrdersPending extends Component {
                                 </div>
                             )
                         }
-                        })
-                    
+                        }
                         )
                     
+                        )
+                        // Object.keys(this.props.pendingOrders).map(t=>
+                        //   [this.props.pendingOrders[t]].map(orders=>{
+                              
+                        //       return(
+                        //           <OrdersPendingCard orderData={t} />
                 }
                     
                     
@@ -196,7 +201,8 @@ export class OrdersPending extends Component {
 }
 
 const mapStateToProps = state => ({
-    restaurants: state.restaurantReducer.restaurants
+    restaurants: state.restaurantReducer.restaurants,
+    pendingOrders: state.orderReducer.pendingOrders
   });
 
 export default connect(mapStateToProps, { getRestaurantByID })(OrdersPending);

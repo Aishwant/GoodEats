@@ -326,3 +326,17 @@ class editMyProfileAPI(generics.GenericAPIView):
             return Response({
                 "status":"Disconnected"
             })
+
+class placeOrderAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            return Response(firebase.placeOrder(request.data))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })

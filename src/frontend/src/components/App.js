@@ -27,8 +27,18 @@ import { Provider } from "react-redux";
 import store from "../store";
 import { loadUser } from "../actions/authentication";
 
+import * as firebase from 'firebase';
 
+let config = {
+  apiKey: "AIzaSyBJJSSETfxQc9tmsbOI-dmlQOG_dbiS3_4",
+  authDomain: "csci387.firebaseapp.com",
+  databaseURL: "https://csci387.firebaseio.com",
+  projectId: "csci387",
+  storageBucket: "csci387.appspot.com",
+  messagingSenderId: "930472814810"
+}
 
+firebase.initializeApp(config);
 
 //Alert Options
 const alertOptions = {
