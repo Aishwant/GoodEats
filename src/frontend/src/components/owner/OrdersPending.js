@@ -71,10 +71,38 @@ export class OrdersPending extends Component {
                     Quantity: 1
                 }
             }
-        }
+        },
+        orders2 : {
+          rid: "1af1f842-5320-4868-866f-686ff5973180",
+          rName: "Popyes",
+          owner_ID:"7tXRHUVp2uNScdBm1gwHrmDdoB92",
+          total: '20.00',
+          user_info:{
+              address: "123",
+              phone: "123",
+              email: "test@test.com"
+          },
+          items:{
+              itemId1:{
+                  Description: "spicy or mild",
+                  Instructions: "",
+                  Name:"5pc Tenders",
+                  Price:"6.99",
+                  Quantity: 1
+              },
+              itemId2:{
+                  Description: "spicy or mild",
+                  Instructions: "",
+                  Name:"5pc Tenders",
+                  Price:"6.99",
+                  Quantity: 1
+              }
+          }
+      }
     }
       render() {
         this.state.res_IDs = Object.keys(this.props.restaurants);
+        console.log(Object.keys(this.orders))
         return (
           <div>
             <a className="nav-link" onClick={this.openModal}>Orders Pending</a>
@@ -95,41 +123,57 @@ export class OrdersPending extends Component {
                 </div>
                 <div id="accordion">
                 {
+                  
                     Object.keys(this.orders).map(t=>
                         [this.orders[t]].map(orders=>{
                             if (this.state.res_IDs.includes(orders.rid)){
                             return(
-                                <div class="card">
-                                    <div class="card-header" id="headingOne">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <div className="card">
+                                    <div className="card-header" id={"heading"+t}>
+                                    <h5 className="mb-0">
+                                        <button className="btn btn-link collapsed" data-toggle="collapse" data-target={"#collapse"+t} aria-expanded="false" aria-controls={"collapse"+t}>
                                         Restaurant Name: {orders.rName} {" "} Total: {orders.total} {" "}
                                         </button>
                                         <button className="btn btn-success">Accept</button> | <button className="btn btn-danger">Reject</button>
                                     </h5>
                                     </div>
 
-                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                                    <div class="card-body">
-                                    {
+                                    <div id={"collapse"+t} className="collapse" aria-labelledby={"heading"+t} data-parent="#accordion">
+                                    <div className="card-body">
+
+                                      <table className="table" key={orders.rid}>
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Instructions</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Price</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                      {
+
                                         Object.keys(orders.items).map(i =>
                                             [orders.items[i]].map(item=>{
 
                                                 return(
-                                                
-                                                    <div>
-                                                        Name: {item.Name} <br />
-                                                        Description: {item.Description} <br />
-                                                        Instructions: {item.Instructions} <br />
-                                                        Quantity: {item.Quantity} <br />
-                                                        Price: {item.Price} <br />
-                                                    </div>
+                                                  <tr key={item}>
+                                                    <th scope="row">{item.Name}</th>
+                                                    <td>{item.Description}</td>
+                                                    <td>{item.Instructions}</td>
+                                                    <td>{item.Quantity}</td>
+                                                    <td>{item.Price}</td>
+                                                  </tr>
                                                 )
 
                                             })
+                                            
                                         )
+                                        }
+                                        </tbody>
+                                      </table>
                                     
-                                    }
                                     </div>
                                     </div>
                                 </div>
@@ -141,34 +185,7 @@ export class OrdersPending extends Component {
                     
                 }
                     
-                    <div class="card">
-                        <div class="card-header" id="headingTwo">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Collapsible Group Item #2
-                            </button>
-                        </h5>
-                        </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                        <div class="card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header" id="headingThree">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Collapsible Group Item #3
-                            </button>
-                        </h5>
-                        </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                        <div class="card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                        </div>
-                    </div>
+                    
                 </div>
               </div>
               </div>
