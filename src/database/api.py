@@ -338,8 +338,23 @@ class placeOrderAPI(generics.GenericAPIView):
             return Response(firebase.placeOrder(request.data))
         except:
             return Response({
+                
+            })
+
+class acceptPendingOrderAPI(generics.GenericAPIView):
+    
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            return Response(firebase.acceptPendingOrder(request.data))
+        except:
+            return Response({
                 "status":"Disconnected"
             })
+
 
 class rejectPendingOrderAPI(generics.GenericAPIView):
 

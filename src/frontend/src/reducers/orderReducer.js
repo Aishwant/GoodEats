@@ -1,6 +1,8 @@
 import produce from "immer"
 import { 
-    ADD_PENDING_ORDER
+    ADD_PENDING_ORDER,
+    REJECT_PENDING_ORDER,
+    ACCEPT_PENDING_ORDER
 } from "../actions/types";
 
 const initialState = {
@@ -18,6 +20,10 @@ export default function(state = initialState, action) {
             return produce(state, draft =>{
                 delete draft['pendingOrders'][action.payload];
             })
+        case ACCEPT_PENDING_ORDER:
+        return produce(state, draft =>{
+            delete draft['pendingOrders'][action.payload];
+        })
         default:
             return state;
     }

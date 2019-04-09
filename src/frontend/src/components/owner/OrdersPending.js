@@ -22,7 +22,6 @@ export class OrdersPending extends Component {
 
     componentDidMount(){
         this.state.owner_ID = localStorage.getItem('uID');
-        this.props.getRestaurantByID();
     }
 
     onChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -45,65 +44,9 @@ export class OrdersPending extends Component {
         e.preventDefault();
     }
     
-    orders = {
-        orders1 : {
-            rid: "1af1f842-5320-4868-866f-686ff5973180",
-            rName: "Boure",
-            owner_ID:"7tXRHUVp2uNScdBm1gwHrmDdoB92",
-            total: '20.00',
-            user_info:{
-                address: "123",
-                phone: "123",
-                email: "test@test.com"
-            },
-            items:{
-                itemId1:{
-                    Description: "spicy or mild",
-                    Instructions: "",
-                    Name:"5pc Tenders",
-                    Price:"6.99",
-                    Quantity: 1
-                },
-                itemId2:{
-                    Description: "spicy or mild",
-                    Instructions: "",
-                    Name:"5pc Tenders",
-                    Price:"6.99",
-                    Quantity: 1
-                }
-            }
-        },
-        orders2 : {
-          rid: "1af1f842-5320-4868-866f-686ff5973180",
-          rName: "Popyes",
-          owner_ID:"7tXRHUVp2uNScdBm1gwHrmDdoB92",
-          total: '20.00',
-          user_info:{
-              address: "123",
-              phone: "123",
-              email: "test@test.com"
-          },
-          items:{
-              itemId1:{
-                  Description: "spicy or mild",
-                  Instructions: "",
-                  Name:"5pc Tenders",
-                  Price:"6.99",
-                  Quantity: 1
-              },
-              itemId2:{
-                  Description: "spicy or mild",
-                  Instructions: "",
-                  Name:"5pc Tenders",
-                  Price:"6.99",
-                  Quantity: 1
-              }
-          }
-      }
-    }
+    
       render() {
-        this.state.res_IDs = Object.keys(this.props.restaurants);
-        console.log(Object.keys(this.orders))
+        
         return (
           <div>
             <a className="nav-link" onClick={this.openModal}>Orders Pending</a>
@@ -123,11 +66,11 @@ export class OrdersPending extends Component {
                   </button>
                 </div>
                 <div id="accordion">
-                {
-                  
-                    Object.keys(this.pendingOrders).map(t=>
-                        [this.pendingOrders[t]].map(orders=>{
-                            if (this.state.res_IDs.includes(orders.rid)){
+                
+                  {
+                    Object.keys(this.props.pendingOrders).map(t=>
+                        [this.props.pendingOrders[t]].map(orders=>{
+                            
                             return(
                                 <div className="card">
                                     <div className="card-header" id={"heading"+t}>
@@ -135,7 +78,7 @@ export class OrdersPending extends Component {
                                         <button className="btn btn-link collapsed" data-toggle="collapse" data-target={"#collapse"+t} aria-expanded="false" aria-controls={"collapse"+t}>
                                         Restaurant Name: {orders.rName} {" "} Total: {orders.total} {" "}
                                         </button>
-                                        <button className="btn btn-success" onClick={this.props.acceptPendingOrder(t)}>Accept</button> | <button className="btn btn-danger" onClick={this.props.rejectPendingOrder(t)}>Reject</button>
+                                        <button className="btn btn-success" onClick={this.props.acceptPendingOrder.bind(this,this.props.pendingOrders[t],t,orders.rID)}>Accept</button> | <button className="btn btn-danger" onClick={this.props.rejectPendingOrder.bind(this,t)}>Reject</button>
                                     </h5>
                                     </div>
 
@@ -179,16 +122,11 @@ export class OrdersPending extends Component {
                                     </div>
                                 </div>
                             )
-                        }
+                        
                         }
                         )
                     
                         )
-                        // Object.keys(this.props.pendingOrders).map(t=>
-                        //   [this.props.pendingOrders[t]].map(orders=>{
-                              
-                        //       return(
-                        //           <OrdersPendingCard orderData={t} />
                 }
                     
                     
@@ -206,4 +144,4 @@ const mapStateToProps = state => ({
     pendingOrders: state.orderReducer.pendingOrders
   });
 
-export default connect(mapStateToProps, { getRestaurantByID })(OrdersPending);
+export default connect(mapStateToProps, { getRestaurantByID,rejectPendingOrder,acceptPendingOrder })(OrdersPending);

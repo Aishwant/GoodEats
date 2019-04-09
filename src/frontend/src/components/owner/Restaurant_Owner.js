@@ -29,6 +29,7 @@ export class Restaurant extends Component {
 
     const rootRef = firebase.database().ref().child('Users').child("7tXRHUVp2uNScdBm1gwHrmDdoB92").child("Owner");
     const orderRef = rootRef.child('Orders');
+    
     orderRef.on('value', snap => {
       this.props.addPendingOrder(snap.val())
     })
