@@ -97,6 +97,11 @@ export const placeOrder = (orderData) => (dispatch) => {
   const rID = orderData[keys[0]].rID
   const total = orderData.total
   delete orderData.total
+  let orderItemCount = 0;
+  let item;
+  for(item in orderData){
+    orderItemCount += orderData[item].Quantity
+  }
   const uID = localStorage.getItem("uID");
   const uuidv4 = require('uuid/v4');
   const orderID = uuidv4();
@@ -107,7 +112,8 @@ export const placeOrder = (orderData) => (dispatch) => {
     .then(res => {
       dispatch({
         type: PLACE_ORDER,
-        resID: rID
+        resID: rID,
+        totalItems: orderItemCount
       });
     })
     .catch(err => console.log(err));

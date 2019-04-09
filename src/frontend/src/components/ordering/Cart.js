@@ -26,10 +26,6 @@ export class Cart extends Component {
     }
 
   render() {
-    const testOrder = {
-        rID: "1b9b5f71-46b5-44a5-a0b0-1680357ea8b3",
-        ownerID: "7tXRHUVp2uNScdBm1gwHrmDdoB92"
-    }
     const contentKeys = Object.keys(this.props.items);
     return (
         

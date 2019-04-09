@@ -46,6 +46,7 @@ export default function(state = initialState, action) {
         case PLACE_ORDER:
             return produce(state, draft => {
                 delete draft['items'][action.resID];
+                draft.itemCount -= action.totalItems;
             })
         default:
             return state;
