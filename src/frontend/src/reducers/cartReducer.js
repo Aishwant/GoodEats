@@ -4,12 +4,14 @@ import {
     ADD_TO_CART,
     DELETE_CART_ITEM,
     GET_ITEM_COUNT,
-    EDIT_INSTRUCTIONS
+    EDIT_INSTRUCTIONS,
+    PLACE_ORDER
 } from "../actions/types";
 
 const initialState = {
     items:{},
-    itemCount: 0
+    itemCount: 0,
+    pendingOrders: {}
 }
 
 export default function(state = initialState, action) {
@@ -40,6 +42,10 @@ export default function(state = initialState, action) {
         case EDIT_INSTRUCTIONS:
             return produce(state, draft => {
                 draft['items'][action.resID][action.id]['Instructions'] = action.instructions
+            })
+        case PLACE_ORDER:
+            return produce(state, draft => {
+                delete draft['items'][action.resID];
             })
         default:
             return state;

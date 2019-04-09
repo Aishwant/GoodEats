@@ -77,7 +77,7 @@ export class Cart extends Component {
                                 <td></td>
                                 <td>Total</td>
                                 <td><Total total={this.props.items[i][j]}/></td>
-                                <td><button className="btn btn-sm btn-dark" onClick={this.props.placeOrder.bind(this, testOrder)}>Place Order</button></td>
+                                <td><button className="btn btn-sm btn-dark" onClick={this.props.placeOrder.bind(this, this.props.items[i])}>Place Order</button></td>
                             </tr>
                         )}
                     }

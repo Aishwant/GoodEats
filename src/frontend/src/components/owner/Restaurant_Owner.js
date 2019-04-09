@@ -198,7 +198,6 @@ const cardWidth = {
 
 const mapStateToProps = state => ({
   restaurants: state.restaurantReducer.restaurants,
-  pendingOrders: state.orderReducer.pendingOrders
 });
 
 export default connect(mapStateToProps, { getRestaurantByID, deleteRestaurant, addPendingOrder })(Restaurant);

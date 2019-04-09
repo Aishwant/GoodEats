@@ -92,17 +92,23 @@ export const editInstructions = (rID, itemID, Instructions) => (dispatch) => {
 
 //Send an order request to the owner of the restaurant the user is ordering from
 export const placeOrder = (orderData) => (dispatch) => {
+  const keys = Object.keys(orderData);
+  orderData['ownner_ID'] = orderData[keys[0]].owner_ID
+  orderData['rID'] = orderData[keys[0]].rID
   const uuidv4 = require('uuid/v4');
   const orderID = uuidv4();
   orderData['orderID'] = { [orderID] : "Order Data"}
-  axios
+  orderData['uID'] = localStorage.getItem("uID");
+  console.log(orderData)
+  /*axios
     .post("/api/database/placeOrder", orderData)
     .then(res => {
       dispatch({
         type: PLACE_ORDER,
+        resID: orderData.rID
       });
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log(err));*/
 };
 
 //Add an order to the users list of pending orders

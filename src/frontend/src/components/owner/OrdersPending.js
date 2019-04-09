@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import PropTypes from "prop-types"
 import Modal from 'react-modal';
 import { getRestaurantByID } from "../../actions/getRestaurants";
+import OrdersPendingCard from './OrdersPendingCard';
 
 export class OrdersPending extends Component {
     constructor() {
@@ -99,26 +100,7 @@ export class OrdersPending extends Component {
                         [this.props.pendingOrders[t]].map(orders=>{
                             
                             return(
-                                <div class="card">
-                                    <div class="card-header" id="headingOne">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link" data-toggle="collapse" data-target={"#" + t} aria-expanded="true" aria-controls="collapseOne">
-                                        {t}
-                                        </button>
-                                        <button className="btn btn-success">Accept</button> | <button className="btn btn-danger">Reject</button>
-                                    </h5>
-                                    </div>
-
-                                    <div id={t} class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                                    <div class="card-body">
-                                    {
-                                        
-                                          <p>Placeholder data</p>
-                                    
-                                    }
-                                    </div>
-                                    </div>
-                                </div>
+                                <OrdersPendingCard orderData={t} />
                             )
                         }
                         )
