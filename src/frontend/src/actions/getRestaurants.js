@@ -40,6 +40,7 @@ export const getRestaurantByID = () => (dispatch) => {
     .catch(err => console.log(err));
 };
 
+
 //ADD RESTAURANT 
 export const addRestaurant = restaurant => (dispatch) => {
   const uID = localStorage.getItem("uID")

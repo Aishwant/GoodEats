@@ -203,6 +203,8 @@ def addItem(request):
     return db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).update(request['newItem'])
 
 
+
+
 ##### Delete from Database #####
 def deleteRestaurant(request, rID, uID):
     db = credentials().database()
