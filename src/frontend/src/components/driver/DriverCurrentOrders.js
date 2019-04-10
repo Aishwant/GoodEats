@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import DriverCurrentCard from "./DriverCurrentCard";
+import DeliveryHistoryCard from "./DeliveryHistoryCard";
 
 export class DriverCurrentOrders extends Component{
 
@@ -52,14 +52,14 @@ export class DriverCurrentOrders extends Component{
 
       showOrder(OrderID) {
        
-        this.setState({ Orderslist: this.state.Orderslist.filter(currentOrder => currentOrder.OrderID === OrderID )});
+        this.setState({ Orderslist: this.state.Orderslist.filter(currentOrder => currentOrder.OrderID !== OrderID )});
         
       }
     render(){
         let dCard = this.state.Orderslist.map(currentOrder => {
             return (
               
-                <DriverCurrentCard keyNew={currentOrder.OrderID} passCurrentOrder={currentOrder}/>
+                <delivery keyNew={currentOrder.OrderID} passCurrentOrder={currentOrder}/>
                
             )
           })
