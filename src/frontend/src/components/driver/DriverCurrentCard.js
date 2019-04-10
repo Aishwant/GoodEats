@@ -4,29 +4,21 @@ import PropTypes from "prop-types";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-
-
-
-
-
-
-
-
-
-
 export default class DriverCurrentCard extends Component{
 
   
-    constructor(props, context) {
-        super(props, context);
+    // constructor(props, context) {
+    //     super(props, context);
     
-        this.handleShow = this.handleShow.bind(this);
-        this.handleClose = this.handleClose.bind(this);
+    //     this.handleShow = this.handleShow.bind(this);
+    //     this.handleClose = this.handleClose.bind(this);
     
-        this.state = {
-          show: false,
-        };
-      }
+        
+    //   }
+
+      state = {
+        show: false,
+      };
     
       handleClose() {
         this.setState({ show: false });
@@ -36,12 +28,13 @@ export default class DriverCurrentCard extends Component{
         this.setState({ show: true });
       }
 
+      
     render(){
         
         let { OrderID,CID,DeliveryEst,DeliveryInstructions,DriverID,Orders,PrepInsruction,RID,Status,Total } = this.props.passCurrentOrder;
 
         return(
-            
+
             <div class="container" style={{marginTop: "10px"}}>
                 <div class="card" style={{width:'100%',borderRadius:'2%', border: '4px solid lightgreen'}}>
                     <div class="card-body" style={{textAlign:'center'}}>

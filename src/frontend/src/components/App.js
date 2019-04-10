@@ -26,8 +26,6 @@ import PrivateHomeRoute from "./private/PrivateHomeRoute"
 import { Provider } from "react-redux";
 import store from "../store";
 import { loadUser } from "../actions/authentication";
-import  newOrder  from "./owner/newOrder";
-import DriverDeliveryHistory from "./driver/DriverDeliveryHistory";
 
 
 

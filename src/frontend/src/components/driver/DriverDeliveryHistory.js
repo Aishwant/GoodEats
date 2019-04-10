@@ -65,7 +65,7 @@ render(){
 
         <div>
             <ul class="list-group">
-            
+
                 {historyCard}
         
             </ul>

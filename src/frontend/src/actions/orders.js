@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {GET_CART, ADD_TO_CART, DELETE_CART_ITEM, GET_ITEM_COUNT, EDIT_INSTRUCTIONS, PLACE_ORDER, ADD_PENDING_ORDER, REJECT_PENDING_ORDER, ACCEPT_PENDING_ORDER } from './types.js';
+import {GET_CART, ADD_TO_CART, DELETE_CART_ITEM, GET_ITEM_COUNT, EDIT_INSTRUCTIONS, PLACE_ORDER, ADD_PENDING_ORDER, REJECT_PENDING_ORDER, ACCEPT_PENDING_ORDER, ADD_PENDING_DEV_ORDER } from './types.js';
 
 //Get user's cart
 export const getCart = () => (dispatch) => {
@@ -147,5 +147,14 @@ export const rejectPendingOrder = (orderID) => (dispatch) => {
       type: REJECT_PENDING_ORDER,
       payload: orderID
     })
+  })
+}
+
+//Add an order to the driver's list of pending dev orders
+export const addPendingDevOrder = (orderData) => (dispatch) => {
+  
+  dispatch({
+    type: ADD_PENDING_DEV_ORDER,
+    payload: orderData
   })
 }
