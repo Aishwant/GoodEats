@@ -87,8 +87,8 @@ export default class DriverCard extends Component{
       //onClick={() => {this.changeText("Order Picked Up")}}
     render(){
         
-        let { OrderID,CID,DeliveryEst,DeliveryInstructions,DriverID,Orders,PrepInsruction,RID,Status,Total } = this.props.indOrder;
-        const { text } = this.state //destucture state
+        let { OrderID,CID,DeliveryEst,DeliveryInstructions,DriverID,Orders, DeliverrAdd,PrepInsruction,RID,Status,Total } = this.props.indOrder;
+
 
         return(
 
@@ -106,10 +106,10 @@ export default class DriverCard extends Component{
                         {this.state.showButton3 ?<Button variant="outline-primary" onClick={this.handleShow} style={{width:'33%'}}><i class="fas fa-book-open fa-lg" fa-lg></i><br/>View 1</Button>:null}
                         {this.state.hideButton4 ?<Button variant="outline-primary" onClick={this.handleShow1} style={{width:'33%'}}><i class="fas fa-book-open fa-lg" fa-lg></i><br/>View 2</Button>:null}
                         {this.state.showButton2 ? <Button variant="outline-danger"onClick={() => {this.props.removeOrder(OrderID)}} style={{width:'33%'}}><i class="far fa-times-circle fa-lg" fa-lg></i><br/>Decline</Button>: null}
-                        {this.state.hideButton3 ?<Button variant="outline-info" style={{width:'33%'}}><i class="fas fa-map-marked-alt fa-lg"></i><br/>Start Delivery</Button>:null}
+                        {this.state.hideButton3 ?<Button variant="outline-info" onClick={()=>{window.open('https://www.google.com/maps/dir/?api=1'+'&destination='+encodeURI(DeliverrAdd))+ location.search}} style={{width:'33%'}}><i class="fas fa-map-marked-alt fa-lg"></i><br/>Start Delivery</Button>:null}
                     </div>
                     <div class="card-footer text-muted">2 min ago</div>
-                
+                 
                 </div>
            
 
