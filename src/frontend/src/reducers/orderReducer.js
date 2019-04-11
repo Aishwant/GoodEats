@@ -8,7 +8,8 @@ import {
 
 const initialState = {
     pendingOrders: {},
-    pendingDevOrders: {}
+    pendingDevOrders: {},
+    acceptedDev: {}
 }
 
 export default function(state = initialState, action) {
@@ -21,10 +22,12 @@ export default function(state = initialState, action) {
         case REJECT_PENDING_ORDER:
             return produce(state, draft =>{
                 delete draft['pendingOrders'][action.payload];
+                // if(draft['pendingOrders']==null) draft['pendingOrders'] = {}
             })
         case ACCEPT_PENDING_ORDER:
         return produce(state, draft =>{
             delete draft['pendingOrders'][action.payload];
+            // if(draft['pendingOrders']==null) draft['pendingOrders'] = {}
         })
         case ADD_PENDING_DEV_ORDER:
         return produce(state,draft =>{

@@ -79,4 +79,8 @@ export class DriverCurrentOrders extends Component{
     }
 }
 
-export default DriverCurrentOrders;
+const mapStateToProps = state => ({
+  acceptedDev :state.orderReducer.acceptedDev
+})
+
+export default connect(mapStateToProps, null )(DriverCurrentOrders);

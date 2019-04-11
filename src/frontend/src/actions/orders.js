@@ -112,11 +112,13 @@ export const placeOrder = (orderData) => (dispatch) => {
 
 //Add an order to the users list of pending orders
 export const addPendingOrder = (orderData) => (dispatch) => {
-  
-  dispatch({
-    type: ADD_PENDING_ORDER,
-    payload: orderData
-  })
+  if(orderData){
+    console.log(orderData)
+    dispatch({
+      type: ADD_PENDING_ORDER,
+      payload: orderData
+    })
+  }
 }
 
 export const acceptPendingOrder = (order,id,rID) => (dispatch) => {

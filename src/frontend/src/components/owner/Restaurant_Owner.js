@@ -31,7 +31,7 @@ export class Restaurant extends Component {
     const orderRef = rootRef.child('Orders');
     
     orderRef.on('value', snap => {
-      this.props.addPendingOrder(snap.val())
+      if(snap.val()) this.props.addPendingOrder(snap.val())
     })
   }
   
