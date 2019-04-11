@@ -276,9 +276,24 @@ def editMyProfile(request):
 
 def placeOrder(request):
     db = credentials().database()
-    db.child("Users").child(request['uID']).child("Customer").child("Cart").child(request['rID']).remove()
-    return db.child("Users").child(request['ownerID']).child("Owner").child("Orders").update(request['orderID'])
+    #print(request)
+    rID = ""
+    owner_ID = ""
+    uID = ""
+    for k1, v1 in request.items():
+        for k2, v2 in v1.items():
+            if(k2 == "rID"):
+                rID = v2
+            if(k2 == "owner_ID"):
+                owner_ID = v2
+            if(k2 == "uID"):
+                uID = v2
 
+    print(rID)
+    print(owner_ID)
+    db.child("Users").child(uID).child("Customer").child("Cart").child(rID).remove()
+    return db.child("Users").child(owner_ID).child("Owner").child("Orders").update(request)
+    
 def acceptPendingOrder(request):
     db = credentials().database()
     db.child("Users").child(request['ownerID']).child("Owner").child("Orders").child(request['orderID']).remove()
