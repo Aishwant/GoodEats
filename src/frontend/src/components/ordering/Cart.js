@@ -75,7 +75,7 @@ export class Cart extends Component {
                                 <td></td>
                                 <td>Total</td>
                                 <td><Total total={this.props.items[i][j]}/></td>
-                                <td><PlaceOrder items={this.props.items[i]}/></td>
+                                <td><PlaceOrder items={this.props.items[i]} rName={this.props.restaurants[i].Name}/></td>
                             </tr>
                         )}
                     }
