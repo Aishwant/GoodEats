@@ -25,8 +25,8 @@ export class Driver extends Component {
     toDevRef.on('value', snap => {
       if(snap.val()) this.props.addPendingDevOrder(snap.val())
     })
-
-    const onDevRef = rootRef.child('Orders').child('OnDev');
+    const uId = localStorage.getItem("uID")+"";
+    const onDevRef = rootRef.child('Orders').child('OnDev').child(uId);
     onDevRef.on('value', snap => {
       if(snap.val()) this.props.addOnDevOrder(snap.val())
     })
@@ -38,6 +38,7 @@ export class Driver extends Component {
   }
   render() {
     return (
+      
       <div className="container h-100 align-items-center driver-tabs">
       <Tabs 
         id="controlled-tab-example"
@@ -45,6 +46,7 @@ export class Driver extends Component {
         onSelect={key => this.setState({ key })}
         style={{width:'100%',flexGrow:1,backgroundColor:"#DOFOCO"}}
       >
+
         <Tab eventKey="newOrder" title={<span><i class="fas fa-shopping-bag fa-1x">New Order</i> </span>}>
           <DriverPlacedOrder/>
         </Tab>
@@ -54,8 +56,8 @@ export class Driver extends Component {
         <Tab eventKey="orderHistory"  title={<span><i class="fas fa-history fa-1x">Order History</i> </span>}>
         <DriverDeliveryHistory/>
         </Tab>
+
       </Tabs>
-      
       </div>
     );
   }

@@ -174,7 +174,8 @@ export const acceptPendingDevOrder = (rid,oid,orderData) => (dispatch) => {
   const data = {
     rID:rid,
     orderID:oid,
-    order:orderData
+    order:orderData,
+    uId: localStorage.getItem('uID')
   }
   axios.post('/api/database/acceptPendingDevOrder',data)
   .then(res => {

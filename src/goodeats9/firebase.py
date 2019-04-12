@@ -276,7 +276,6 @@ def editMyProfile(request):
 
 def placeOrder(request):
     db = credentials().database()
-    #print(request)
     rID = ""
     owner_ID = ""
     uID = ""
@@ -306,4 +305,4 @@ def rejectPendingOrder(request):
 def acceptPendingDevOrder(request):
     db = credentials().database()
     db.child('Orders').child('ToBeDev').child(request['rID']).child(request['orderID']).remove()
-    return db.child('Orders').child('OnDev').child(request['rID']).child(request['orderID']).set(request['order'])
+    return db.child('Orders').child('OnDev').child(request['uId']).child(request['rID']).child(request['orderID']).set(request['order'])

@@ -37,9 +37,9 @@ export default function(state = initialState, action) {
                 draft['pendingDevOrders'] = action.payload;
             })
         case ACCEPT_PENDING_DEV_ORDER:
-        return produce(state, draft =>{
-            delete draft['pendingDevOrders'][action.rid][action.oid];
-        })
+            return produce(state, draft =>{
+                delete draft['pendingDevOrders'][action.rid][action.oid];
+            })
         case ADD_ON_DEV_ORDER:
             return produce(state,draft => {
                 draft['onDevOrders'] = action.payload;
