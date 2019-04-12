@@ -4,7 +4,9 @@ import PropTypes from "prop-types";
 import { getRestaurantByID, deleteRestaurant } from '../../actions/getRestaurants';
 import {Link} from 'react-router-dom';
 import EditModal from './EditModal';
-import FormRestaurant from './FormRestaurant'
+import FormRestaurant from './FormRestaurant';
+import { addPendingOrder } from '../../actions/orders'
+import * as firebase from 'firebase';
 
 
 
@@ -24,6 +26,14 @@ export class Restaurant extends Component {
 
   componentDidMount(){
     this.props.getRestaurantByID();
+
+    const uId = localStorage.getItem("uID")+"";
+    const rootRef = firebase.database().ref().child('Users').child(uId).child("Owner");
+    const orderRef = rootRef.child('Orders');
+    
+    orderRef.on('value', snap => {
+      if(snap.val()) this.props.addPendingOrder(snap.val())
+    })
   }
   
   handleClick= event =>{
@@ -57,12 +67,14 @@ export class Restaurant extends Component {
   }
 
   render() {
+
     const contentKeys = Object.keys(this.props.restaurants)
     const { filter } = this.state;
 
     return (
       <Fragment>
         <div className="col-md-12" style={{borderBottom:"solid 3px #ddd", paddingBottom:'25px', margin:"25px auto"}}>
+          
           <div className="row">
 
             <div className="col-md-6">
@@ -77,7 +89,7 @@ export class Restaurant extends Component {
                 />
                 <select className="input-group-append" id="inlineFormCustomSelect" value={filter} onChange={this.onChange}>
                   <option value="nameS">Name</option>
-                  <option value="zipcodeS">Zipcode</option>
+                  <option value="zipcodeS">Zip Code</option>
                   <option value="cityS">City</option>
                   <option value="closeS">Close Time</option>
                   <option value="cuisineTypeS">Cuisine Type</option>
@@ -133,7 +145,7 @@ export class Restaurant extends Component {
                           </div>
                         </div>
                       </div>
-                  </div>
+                   </div>
                   </div>
                 )
             }else{
@@ -175,6 +187,7 @@ export class Restaurant extends Component {
           )}
           </div>
         </div>
+
       </Fragment>
     )
   }
@@ -187,7 +200,7 @@ const cardWidth = {
 
 
 const mapStateToProps = state => ({
-  restaurants: state.restaurantReducer.restaurants
+  restaurants: state.restaurantReducer.restaurants,
 });
 
-export default connect(mapStateToProps, { getRestaurantByID, deleteRestaurant })(Restaurant);
+export default connect(mapStateToProps, { getRestaurantByID, deleteRestaurant, addPendingOrder })(Restaurant);

@@ -42,13 +42,13 @@ export default class DeliveryHistoryCard extends Component{
 
         return(
             
-            <div class="container">
+            <div class="container" style={{marginTop: "10px"}}>
                 <div class="card" style={{width:'100%'}}>
                     <div class="card-body" style={{textAlign:'center'}}>
                     <div class='row'>
                     <div class='col'><h5 class="card-title">{OrderID}</h5></div>
                     <div class='col'><h5 class="card-text">{RID}</h5></div>
-                    <div class='col'><Button variant="outline-primary" onClick={this.handleShow} style={{width:'33%'}}>View Details</Button></div>
+                    <div class='col'><Button variant="outline-primary" onClick={this.handleShow}>View Details</Button></div>
                     </div>
 
                         <Modal size="lg" show={this.state.show} onHide={this.handleClose}  dialogClassName="modal-90w"

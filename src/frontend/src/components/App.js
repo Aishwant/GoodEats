@@ -18,6 +18,7 @@ import Index from "./Index"
 import Menu_Owner from "./owner/Menu_Owner";
 import Menu_Customer from "./customer/Menu_Customer";
 import Cart from "./ordering/Cart";
+import MyProfile from "./pages/MyProfile";
 
 import PrivateRoute from "./private/PrivateRoute";
 import PrivateHomeRoute from "./private/PrivateHomeRoute"
@@ -25,15 +26,29 @@ import PrivateHomeRoute from "./private/PrivateHomeRoute"
 import { Provider } from "react-redux";
 import store from "../store";
 import { loadUser } from "../actions/authentication";
+<<<<<<< HEAD
 import  newOrder  from "./owner/newOrder";
 import DriverDeliveryHistory from "./driver/DriverDeliveryHistory";
 import OrderHistory from "./customer/OrderHistory";
 import OrderTracker from "./customer/OrderTracker";
+=======
+>>>>>>> a892cbc82578d0f2afd74b77daf3f6f84e9517fe
 
 
 
 
+import * as firebase from 'firebase';
 
+let config = {
+  apiKey: "AIzaSyBJJSSETfxQc9tmsbOI-dmlQOG_dbiS3_4",
+  authDomain: "csci387.firebaseapp.com",
+  databaseURL: "https://csci387.firebaseio.com",
+  projectId: "csci387",
+  storageBucket: "csci387.appspot.com",
+  messagingSenderId: "930472814810"
+}
+
+firebase.initializeApp(config);
 
 //Alert Options
 const alertOptions = {
@@ -68,12 +83,16 @@ class App extends Component {
                       <PrivateRoute exact path = "/menu/:rName" component={Menu_Customer} />
                       <PrivateRoute exact path = "/editmenu/:rName" component={Menu_Owner}/>
                       <PrivateRoute exact path = "/cart" component={Cart} />
+<<<<<<< HEAD
                       <PrivateRoute exact path = "/orderhistory" component={OrderHistory} />
                       <PrivateRoute exact path = "/trackorder/:OrderID" component={OrderTracker} />
 
     
+=======
+                      <PrivateRoute exact path = "/myProfile" component={MyProfile} />
+     
+>>>>>>> a892cbc82578d0f2afd74b77daf3f6f84e9517fe
                 </Switch>
-                
 
               </div>
               <Footer />
@@ -85,12 +104,5 @@ class App extends Component {
   }
 }
 
-const bgpic={
-  background: 'url("https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fevanwise.jpg?alt=media&token=6986eebb-7928-42d6-9d4e-7589990f29b3") no-repeat center center fixed',
-  WebkitBackgroundSize: 'cover',
-  MozBackgroundSize: 'cover',
-  OBackgroundSize: 'cover',
-  BackgroundSize: 'cover',
-}
 
 ReactDom.render(<App />, document.getElementById("app"));

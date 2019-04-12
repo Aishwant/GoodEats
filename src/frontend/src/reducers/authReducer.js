@@ -35,6 +35,7 @@ export default function(state = initialState, action) {
     }
     case REGISTER_SUCCESS:
       localStorage.setItem("uID",action.payload.uID);
+      localStorage.setItem("token",action.payload.token);
       return{
         ...state,
         uID: localStorage.getItem("uID"),

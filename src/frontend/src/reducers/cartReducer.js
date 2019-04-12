@@ -4,12 +4,14 @@ import {
     ADD_TO_CART,
     DELETE_CART_ITEM,
     GET_ITEM_COUNT,
-    EDIT_INSTRUCTIONS
+    EDIT_INSTRUCTIONS,
+    PLACE_ORDER
 } from "../actions/types";
 
 const initialState = {
     items:{},
-    itemCount: 0
+    itemCount: 0,
+    pendingOrders: {}
 }
 
 export default function(state = initialState, action) {
@@ -21,12 +23,15 @@ export default function(state = initialState, action) {
             };
         case ADD_TO_CART:
             return produce(state, draft => {
-                draft['items'][action.item] = [action.data];
+                draft['items'][action.rID] = [action.fd];
+                //draft['items'][action.rID]['total'] += action.toBeAdded;
                 draft.itemCount += action.qty;
             })
         case DELETE_CART_ITEM:
             return produce(state, draft => {
-                delete draft['items'][action.payload];
+                delete draft['items'][action.resID][action.payload];
+                draft['items'][action.resID]['total'] -= action.price;
+                draft['items'][action.resID]['total'] = draft['items'][action.resID]['total'].toFixed(2);
                 draft.itemCount -= action.qty;
             })
         case GET_ITEM_COUNT:
@@ -36,7 +41,12 @@ export default function(state = initialState, action) {
             };
         case EDIT_INSTRUCTIONS:
             return produce(state, draft => {
-                draft['items'][action.id]['Instructions'] = action.instructions
+                draft['items'][action.resID][action.id]['Instructions'] = action.instructions
+            })
+        case PLACE_ORDER:
+            return produce(state, draft => {
+                delete draft['items'][action.resID];
+                draft.itemCount -= action.totalItems;
             })
         default:
             return state;

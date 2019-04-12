@@ -5,9 +5,13 @@ import PropTypes from "prop-types";
 import { logout } from "../../actions/authentication";
 import { getItemCount } from "../../actions/orders"
 import { withRouter } from "react-router-dom";
+<<<<<<< HEAD
 import OwnerPendingOrder from "../owner/OwnerPendingOrder";
 import Modal from 'react-bootstrap/Modal'
 import Button from "react"
+=======
+import OrdersPending from "../owner/OrdersPending";
+>>>>>>> a892cbc82578d0f2afd74b77daf3f6f84e9517fe
 
 export class Header extends Component {
   static propTypes = {
@@ -15,6 +19,20 @@ export class Header extends Component {
     logout: PropTypes.func.isRequired
   };
  
+
+  handleData(data) {
+    let result = JSON.parse(data);
+    console.log(result);
+    console.log(result['message']);
+  }
+
+  sendMessage(message){
+    console.log("Clicked send");
+    this.refWebSocket.sendMessage(JSON.stringify({
+      'message': message
+    }));
+  }
+
 
   render() {
     const contentKeys = Object.keys(this.props.user)
@@ -81,6 +99,7 @@ export class Header extends Component {
           <i className="fas fa-user-cog"></i>
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+<<<<<<< HEAD
           <a className="dropdown-item" href="#">Order History</a>
           <a className="dropdown-item" href="#">My Profile</a>
           <div className="dropdown-divider"></div>
@@ -103,6 +122,10 @@ export class Header extends Component {
           <Link to="/orderhistory" className="dropdown-item">Order History</Link>
 
           <a className="dropdown-item" href="#">My Profile</a>
+=======
+          <a className="dropdown-item" href="#">My Orders</a>
+          <Link to="/myProfile" className="dropdown-item">My Profile</Link>
+>>>>>>> a892cbc82578d0f2afd74b77daf3f6f84e9517fe
           <div className="dropdown-divider"></div>
           <li className="dropdown-item">
             <Link to="/home" className="dropdown-item" onClick={this.props.logout}>
@@ -113,6 +136,7 @@ export class Header extends Component {
       </li>
     )
 
+<<<<<<< HEAD
     const ownerSettings = (
       <div class="container">
       <li className="nav-item dropdown">
@@ -134,6 +158,12 @@ export class Header extends Component {
         </div>
       </li> 
       </div>
+=======
+    const ordersPending = (
+      <li className="nav-item">
+        <OrdersPending />
+      </li>
+>>>>>>> a892cbc82578d0f2afd74b77daf3f6f84e9517fe
     )
 
     const cart = this.props.itemCount > 0 ? nonemptyCart : emptyCart
@@ -153,11 +183,16 @@ export class Header extends Component {
               {isAuthenticated ? "" : guestLinks}
               {isAuthenticated ? "" : guestLinks1}
               {isAuthenticated && contentKeys[0] === "Customer" ? cart : ""}
+<<<<<<< HEAD
               {isAuthenticated && contentKeys[0] === "Owner" ? pendingOrders: ""}
               {isAuthenticated && contentKeys[0] === "Owner" ? ownerSettings : ""}
               {isAuthenticated && contentKeys[0] === "Customer" ? cusSettings : ""}
               {isAuthenticated && contentKeys[0] === "Driver" ? settings : ""}
             
+=======
+              {isAuthenticated && contentKeys[0] === "Owner" ? ordersPending : ""}
+              {isAuthenticated ? settings : ""}
+>>>>>>> a892cbc82578d0f2afd74b77daf3f6f84e9517fe
             </ul>
           </div>
         </div>

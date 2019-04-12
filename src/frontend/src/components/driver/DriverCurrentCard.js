@@ -4,29 +4,21 @@ import PropTypes from "prop-types";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-
-
-
-
-
-
-
-
-
-
 export default class DriverCurrentCard extends Component{
 
   
-    constructor(props, context) {
-        super(props, context);
+    // constructor(props, context) {
+    //     super(props, context);
     
-        this.handleShow = this.handleShow.bind(this);
-        this.handleClose = this.handleClose.bind(this);
+    //     this.handleShow = this.handleShow.bind(this);
+    //     this.handleClose = this.handleClose.bind(this);
     
-        this.state = {
-          show: false,
-        };
-      }
+        
+    //   }
+
+      state = {
+        show: false,
+      };
     
       handleClose() {
         this.setState({ show: false });
@@ -36,20 +28,21 @@ export default class DriverCurrentCard extends Component{
         this.setState({ show: true });
       }
 
+      
     render(){
         
         let { OrderID,CID,DeliveryEst,DeliveryInstructions,DriverID,Orders,PrepInsruction,RID,Status,Total } = this.props.passCurrentOrder;
 
         return(
-            
-            <div class="container">
+
+            <div class="container" style={{marginTop: "10px"}}>
                 <div class="card" style={{width:'100%',borderRadius:'2%', border: '4px solid lightgreen'}}>
                     <div class="card-body" style={{textAlign:'center'}}>
                         <h4 class="card-title">{CID}</h4>
                         <p class="card-text"><h5>{RID}</h5></p>
                         {/* <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> */}
-                        <Button variant="outline-success"style={{width:'33%'}}><i class="fas fa-check-circle fa-lg"></i><br/>Order Picked Up</Button>
-                        <Button variant="outline-primary" onClick={this.handleShow} style={{width:'33%'}}><i class="fas fa-book-open fa-lg" fa-lg></i><br/>View</Button>
+                        <Button variant="outline-success"><i class="fas fa-check-circle fa-lg"></i><br/>Order Picked Up</Button>
+                        <Button variant="outline-primary" onClick={this.handleShow}><i class="fas fa-book-open fa-lg" fa-lg></i><br/>View</Button>
 
                         <Modal size="lg" show={this.state.show} onHide={this.handleClose}  dialogClassName="modal-90w"
           >
@@ -117,7 +110,7 @@ export default class DriverCurrentCard extends Component{
                                 
                             </Modal.Footer>
                             </Modal>
-                        <Button variant="outline-info"onClick={() => {this.props.removeOrder(OrderID)}} style={{width:'33%'}}><i class="fas fa-check fa-lg" fa-lg></i><br/>Order Delivered</Button>
+                        <Button variant="outline-info"onClick={() => {this.props.removeOrder(OrderID)}}><i class="fas fa-check fa-lg" fa-lg></i><br/>Order Delivered</Button>
                      
                     </div>
                 </div>

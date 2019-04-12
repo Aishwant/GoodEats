@@ -189,9 +189,9 @@ class deleteCartItemAPI(generics.GenericAPIView):
         permissions.AllowAny
     ]
 
-    def get(self, request, itemID, uID):
+    def get(self, request, rID, itemID, uID):
         try:
-            db = firebase.deleteCartItem(request, itemID, uID)
+            db = firebase.deleteCartItem(request, rID, itemID, uID)
             return Response({
                 "status": "success"
             })
@@ -341,6 +341,78 @@ class editInstructionsAPI(generics.GenericAPIView):
     def post(self, request):
         try:
             return Response(firebase.editInstructions(request.data))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })
+
+class editMyProfileAPI(generics.GenericAPIView):
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            print("reached")
+            print(request.data)
+            return Response(firebase.editMyProfile(request.data))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })
+
+class placeOrderAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            return Response(firebase.placeOrder(request.data))
+        except:
+            return Response({
+                
+            })
+
+class acceptPendingOrderAPI(generics.GenericAPIView):
+    
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            return Response(firebase.acceptPendingOrder(request.data))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })
+
+
+class rejectPendingOrderAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            return Response(firebase.rejectPendingOrder(request.data))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })
+
+class acceptPendingDevOrderAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            return Response(firebase.acceptPendingDevOrder(request.data))
         except:
             return Response({
                 "status":"Disconnected"

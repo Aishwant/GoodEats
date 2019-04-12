@@ -16,11 +16,17 @@ export class UserDefiner extends Component {
     open: "",
     close: "",
     CuisineType: "",
+    owner_ID: "",
     changeO: false,
     changeC: false,
     changeD: false
   };
 
+  componentDidMount(){
+    this.setState({
+      owner_ID: this.props.uID
+    });
+  }
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
@@ -81,7 +87,7 @@ export class UserDefiner extends Component {
 
     const ownerForm = (
       <div style={margin15}>
-        Let's add your first resturant
+        Let's add your first restaurant
         <br /><br />
         <input
           type="text"
@@ -126,14 +132,14 @@ export class UserDefiner extends Component {
           name="zipcode"
           onChange={this.onChange}
           value={zipcode}
-          placeholder="Zip code"
+          placeholder="Zip Code"
           className="form-control"
           pattern="^\d{5}(?:[-\s]\d{4})?$"
-          title="Not a valid zipcode"
+          title="Not a valid Zip Code"
           required
         />
         <br />
-        <label>Open</label>
+        <label>Open time</label>
         <input
           type="time"
           name="open"
@@ -143,7 +149,7 @@ export class UserDefiner extends Component {
           required
         />
         <br />
-        <label>Close</label>
+        <label>Close time</label>
         <input
           type="time"
           name="close"
@@ -157,16 +163,16 @@ export class UserDefiner extends Component {
 
     const zipcodeF = (
       <div style={margin15}>
-        <h6>For us To give you better options</h6>
+        <h6>Help us give you localized options</h6>
         <input 
           type="text"
           name="zipcode"
           onChange={this.onChange}
           value={zipcode}
-          placeholder="Zip code"
+          placeholder="Zip Code"
           className="form-control"
           pattern="^\d{5}(?:[-\s]\d{4})?$"
-          title="Not a valid zipcode"
+          title="Not a valid Zip Code"
           required
         />
       </div>
@@ -178,7 +184,7 @@ export class UserDefiner extends Component {
       <div className="row">
         <div className="col-md"></div>
         <div className="col-auto">
-          <h3>Let's Get to know you better</h3>
+          <h3 className="mb-2 mt-3">Let's get to know you better</h3>
           <br />
           <form onSubmit={this.onSubmit}>
             <input
@@ -210,7 +216,7 @@ export class UserDefiner extends Component {
               data-target="#ownerModalCenter"
               
             >
-              Owner of A resturant
+              Owner of a restaurant
             </button>{" "}
             <button
               type="button"
@@ -226,7 +232,7 @@ export class UserDefiner extends Component {
               style={btnStyleD}
               onClick={this.onClickDelivery.bind(this)}
             >
-              Deliver Driver
+              Delivery Driver
             </button>{" "}
             <br />
 
@@ -250,7 +256,8 @@ const margin15 = {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.authReducer.isAuthenticated,
-  newUser: state.authReducer.newUser
+  newUser: state.authReducer.newUser,
+  uID: state.authReducer.uID
 });
 
 export default connect(
