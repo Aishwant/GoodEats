@@ -69,10 +69,12 @@ export class PlaceOrder extends Component {
     }
     
       render() {
-        const {Address1,Address2,city,fname,lname, zipcode,email,Phone} = this.state;
+        const {Address1, Address2, city, fname, lname, zipcode, Phone} = this.state;
 
         let orderButton;
-        if(false){
+        if(this.state.Phone !== "" && 
+           this.state.Address1 !== "" && 
+           this.state.City !== "" ){
             orderButton = <button className="btn btn-sm btn-dark" onClick={this.props.placeOrder.bind(this, this.props.items)}>Place Order</button>
         }else{
             orderButton = <button className="btn btn-sm btn-dark" onClick={this.openModal}>Place Order</button>
