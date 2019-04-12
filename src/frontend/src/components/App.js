@@ -27,6 +27,8 @@ import store from "../store";
 import { loadUser } from "../actions/authentication";
 import  newOrder  from "./owner/newOrder";
 import DriverDeliveryHistory from "./driver/DriverDeliveryHistory";
+import OrderHistory from "./customer/OrderHistory";
+import OrderTracker from "./customer/OrderTracker";
 
 
 
@@ -66,6 +68,9 @@ class App extends Component {
                       <PrivateRoute exact path = "/menu/:rName" component={Menu_Customer} />
                       <PrivateRoute exact path = "/editmenu/:rName" component={Menu_Owner}/>
                       <PrivateRoute exact path = "/cart" component={Cart} />
+                      <PrivateRoute exact path = "/orderhistory" component={OrderHistory} />
+                      <PrivateRoute exact path = "/trackorder/:OrderID" component={OrderTracker} />
+
     
                 </Switch>
                 

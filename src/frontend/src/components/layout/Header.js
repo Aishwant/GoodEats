@@ -93,6 +93,26 @@ export class Header extends Component {
       </li>
     )
 
+    const cusSettings = (
+      <li className="nav-item dropdown">
+        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i className="fas fa-user-cog"></i>
+        </a>
+        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+     
+          <Link to="/orderhistory" className="dropdown-item">Order History</Link>
+
+          <a className="dropdown-item" href="#">My Profile</a>
+          <div className="dropdown-divider"></div>
+          <li className="dropdown-item">
+            <Link to="/home" className="dropdown-item" onClick={this.props.logout}>
+              Log Out <i className="fas fa-sign-out-alt"></i>
+            </Link>
+          </li>
+        </div>
+      </li>
+    )
+
     const ownerSettings = (
       <div class="container">
       <li className="nav-item dropdown">
@@ -135,7 +155,7 @@ export class Header extends Component {
               {isAuthenticated && contentKeys[0] === "Customer" ? cart : ""}
               {isAuthenticated && contentKeys[0] === "Owner" ? pendingOrders: ""}
               {isAuthenticated && contentKeys[0] === "Owner" ? ownerSettings : ""}
-              {isAuthenticated && contentKeys[0] === "Customer" ? settings : ""}
+              {isAuthenticated && contentKeys[0] === "Customer" ? cusSettings : ""}
               {isAuthenticated && contentKeys[0] === "Driver" ? settings : ""}
             
             </ul>
