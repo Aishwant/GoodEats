@@ -16,7 +16,7 @@ export default class RestaurantCard extends Component{
         return(
             
             <div class="container">
-                <div class="card" inverse style={{width:'21rem',borderRadius:'2%', border: '4px solid red'}}>
+                <div class="card" inverse style={{width:'17rem',borderRadius:'2%', border: '4px solid red'}}>
                     <div class="card-body" style={{backgroundColor:"#2A2828", textAlign:'center', color:"#FFFFFF"}}>
                         <h4 class="card-title">{CID}</h4>
                         <p class="card-text"><h5>{RID}</h5></p>
