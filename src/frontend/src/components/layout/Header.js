@@ -7,8 +7,6 @@ import { getItemCount } from "../../actions/orders"
 import { withRouter } from "react-router-dom";
 import OrdersPending from "../owner/OrdersPending";
 
-import Websocket from 'react-websocket';
-
 export class Header extends Component {
   static propTypes = {
     authReducer: PropTypes.object.isRequired,

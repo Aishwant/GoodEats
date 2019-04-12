@@ -44,9 +44,7 @@ export class FormRestaurant extends Component {
         const { Address, City, Open, Close, Name, zipcode, CuisineType, imgURL } = this.state;
         return (
                 <div>
-                    <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Add Restaurant
-                    </button>
+                    
 
                     <form onSubmit={this.onSubmit}>
                     <div className="modal fade text-left" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

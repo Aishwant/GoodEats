@@ -13,6 +13,7 @@ from .api import getItemCountAPI
 from .api import editInstructionsAPI
 from .api import editMyProfileAPI
 from .api import placeOrderAPI
+from .api import rejectPendingOrderAPI, acceptPendingOrderAPI
 
 urlpatterns = [
     path('api/database/get',getDataAPI.as_view()),
@@ -36,5 +37,7 @@ urlpatterns = [
     path('api/database/getItemCount/<slug:uID>', getItemCountAPI.as_view()),
     path('api/database/editInstructions', editInstructionsAPI.as_view()),
     path('api/database/editmyprofile',editMyProfileAPI.as_view()),
-    path('api/database/placeOrder', placeOrderAPI.as_view())
+    path('api/database/placeOrder', placeOrderAPI.as_view()),
+    path('api/database/rejectPendingOrder', rejectPendingOrderAPI.as_view()),
+    path('api/database/acceptPendingOrder', acceptPendingOrderAPI.as_view()),
 ]

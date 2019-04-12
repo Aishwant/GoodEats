@@ -203,6 +203,8 @@ def addItem(request):
     return db.child("Restaurants").child(request['rID']).child("Menu").child(request['category']).update(request['newItem'])
 
 
+
+
 ##### Delete from Database #####
 def deleteRestaurant(request, rID, uID):
     db = credentials().database()
@@ -274,7 +276,6 @@ def editMyProfile(request):
 
 def placeOrder(request):
     db = credentials().database()
-    #print(request)
     rID = ""
     owner_ID = ""
     uID = ""
@@ -287,8 +288,14 @@ def placeOrder(request):
             if(k2 == "uID"):
                 uID = v2
 
-    print(rID)
-    print(owner_ID)
     db.child("Users").child(uID).child("Customer").child("Cart").child(rID).remove()
     return db.child("Users").child(owner_ID).child("Owner").child("Orders").update(request)
-    
+
+def acceptPendingOrder(request):
+    db = credentials().database()
+    db.child("Users").child(request['ownerID']).child("Owner").child("Orders").child(request['orderID']).remove()
+    db.child("Orders").child(request['rID']).child(request['orderID']).set(request['order'])
+
+def rejectPendingOrder(request):
+    db = credentials().database()
+    return db.child("Users").child(request['ownerID']).child("Owner").child("Orders").child(request['orderID']).remove()

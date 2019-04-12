@@ -27,6 +27,9 @@ import { Provider } from "react-redux";
 import store from "../store";
 import { loadUser } from "../actions/authentication";
 
+
+
+
 import * as firebase from 'firebase';
 
 let config = {

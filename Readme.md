@@ -185,7 +185,7 @@ npm i query-string
 npm i react-modal
 npm i uuid
 npm i immer
-npm i react-websocket
+npm i react-bootstrap
 ````
 
 ### More pip install commands for Python:
