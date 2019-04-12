@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {GET_CART, ADD_TO_CART, DELETE_CART_ITEM, GET_ITEM_COUNT, EDIT_INSTRUCTIONS, PLACE_ORDER, ADD_PENDING_ORDER, REJECT_PENDING_ORDER, ACCEPT_PENDING_ORDER, ADD_PENDING_DEV_ORDER } from './types.js';
+import {GET_CART, ADD_TO_CART, DELETE_CART_ITEM, GET_ITEM_COUNT, EDIT_INSTRUCTIONS, PLACE_ORDER, ADD_PENDING_ORDER, REJECT_PENDING_ORDER, ACCEPT_PENDING_ORDER, ADD_PENDING_DEV_ORDER, ACCEPT_PENDING_DEV_ORDER, ADD_ON_DEV_ORDER, ADD_DELIVERED_ORDER } from './types.js';
 
 //Get user's cart
 export const getCart = () => (dispatch) => {
@@ -169,3 +169,37 @@ export const addPendingDevOrder = (orderData) => (dispatch) => {
     payload: orderData
   })
 }
+
+export const acceptPendingDevOrder = (rid,oid,orderData) => (dispatch) => {
+  const data = {
+    rID:rid,
+    orderID:oid,
+    order:orderData
+  }
+  axios.post('/api/database/acceptPendingDevOrder',data)
+  .then(res => {
+    dispatch({
+      type: ACCEPT_PENDING_DEV_ORDER,
+      rid: rid,
+      oid: oid,
+    })
+  }
+  )
+  .error()
+}
+
+export const addOnDevOrder = (orderData) => (dispatch) => {
+  dispatch({
+    type: ADD_ON_DEV_ORDER,
+    payload: orderData
+  })
+}
+
+
+export const addDeliveredOrder = (orderData) => (dispatch) => {
+  dispatch({
+    type: ADD_DELIVERED_ORDER,
+    payload: orderData
+  })
+}
+

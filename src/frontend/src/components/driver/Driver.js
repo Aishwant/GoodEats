@@ -6,7 +6,7 @@ import {Tabs,Tab} from 'react-bootstrap';
 import DriverPlacedOrder from './DriverPlacedOrder';
 import DriverCurrentOrders from './DriverCurrentOrders';
 import DriverDeliveryHistory from './DriverDeliveryHistory';
-import { addPendingDevOrder } from '../../actions/orders';
+import { addPendingDevOrder, addOnDevOrder, addDeliveredOrder  } from '../../actions/orders';
 
 import * as firebase from 'firebase';
 
@@ -20,9 +20,20 @@ export class Driver extends Component {
 
   componentDidMount(){
 
-    const orderRef = firebase.database().ref().child('Orders');
-    orderRef.on('value', snap => {
-      this.props.addPendingDevOrder(snap.val())
+    const rootRef = firebase.database().ref()
+    const toDevRef = rootRef.child('Orders').child('ToBeDev');
+    toDevRef.on('value', snap => {
+      if(snap.val()) this.props.addPendingDevOrder(snap.val())
+    })
+
+    const onDevRef = rootRef.child('Orders').child('OnDev');
+    onDevRef.on('value', snap => {
+      if(snap.val()) this.props.addOnDevOrder(snap.val())
+    })
+
+    const devRef = rootRef.child('Orders').child('Dev');
+    devRef.on('value', snap => {
+      if(snap.val()) this.props.addDeliveredOrder(snap.val())
     })
   }
   render() {
@@ -52,4 +63,4 @@ export class Driver extends Component {
 
 
 
-export default connect(null, { addPendingDevOrder })(Driver)
+export default connect(null, { addPendingDevOrder, addOnDevOrder, addDeliveredOrder })(Driver)

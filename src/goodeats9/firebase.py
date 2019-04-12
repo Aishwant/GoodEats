@@ -297,8 +297,13 @@ def placeOrder(request):
 def acceptPendingOrder(request):
     db = credentials().database()
     db.child("Users").child(request['ownerID']).child("Owner").child("Orders").child(request['orderID']).remove()
-    db.child("Orders").child(request['rID']).child(request['orderID']).set(request['order'])
+    db.child("Orders").child('ToBeDev').child(request['rID']).child(request['orderID']).set(request['order'])
 
 def rejectPendingOrder(request):
     db = credentials().database()
     return db.child("Users").child(request['ownerID']).child("Owner").child("Orders").child(request['orderID']).remove()
+
+def acceptPendingDevOrder(request):
+    db = credentials().database()
+    db.child('Orders').child('ToBeDev').child(request['rID']).child(request['orderID']).remove()
+    return db.child('Orders').child('OnDev').child(request['rID']).child(request['orderID']).set(request['order'])
