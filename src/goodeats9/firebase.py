@@ -288,11 +288,10 @@ def placeOrder(request):
             if(k2 == "uID"):
                 uID = v2
 
-    print(rID)
-    print(owner_ID)
     db.child("Users").child(uID).child("Customer").child("Cart").child(rID).remove()
     return db.child("Users").child(owner_ID).child("Owner").child("Orders").update(request)
     
+
 def acceptPendingOrder(request):
     db = credentials().database()
     db.child("Users").child(request['ownerID']).child("Owner").child("Orders").child(request['orderID']).remove()

@@ -91,7 +91,7 @@ export const editInstructions = (rID, itemID, Instructions) => (dispatch) => {
 };
 
 //Send an order request to the owner of the restaurant the user is ordering from
-export const placeOrder = (orderData) => (dispatch) => {
+export const placeOrder = (orderData, rName) => (dispatch) => {
   const keys = Object.keys(orderData);
   const owner_ID = orderData[keys[0]].owner_ID
   const rID = orderData[keys[0]].rID
@@ -105,7 +105,7 @@ export const placeOrder = (orderData) => (dispatch) => {
   const uID = localStorage.getItem("uID");
   const uuidv4 = require('uuid/v4');
   const orderID = uuidv4();
-  const order = { [orderID] : {'rID':rID, 'rName':'placeholderName', 'owner_ID':owner_ID, 'uID':uID, 'total':total, 'user_info':{ address: "123",phone: "123",email: "test@test.com"}, 'items':orderData}}
+  const order = { [orderID] : {'rID':rID, 'rName':rName, 'owner_ID':owner_ID, 'uID':uID, 'total':total, 'user_info':{ address: "123",phone: "123",email: "test@test.com"}, 'items':orderData}}
   console.log(order)
   axios
     .post("/api/database/placeOrder", order)

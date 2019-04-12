@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { getCart, deleteCartItem, placeOrder } from '../../actions/orders';
 import EditInstructionsModal from './EditInstructionsModal';
 import Total from './Total';
+import PlaceOrder from './PlaceOrder';
 
 export class Cart extends Component {
     state = {
@@ -73,7 +74,7 @@ export class Cart extends Component {
                                 <td></td>
                                 <td>Total</td>
                                 <td><Total total={this.props.items[i][j]}/></td>
-                                <td><button className="btn btn-sm btn-dark" onClick={this.props.placeOrder.bind(this, this.props.items[i])}>Place Order</button></td>
+                                <td><PlaceOrder items={this.props.items[i]} rName={this.props.restaurants[i].Name}/></td>
                             </tr>
                         )}
                     }
