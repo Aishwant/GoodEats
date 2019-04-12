@@ -5,12 +5,16 @@ import PropTypes from "prop-types";
 import { logout } from "../../actions/authentication";
 import { getItemCount } from "../../actions/orders"
 import { withRouter } from "react-router-dom";
+import OwnerPendingOrder from "../owner/OwnerPendingOrder";
+import Modal from 'react-bootstrap/Modal'
+import Button from "react"
 
 export class Header extends Component {
   static propTypes = {
     authReducer: PropTypes.object.isRequired,
     logout: PropTypes.func.isRequired
   };
+ 
 
   render() {
     const contentKeys = Object.keys(this.props.user)
@@ -60,6 +64,17 @@ export class Header extends Component {
         </li>
     );
 
+    const pendingOrders = (
+      <li className="nav-item dropdown">
+          <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-concierge-bell"></i>
+          <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+          <OwnerPendingOrder/>
+          </div>
+        </a>
+      </li>
+  );
+
     const settings = (
       <li className="nav-item dropdown">
         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -76,6 +91,29 @@ export class Header extends Component {
           </li>
         </div>
       </li>
+    )
+
+    const ownerSettings = (
+      <div class="container">
+      <li className="nav-item dropdown">
+        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i className="fas fa-user-cog"></i>
+        </a>
+        <div className="dropdown-menu" aria-labelledby="navbarDropdown" >
+
+
+
+          <a className="dropdown-item" href="#"><i class="fas fa-user"></i> My Profile</a>
+          
+          <div className="dropdown-divider"></div>
+          <li className="dropdown-item">
+            <Link to="/home" className="dropdown-item" onClick={this.props.logout}>
+              Log Out <i className="fas fa-sign-out-alt"></i>
+            </Link>
+          </li>
+        </div>
+      </li> 
+      </div>
     )
 
     const cart = this.props.itemCount > 0 ? nonemptyCart : emptyCart
@@ -95,7 +133,11 @@ export class Header extends Component {
               {isAuthenticated ? "" : guestLinks}
               {isAuthenticated ? "" : guestLinks1}
               {isAuthenticated && contentKeys[0] === "Customer" ? cart : ""}
-              {isAuthenticated ? settings : ""}
+              {isAuthenticated && contentKeys[0] === "Owner" ? pendingOrders: ""}
+              {isAuthenticated && contentKeys[0] === "Owner" ? ownerSettings : ""}
+              {isAuthenticated && contentKeys[0] === "Customer" ? settings : ""}
+              {isAuthenticated && contentKeys[0] === "Driver" ? settings : ""}
+            
             </ul>
           </div>
         </div>

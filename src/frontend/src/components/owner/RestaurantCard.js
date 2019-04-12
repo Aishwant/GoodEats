@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Button from 'react-bootstrap/Button';
 
 
 
@@ -15,16 +16,16 @@ export default class RestaurantCard extends Component{
         return(
             
             <div class="container">
-                <div class="card" style={{width:'100%',borderRadius:'2%', border: '4px solid lightgreen'}}>
-                    <div class="card-body" style={{textAlign:'center'}}>
+                <div class="card" inverse style={{width:'21rem',borderRadius:'2%', border: '4px solid red'}}>
+                    <div class="card-body" style={{backgroundColor:"#2A2828", textAlign:'center', color:"#FFFFFF"}}>
                         <h4 class="card-title">{CID}</h4>
                         <p class="card-text"><h5>{RID}</h5></p>
                         {/* <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> */}
                     
-                        <button type="button" onClick={() => {this.props.removeOrder(OrderID);this.props.showOrder(OrderID)}}class="btn btn-success btn-sm" style={{width:'50%'}}>Accept</button> 
-                        
+                        <Button variant="outline-success"onClick={() => {this.props.removeOrder(OrderID)}} style={{width:'50%'}}><i class="fas fa-check-circle fa-lg"></i><br/>Accept</Button> 
+                        <Button variant="outline-danger"onClick={() => {this.props.removeOrder(OrderID)}} style={{width:'50%'}}><i class="far fa-times-circle fa-lg" fa-lg></i><br/>Decline</Button>
                      
-                        <button type="button" class="btn btn-danger btn-sm" style={{width:'50%'}}>Decline</button>
+                        
                     </div>
                 </div>
             </div>

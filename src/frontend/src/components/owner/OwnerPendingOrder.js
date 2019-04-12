@@ -66,6 +66,7 @@ export class OwnerPendingOrder extends Component{
         let dCard = this.state.Orderslist.map(order => {
             return (
               
+              
                 <RestaurantCard key={order.OrderID} removeOrder={this.removeOrder.bind(this)} indOrder={order}/>
                
                 
