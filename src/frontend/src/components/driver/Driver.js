@@ -31,7 +31,7 @@ export class Driver extends Component {
       if(snap.val()) this.props.addOnDevOrder(snap.val())
     })
 
-    const devRef = rootRef.child('Orders').child('Dev');
+    const devRef = rootRef.child("Users").child(uId).child("Driver").child("Devlivered");
     devRef.on('value', snap => {
       if(snap.val()) this.props.addDeliveredOrder(snap.val())
     })
