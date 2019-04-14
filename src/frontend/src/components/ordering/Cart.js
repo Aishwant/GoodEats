@@ -55,7 +55,7 @@ export class Cart extends Component {
                             <td>{item.Name}</td>
                             <td>{item.Description}</td>
                             <td>{item.Quantity}</td>
-                            <td>{item.Price}</td>
+                            <td>${item.Price}</td>
                             <td className="text-right">
                             <div className="row"><EditInstructionsModal rID={i} itemID={j} Instructions={item.Instructions}/>
                             <button
