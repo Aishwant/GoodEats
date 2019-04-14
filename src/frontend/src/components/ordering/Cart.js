@@ -27,7 +27,6 @@ export class Cart extends Component {
     }
 
   render() {
-
     const contentKeys = Object.keys(this.props.items);
     return (
         

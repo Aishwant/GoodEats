@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {GET_CART, ADD_TO_CART, DELETE_CART_ITEM, GET_ITEM_COUNT, EDIT_INSTRUCTIONS, PLACE_ORDER, ADD_PENDING_ORDER, REJECT_PENDING_ORDER, ACCEPT_PENDING_ORDER, ADD_PENDING_DEV_ORDER } from './types.js';
+import {GET_CART, ADD_TO_CART, DELETE_CART_ITEM, GET_ITEM_COUNT, EDIT_INSTRUCTIONS, PLACE_ORDER, ADD_PENDING_ORDER, REJECT_PENDING_ORDER, ACCEPT_PENDING_ORDER, ADD_PENDING_DEV_ORDER, ACCEPT_PENDING_DEV_ORDER, ADD_ON_DEV_ORDER, ADD_DELIVERED_ORDER, DELIVERED_ORDER } from './types.js';
 
 //Get user's cart
 export const getCart = () => (dispatch) => {
@@ -111,8 +111,7 @@ export const placeOrder = (orderData, restaurant, userData) => (dispatch) => {
   const rAddress = restaurant.Address;
   const rCity = restaurant.City;
   const rZipcode = restaurant.zipcode;
-  const order = { [orderID] : {'rID':rID, 'rName':rName, 'rAddress':rAddress, 'rCity':rCity, 'rZipcode':rZipcode, 'owner_ID':owner_ID, 'uID':uID, 'total':total, 'user_info':userData, 'items':orderData}}
-  console.log(order);
+  const order = { [orderID] : {'rID':rID, 'rName':rName, 'rAddress':rAddress, 'rCity':rCity, 'rZipcode':rZipcode, 'owner_ID':owner_ID, 'uID':uID, 'total':total, 'user_info':{ address: "123",phone: "123",email: "test@test.com"}, 'items':orderData}}
   axios
     .post("/api/database/placeOrder", order)
     .then(res => {
@@ -127,11 +126,13 @@ export const placeOrder = (orderData, restaurant, userData) => (dispatch) => {
 
 //Add an order to the users list of pending orders
 export const addPendingOrder = (orderData) => (dispatch) => {
-  
-  dispatch({
-    type: ADD_PENDING_ORDER,
-    payload: orderData
-  })
+  if(orderData){
+    console.log(orderData)
+    dispatch({
+      type: ADD_PENDING_ORDER,
+      payload: orderData
+    })
+  }
 }
 
 export const acceptPendingOrder = (order,id,rID) => (dispatch) => {
@@ -172,4 +173,59 @@ export const addPendingDevOrder = (orderData) => (dispatch) => {
     type: ADD_PENDING_DEV_ORDER,
     payload: orderData
   })
+}
+
+export const acceptPendingDevOrder = (rid,oid,orderData) => (dispatch) => {
+  const uId= localStorage.getItem('uID')
+  orderData['driver_ID']= uId
+  const data = {
+    rID:rid,
+    orderID:oid,
+    uId: uId,
+    order:orderData,
+  }
+  axios.post('/api/database/acceptPendingDevOrder',data)
+  .then(res => {
+    dispatch({
+      type: ACCEPT_PENDING_DEV_ORDER,
+      rid: rid,
+      oid: oid,
+    })
+  }
+  )
+  .error()
+}
+
+export const addOnDevOrder = (orderData) => (dispatch) => {
+  dispatch({
+    type: ADD_ON_DEV_ORDER,
+    payload: orderData
+  })
+}
+
+
+export const addDeliveredOrder = (orderData) => (dispatch) => {
+  dispatch({
+    type: ADD_DELIVERED_ORDER,
+    payload: orderData
+  })
+}
+
+export const deliveredOrder = (rid,oid,orderData) => (dispatch) => {
+  const data = {
+    rID:rid,
+    orderID:oid,
+    order:orderData,
+    uId: localStorage.getItem('uID')
+  }
+
+  axios.post('/api/database/orderDelivered', data)
+  .then(res => {
+    dispatch({
+      type: DELIVERED_ORDER,
+      rid: rid,
+      oid: oid
+    })
+  })
+  .error()
 }

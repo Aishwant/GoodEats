@@ -403,3 +403,32 @@ class rejectPendingOrderAPI(generics.GenericAPIView):
             return Response({
                 "status":"Disconnected"
             })
+
+class acceptPendingDevOrderAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            return Response(firebase.acceptPendingDevOrder(request.data))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })
+
+
+class orderDeliveredAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def post(self, request):
+        try:
+            return Response(firebase.orderDelivered(request.data))
+        except:
+            return Response({
+                "status":"Disconnected"
+            })

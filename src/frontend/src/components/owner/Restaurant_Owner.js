@@ -27,11 +27,12 @@ export class Restaurant extends Component {
   componentDidMount(){
     this.props.getRestaurantByID();
 
-    const rootRef = firebase.database().ref().child('Users').child("7tXRHUVp2uNScdBm1gwHrmDdoB92").child("Owner");
+    const uId = localStorage.getItem("uID")+"";
+    const rootRef = firebase.database().ref().child('Users').child(uId).child("Owner");
     const orderRef = rootRef.child('Orders');
     
     orderRef.on('value', snap => {
-      this.props.addPendingOrder(snap.val())
+      if(snap.val()) this.props.addPendingOrder(snap.val())
     })
   }
   
@@ -73,6 +74,7 @@ export class Restaurant extends Component {
     return (
       <Fragment>
         <div className="col-md-12" style={{borderBottom:"solid 3px #ddd", paddingBottom:'25px', margin:"25px auto"}}>
+          
           <div className="row">
 
             <div className="col-md-6">
@@ -143,7 +145,7 @@ export class Restaurant extends Component {
                           </div>
                         </div>
                       </div>
-                  </div>
+                   </div>
                   </div>
                 )
             }else{
