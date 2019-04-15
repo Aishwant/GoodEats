@@ -5,10 +5,6 @@ import {Tabs,Tab} from 'react-bootstrap';
 
 import DriverPlacedOrder from './DriverPlacedOrder';
 import DriverCurrentOrders from './DriverCurrentOrders';
-<<<<<<< HEAD
-import DeliverHistoryCard from './DeliveryHistoryCard';
-import DeliveryHistoryCard from './DeliveryHistoryCard';
-=======
 import DriverDeliveryHistory from './DriverDeliveryHistory';
 import { addPendingDevOrder, addOnDevOrder, addDeliveredOrder  } from '../../actions/orders';
 
@@ -16,7 +12,6 @@ import * as firebase from 'firebase';
 
 
 export class Driver extends Component {
->>>>>>> a892cbc82578d0f2afd74b77daf3f6f84e9517fe
 
 
   state = {
@@ -43,14 +38,6 @@ export class Driver extends Component {
   }
   render() {
     return (
-<<<<<<< HEAD
-      <div>
-      <DriverPlacedOrder/>
-      <DriverCurrentOrders/> 
-      </div>
-    )
-  }}
-=======
       
       <div className="container h-100 align-items-center driver-tabs">
       <Tabs 
@@ -79,4 +66,3 @@ export class Driver extends Component {
 
 
 export default connect(null, { addPendingDevOrder, addOnDevOrder, addDeliveredOrder })(Driver)
->>>>>>> a892cbc82578d0f2afd74b77daf3f6f84e9517fe

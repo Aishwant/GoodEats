@@ -26,13 +26,11 @@ import PrivateHomeRoute from "./private/PrivateHomeRoute"
 import { Provider } from "react-redux";
 import store from "../store";
 import { loadUser } from "../actions/authentication";
-<<<<<<< HEAD
-import  newOrder  from "./owner/newOrder";
-import DriverDeliveryHistory from "./driver/DriverDeliveryHistory";
+
 import OrderHistory from "./customer/OrderHistory";
 import OrderTracker from "./customer/OrderTracker";
-=======
->>>>>>> a892cbc82578d0f2afd74b77daf3f6f84e9517fe
+
+
 
 
 
@@ -83,15 +81,10 @@ class App extends Component {
                       <PrivateRoute exact path = "/menu/:rName" component={Menu_Customer} />
                       <PrivateRoute exact path = "/editmenu/:rName" component={Menu_Owner}/>
                       <PrivateRoute exact path = "/cart" component={Cart} />
-<<<<<<< HEAD
                       <PrivateRoute exact path = "/orderhistory" component={OrderHistory} />
                       <PrivateRoute exact path = "/trackorder/:OrderID" component={OrderTracker} />
 
     
-=======
-                      <PrivateRoute exact path = "/myProfile" component={MyProfile} />
-     
->>>>>>> a892cbc82578d0f2afd74b77daf3f6f84e9517fe
                 </Switch>
 
               </div>

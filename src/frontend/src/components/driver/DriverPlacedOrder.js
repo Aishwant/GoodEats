@@ -12,59 +12,9 @@ import { acceptPendingDevOrder } from '../../actions/orders';
 
 export class DriverPlacedOrder extends Component{
 
-<<<<<<< HEAD
-    constructor() {
-        super();
-        this.state = {
-          Orderslist: [
-            {
-              OrderID:parseInt("001"),
-              CID:123,
-              DeliveryEst:"",
-              DeliveryInstructions:"Door",
-              DriverID:"",
-              Orders:"ABC",
-              DeliverrAdd: "7632 Helmsdale Pl, Manassas, VA",
-              PrepInsruction:"Mild",
-              RID:"A",
-              Status:"",
-              Total:""
-
-            },
-            {   
-                OrderID:parseInt("002"),
-                CID:456,
-                DeliveryEst:"",
-                DeliveryInstructions:"Front Door",
-                DriverID:"",
-                Orders:"BCD",
-                DeliverrAdd: "1802 Jackson Avenue west, Apt 87, Oxford,MS, 38655",
-                PrepInsruction:"Medium",
-                RID:"B",
-                Status:"",
-                Total:""
-            },
-            {
-                OrderID:parseInt("003"),
-                CID:678,
-                DeliveryEst:"",
-                DeliveryInstructions:"Gate",
-                DriverID:"",
-                Orders:"DEF",
-                DeliverrAdd: "1802 Jackson Avenue west, Apt 87, Oxford,MS, 38655",
-                PrepInsruction:"Spicy",
-                RID:"C",
-                Status:"",
-                Total:""
-            }
-          ]
-        }
-      } 
-=======
   state = {
     show: false,
   }
->>>>>>> a892cbc82578d0f2afd74b77daf3f6f84e9517fe
 
       handleClose() {
         this.setState({ show: false });
