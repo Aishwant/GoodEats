@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { deliveredOrder } from '../../actions/orders';
 
 export class DriverCurrentOrders extends Component{
 
@@ -19,7 +20,7 @@ export class DriverCurrentOrders extends Component{
       }
 
       onclick(rid,oid,data) {
-        
+        this.props.deliveredOrder(rid,oid,data);
       }
 
       
@@ -102,4 +103,4 @@ const mapStateToProps = state => ({
   onDevOrders :state.orderReducer.onDevOrders
 })
 
-export default connect(mapStateToProps, null )(DriverCurrentOrders);
+export default connect(mapStateToProps, { deliveredOrder } )(DriverCurrentOrders);

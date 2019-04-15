@@ -14,7 +14,7 @@ from .api import editInstructionsAPI
 from .api import editMyProfileAPI
 from .api import placeOrderAPI
 from .api import rejectPendingOrderAPI, acceptPendingOrderAPI
-from .api import acceptPendingDevOrderAPI
+from .api import acceptPendingDevOrderAPI, orderDeliveredAPI
 
 urlpatterns = [
     path('api/database/get',getDataAPI.as_view()),
@@ -42,4 +42,6 @@ urlpatterns = [
     path('api/database/rejectPendingOrder', rejectPendingOrderAPI.as_view()),
     path('api/database/acceptPendingOrder', acceptPendingOrderAPI.as_view()),
     path('api/database/acceptPendingDevOrder', acceptPendingDevOrderAPI.as_view()),
+    path('api/database/orderDelivered', orderDeliveredAPI.as_view()),
+
 ]

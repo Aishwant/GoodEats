@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {GET_CART, ADD_TO_CART, DELETE_CART_ITEM, GET_ITEM_COUNT, EDIT_INSTRUCTIONS, PLACE_ORDER, ADD_PENDING_ORDER, REJECT_PENDING_ORDER, ACCEPT_PENDING_ORDER, ADD_PENDING_DEV_ORDER, ACCEPT_PENDING_DEV_ORDER, ADD_ON_DEV_ORDER, ADD_DELIVERED_ORDER } from './types.js';
+import {GET_CART, ADD_TO_CART, DELETE_CART_ITEM, GET_ITEM_COUNT, EDIT_INSTRUCTIONS, PLACE_ORDER, ADD_PENDING_ORDER, REJECT_PENDING_ORDER, ACCEPT_PENDING_ORDER, ADD_PENDING_DEV_ORDER, ACCEPT_PENDING_DEV_ORDER, ADD_ON_DEV_ORDER, ADD_DELIVERED_ORDER, DELIVERED_ORDER } from './types.js';
 
 //Get user's cart
 export const getCart = () => (dispatch) => {
@@ -91,7 +91,7 @@ export const editInstructions = (rID, itemID, Instructions) => (dispatch) => {
 };
 
 //Send an order request to the owner of the restaurant the user is ordering from
-export const placeOrder = (orderData) => (dispatch) => {
+export const placeOrder = (orderData, rName) => (dispatch) => {
   const keys = Object.keys(orderData);
   const owner_ID = orderData[keys[0]].owner_ID
   const rID = orderData[keys[0]].rID
@@ -105,8 +105,7 @@ export const placeOrder = (orderData) => (dispatch) => {
   const uID = localStorage.getItem("uID");
   const uuidv4 = require('uuid/v4');
   const orderID = uuidv4();
-  const order = { [orderID] : {'rID':rID, 'rName':'placeholderName', 'owner_ID':owner_ID, 'uID':uID, 'total':total, 'user_info':{ address: "123",phone: "123",email: "test@test.com"}, 'items':orderData}}
-  console.log(order)
+  const order = { [orderID] : {'rID':rID, 'rName':rName, 'owner_ID':owner_ID, 'uID':uID, 'total':total, 'user_info':{ address: "123",phone: "123",email: "test@test.com"}, 'items':orderData}}
   axios
     .post("/api/database/placeOrder", order)
     .then(res => {
@@ -171,11 +170,13 @@ export const addPendingDevOrder = (orderData) => (dispatch) => {
 }
 
 export const acceptPendingDevOrder = (rid,oid,orderData) => (dispatch) => {
+  const uId= localStorage.getItem('uID')
+  orderData['driver_ID']= uId
   const data = {
     rID:rid,
     orderID:oid,
+    uId: uId,
     order:orderData,
-    uId: localStorage.getItem('uID')
   }
   axios.post('/api/database/acceptPendingDevOrder',data)
   .then(res => {
@@ -204,3 +205,21 @@ export const addDeliveredOrder = (orderData) => (dispatch) => {
   })
 }
 
+export const deliveredOrder = (rid,oid,orderData) => (dispatch) => {
+  const data = {
+    rID:rid,
+    orderID:oid,
+    order:orderData,
+    uId: localStorage.getItem('uID')
+  }
+
+  axios.post('/api/database/orderDelivered', data)
+  .then(res => {
+    dispatch({
+      type: DELIVERED_ORDER,
+      rid: rid,
+      oid: oid
+    })
+  })
+  .error()
+}

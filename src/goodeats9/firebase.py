@@ -288,11 +288,11 @@ def placeOrder(request):
             if(k2 == "uID"):
                 uID = v2
 
-    print(rID)
-    print(owner_ID)
     db.child("Users").child(uID).child("Customer").child("Cart").child(rID).remove()
+    db.child("Users").child(uID).child("Customer").child("Orders").set(request)
     return db.child("Users").child(owner_ID).child("Owner").child("Orders").update(request)
     
+
 def acceptPendingOrder(request):
     db = credentials().database()
     db.child("Users").child(request['ownerID']).child("Owner").child("Orders").child(request['orderID']).remove()
@@ -306,3 +306,9 @@ def acceptPendingDevOrder(request):
     db = credentials().database()
     db.child('Orders').child('ToBeDev').child(request['rID']).child(request['orderID']).remove()
     return db.child('Orders').child('OnDev').child(request['uId']).child(request['rID']).child(request['orderID']).set(request['order'])
+
+def orderDelivered(request):
+    db = credentials().database()
+    db.child('Orders').child('OnDev').child(request['uId']).child(request['rID']).child(request['orderID']).remove()
+    db.child('Orders').child('Delivered').child(request['orderID']).set(request['order'])
+    db.child("Users").child(request['uId']).child("Driver").child("Devlivered").child(request['orderID']).set(request['order'])
