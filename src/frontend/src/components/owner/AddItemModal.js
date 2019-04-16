@@ -45,6 +45,11 @@ export class AddItemModal extends Component {
         const { Name, Description, Price } = this.state;
         const item = { Name, Description, Price,"category":this.props.category, "rID":this.props.rID };
         this.props.addItemToCategory(item);
+        this.setState({
+          Name: "",
+          Description: "",
+          Price: "",
+        })
     }
     
       render() {
