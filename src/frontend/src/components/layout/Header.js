@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/authentication";
-import { getItemCount } from "../../actions/orders"
+import { getItemCount } from "../../actions/orders";
+import { getOrderCount } from "../../actions/orders";
 import { withRouter } from "react-router-dom";
 import OrdersPending from "../owner/OrdersPending";
 
@@ -93,8 +94,23 @@ export class Header extends Component {
       </li>
     )
 
+
+    
+  
+  
+    const driverMode = (
+      <a><i class="fas fa-car-alt fa-sm"style={{color:'white'}}></i></a>)
+
+    const customerMode = (
+      <a><i class="fas fa-user-tag fa-sm" style={{color:'white'}}></i></a>)
+
+
+      const ownerMode = (
+        <a><i class="fas fa-utensils fa-sm" style={{color:'white'}}></i></a>)
+
     const ordersPending = (
       <li className="nav-item">
+      <span >{this.props.OrderCount}</span>
         <OrdersPending />
       </li>
     )
@@ -104,12 +120,21 @@ export class Header extends Component {
     return (
       <nav className={path?"navbar navbar-expand-lg navbar-dark bg-dark navSize":"navbar navbar-expand-lg navbar-dark bg-dark ftco_navbar ftco-navbar-light"} id="ftco-navbar">
         <div className="container">
+
           <a className="navbar-brand" style={borderStyle} href="/">GoodEats</a>
+          
+         
+          
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />
           </button>
 
           <div className="collapse navbar-collapse" id="ftco-nav">
+
+          {isAuthenticated && contentKeys[0] === "Owner" ? ownerMode : ""}
+          {isAuthenticated && contentKeys[0] === "Customer" ? customerMode : ""}
+          {isAuthenticated && contentKeys[0] === "Driver" ? driverMode : ""}
+         
             <ul className="navbar-nav ml-auto">
               <li className="nav-item"><Link to="/home" className="nav-link">Home</Link></li>
               <li className="nav-item"><a href="#" className="nav-link">Contact</a></li>
@@ -150,6 +175,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { logout, getItemCount }
+    { logout, getItemCount, getOrderCount }
   )(Header)
 );

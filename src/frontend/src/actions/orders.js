@@ -73,6 +73,23 @@ export const getItemCount = () => (dispatch) => {
   }
 };
 
+
+//Get the total number of pending Orders
+export const getOrderCount = () => (dispatch) => {
+  const uID = localStorage.getItem("uID");
+  if(uID !== null){
+    axios
+      .get("/api/database/getOrderCount/" + uID)
+      .then(res => {
+        dispatch({
+          type: GET_ITEM_COUNT,
+          payload: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  }
+};
+
 //Get the total number of items in the cart when loading the page
 export const editInstructions = (rID, itemID, Instructions) => (dispatch) => {
   const uID = localStorage.getItem("uID");
