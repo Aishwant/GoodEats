@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {GET_CART, ADD_TO_CART, DELETE_CART_ITEM, GET_ITEM_COUNT, EDIT_INSTRUCTIONS, PLACE_ORDER, ADD_PENDING_ORDER, REJECT_PENDING_ORDER, ACCEPT_PENDING_ORDER, ADD_PENDING_DEV_ORDER, ACCEPT_PENDING_DEV_ORDER, ADD_ON_DEV_ORDER, ADD_DELIVERED_ORDER, DELIVERED_ORDER } from './types.js';
+import {GET_CART, ADD_TO_CART, DELETE_CART_ITEM, GET_ITEM_COUNT, EDIT_INSTRUCTIONS, PLACE_ORDER, ADD_PENDING_ORDER, REJECT_PENDING_ORDER, ACCEPT_PENDING_ORDER, ADD_PENDING_DEV_ORDER, ACCEPT_PENDING_DEV_ORDER, ADD_ON_DEV_ORDER, ADD_DELIVERED_ORDER, DELIVERED_ORDER, SET_MY_ORDERS } from './types.js';
 
 //Get user's cart
 export const getCart = () => (dispatch) => {
@@ -228,4 +228,11 @@ export const deliveredOrder = (rid,oid,orderData) => (dispatch) => {
     })
   })
   .error()
+}
+
+export const setMyOrders = (data) => (dispatch) => {
+  dispatch({
+    type: SET_MY_ORDERS,
+    payload: data
+  })
 }

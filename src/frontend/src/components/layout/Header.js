@@ -81,7 +81,7 @@ export class Header extends Component {
           <i className="fas fa-user-cog"></i>
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a className="dropdown-item" href="#">My Orders</a>
+          <Link to="/myOrders" className="dropdown-item">My Orders</Link>
           <Link to="/myProfile" className="dropdown-item">My Profile</Link>
           <div className="dropdown-divider"></div>
           <li className="dropdown-item">
