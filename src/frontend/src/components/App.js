@@ -29,13 +29,8 @@ import { loadUser } from "../actions/authentication";
 
 import OrderHistory from "./customer/OrderHistory";
 import OrderTracker from "./customer/OrderTracker";
-
-
-
-
-
-
 import * as firebase from 'firebase';
+import aboutUS from "./contact/aboutUS";
 
 let config = {
   apiKey: "AIzaSyBJJSSETfxQc9tmsbOI-dmlQOG_dbiS3_4",
@@ -76,6 +71,7 @@ class App extends Component {
                       <PrivateRoute exact path="/" component={Dashboard} />
                       <Route exact path="/register" component={Register} />
                       <Route exact path="/login" component={Login} />
+                      <Route exact path="/about" component={aboutUS} />
                       <Route exact path = "/forgotpwd" component={ForgotPwd} />
                       <PrivateRoute exact path = "/signupinfo" component={UserDefiner} />
                       <PrivateRoute exact path = "/menu/:rName" component={Menu_Customer} />
