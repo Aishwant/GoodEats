@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setMyOrders } from '../../actions/orders'
 import * as firebase from 'firebase'
+import OrderTracker from './OrderTracker';
 
 export class MyOrders extends Component {
 
@@ -14,6 +15,14 @@ export class MyOrders extends Component {
   }
 
   render() {
+    const contentKeys = Object.keys(this.props.myOrders);
+    {if(contentKeys.length === 0){
+      return(
+          <div className="container mt-3">
+              <h2>You Have No Previous Orders</h2>
+          </div>
+      )
+    }}
     return (
       <div className="container mt-3">
         <h2>My Orders</h2>
@@ -24,6 +33,7 @@ export class MyOrders extends Component {
                 <th>Restaurant</th>
                 <th>Date</th>
                 <th>Price</th>
+                <th/>
               </tr>
             </thead>
             <tbody>
@@ -32,6 +42,7 @@ export class MyOrders extends Component {
                 <td>Placeholder</td>
                 <td>Placeholder</td>
                 <td>Placeholder</td>
+                <td><OrderTracker /></td>
               </tr>
             </tbody>
         </table>
