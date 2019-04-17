@@ -292,7 +292,7 @@ def placeOrder(request):
 
     request[orderID]['status'] = "PENDING"
     db.child("Users").child(uID).child("Customer").child("Cart").child(rID).remove()
-    db.child("Users").child(uID).child("Customer").child("Orders").set(request)
+    db.child("Users").child(uID).child("Customer").child("Orders").update(request)
     return db.child("Users").child(owner_ID).child("Owner").child("Orders").update(request)
     
 
