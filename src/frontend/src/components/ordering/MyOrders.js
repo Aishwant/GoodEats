@@ -32,7 +32,7 @@ export class MyOrders extends Component {
                 <th>Date</th>
                 <th>OrderID</th>
                 <th>Restaurant</th>
-                <th>Price</th>
+                <th>Total</th>
                 <th/>
               </tr>
             </thead>
@@ -42,7 +42,7 @@ export class MyOrders extends Component {
                 <td>Placeholder</td>
                 <td>{i}</td>
                 <td>{this.props.myOrders[i].rName}</td>
-                <td>{this.props.myOrders[i].total}</td>
+                <td>${this.props.myOrders[i].total}</td>
                 <td><OrderTracker orderID={i}/></td>
               </tr>
             )}

@@ -23,16 +23,16 @@ export class OrderTracker extends Component {
             if(snap.val()) {
                 switch(snap.val()){
                     case "PENDING":
-                        this.state.progress = "10%";
+                        this.state.progress = "14.5%";
                         break;
                     case "ACCEPTED_BY_OWNER":
-                        this.state.progress = "20%";
+                        this.state.progress = "31%";
                         break;
                     case "ACCEPTED_BY_DRIVER":
-                        this.state.progress = "30%";
+                        this.state.progress = "55.5%";
                         break;
                     case "ON_DELIVERY":
-                        this.state.progress = "90%";
+                        this.state.progress = "84%";
                         break;
                     case "DELIVERED":
                         this.state.progress = "100%";
@@ -77,20 +77,22 @@ export class OrderTracker extends Component {
                 </button>
             </div>
             
+            <div className="modal-body">
             <div className="row mt-3">
-                <h4 className="text-left">Pending</h4>
-                <h4 className="mx-3">Accepted</h4>
-                <h4 className="mx-3">John is your driver</h4>
-                <h4 className="mx-3">John is on his way</h4>
-                <h4 className="text-right">Delivered</h4>
+                <h4 style={{marginLeft: "5%"}}>Pending</h4>
+                <h4 style={{marginLeft: "4%"}}>Accepted</h4>
+                <h4 style={{marginLeft: "4%"}}>Driver Assigned</h4>
+                <h4 style={{marginLeft: "5%"}}>Out for Delivery</h4>
+                <h4 style={{marginLeft: "5%"}}>Delivered</h4>
             </div>
 
-            <div className="progress mb-3 mx-3" style={pStyle}>
-                <div className="bar-step label-line" style={{left: "20%"}}></div>
-                <div className="bar-step label-line" style={{left: "40%"}}></div>
-                <div className="bar-step label-line" style={{left: "60%"}}></div>
-                <div className="bar-step label-line" style={{left: "80%"}}></div>
+            <div className="progress mb-3 mx-3 progress-border" style={{height: "50px"}}>
+                <div className="bar-step label-line" style={{left: "17%"}}></div>
+                <div className="bar-step label-line" style={{left: "32%"}}></div>
+                <div className="bar-step label-line" style={{left: "55%"}}></div>
+                <div className="bar-step label-line" style={{left: "81%"}}></div>
                 <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{width: this.state.progress}}></div>
+            </div>
             </div>
             </div>
         </Modal>
@@ -98,10 +100,5 @@ export class OrderTracker extends Component {
     )
   }
 }
-
-const pStyle = {
-    height: "50px",
-    borderWidth: "5px"
-};
 
 export default OrderTracker;
