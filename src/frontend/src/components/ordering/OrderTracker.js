@@ -38,7 +38,7 @@ export class OrderTracker extends Component {
                         this.state.progress = "100%";
                         break;
                     default:
-                        this.state.progress = "75%";
+                        this.state.progress = "0%";
                         break;
                 }
             }
@@ -67,7 +67,7 @@ export class OrderTracker extends Component {
             onAfterOpen={this.afterOpenModal}
             onRequestClose={this.closeModal}
             contentLabel="add Item Modal"
-            className="modal-dialog "
+            className="modal-dialog modal-dialog-1"
         >
             <div className="modal-content">
             <div className="modal-header">
@@ -77,7 +77,19 @@ export class OrderTracker extends Component {
                 </button>
             </div>
             
-            <div className="progress" style={{height: "50px"}}>
+            <div className="row mt-3">
+                <h4 className="text-left">Pending</h4>
+                <h4 className="mx-3">Accepted</h4>
+                <h4 className="mx-3">John is your driver</h4>
+                <h4 className="mx-3">John is on his way</h4>
+                <h4 className="text-right">Delivered</h4>
+            </div>
+
+            <div className="progress mb-3 mx-3" style={pStyle}>
+                <div className="bar-step label-line" style={{left: "20%"}}></div>
+                <div className="bar-step label-line" style={{left: "40%"}}></div>
+                <div className="bar-step label-line" style={{left: "60%"}}></div>
+                <div className="bar-step label-line" style={{left: "80%"}}></div>
                 <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{width: this.state.progress}}></div>
             </div>
             </div>
@@ -86,5 +98,10 @@ export class OrderTracker extends Component {
     )
   }
 }
+
+const pStyle = {
+    height: "50px",
+    borderWidth: "5px"
+};
 
 export default OrderTracker;
