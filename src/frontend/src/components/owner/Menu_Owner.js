@@ -35,8 +35,12 @@ export class Menu_Owner extends Component {
     onSubmit = e => {
         e.preventDefault();
         const { newCategory } = this.state;
-        const data = { newCategory, "rID":this.state.rID }
-        this.props.addCategory(data);
+        const contentKeys = Object.keys(this.props.categories)
+        if(!contentKeys.includes(newCategory)){
+          const data = { newCategory, "rID":this.state.rID }
+          this.props.addCategory(data);
+          this.setState({newCategory: ""})
+        }
     }
 
   render() {
