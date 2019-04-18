@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ADD_USER } from "./types";
 
 export const addUser = (info) => dispatch => {
   const uuidv4 = require('uuid/v4');
@@ -13,7 +14,9 @@ export const addUser = (info) => dispatch => {
     axios
       .post("/api/database/newuser", toData)
       .then(res => {
-        
+        dispatch({
+          type: ADD_USER
+        })
       })
       .catch(err => {});
   };
