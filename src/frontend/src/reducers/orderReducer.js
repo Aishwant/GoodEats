@@ -8,6 +8,7 @@ import {
     ADD_ON_DEV_ORDER,
     ADD_DELIVERED_ORDER,
     DELIVERED_ORDER,
+    SET_MY_ORDERS,
 } from "../actions/types";
 
 const initialState = {
@@ -15,7 +16,8 @@ const initialState = {
     pendingDevOrders: {},
     acceptedDev: {},
     onDevOrders: {},
-    deliveredOrders: {}
+    deliveredOrders: {},
+    myOrders: {}
 }
 
 export default function(state = initialState, action) {
@@ -52,6 +54,10 @@ export default function(state = initialState, action) {
         case DELIVERED_ORDER:
             return produce(state,draft => {
                 delete draft['onDevOrders'][action.rid][action.oid];
+            })
+        case SET_MY_ORDERS:
+            return produce(state, draft => {
+                draft['myOrders'] = action.payload;
             })
         default:
             return state;

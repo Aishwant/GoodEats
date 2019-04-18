@@ -75,7 +75,7 @@ export class PlaceOrder extends Component {
         if(this.state.Phone !== "" && 
            this.state.Address1 !== "" && 
            this.state.City !== "" ){
-            orderButton = <button className="btn btn-sm btn-dark" onClick={this.props.placeOrder.bind(this, this.props.items, this.props.rName)}>Place Order</button>
+            orderButton = <button className="btn btn-sm btn-dark" onClick={this.props.placeOrder.bind(this, this.props.items, this.props.restaurant, this.props.user['Customer'])}>Place Order</button>
         }else{
             orderButton = <button className="btn btn-sm btn-dark" onClick={this.openModal}>Place Order</button>
         }

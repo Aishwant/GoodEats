@@ -318,3 +318,28 @@ Button{
   width:80%;
 }
 }
+
+.bar-step {
+  position:absolute;
+  margin-top: 0px;
+  z-index:1;
+  font-size:12px;
+}
+
+.label-line {
+  float: right;
+  background: rgb(0, 0, 0);
+  height:46px;
+  width:3px;
+  border-radius: 250px;
+}
+
+.label-txt {
+  float: left;
+  margin-top: -27px;
+}
+
+.progress-border {
+  border-style: solid;
+  border-width: 3px;
+}

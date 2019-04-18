@@ -28,9 +28,17 @@ export class Cart extends Component {
 
   render() {
     const contentKeys = Object.keys(this.props.items);
+    console.log(contentKeys);
+    {if(contentKeys.length === 0){
+        return(
+            <div className="container mt-3">
+                <h2>Your Cart is Empty</h2>
+            </div>
+        )
+    }}
     return (
         
-        <div className="container">
+        <div className="container mt-3">
             {contentKeys.map(i =>
 
                 <div>
@@ -54,7 +62,7 @@ export class Cart extends Component {
                             <td>{item.Name}</td>
                             <td>{item.Description}</td>
                             <td>{item.Quantity}</td>
-                            <td>{item.Price}</td>
+                            <td>${item.Price}</td>
                             <td className="text-right">
                             <div className="row"><EditInstructionsModal rID={i} itemID={j} Instructions={item.Instructions}/>
                             <button
@@ -74,7 +82,7 @@ export class Cart extends Component {
                                 <td></td>
                                 <td>Total</td>
                                 <td><Total total={this.props.items[i][j]}/></td>
-                                <td><PlaceOrder items={this.props.items[i]} rName={this.props.restaurants[i].Name}/></td>
+                                <td><PlaceOrder items={this.props.items[i]} restaurant={this.props.restaurants[i]}/></td>
                             </tr>
                         )}
                     }
