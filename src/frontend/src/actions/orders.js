@@ -92,7 +92,6 @@ export const editInstructions = (rID, itemID, Instructions) => (dispatch) => {
 
 //Send an order request to the owner of the restaurant the user is ordering from
 export const placeOrder = (orderData, restaurant, userData) => (dispatch) => {
-  console.log(userData);
   const keys = Object.keys(orderData);
   const owner_ID = orderData[keys[0]].owner_ID
   const rID = orderData[keys[0]].rID
@@ -106,12 +105,14 @@ export const placeOrder = (orderData, restaurant, userData) => (dispatch) => {
   const uID = localStorage.getItem("uID");
   const uuidv4 = require('uuid/v4');
   const orderID = uuidv4();
-  console.log(restaurant)
   const rName = restaurant.Name;
   const rAddress = restaurant.Address;
   const rCity = restaurant.City;
   const rZipcode = restaurant.zipcode;
-  const order = { [orderID] : {'status':'PENDING', 'rID':rID, 'rName':rName, 'rAddress':rAddress, 'rCity':rCity, 'rZipcode':rZipcode, 'owner_ID':owner_ID, 'uID':uID, 'total':total, 'user_info':{ address: "123",phone: "123",email: "test@test.com"}, 'items':orderData}}
+  const orderPlacedTime = new Date();
+  const orderDate = orderPlacedTime.toLocaleDateString();
+  const orderTime = orderPlacedTime.toLocaleTimeString();
+  const order = { [orderID] : {'orderDate':orderDate, 'orderTime':orderTime, 'status':'PENDING', 'rID':rID, 'rName':rName, 'rAddress':rAddress, 'rCity':rCity, 'rZipcode':rZipcode, 'owner_ID':owner_ID, 'uID':uID, 'total':total, 'user_info':{ address: "123",phone: "123",email: "test@test.com"}, 'items':orderData}}
   axios
     .post("/api/database/placeOrder", order)
     .then(res => {

@@ -39,7 +39,7 @@ export class MyOrders extends Component {
             <tbody>
             {contentKeys.map(i =>
               <tr>
-                <td>Placeholder</td>
+                <td>{this.props.myOrders[i].orderDate}</td>
                 <td>{i}</td>
                 <td>{this.props.myOrders[i].rName}</td>
                 <td>${this.props.myOrders[i].total}</td>
