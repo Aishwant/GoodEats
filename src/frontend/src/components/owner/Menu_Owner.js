@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types"
-import { addCategory, getCategories, deleteCategory, deleteItem } from "../../actions/menu";
+import { addCategory, setCategories, deleteCategory, deleteItem } from "../../actions/menu";
 import queryString from 'query-string';
 import AddItemModal from "./AddItemModal";
 import EditItemModal from "./EditItemModal";
 import EditCategoryModal from "./EditCategoryModal";
 import { Link } from 'react-router-dom';
+import * as firebase from 'firebase'
 
 
 export class Menu_Owner extends Component {
@@ -21,7 +22,10 @@ export class Menu_Owner extends Component {
     }
 
     componentDidMount(){
-      this.props.getCategories(this.state.rID);
+      const rootRef = firebase.database().ref().child('Restaurants').child(this.state.rID).child("Menu")
+      rootRef.on('value', snap => {
+        if(snap.val()) this.props.setCategories(snap.val())
+      })
       const { rName } = this.props.match.params;
       this.setState({restaurantName: rName});
     }
@@ -106,4 +110,4 @@ const mapStateToProps = state => ({
     categories: state.restaurantReducer.categories,
   });
 
-export default connect(mapStateToProps, { addCategory, getCategories, deleteCategory, deleteItem })(Menu_Owner);
+export default connect(mapStateToProps, { addCategory, setCategories, deleteCategory, deleteItem })(Menu_Owner);

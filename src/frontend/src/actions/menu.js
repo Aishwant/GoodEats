@@ -8,7 +8,8 @@ import {
     GET_ITEMS,
     ADD_ITEM,
     DELETE_ITEM,
-    EDIT_ITEM
+    EDIT_ITEM,
+    SET_CATEGORIES
   } from './types';
 
   //Add a new category to the menu of the given restaurant
@@ -42,6 +43,14 @@ import {
       })
       .catch(err => console.log(err));
   };
+
+  //Set categories
+  export const setCategories = (data) => (dispatch) => {
+    dispatch({
+      type: SET_CATEGORIES,
+      payload: data
+    })
+  }
 
   //Get all the items from the given category
   export const getItems = data => (dispatch) => {
