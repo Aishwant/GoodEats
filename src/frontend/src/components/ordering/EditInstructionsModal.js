@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import Modal from 'react-modal'
 import { editInstructions } from '../../actions/orders'
-import * as firebase from 'firebase'
 
 export class EditInstructionsModal extends Component {
     constructor() {
@@ -18,12 +17,8 @@ export class EditInstructionsModal extends Component {
         this.closeModal = this.closeModal.bind(this);
       }
 
-    componentDidMount(){
-      const uId = localStorage.getItem("uID");
-      const rootRef = firebase.database().ref().child('Users').child(uId).child("Customer").child("Cart").child(this.props.rID).child(this.props.itemID).child("Instructions");
-      rootRef.on('value', snap => {
-        if(snap.val()) this.state.Instructions = snap.val()
-      })
+    componentDidUpdate(){
+      this.state.Instructions = this.props.Instructions;
     }
 
     onChange = e => this.setState({ [e.target.name]: e.target.value });
