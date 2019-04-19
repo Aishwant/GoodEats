@@ -14,7 +14,8 @@ export class OrdersPending extends Component {
             owner_ID:'',
             res_IDs:null,
             modalIsOpen: false,
-            show: false
+            show: false,
+            show1: false,
         };
     
         this.openModal = this.openModal.bind(this);
@@ -52,6 +53,8 @@ export class OrdersPending extends Component {
 
         const handleHide = () => this.setState({ show: false });
         const handleShow = () => this.setState({ show: true });
+        const handleHide1 = () => this.setState({ show1: false });
+        const handleShow1 = () => this.setState({ show1: true });
         
         
         return (
@@ -74,6 +77,19 @@ export class OrdersPending extends Component {
               <hr />
               <div >
                 <button onClick={handleHide} variant="outline-danger">
+                  Close me!
+                </button>
+              </div>
+            </Alert>
+
+            <Alert show={this.state.show1} variant="danger" style={{marginRight:'25%',marginLeft:'25%',marginTop:'20px' }}>
+              <Alert.Heading>Order Declined</Alert.Heading>
+              <p>
+                Thank you for Rejecting Order. We will inform the customer
+              </p>
+              <hr />
+              <div >
+                <button onClick={handleHide1} variant="outline-danger">
                   Close me!
                 </button>
               </div>
@@ -101,7 +117,7 @@ export class OrdersPending extends Component {
                                         <button className="btn btn-link collapsed" data-toggle="collapse" data-target={"#collapse"+t} aria-expanded="false" aria-controls={"collapse"+t}>
                                         Restaurant Name: {orders.rName} {" "} Total: {orders.total} {" "}
                                         </button>
-                                        <button className="btn btn-success" onClick={()=>{this.props.acceptPendingOrder.bind(this,this.props.pendingOrders[t],t,orders.rID)(),handleShow()}}>Accept</button> | <button className="btn btn-danger" onClick={this.props.rejectPendingOrder.bind(this,t)}>Reject</button>
+                                        <button className="btn btn-success" onClick={()=>{this.props.acceptPendingOrder.bind(this,this.props.pendingOrders[t],t,orders.rID)(),handleShow()}}>Accept</button> | <button className="btn btn-danger" onClick={()=>{this.props.rejectPendingOrder.bind(this,t)(),handleShow1()}}>Reject</button>
                                     </h5>
                                     </div>
 
