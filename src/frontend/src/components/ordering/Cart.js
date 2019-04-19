@@ -59,11 +59,11 @@ export class Cart extends Component {
                         [this.props.items[i][j]].map(item =>
                         {if(j !== "total"){ return(
                         <tr >
-                            <td>{item.Name}</td>
-                            <td>{item.Description}</td>
-                            <td>{item.Quantity}</td>
-                            <td>${item.Price}</td>
-                            <td className="text-right">
+                            <td width="15%">{item.Name}</td>
+                            <td width="45%">{item.Description}</td>
+                            <td width="10%">{item.Quantity}</td>
+                            <td width="10%">${item.Price}</td>
+                            <td width="20%">
                             <div className="row"><EditInstructionsModal rID={i} itemID={j} Instructions={item.Instructions}/>
                             <button
                                 className="btn btn-danger btn-sm"
