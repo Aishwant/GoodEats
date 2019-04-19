@@ -113,6 +113,10 @@ def addCustomer(request):
         request['data'].pop("close")
         request['data'].pop("name")
         request['data'].pop('owner_ID')
+        request['data']['cardNumber'] = ""
+        request['data']['cardExp'] = ""
+        request['data']['cardCVS'] = ""
+        request['data']['cardName'] = ""
         db.child('Users').child(request['uID']).child("Customer").set(request['data'])
 
     elif(request['data']["changeO"]==True):
