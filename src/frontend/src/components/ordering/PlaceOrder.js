@@ -227,7 +227,7 @@ export class PlaceOrder extends Component {
                               name="cardExp"
                               onChange={this.onChange}
                               value={cardExp}
-                              min={this.formattedDate}
+                              min={formattedDate}
                               required
                               />
                           </div>
