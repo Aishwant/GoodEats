@@ -20,6 +20,10 @@ export class PlaceOrder extends Component {
             email:"",
             Phone:"",
             user_id:"",
+            cardNumber:"",
+            cardExp:"",
+            cardCVS:"",
+            cardName:""
         };
     
         this.openModal = this.openModal.bind(this);
@@ -42,8 +46,13 @@ export class PlaceOrder extends Component {
                 this.state.Phone = info.Phone
                 this.state.zipcode = info.zipcode
                 this.state.email = info.email
+                this.state.cardNumber = info.cardNumber
+                this.state.cardExp = info.cardExp
+                this.state.cardCVS = info.cardCVS
+                this.state.cardName = info.cardName
             })
             )
+            console.log(this.state.cardNumber)
     }
 
     onChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -69,12 +78,13 @@ export class PlaceOrder extends Component {
     }
     
       render() {
-        const {Address1, Address2, city, fname, lname, zipcode, Phone} = this.state;
+        const {Address1, Address2, city, fname, lname, zipcode, Phone, cardNumber} = this.state;
 
         let orderButton;
         if(this.state.Phone !== "" && 
            this.state.Address1 !== "" && 
-           this.state.City !== "" ){
+           this.state.City !== "" &&
+           this.state.cardNumber !== "" ){
             orderButton = <button className="btn btn-sm btn-dark" onClick={this.props.placeOrder.bind(this, this.props.items, this.props.restaurant, this.props.user['Customer'])}>Place Order</button>
         }else{
             orderButton = <button className="btn btn-sm btn-dark" onClick={this.openModal}>Place Order</button>
@@ -178,6 +188,19 @@ export class PlaceOrder extends Component {
                             value={Phone}
                             pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"
                             title="Not a valid PhoneNumber"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Credit Card Number</label>
+                            <input
+                            className="form-control"
+                            type="text"
+                            name="cardNumber"
+                            onChange={this.onChange}
+                            value={this.state.cardNumber}
+                            pattern="^\d{16}$"
+                            title="Not a valid card number"
+                            required
                             />
                         </div>
                         </div>
