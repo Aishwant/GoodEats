@@ -14,6 +14,11 @@ export class Header extends Component {
     logout: PropTypes.func.isRequired
   };
 
+  componentDidMount(){
+    this.props.getOrderCount();
+    }
+  
+
   handleData(data) {
     let result = JSON.parse(data);
     console.log(result);
@@ -30,6 +35,7 @@ export class Header extends Component {
 
   render() {
     const contentKeys = Object.keys(this.props.user)
+    const orderNumber=Object.keys(this.props.getOrderCount)
     const { isAuthenticated } = this.props.authReducer;
     let path = location.href+"";
 
@@ -110,7 +116,7 @@ export class Header extends Component {
 
     const ordersPending = (
       <li className="nav-item">
-      <span >{this.props.OrderCount}</span>
+      <span className="badge badge-pill badge-danger">{orderNumber}</span>
         <OrdersPending />
       </li>
     )
