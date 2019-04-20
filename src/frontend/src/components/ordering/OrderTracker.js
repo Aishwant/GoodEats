@@ -59,6 +59,7 @@ export class OrderTracker extends Component {
     }
 
   render() {
+    const contentKeys = Object.keys(this.props.orderData.items);
     return (
       <div>
         <button className="btn btn-success btn-sm" onClick={this.openModal}>Track</button>
@@ -68,6 +69,8 @@ export class OrderTracker extends Component {
             onRequestClose={this.closeModal}
             contentLabel="add Item Modal"
             className="modal-dialog modal-dialog-1"
+            style={{overlay:{backgroundColor: "rgba(0, 0, 0, 0.50)"}}}
+            ariaHideApp={false}
         >
             <div className="modal-content">
             <div className="modal-header">
@@ -93,6 +96,58 @@ export class OrderTracker extends Component {
                 <div className="bar-step label-line" style={{left: "81%"}}></div>
                 <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{width: this.state.progress}}></div>
             </div>
+                
+                <div >
+                    <h4 className="mt-5">Order Details</h4>
+                    <hr/>
+                    <div className="row">
+                        <div className="col-md-3" style={{fontWeight: "bold"}}>
+                            <p>Date: </p>
+                            <p>Order Placed: </p>
+                            <p>Order Delivered: </p>
+                            <p>Driver: </p>
+                            <p style={{marginBottom: "50%"}}>Customer: </p>
+                            <p style={{marginBottom: "50%"}}>Restaurant: </p>
+                        </div>
+                        <div className="col-md-3">
+                            <p>{this.props.orderData.orderDate}</p>
+                            <p>{this.props.orderData.orderTime}</p>
+                            <p>N/A</p>
+                            <p>John the driver</p>
+                            <p>Jordan Kutz</p>
+                            <p>428 N Main St APT 2</p>
+                            <p>Water Valley, MS 38965</p>
+                            <p>{this.props.orderData.rName}</p>
+                            <p>{this.props.orderData.rAddress} </p>
+                            <p>{this.props.orderData.rCity} , {this.props.orderData.rZipcode}</p>
+                        </div>
+                        <div className="col-md-6">
+                            <table className="table">
+                                <thead className="table-borderless">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Qty</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {contentKeys.map(i =>
+                                        <tr>
+                                            <td>{this.props.orderData.items[i].Name}</td>
+                                            <td>{this.props.orderData.items[i].Quantity}</td>
+                                            <td>{this.props.orderData.items[i].Price}</td>
+                                        </tr>
+                                    )}
+                                    <tr>
+                                        <td></td>
+                                        <th>Total</th>
+                                        <td>{this.props.orderData.total}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
             </div>
         </Modal>
