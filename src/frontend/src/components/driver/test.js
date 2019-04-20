@@ -70,7 +70,7 @@ export class DriverPlacedOrder extends Component{
                                                 <h4 class="card-title">From: {order[i].rName}</h4>
                                                 <p class="card-text"><h5>To: {order[i].user_info.address}</h5></p>
                                                 {/* <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> */}
-                                                <Button variant="outline-success" onClick={()=>{handleShow1(),this.onclick.bind(this,t,i,order[i])();}} style={{padding:'auto 8%'}}><i class="fas fa-check-circle fa-lg"></i><br/>Accept</Button>
+                                                <Button variant="outline-success" onClick={()=>{handleShow1()}} style={{padding:'auto 8%'}}><i class="fas fa-check-circle fa-lg"></i><br/>Accept</Button>
                                                 <Button variant="outline-primary" onClick={this.handleShow.bind(this)} style={{padding:'auto 8%'}}><i class="fas fa-book-open fa-lg" fa-lg></i><br/>View</Button>
 
                                                 
@@ -136,3 +136,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { acceptPendingDevOrder } )(DriverPlacedOrder);
+
+this.onclick.bind(this,t,i,order[i])()
