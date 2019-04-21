@@ -323,7 +323,7 @@ def acceptPendingDevOrder(request):
 
 def orderDelivered(request):
     db = credentials().database()
-    data = {"status":"DELIVERED"}
+    data = {"status":"DELIVERED", "orderDeliveredTime":request['orderDeliveredTime']}
     db.child("Users").child(request['order']['uID']).child("Customer").child("Orders").child(request['orderID']).update(data)
     db.child('Orders').child('OnDev').child(request['uId']).child(request['rID']).child(request['orderID']).remove()
     db.child('Orders').child('Delivered').child(request['orderID']).set(request['order'])

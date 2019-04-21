@@ -71,12 +71,12 @@ export class OrderTracker extends Component {
             driverName = <p>No Driver Yet</p>
     }
 
-    /*let deliveryTime;
+    let deliveryTime;
     if(this.state.progress === "100%"){
-
+        deliveryTime = <p>{this.props.orderData.orderDeliveredTime}</p>
     }else{
-
-    }*/
+        deliveryTime = <p>Not Yet Delivered</p>
+    }
 
     return (
       <div>
@@ -130,7 +130,7 @@ export class OrderTracker extends Component {
                         <div className="col-md-3">
                             <p>{this.props.orderData.orderDate}</p>
                             <p>{this.props.orderData.orderTime}</p>
-                            <p>N/A</p>
+                            {deliveryTime}
                             {driverName}
                             <p>{this.props.orderData.user_info.customerFName} {this.props.orderData.user_info.customerLName}</p>
                             <p>{this.props.orderData.user_info.customerAddress1} {this.props.orderData.user_info.customerAddress2}</p>
