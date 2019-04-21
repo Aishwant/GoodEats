@@ -60,6 +60,24 @@ export class OrderTracker extends Component {
 
   render() {
     const contentKeys = Object.keys(this.props.orderData.items);
+
+    //Only show driver name if driver has accepted the order
+    let driverName;
+    if(this.state.progress === "55.5%" ||
+       this.state.progress === "84%" ||
+       this.state.progress === "100%"){
+            driverName = <p>{this.props.orderData.driverFName}</p>
+    }else{
+            driverName = <p>No Driver Yet</p>
+    }
+
+    /*let deliveryTime;
+    if(this.state.progress === "100%"){
+
+    }else{
+
+    }*/
+
     return (
       <div>
         <button className="btn btn-success btn-sm" onClick={this.openModal}>Track</button>
@@ -113,7 +131,7 @@ export class OrderTracker extends Component {
                             <p>{this.props.orderData.orderDate}</p>
                             <p>{this.props.orderData.orderTime}</p>
                             <p>N/A</p>
-                            <p>John the driver</p>
+                            {driverName}
                             <p>{this.props.orderData.user_info.customerFName} {this.props.orderData.user_info.customerLName}</p>
                             <p>{this.props.orderData.user_info.customerAddress1} {this.props.orderData.user_info.customerAddress2}</p>
                             <p>{this.props.orderData.user_info.customerCity} {this.props.orderData.user_info.customerZipcode}</p>
@@ -135,13 +153,13 @@ export class OrderTracker extends Component {
                                         <tr>
                                             <td>{this.props.orderData.items[i].Name}</td>
                                             <td>{this.props.orderData.items[i].Quantity}</td>
-                                            <td>{this.props.orderData.items[i].Price}</td>
+                                            <td>${this.props.orderData.items[i].Price}</td>
                                         </tr>
                                     )}
                                     <tr>
                                         <td></td>
                                         <th>Total</th>
-                                        <td>{this.props.orderData.total}</td>
+                                        <td>${this.props.orderData.total}</td>
                                     </tr>
                                 </tbody>
                             </table>

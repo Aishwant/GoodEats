@@ -315,7 +315,8 @@ def rejectPendingOrder(request):
 
 def acceptPendingDevOrder(request):
     db = credentials().database()
-    data = {"status":"ON_DELIVERY"}
+    print(request)
+    data = {"status":"ON_DELIVERY", "driverFName":request['driverFName']}
     db.child("Users").child(request['order']['uID']).child("Customer").child("Orders").child(request['orderID']).update(data)
     db.child('Orders').child('ToBeDev').child(request['rID']).child(request['orderID']).remove()
     return db.child('Orders').child('OnDev').child(request['uId']).child(request['rID']).child(request['orderID']).set(request['order'])

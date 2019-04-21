@@ -177,14 +177,16 @@ export const addPendingDevOrder = (orderData) => (dispatch) => {
   })
 }
 
-export const acceptPendingDevOrder = (rid,oid,orderData) => (dispatch) => {
+export const acceptPendingDevOrder = (rid,oid,orderData, driverFName) => (dispatch) => {
   const uId= localStorage.getItem('uID')
   orderData['driver_ID']= uId
+  console.log(driverFName)
   const data = {
     rID:rid,
     orderID:oid,
     uId: uId,
     order:orderData,
+    driverFName: driverFName
   }
   axios.post('/api/database/acceptPendingDevOrder',data)
   .then(res => {
@@ -214,11 +216,14 @@ export const addDeliveredOrder = (orderData) => (dispatch) => {
 }
 
 export const deliveredOrder = (rid,oid,orderData) => (dispatch) => {
+  const orderDeliveredTime = new Date();
+  const orderTime = orderDeliveredTime.toLocaleTimeString();
   const data = {
     rID:rid,
     orderID:oid,
     order:orderData,
-    uId: localStorage.getItem('uID')
+    uId: localStorage.getItem('uID'),
+    orderDeliveredTime: orderTime
   }
 
   axios.post('/api/database/orderDelivered', data)
