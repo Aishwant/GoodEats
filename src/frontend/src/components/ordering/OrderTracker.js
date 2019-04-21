@@ -114,9 +114,9 @@ export class OrderTracker extends Component {
                             <p>{this.props.orderData.orderTime}</p>
                             <p>N/A</p>
                             <p>John the driver</p>
-                            <p>Jordan Kutz</p>
-                            <p>428 N Main St APT 2</p>
-                            <p>Water Valley, MS 38965</p>
+                            <p>{this.props.orderData.user_info.customerFName} {this.props.orderData.user_info.customerLName}</p>
+                            <p>{this.props.orderData.user_info.customerAddress1} {this.props.orderData.user_info.customerAddress2}</p>
+                            <p>{this.props.orderData.user_info.customerCity} {this.props.orderData.user_info.customerZipcode}</p>
                             <p>{this.props.orderData.rName}</p>
                             <p>{this.props.orderData.rAddress} </p>
                             <p>{this.props.orderData.rCity} , {this.props.orderData.rZipcode}</p>
