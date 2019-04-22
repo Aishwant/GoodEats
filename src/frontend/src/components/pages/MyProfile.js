@@ -16,6 +16,10 @@ export class MyProfile extends Component {
         email:"",
         Phone:"",
         user_id:"",
+        cardNumber:"",
+        cardExp:"",
+        cardCVS:"",
+        cardName:""
     };
 
     componentDidMount(){
@@ -33,6 +37,10 @@ export class MyProfile extends Component {
                 this.state.Phone = info.Phone
                 this.state.zipcode = info.zipcode
                 this.state.email = info.email
+                this.state.cardNumber = info.cardNumber
+                this.state.cardExp = info.cardExp
+                this.state.cardCVS = info.cardCVS
+                this.state.cardName = info.cardName
             })
             )
     }
@@ -45,7 +53,19 @@ export class MyProfile extends Component {
     }
 
     render() {
-        const {Address1,Address2,city,fname,lname,hone,zipcode,email,Phone} = this.state;
+        const {Address1,Address2,city,fname,lname,hone,zipcode,email,Phone, cardNumber, cardExp, cardCVS, cardName} = this.state;
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth()+1;
+        const currentDay = currentDate.getDate();
+        let formattedDate = "";
+        if(currentMonth < 10){
+            formattedDate = currentYear + "-0" + currentMonth + "-" + currentDay;
+        }else{
+            formattedDate = currentYear + "-" + currentMonth + "-" + currentDay;
+        }
+        
+
         return (
             <div className="container" style={{padding: '4% 10%'}}>
                 <center><h2>My Profile</h2></center>
@@ -140,8 +160,61 @@ export class MyProfile extends Component {
                             name="email"
                             onChange={this.onChange}
                             value={email}
-                            readonly
+                            readOnly
                             />
+                        </div>
+                        <br/>
+                        <hr/>
+                        <div className="form-group">
+                            <label>Credit Card Number</label>
+                            <input
+                            className="form-control"
+                            type="text"
+                            name="cardNumber"
+                            onChange={this.onChange}
+                            value={cardNumber}
+                            pattern="^\d{16}$"
+                            title="Not a valid card number"
+                            required
+                            />
+                        </div>
+                        <div className="row">
+                          <div className="form-group col-md-6">
+                              <label>Exp Date</label>
+                              <input
+                              className="form-control"
+                              type="date"
+                              name="cardExp"
+                              onChange={this.onChange}
+                              value={cardExp}
+                              min={formattedDate}
+                              required
+                              />
+                          </div>
+                          <div className="form-group col-md-6">
+                              <label>Security Code</label>
+                              <input
+                              className="form-control"
+                              type="text"
+                              name="cardCVS"
+                              onChange={this.onChange}
+                              value={cardCVS}
+                              pattern="^\d{3}$"
+                              title="Not a valid security code"
+                              required
+                              />
+                          </div>
+                        </div>
+                        <div className="form-group">
+                              <label>Name on Card</label>
+                              <input
+                              className="form-control"
+                              type="text"
+                              name="cardName"
+                              onChange={this.onChange}
+                              value={cardName}
+                              required
+                              />
                         </div>
                     </div>
                     <div className="modal-footer">

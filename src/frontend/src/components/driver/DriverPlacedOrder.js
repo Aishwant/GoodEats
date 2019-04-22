@@ -24,8 +24,8 @@ export class DriverPlacedOrder extends Component{
         this.setState({ show: true });
       }
 
-      onclick(rid,oid,data) {
-        this.props.acceptPendingDevOrder(rid,oid,data)
+      onclick(rid,oid,data, driverFName) {
+        this.props.acceptPendingDevOrder(rid,oid,data,driverFName)
       }
       
     render(){
@@ -52,7 +52,7 @@ export class DriverPlacedOrder extends Component{
                                                 <h4 class="card-title">From: {order[i].rName}</h4>
                                                 <p class="card-text"><h5>To: {order[i].user_info.address}</h5></p>
                                                 {/* <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> */}
-                                                <Button variant="outline-success" onClick={this.onclick.bind(this,t,i,order[i])} style={{padding:'auto 8%'}}><i class="fas fa-check-circle fa-lg"></i><br/>Accept</Button>
+                                                <Button variant="outline-success" onClick={this.onclick.bind(this,t,i,order[i], this.props.user['Driver'].fname)} style={{padding:'auto 8%'}}><i class="fas fa-check-circle fa-lg"></i><br/>Accept</Button>
                                                 <Button variant="outline-primary" onClick={this.handleShow.bind(this)} style={{padding:'auto 8%'}}><i class="fas fa-book-open fa-lg" fa-lg></i><br/>View</Button>
             
                                                 <Modal size="lg" show={this.state.show} onHide={this.handleClose.bind(this)}  dialogClassName="modal-90w">
@@ -106,7 +106,8 @@ export class DriverPlacedOrder extends Component{
 }
 
 const mapStateToProps = state => ({
-  pendingDevOrders: state.orderReducer.pendingDevOrders
+  pendingDevOrders: state.orderReducer.pendingDevOrders,
+  user: state.authReducer.user
 });
 
 export default connect(mapStateToProps, { acceptPendingDevOrder } )(DriverPlacedOrder);

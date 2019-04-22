@@ -24,6 +24,10 @@ export class Login extends Component {
   };
 
   render() {
+    if(this.props.isAuthenticated && this.props.newUser){
+      return <Redirect to ="/signupinfo" />
+    }
+
     if(this.props.isAuthenticated){
       return <Redirect to ="/" />
     }
@@ -84,6 +88,7 @@ const bgGrey = {
 }
 
 const mapStateToProps = state => ({
+  newUser: state.authReducer.newUser,
   isAuthenticated: state.authReducer.isAuthenticated
 });
 
