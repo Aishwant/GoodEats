@@ -61,6 +61,8 @@ export class EditItemModal extends Component {
               onRequestClose={this.closeModal}
               contentLabel="add Item Modal"
               className="modal-dialog "
+              style={{overlay:{backgroundColor: "rgba(0, 0, 0, 0.50)"}}}
+              ariaHideApp={false}
             >
               <div className="modal-content">
                 <div className="modal-header">
@@ -102,8 +104,8 @@ export class EditItemModal extends Component {
                                 name="Price"
                                 onChange={this.onChange}
                                 value={Price}
-                                pattern="(\d+\.\d{1,2})"
-                                title="Price must contain either one or two decimal places e.g. 10.99 or 10.5"
+                                pattern="(\d+\.\d{2})"
+                                title="Price must contain two decimal places e.g. 10.99"
                                 required
                                 />
                             </div>

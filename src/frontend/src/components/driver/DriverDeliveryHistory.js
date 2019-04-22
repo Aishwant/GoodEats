@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import DeliveryHistoryCard from "./DeliveryHistoryCard";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 

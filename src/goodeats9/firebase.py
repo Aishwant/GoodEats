@@ -113,6 +113,10 @@ def addCustomer(request):
         request['data'].pop("close")
         request['data'].pop("name")
         request['data'].pop('owner_ID')
+        request['data']['cardNumber'] = ""
+        request['data']['cardExp'] = ""
+        request['data']['cardCVS'] = ""
+        request['data']['cardName'] = ""
         db.child('Users').child(request['uID']).child("Customer").set(request['data'])
 
     elif(request['data']["changeO"]==True):
@@ -311,14 +315,15 @@ def rejectPendingOrder(request):
 
 def acceptPendingDevOrder(request):
     db = credentials().database()
-    data = {"status":"ON_DELIVERY"}
+    print(request)
+    data = {"status":"ON_DELIVERY", "driverFName":request['driverFName']}
     db.child("Users").child(request['order']['uID']).child("Customer").child("Orders").child(request['orderID']).update(data)
     db.child('Orders').child('ToBeDev').child(request['rID']).child(request['orderID']).remove()
     return db.child('Orders').child('OnDev').child(request['uId']).child(request['rID']).child(request['orderID']).set(request['order'])
 
 def orderDelivered(request):
     db = credentials().database()
-    data = {"status":"DELIVERED"}
+    data = {"status":"DELIVERED", "orderDeliveredTime":request['orderDeliveredTime']}
     db.child("Users").child(request['order']['uID']).child("Customer").child("Orders").child(request['orderID']).update(data)
     db.child('Orders').child('OnDev').child(request['uId']).child(request['rID']).child(request['orderID']).remove()
     db.child('Orders').child('Delivered').child(request['orderID']).set(request['order'])

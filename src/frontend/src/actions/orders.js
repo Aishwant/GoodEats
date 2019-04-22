@@ -112,7 +112,8 @@ export const placeOrder = (orderData, restaurant, userData) => (dispatch) => {
   const orderPlacedTime = new Date();
   const orderDate = orderPlacedTime.toLocaleDateString();
   const orderTime = orderPlacedTime.toLocaleTimeString();
-  const order = { [orderID] : {'orderDate':orderDate, 'orderTime':orderTime, 'status':'PENDING', 'rID':rID, 'rName':rName, 'rAddress':rAddress, 'rCity':rCity, 'rZipcode':rZipcode, 'owner_ID':owner_ID, 'uID':uID, 'total':total, 'user_info':{ address: "123",phone: "123",email: "test@test.com"}, 'items':orderData}}
+  const user_info = {'customerFName':userData.fname, 'customerLName':userData.lname, 'customerAddress1':userData.Address1, 'customerAddress2':userData.Address2, 'customerCity':userData.city, 'customerZipcode':userData.zipcode};
+  const order = { [orderID] : {'orderDate':orderDate, 'orderTime':orderTime, 'status':'PENDING', 'rID':rID, 'rName':rName, 'rAddress':rAddress, 'rCity':rCity, 'rZipcode':rZipcode, 'owner_ID':owner_ID, 'uID':uID, 'total':total, user_info, 'items':orderData}}
   axios
     .post("/api/database/placeOrder", order)
     .then(res => {
@@ -176,14 +177,16 @@ export const addPendingDevOrder = (orderData) => (dispatch) => {
   })
 }
 
-export const acceptPendingDevOrder = (rid,oid,orderData) => (dispatch) => {
+export const acceptPendingDevOrder = (rid,oid,orderData, driverFName) => (dispatch) => {
   const uId= localStorage.getItem('uID')
   orderData['driver_ID']= uId
+  console.log(driverFName)
   const data = {
     rID:rid,
     orderID:oid,
     uId: uId,
     order:orderData,
+    driverFName: driverFName
   }
   axios.post('/api/database/acceptPendingDevOrder',data)
   .then(res => {
@@ -213,11 +216,14 @@ export const addDeliveredOrder = (orderData) => (dispatch) => {
 }
 
 export const deliveredOrder = (rid,oid,orderData) => (dispatch) => {
+  const orderDeliveredTime = new Date();
+  const orderTime = orderDeliveredTime.toLocaleTimeString();
   const data = {
     rID:rid,
     orderID:oid,
     order:orderData,
-    uId: localStorage.getItem('uID')
+    uId: localStorage.getItem('uID'),
+    orderDeliveredTime: orderTime
   }
 
   axios.post('/api/database/orderDelivered', data)

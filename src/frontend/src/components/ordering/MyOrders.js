@@ -43,7 +43,7 @@ export class MyOrders extends Component {
                 <td>{i}</td>
                 <td>{this.props.myOrders[i].rName}</td>
                 <td>${this.props.myOrders[i].total}</td>
-                <td><OrderTracker orderID={i}/></td>
+                <td><OrderTracker orderID={i} orderData={this.props.myOrders[i]}/></td>
               </tr>
             )}
             </tbody>
