@@ -100,6 +100,14 @@ def getItemCount(request, uID):
                         itemCount += int(v3)
     return itemCount
 
+
+
+def getOrderCount(request, uID):
+    db = credentials().database()
+    items = db.child('Users').child(uID).child('Owner').child('Orders').get().val()
+    OrderCount = len(items)
+    return OrderCount
+
  ##### Writing To Database #####
 def addCustomer(request):
     db = credentials().database()

@@ -4,6 +4,7 @@ import PropTypes from "prop-types"
 import Modal from 'react-modal';
 import { getRestaurantByID } from "../../actions/getRestaurants";
 import { acceptPendingOrder, rejectPendingOrder } from '../../actions/orders';
+import Alert from 'react-bootstrap/Alert';
 
 export class OrdersPending extends Component {
     constructor() {
@@ -12,12 +13,15 @@ export class OrdersPending extends Component {
         this.state = {
             owner_ID:'',
             res_IDs:null,
-            modalIsOpen: false
+            modalIsOpen: false,
+            show: false,
+            show1: false,
         };
     
         this.openModal = this.openModal.bind(this);
         this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        
       }
 
     componentDidMount(){
@@ -46,10 +50,18 @@ export class OrdersPending extends Component {
     
     
       render() {
+
+        const handleHide = () => this.setState({ show: false });
+        const handleShow = () => this.setState({ show: true });
+        const handleHide1 = () => this.setState({ show1: false });
+        const handleShow1 = () => this.setState({ show1: true });
+        
         
         return (
           <div>
             <a className="nav-link" onClick={this.openModal}>Orders Pending</a>
+
+            
             <Modal
               isOpen={this.state.modalIsOpen}
               onAfterOpen={this.afterOpenModal}
@@ -59,7 +71,34 @@ export class OrdersPending extends Component {
               style={{overlay:{backgroundColor: "rgba(0, 0, 0, 0.50)"}}}
               ariaHideApp={false}
             >
+            <Alert show={this.state.show} variant="success" style={{marginRight:'25%',marginLeft:'25%',marginTop:'20px' }}>
+              <Alert.Heading>Order Accepted</Alert.Heading>
+              <p>
+                Thank you for accepting order. We will inform the customer
+              </p>
+              <hr />
+              <div >
+                <button onClick={handleHide} variant="outline-danger">
+                  Close me!
+                </button>
+              </div>
+            </Alert>
+
+            <Alert show={this.state.show1} variant="danger" style={{marginRight:'25%',marginLeft:'25%',marginTop:'20px' }}>
+              <Alert.Heading>Order Declined</Alert.Heading>
+              <p>
+                Thank you for Rejecting Order. We will inform the customer
+              </p>
+              <hr />
+              <div >
+                <button onClick={handleHide1} variant="outline-danger">
+                  Close me!
+                </button>
+              </div>
+            </Alert>
               <div className="modal-dialog modal-dialog-1">
+
+           
               <div className="modal-content">
                 <div className="modal-header">
                 <h5 className="text-dark" ref={subtitle => this.subtitle = subtitle}>Orders Pending</h5>
@@ -80,7 +119,7 @@ export class OrdersPending extends Component {
                                         <button className="btn btn-link collapsed" data-toggle="collapse" data-target={"#collapse"+t} aria-expanded="false" aria-controls={"collapse"+t}>
                                         Restaurant Name: {orders.rName} {" "} Total: {orders.total} {" "}
                                         </button>
-                                        <button className="btn btn-success" onClick={this.props.acceptPendingOrder.bind(this,this.props.pendingOrders[t],t,orders.rID)}>Accept</button> | <button className="btn btn-danger" onClick={this.props.rejectPendingOrder.bind(this,t)}>Reject</button>
+                                        <button className="btn btn-success" onClick={()=>{this.props.acceptPendingOrder.bind(this,this.props.pendingOrders[t],t,orders.rID)(),handleShow()}}>Accept</button> | <button className="btn btn-danger" onClick={()=>{this.props.rejectPendingOrder.bind(this,t)(),handleShow1()}}>Reject</button>
                                     </h5>
                                     </div>
 
@@ -121,6 +160,7 @@ export class OrdersPending extends Component {
                                       </table>
                                     
                                     </div>
+
                                     </div>
                                 </div>
                             )
@@ -135,7 +175,12 @@ export class OrdersPending extends Component {
                 </div>
               </div>
               </div>
+             
             </Modal>
+
+        
+
+
           </div>
         );
       }

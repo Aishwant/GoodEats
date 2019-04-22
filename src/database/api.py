@@ -332,6 +332,16 @@ class getItemCountAPI(generics.GenericAPIView):
     def get(self, request, uID):
         return Response(firebase.getItemCount(request, uID))
 
+class getOrderCountAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def get(self, request, uID):
+        return Response(firebase.getOrderCount(request, uID))
+
+
 class editInstructionsAPI(generics.GenericAPIView):
 
     permission_classes=[
