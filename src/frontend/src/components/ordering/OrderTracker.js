@@ -86,10 +86,11 @@ export class OrderTracker extends Component {
             onAfterOpen={this.afterOpenModal}
             onRequestClose={this.closeModal}
             contentLabel="add Item Modal"
-            className="modal-dialog modal-dialog-1"
+            className="pre-scrollable"
             style={{overlay:{backgroundColor: "rgba(0, 0, 0, 0.50)"}}}
             ariaHideApp={false}
         >
+           <div className="modal-dialog modal-dialog-1"> 
             <div className="modal-content">
             <div className="modal-header">
             <h5 className="text-dark" ref={subtitle => this.subtitle = subtitle}>Order Tracker</h5>
@@ -166,6 +167,7 @@ export class OrderTracker extends Component {
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
             </div>
         </Modal>

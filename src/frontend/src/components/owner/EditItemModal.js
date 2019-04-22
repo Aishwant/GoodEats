@@ -61,6 +61,8 @@ export class EditItemModal extends Component {
               onRequestClose={this.closeModal}
               contentLabel="add Item Modal"
               className="modal-dialog "
+              style={{overlay:{backgroundColor: "rgba(0, 0, 0, 0.50)"}}}
+              ariaHideApp={false}
             >
               <div className="modal-content">
                 <div className="modal-header">
