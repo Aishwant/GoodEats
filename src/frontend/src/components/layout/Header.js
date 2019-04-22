@@ -82,13 +82,15 @@ export class Header extends Component {
         </li>
     );
 
+    let myOrdersOption = (contentKeys[0] === "Customer") || (contentKeys[0] === "Owner") ? <Link to="/myOrders" className="dropdown-item">My Orders</Link> : "";
+
     const settings = (
       <li className="nav-item dropdown">
         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i className="fas fa-user-cog"></i>
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-          <Link to="/myOrders" className="dropdown-item">My Orders</Link>
+          {myOrdersOption}
           <Link to="/myProfile" className="dropdown-item">My Profile</Link>
           <div className="dropdown-divider"></div>
           <li className="dropdown-item">
