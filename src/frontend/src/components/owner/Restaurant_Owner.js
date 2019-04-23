@@ -25,7 +25,23 @@ export class Restaurant extends Component {
   componentDidMount(){
     this.props.getRestaurantByID();
   }
-  
+  convertTime(data){
+    console.log(data);
+    let data1 = data.split(":");
+    data = data1[0] + "." + data1[1];
+    data = parseFloat(data);
+    console.log(data);
+    if((data <= 24) && (data >= 0)) {
+       data % 12;
+       data = data + "";
+       let data2 = data.split(".");
+       console.log(data);
+       data = data2[0] + ":" + data2[1];
+       console.log(data);
+       return data;
+    }
+    
+  }
   handleClick= event =>{
     event.preventDefault()
     this.setState({showForm:true})
@@ -79,7 +95,7 @@ export class Restaurant extends Component {
                   <option value="nameS">Name</option>
                   <option value="zipcodeS">Zip Code</option>
                   <option value="cityS">City</option>
-                  <option value="closeS">Close Time</option>
+                  <option value="closeS">Hours</option>
                   <option value="cuisineTypeS">Cuisine Type</option>
                 </select>
               </div>
@@ -117,8 +133,7 @@ export class Restaurant extends Component {
                           <h6>{res.Address}</h6>
                           <h6>{res.City} {res.zipcode}</h6> 
                           <h6>Type: {res.CuisineType}</h6>
-                          <h6>Open: {res.Open}</h6>
-                          <h6>Close: {res.Close}</h6>
+                          <h6>Hours: {this.convertTime.bind(this,res.Open)}{this.convertTime.bind(this,res.Close)}</h6>
                           <div className="row" style={{marginLeft:"2px"}}>
                             <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
 
@@ -150,8 +165,7 @@ export class Restaurant extends Component {
                         <h6>{res.Address}</h6>
                         <h6>{res.City} {res.zipcode}</h6>
                         <h6>Type: {res.CuisineType}</h6> 
-                        <h6>Open: {res.Open}</h6>
-                        <h6>Close: {res.Close}</h6>
+                        <h6>Hours: {this.convertTime(res.Open)} - {this.convertTime(res.Close)}</h6>
                       </div>
                       <div className="row" style={{marginLeft:"2px"}}>
                         <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>

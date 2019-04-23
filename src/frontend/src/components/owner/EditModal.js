@@ -43,7 +43,6 @@ export class EditModal extends Component {
         this.state.CuisineType = this.props.cuisineType;
         this.state.imgURL = this.props.imgURL
     }
-
     onChange = e => this.setState({ [e.target.name]: e.target.value });
 
     

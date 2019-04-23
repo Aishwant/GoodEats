@@ -25,7 +25,11 @@ export class EditItemModal extends Component {
         this.state.Description = this.props.Description;
         this.state.Price = this.props.Price;
     }
-
+    convertTime(closeS){
+      if(closeS > 12 && closeS <= 24){
+        closeS % 12;
+      }
+    }
     onChange = e => this.setState({ [e.target.name]: e.target.value });
 
     
