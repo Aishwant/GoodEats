@@ -315,20 +315,27 @@ def acceptPendingOrder(request):
     db = credentials().database()
     data = {"status":"ACCEPTED_BY_OWNER"}
     db.child("Users").child(request['order']['uID']).child("Customer").child("Orders").child(request['orderID']).update(data)
+    orderData = {request['orderID']:request['order']}
+    db.child("Restaurants").child(request['rID']).child("Orders").update(orderData)
+    db.child("Restaurants").child(request['rID']).child("Orders").child(request['orderID']).update(data)
     db.child("Users").child(request['ownerID']).child("Owner").child("Orders").child(request['orderID']).remove()
     db.child("Orders").child('ToBeDev').child(request['rID']).child(request['orderID']).set(request['order'])
 
 def rejectPendingOrder(request):
     db = credentials().database()
     data = {"status":"REJECTED"}
+    #print(request)
     db.child("Users").child(request['order']['uID']).child("Customer").child("Orders").child(request['orderID']).update(data)
+    #orderData = {request['orderID']:request['order']}
+    #db.child("Restaurants").child(request['rID']).child("Orders").update(orderData)
+    #db.child("Restaurants").child(request['rID']).child("Orders").child(request['orderID']).update(data)
     return db.child("Users").child(request['ownerID']).child("Owner").child("Orders").child(request['orderID']).remove()
 
 def acceptPendingDevOrder(request):
     db = credentials().database()
-    print(request)
     data = {"status":"ON_DELIVERY", "driverFName":request['driverFName']}
     db.child("Users").child(request['order']['uID']).child("Customer").child("Orders").child(request['orderID']).update(data)
+    db.child("Restaurants").child(request['rID']).child("Orders").child(request['orderID']).update(data)
     db.child('Orders').child('ToBeDev').child(request['rID']).child(request['orderID']).remove()
     return db.child('Orders').child('OnDev').child(request['uId']).child(request['rID']).child(request['orderID']).set(request['order'])
 
@@ -336,6 +343,7 @@ def orderDelivered(request):
     db = credentials().database()
     data = {"status":"DELIVERED", "orderDeliveredTime":request['orderDeliveredTime']}
     db.child("Users").child(request['order']['uID']).child("Customer").child("Orders").child(request['orderID']).update(data)
+    db.child("Restaurants").child(request['rID']).child("Orders").child(request['orderID']).update(data)
     db.child('Orders').child('OnDev').child(request['uId']).child(request['rID']).child(request['orderID']).remove()
     db.child('Orders').child('Delivered').child(request['orderID']).set(request['order'])
     db.child("Users").child(request['uId']).child("Driver").child("Devlivered").child(request['orderID']).set(request['order'])
