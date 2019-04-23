@@ -92,23 +92,24 @@ def getItemCount(request, uID):
     db = credentials().database()
     items = db.child('Users').child(uID).child('Customer').child('Cart').get().val()
     itemCount = 0
-    for k1, v1 in items.items():
-        for k2, v2 in v1.items():
-            if(k2 != "total"):
-                for k3, v3 in v2.items():
-                    if(k3 == "Quantity"):
-                        itemCount += int(v3)
+    if(items != None):
+        for k1, v1 in items.items():
+            for k2, v2 in v1.items():
+                if(k2 != "total"):
+                    for k3, v3 in v2.items():
+                        if(k3 == "Quantity"):
+                            itemCount += int(v3)
     return itemCount
 
 
 
 def getOrderCount(request, uID):
     db = credentials().database()
-    items = db.child('Users').child(uID).child('Owner').child('Orders').get().val()
-    if(items == None):
+    orders = db.child('Users').child(uID).child('Owner').child('Orders').get().val()
+    if(orders == None):
         return 0
     else:
-        return len(items)
+        return len(orders)
 
  ##### Writing To Database #####
 def addCustomer(request):
