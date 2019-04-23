@@ -105,8 +105,10 @@ def getItemCount(request, uID):
 def getOrderCount(request, uID):
     db = credentials().database()
     items = db.child('Users').child(uID).child('Owner').child('Orders').get().val()
-    OrderCount = len(items)
-    return OrderCount
+    if(items == None):
+        return 0
+    else:
+        return len(items)
 
  ##### Writing To Database #####
 def addCustomer(request):

@@ -17,7 +17,8 @@ const initialState = {
     acceptedDev: {},
     onDevOrders: {},
     deliveredOrders: {},
-    myOrders: {}
+    myOrders: {},
+    pendingOrderCount: 0
 }
 
 export default function(state = initialState, action) {
@@ -25,15 +26,18 @@ export default function(state = initialState, action) {
         case ADD_PENDING_ORDER:
             return produce(state, draft => {
                 draft['pendingOrders'] = action.payload
+                draft.pendingOrderCount++;
             })
 
         case REJECT_PENDING_ORDER:
             return produce(state, draft =>{
                 delete draft['pendingOrders'][action.payload];
+                draft.pendingOrderCount--;
             })
         case ACCEPT_PENDING_ORDER:
             return produce(state, draft =>{
                 delete draft['pendingOrders'][action.payload];
+                draft.pendingOrderCount--;
             })
         case ADD_PENDING_DEV_ORDER:
             return produce(state,draft =>{

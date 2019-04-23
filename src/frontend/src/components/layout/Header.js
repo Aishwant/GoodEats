@@ -17,25 +17,9 @@ export class Header extends Component {
   componentDidMount(){
     this.props.getOrderCount();
     }
-  
-
-  handleData(data) {
-    let result = JSON.parse(data);
-    console.log(result);
-    console.log(result['message']);
-  }
-
-  sendMessage(message){
-    console.log("Clicked send");
-    this.refWebSocket.sendMessage(JSON.stringify({
-      'message': message
-    }));
-  }
-
 
   render() {
     const contentKeys = Object.keys(this.props.user)
-    const orderNumber=Object.keys(this.props.getOrderCount)
     const { isAuthenticated } = this.props.authReducer;
     let path = location.href+"";
 
@@ -118,7 +102,6 @@ export class Header extends Component {
 
     const ordersPending = (
       <li className="nav-item">
-      <span className="badge badge-pill badge-danger">{orderNumber}</span>
         <OrdersPending />
       </li>
     )
@@ -177,7 +160,7 @@ const colorWhite ={
 const mapStateToProps = state => ({
   authReducer: state.authReducer,
   itemCount:  state.cartReducer.itemCount,
-  user: state.authReducer.user
+  user: state.authReducer.user,
 });
 
 export default withRouter(
