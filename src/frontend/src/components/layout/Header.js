@@ -67,6 +67,17 @@ export class Header extends Component {
     );
 
     let myOrdersOption = (contentKeys[0] === "Customer") || (contentKeys[0] === "Owner") ? <Link to="/myOrders" className="dropdown-item">My Orders</Link> : "";
+    switch(contentKeys[0]){
+      case "Customer":
+                      myOrdersOption = <Link to="/myOrders" className="dropdown-item">My Orders</Link>;
+                      break;
+      case "Owner":
+                      myOrdersOption = <Link to="/myRestaurantsOrders" className="dropdown-item">My Orders</Link>;
+                      break;
+      case "Driver":
+                      myOrdersOption = "";
+                      break;
+    }
 
     const settings = (
       <li className="nav-item dropdown">
