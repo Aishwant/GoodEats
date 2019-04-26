@@ -9,6 +9,8 @@ import {
     ADD_DELIVERED_ORDER,
     DELIVERED_ORDER,
     SET_MY_ORDERS,
+    GET_MY_RESTAURANTS_ORDERS,
+    SET_MY_RESTAURANTS_ORDERS,
 } from "../actions/types";
 
 const initialState = {
@@ -18,7 +20,8 @@ const initialState = {
     onDevOrders: {},
     deliveredOrders: {},
     myOrders: {},
-    pendingOrderCount: 0
+    pendingOrderCount: 0,
+    myRestaurantsOrders: {}
 }
 
 export default function(state = initialState, action) {
@@ -62,6 +65,15 @@ export default function(state = initialState, action) {
         case SET_MY_ORDERS:
             return produce(state, draft => {
                 draft['myOrders'] = action.payload;
+            })
+        case GET_MY_RESTAURANTS_ORDERS:
+            return {
+                ...state,
+                myRestaurantsOrders: action.payload
+            }
+        case SET_MY_RESTAURANTS_ORDERS:
+            return produce(state, draft => {
+                draft['myRestaurantsOrderss'] = action.payload;
             })
         default:
             return state;

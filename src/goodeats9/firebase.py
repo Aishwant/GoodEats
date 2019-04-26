@@ -111,6 +111,18 @@ def getOrderCount(request, uID):
     else:
         return len(orders)
 
+def getMyRestaurantsOrders(request, uID):
+    db = credentials().database()
+    restaurantsOwned = (dict(db.child("Users").child(uID).child("Owner").child("rIDS").get().val()))
+    data = {}
+    for key, value in restaurantsOwned.items():
+        tmp = db.child("Restaurants").child(value).child("Orders").get().val()
+        if(tmp != None):
+            for k2, v2 in tmp.items():
+                data[k2] = v2
+    return data
+
+
  ##### Writing To Database #####
 def addCustomer(request):
     db = credentials().database()
