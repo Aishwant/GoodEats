@@ -63,7 +63,7 @@ class App extends Component {
             <Fragment>
               <Header />
               <Alerts />
-              <div className="content">
+              <div className="content" style={{paddingBottom: "300px"}}>
 
                 <Switch>
                   <PrivateHomeRoute exact path="/home" component={Index}/>      
