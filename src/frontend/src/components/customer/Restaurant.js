@@ -65,6 +65,13 @@ export class Restaurant extends Component {
     this.setState({filter:e.target.value});
   }
 
+  toStandardTime(time){
+    const post = time.slice(0,2) < 12 ? ' AM' : ' PM';
+    let hour = time.slice(0,2) % 12;
+    hour = hour === 0 ? "12" : hour+"";
+    return hour.concat(time.slice(2,5), post)
+  }
+
   render() {
     const contentKeys = Object.keys(this.props.restaurants)
     const { filter } = this.state;
@@ -126,8 +133,7 @@ export class Restaurant extends Component {
                       <h6>{res.Address}</h6>
                       <h6>{res.City} {res.zipcode}</h6> 
                       <h6>Type: {res.CuisineType}</h6>
-                      <h6>Open: {res.Open}</h6>
-                      <h6>Close: {res.Close}</h6>
+                      <h6>{this.toStandardTime(res.Open)} - {this.toStandardTime(res.Close)}</h6>
                       <Link to={`/menu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
                     </div>
                   </div>
@@ -148,8 +154,7 @@ export class Restaurant extends Component {
                         <h6>{res.Address}</h6>
                         <h6>{res.City} {res.zipcode}</h6>
                         <h6>Type: {res.CuisineType}</h6> 
-                        <h6>Open: {res.Open}</h6>
-                        <h6>Close: {res.Close}</h6>
+                        <h6>{this.toStandardTime(res.Open)} - {this.toStandardTime(res.Close)}</h6>
                         <Link to={`/menu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
                       </div>
                   </div>
