@@ -73,7 +73,7 @@ export default function(state = initialState, action) {
             }
         case SET_MY_RESTAURANTS_ORDERS:
             return produce(state, draft => {
-                draft['myRestaurantsOrderss'] = action.payload;
+                draft['myRestaurantsOrders'] = action.payload;
             })
         default:
             return state;

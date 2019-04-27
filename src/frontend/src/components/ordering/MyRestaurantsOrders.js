@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getMyRestaurantsOrders, setMyRestaurantsOrders } from '../../actions/orders'
-import { orderBy } from "lodash"
+import { orderBy, each } from "lodash"
 
 export class MyRestaurantsOrders extends Component {
     constructor(props) {
@@ -17,23 +17,25 @@ export class MyRestaurantsOrders extends Component {
       this.props.getMyRestaurantsOrders();
     }
 
-    /*componentDidUpdate(){
-      this.props.getMyRestaurantsOrders();
-    }*/
-
     handleColumnHeaderClick(sortKey) {
         const { sortParams: { direction }} = this.state;
-        const temp = this.props.myRestaurantsOrders;
-        console.log(temp);
         const sortDirection = direction === "desc" ? "asc" : "desc";
-
+        Object.keys(this.props.myRestaurantsOrders).map(i =>{
+          this.props.myRestaurantsOrders[i].id = i;
+        })
+        const temp = this.props.myRestaurantsOrders;
         const sortedCollection = orderBy(
             temp,
             [sortKey],
             [sortDirection]
-          );
-          console.log(sortedCollection);
-        this.props.setMyRestaurantsOrders(sortedCollection);
+        );
+
+        let newObject = {};
+
+        each(sortedCollection, function(object){
+          newObject[object.id] = temp[object.id];
+        });
+        this.props.setMyRestaurantsOrders(newObject);
         this.setState({ sortParams: {direction: sortDirection} });
     }
 
@@ -49,7 +51,7 @@ export class MyRestaurantsOrders extends Component {
     return (
         <div className="container mt-3">
         <h2>My Restaurants Orders</h2>
-        <table className="table table-striped">
+        <table className="table table-striped mt-3">
             <thead>
               <tr>
                 <th onClick={() => this.handleColumnHeaderClick("orderDate") }>Date <i className="fas fa-caret-up"></i><i className="fas fa-caret-down"></i></th>
