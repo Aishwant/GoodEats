@@ -4,18 +4,15 @@ import PropTypes from "prop-types";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { acceptPendingDevOrder } from '../../actions/orders';
-
-
-
-
-
+import Alert from 'react-bootstrap/Alert';
 
 export class DriverPlacedOrder extends Component{
 
   state = {
     show: false,
+    show1: false
+  
   }
-
       handleClose() {
         this.setState({ show: false });
       }
@@ -23,6 +20,9 @@ export class DriverPlacedOrder extends Component{
       handleShow() {
         this.setState({ show: true });
       }
+     
+    
+  
 
       onclick(rid,oid,data, driverFName) {
         this.props.acceptPendingDevOrder(rid,oid,data,driverFName)
@@ -30,12 +30,28 @@ export class DriverPlacedOrder extends Component{
       
     render(){
 
+      const handleHide1 = () => this.setState({ show1: false });
+      const handleShow1 = () => this.setState({ show1: true });
+      
+    
         return(
 
-            <div>
-              
+                    <div>
+                    <Alert show={this.state.show1} variant="success" style={{marginTop:'2%'}} >
+                    <Alert.Heading>Order Accepted</Alert.Heading>
+                    <p>
+                      Thank you for Accepting Order. We will inform the customer
+                    </p>
+                    <hr />
+                    <div >
+                      <button onClick={handleHide1} variant="outline-danger">
+                        Close me!
+                      </button>
+                    </div>
+                  </Alert>
+                    
+                                  
                 {
-                  
                     Object.keys(this.props.pendingDevOrders).map(t =>{
                     return(    
                     [this.props.pendingDevOrders[t]].map(order =>{
@@ -46,14 +62,21 @@ export class DriverPlacedOrder extends Component{
                                 return(
                                     
                                     <div class="container" style={{marginTop: "10px"}}>
-                                        
+
+                                                  
+
                                         <div class="card" style={{width:'100%',borderRadius:'2%', border: '4px solid darkgreen'}}>
                                             <div class="card-body" style={{textAlign:'center'}}>
                                                 <h4 class="card-title">From: {order[i].rName}</h4>
                                                 <p class="card-text"><h5>To: {order[i].user_info.address}</h5></p>
                                                 {/* <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> */}
-                                                <Button variant="outline-success" onClick={this.onclick.bind(this,t,i,order[i], this.props.user['Driver'].fname)} style={{padding:'auto 8%'}}><i class="fas fa-check-circle fa-lg"></i><br/>Accept</Button>
+                    
+                                                <Button variant="outline-success" onClick={()=>{handleShow1(),this.onclick.bind(this,t,i,order[i], this.props.user['Driver'].fname)();}} style={{padding:'auto 8%'}}><i class="fas fa-check-circle fa-lg"></i><br/>Accept</Button>
                                                 <Button variant="outline-primary" onClick={this.handleShow.bind(this)} style={{padding:'auto 8%'}}><i class="fas fa-book-open fa-lg" fa-lg></i><br/>View</Button>
+
+                                                
+                                                
+                                                
             
                                                 <Modal size="lg" show={this.state.show} onHide={this.handleClose.bind(this)}  dialogClassName="modal-90w">
                                                     <Modal.Header closeButton>
@@ -67,7 +90,6 @@ export class DriverPlacedOrder extends Component{
                                                         <h5>Address</h5>
                                                         <h6>City, Zip Code</h6>
                                                         </div>
-            
                                                         <div class="col">
                                                         <h4>Deliver To</h4>
                                                         <h3>{order[i].user_info.address}</h3>
@@ -78,14 +100,18 @@ export class DriverPlacedOrder extends Component{
                                                         </div>
                                                     </Modal.Body>
                                                     <Modal.Footer>
-                                                        <Button variant="outline-danger" onClick={this.handleClose} style={{justifyContent:'center'}}>
+                                                        <Button variant="outline-danger" onClick={this.handleClose.bind(this)} style={{justifyContent:'center'}}>
                                                         Close
                                                         </Button>
                                                         
                                                     </Modal.Footer>
                                                     </Modal>
+
+                                                    
+
+                                                    
+                                                
                                                 {/* <Button variant="outline-danger"onClick={() => {this.props.removeOrder(OrderID)}} style={{padding:'auto 8%'}}><i class="far fa-times-circle fa-lg" fa-lg></i><br/>Decline</Button> */}
-                                            
                                             </div>
                                         </div>
                                     </div>
@@ -99,6 +125,7 @@ export class DriverPlacedOrder extends Component{
                     })
                     )
                 })
+              
                 }
             </div>
         )

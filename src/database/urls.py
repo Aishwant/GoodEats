@@ -10,11 +10,13 @@ from .api import getCartAPI, addToCartAPI, deleteCartItemAPI
 from .api import addCategoryAPI, getCategoriesAPI, deleteCategoryAPI, editCategoryAPI
 from .api import getItemsAPI, addItemAPI, deleteItemAPI, editItemAPI
 from .api import getItemCountAPI
+from .api import getOrderCountAPI
 from .api import editInstructionsAPI
 from .api import editMyProfileAPI
 from .api import placeOrderAPI
 from .api import rejectPendingOrderAPI, acceptPendingOrderAPI
 from .api import acceptPendingDevOrderAPI, orderDeliveredAPI
+from .api import getMyRestaurantsOrdersAPI
 
 urlpatterns = [
     path('api/database/get',getDataAPI.as_view()),
@@ -36,6 +38,7 @@ urlpatterns = [
     path('api/database/editItem', editItemAPI.as_view()),
     path('api/database/editCategory', editCategoryAPI.as_view()),
     path('api/database/getItemCount/<slug:uID>', getItemCountAPI.as_view()),
+    path('api/database/getOrderCount/<slug:uID>', getOrderCountAPI.as_view()),
     path('api/database/editInstructions', editInstructionsAPI.as_view()),
     path('api/database/editmyprofile',editMyProfileAPI.as_view()),
     path('api/database/placeOrder', placeOrderAPI.as_view()),
@@ -43,5 +46,5 @@ urlpatterns = [
     path('api/database/acceptPendingOrder', acceptPendingOrderAPI.as_view()),
     path('api/database/acceptPendingDevOrder', acceptPendingDevOrderAPI.as_view()),
     path('api/database/orderDelivered', orderDeliveredAPI.as_view()),
-
+    path('api/database/getMyRestaurantsOrders/<slug:uID>', getMyRestaurantsOrdersAPI.as_view()),
 ]
