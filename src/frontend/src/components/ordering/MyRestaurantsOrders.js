@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getMyRestaurantsOrders, setMyRestaurantsOrders } from '../../actions/orders'
 import { orderBy, each } from "lodash"
+import OrderDetails from './OrderDetails';
 
 export class MyRestaurantsOrders extends Component {
     constructor(props) {
@@ -51,7 +52,7 @@ export class MyRestaurantsOrders extends Component {
     return (
         <div className="container mt-3">
         <h2>My Restaurants Orders</h2>
-        <table className="table table-striped mt-3">
+        <table className="table table-striped table-sm mt-3">
             <thead>
               <tr>
                 <th onClick={() => this.handleColumnHeaderClick("orderDate") }>Date <i className="fas fa-caret-up"></i><i className="fas fa-caret-down"></i></th>
@@ -68,7 +69,7 @@ export class MyRestaurantsOrders extends Component {
                 <td>{i}</td>
                 <td>{this.props.myRestaurantsOrders[i].rName}</td>
                 <td>${this.props.myRestaurantsOrders[i].total}</td>
-                <td><button className="btn btn-light">Details</button></td>
+                <td><OrderDetails orderID={i} orderData={this.props.myRestaurantsOrders[i]}/></td>
               </tr>
             )}
             </tbody>
