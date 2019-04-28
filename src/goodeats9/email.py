@@ -16,6 +16,7 @@ class sendEmailAPI(generics.GenericAPIView):
             to_emails=request.data['email'],
             subject='Your Order Status',
             html_content='<strong> Your order is '+request.data['status']+'</strong>')
+        
         try:
             sg = SendGridAPIClient('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')
             response = sg.send(message)

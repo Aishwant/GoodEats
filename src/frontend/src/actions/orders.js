@@ -129,7 +129,7 @@ export const placeOrder = (orderData, restaurant, userData) => (dispatch) => {
   const orderPlacedTime = new Date();
   const orderDate = orderPlacedTime.toLocaleDateString();
   const orderTime = orderPlacedTime.toLocaleTimeString();
-  const user_info = {'customerFName':userData.fname, 'customerLName':userData.lname, 'customerAddress1':userData.Address1, 'customerAddress2':userData.Address2, 'customerCity':userData.city, 'customerZipcode':userData.zipcode};
+  const user_info = {'customerFName':userData.fname, 'customerLName':userData.lname, 'customerAddress1':userData.Address1, 'customerAddress2':userData.Address2, 'customerCity':userData.city, 'customerZipcode':userData.zipcode, 'customerEmail':userData.email};
   const order = { [orderID] : {'orderDate':orderDate, 'orderTime':orderTime, 'status':'PENDING', 'rID':rID, 'rName':rName, 'rAddress':rAddress, 'rCity':rCity, 'rZipcode':rZipcode, 'owner_ID':owner_ID, 'uID':uID, 'total':total, user_info, 'items':orderData}}
   axios
     .post("/api/database/placeOrder", order)
@@ -141,6 +141,11 @@ export const placeOrder = (orderData, restaurant, userData) => (dispatch) => {
       });
     })
     .catch(err => console.log(err));
+  const emailFields = {'email':userData.email,'status':"Placed"}
+  axios
+    .post("/api/sendemail", emailFields)
+    .then()
+    .catch()
 }
 
 //Add an order to the users list of pending orders
@@ -168,6 +173,11 @@ export const acceptPendingOrder = (order,id,rID) => (dispatch) => {
       payload: id
     })
   })
+  const emailFields = { 'email': order.user_info.customerEmail, 'status': "in the Kitchen. And waiting on Delivery" }
+  axios
+    .post("/api/sendemail", emailFields)
+    .then()
+    .catch()
 }
 
 //When the user rejects the pending orders
