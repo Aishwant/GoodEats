@@ -121,6 +121,7 @@ def addCustomer(request):
         request['data'].pop("close")
         request['data'].pop("name")
         request['data'].pop('owner_ID')
+        request['data'].pop('imgURL')
         request['data']['cardNumber'] = ""
         request['data']['cardExp'] = ""
         request['data']['cardCVS'] = ""
@@ -142,6 +143,7 @@ def addCustomer(request):
         restaurantData['Open'] = request['data'].pop('open')
         restaurantData['Close'] = request['data'].pop('close')
         restaurantData['owner_ID'] = request['data'].pop('owner_ID')
+        restaurantData['imgURL'] = request['data'].pop('imgURL')
         formattedData = {rID : restaurantData}
 
         addRestaurant(formattedData, request['uID'])
@@ -164,6 +166,7 @@ def addCustomer(request):
         request['data'].pop("name")
         request['data'].pop("city")
         request['data'].pop('owner_ID')
+        request['data'].pop('imgURL')
         db.child('Users').child(request['uID']).child("Driver").set(request['data'])
 
 def addRestaurant(request, uID):
