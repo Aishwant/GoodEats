@@ -51,11 +51,16 @@ export class OrdersPending extends Component {
     
       render() {
 
+
         const handleHide = () => this.setState({ show: false });
-        const handleShow = () => this.setState({ show: true });
+        const handleShow = () => {this.setState({show: true})
+        setTimeout(() => {this.setState({show: false})}, 1000)
+        }
+
         const handleHide1 = () => this.setState({ show1: false });
-        const handleShow1 = () => this.setState({ show1: true });
-        
+        const handleShow1 = () => {this.setState({show1: true})
+        setTimeout(() => {this.setState({show1: false})}, 1000)
+        }
         
         return (
           <div>
@@ -70,29 +75,29 @@ export class OrdersPending extends Component {
               className="pre-scrollable"
             >
             <Alert show={this.state.show} variant="success" style={{marginRight:'25%',marginLeft:'25%',marginTop:'20px' }}>
-              <Alert.Heading>Order Accepted</Alert.Heading>
+              <Alert.Heading>Order Accepted
+              <button type="button" class="close" onClick={handleHide} aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+
+              </Alert.Heading>
               <p>
                 Thank you for accepting order. We will inform the customer
               </p>
-              <hr />
-              <div >
-                <button onClick={handleHide} variant="outline-danger">
-                  Close me!
-                </button>
-              </div>
+             
             </Alert>
 
             <Alert show={this.state.show1} variant="danger" style={{marginRight:'25%',marginLeft:'25%',marginTop:'20px' }}>
-              <Alert.Heading>Order Declined</Alert.Heading>
+              <Alert.Heading>Order Declined
+
+              <button type="button" class="close" onClick={handleHide1} aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+              </Alert.Heading>
               <p>
                 Thank you for Rejecting Order. We will inform the customer
               </p>
-              <hr />
-              <div >
-                <button onClick={handleHide1} variant="outline-danger">
-                  Close me!
-                </button>
-              </div>
+             
             </Alert>
               <div className="modal-dialog modal-dialog-1">
 

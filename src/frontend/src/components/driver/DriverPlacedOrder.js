@@ -31,23 +31,26 @@ export class DriverPlacedOrder extends Component{
     render(){
 
       const handleHide1 = () => this.setState({ show1: false });
-      const handleShow1 = () => this.setState({ show1: true });
+      const handleShow1 = () => {this.setState({show1: true})
+        setTimeout(() => {this.setState({show1: false})}, 1000)
+        }
+      
       
     
         return(
 
                     <div>
-                    <Alert show={this.state.show1} variant="success" style={{marginTop:'2%'}} >
-                    <Alert.Heading>Order Accepted</Alert.Heading>
+                    <Alert show={this.state.show1} variant="success" style={{marginTop:'2%'}} onHide={this.handleHide1} >
+                    <Alert.Heading closeButton>Order Accepted
+                    <button type="button" class="close" onClick={handleHide1} aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </Alert.Heading>
+                  
                     <p>
                       Thank you for Accepting Order. We will inform the customer
                     </p>
-                    <hr />
-                    <div >
-                      <button onClick={handleHide1} variant="outline-danger">
-                        Close me!
-                      </button>
-                    </div>
+                
                   </Alert>
                     
                                   
