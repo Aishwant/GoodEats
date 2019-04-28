@@ -112,6 +112,7 @@ def getOrderCount(request, uID):
 def addCustomer(request):
     db = credentials().database()
 
+    request['data']['email'] = credentials().auth().get_account_info(request['token'])['users'][0]['email']
     
     if (request['data']["changeC"]==True):
         request['data'].pop("changeC")
@@ -153,7 +154,7 @@ def addCustomer(request):
         request['data']['Phone'] = ""
         request['data']['city'] = ""
         request['data']['zipcode'] = ""
-        request['data']['email'] = credentials().auth().get_account_info(request['token'])['users'][0]['email']
+        
         db.child('Users').child(request['uID']).child("Owner").update(request['data'])
 
     elif(request['data']["changeD"]==True):
