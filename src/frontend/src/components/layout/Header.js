@@ -112,7 +112,7 @@ export class Header extends Component {
           <div className="collapse navbar-collapse" id="ftco-nav">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item"><Link to="/home" className="nav-link">Home</Link></li>
-              <li className="nav-item"><a href="#" className="nav-link">Contact</a></li>
+              <li className="nav-item"><Link to="/contact" className="nav-link">Contact</Link></li>
               {isAuthenticated ? "" : guestLinks}
               {isAuthenticated ? "" : guestLinks1}
               {isAuthenticated && contentKeys[0] === "Customer" ? cart : ""}
