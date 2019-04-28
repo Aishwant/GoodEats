@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { acceptPendingDevOrder } from '../../actions/orders';
 import Alert from 'react-bootstrap/Alert';
+import Timer from './Timer';
 
 export class DriverPlacedOrder extends Component {
   state = {
@@ -48,21 +48,17 @@ export class DriverPlacedOrder extends Component {
           return [this.props.pendingDevOrders[t]].map(order => {
             return Object.keys(order).map(i => {
               return (
-                <div class="container" style={{ marginTop: "10px" }}>
-                  <div
-                    class="card"
-                    style={{
-                      width: "100%",
-                      borderRadius: "2%",
-                      border: "4px solid darkgreen"
-                    }}
-                  >
-                    <div class="card-body" style={{ textAlign: "center" }}>
-                      <h4 class="card-title">From: {order[i].rName}</h4>
-                      <p class="card-text">
-                        <h5>To: {order[i].user_info.address}</h5>
+                <div className="container" style={{ marginTop: "10px" }}>
+                  <div className="menuItems textM d-flex">
+                  <div className="one-forth">
+                    <Timer start={order[i].orderTimeMil}/>
+                  </div>
+                    <div className="card-body" style={{ textAlign: "center" }}>
+                      <h4 className="card-title">From: {order[i].rName}</h4>
+                      <p className="card-text">
+                        <h5>To: {order[i].user_info.customerAddress1} {order[i].user_info.customerAddress2}</h5>
                       </p>
-                      {/* <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> */}
+                      {/* <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p> */}
 
                       <Button
                         variant="outline-success"
@@ -78,7 +74,7 @@ export class DriverPlacedOrder extends Component {
                         }}
                         style={{ padding: "auto 8%" }}
                       >
-                        <i class="fas fa-check-circle fa-lg" />
+                        <i className="fas fa-check-circle fa-lg" />
                         <br />
                         Accept
                       </Button>
@@ -87,7 +83,7 @@ export class DriverPlacedOrder extends Component {
                         onClick={this.handleShow.bind(this)}
                         style={{ padding: "auto 8%" }}
                       >
-                        <i class="fas fa-book-open fa-lg" fa-lg />
+                        <i className="fas fa-book-open fa-lg" fa-lg />
                         <br />
                         View
                       </Button>
@@ -100,21 +96,21 @@ export class DriverPlacedOrder extends Component {
                       >
                         <Modal.Header closeButton>
                           <Modal.Title>
-                            <h3 style={{ margin: 0 }}>OrderID</h3>
+                            <h3 style={{ margin: 0 }}>OrderID: {i}</h3>
                           </Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                          <div class="row">
-                            <div class="col">
-                              <h4>Pick From</h4>
+                          <div className="row">
+                            <div className="col">
+                              <h4>Pick Up From:</h4>
                               <h3>{order[i].rName}</h3>
-                              <h5>Address</h5>
-                              <h6>City, Zip Code</h6>
+                              <h5>{order[i].rAddress}</h5>
+                              <h6>{order[i].rCity} {order[i].rZipcode}</h6>
                             </div>
-                            <div class="col">
-                              <h4>Deliver To</h4>
-                              <h3>{order[i].user_info.address}</h3>
-                              <h5>City, Zip Code</h5>
+                            <div className="col">
+                              <h4>Deliver To:</h4>
+                              <h3>{order[i].user_info.customerAddress1} {order[i].user_info.customerAddress2}</h3>
+                              <h5>{order[i].user_info.customerCity} {order[i].user_info.customerZipcode}</h5>
                               {/* <h6>{order.phone}</h6> */}
                             </div>
                           </div>
@@ -130,7 +126,7 @@ export class DriverPlacedOrder extends Component {
                         </Modal.Footer>
                       </Modal>
 
-                      {/* <Button variant="outline-danger"onClick={() => {this.props.removeOrder(OrderID)}} style={{padding:'auto 8%'}}><i class="far fa-times-circle fa-lg" fa-lg></i><br/>Decline</Button> */}
+                      {/* <Button variant="outline-danger"onClick={() => {this.props.removeOrder(OrderID)}} style={{padding:'auto 8%'}}><i className="far fa-times-circle fa-lg" fa-lg></i><br/>Decline</Button> */}
                     </div>
                   </div>
                 </div>

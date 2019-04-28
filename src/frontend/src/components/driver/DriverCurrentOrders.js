@@ -41,7 +41,7 @@ export class DriverCurrentOrders extends Component {
                     <div class="card-body" style={{ textAlign: "center" }}>
                       <h4 class="card-title">From: {order[i].rName}</h4>
                       <p class="card-text">
-                        <h5>To: {order[i].user_info.address}</h5>
+                        <h5>To: {order[i].user_info.customerAddress1} {order[i].user_info.customerAddress2}</h5>
                       </p>
                       {/* <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> */}
                       <Button
@@ -71,22 +71,23 @@ export class DriverCurrentOrders extends Component {
                       >
                         <Modal.Header closeButton>
                           <Modal.Title>
-                            <h3 style={{ margin: 0 }}>OrderID</h3>
+                            <h3 style={{ margin: 0 }}>OrderID: {i}</h3>
                           </Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                           <div class="row">
                             <div class="col">
-                              <h4>Pick From</h4>
+                              <h4>Pick Up From:</h4>
                               <h3>{order[i].rName}</h3>
-                              <h5>Address</h5>
-                              <h6>City, Zip Code</h6>
+                              <h5>{order[i].rAddress}</h5>
+                              <h6>{order[i].rCity} {order[i].rZipcode}</h6>
                             </div>
 
                             <div class="col">
-                              <h4>Deliver To</h4>
-                              <h3>{order[i].user_info.address}</h3>
-                              <h5>City, Zip Code</h5>
+                              <h4>Deliver To:</h4>
+                              <h3>{order[i].user_info.customerFName} {order[i].user_info.customerLName}</h3>
+                              <h3>{order[i].user_info.customerAddress1} {order[i].user_info.customerAddress2}</h3>
+                              <h5>{order[i].user_info.customerCity} {order[i].user_info.customerZipcode}</h5>
                               {/* <h6>{order.phone}</h6> */}
                             </div>
                           </div>
@@ -94,7 +95,7 @@ export class DriverCurrentOrders extends Component {
                         <Modal.Footer>
                           <Button
                             variant="outline-danger"
-                            onClick={this.handleClose}
+                            onClick={this.handleClose.bind(this)}
                             style={{ justifyContent: "center" }}
                           >
                             Close
