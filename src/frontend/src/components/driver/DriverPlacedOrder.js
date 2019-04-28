@@ -20,28 +20,25 @@ export class DriverPlacedOrder extends Component {
   }
 
   onclick(rid, oid, data, driverFName) {
-    this.props.acceptPendingDevOrder(rid, oid, data, driverFName);
+    //this.props.acceptPendingDevOrder(rid, oid, data, driverFName);
   }
 
   render() {
     const handleHide1 = () => this.setState({ show1: false });
-    const handleShow1 = () => this.setState({ show1: true });
+    const handleShow1 = () => {
+      this.setState({ show1: true });
+      setTimeout(handleHide1, 2000);
+    }
 
     return (
       <div>
         <Alert
           show={this.state.show1}
           variant="success"
-          style={{ marginTop: "2%" }}
+          style={alertStyle}
         >
           <Alert.Heading>Order Accepted</Alert.Heading>
           <p>Thank you for Accepting Order. We will inform the customer</p>
-          <hr />
-          <div>
-            <button onClick={handleHide1} variant="outline-danger">
-              Close me!
-            </button>
-          </div>
         </Alert>
 
         {Object.keys(this.props.pendingDevOrders).map(t => {
@@ -135,6 +132,15 @@ export class DriverPlacedOrder extends Component {
       </div>
     );
   }
+}
+
+const alertStyle = {
+  position: "fixed", 
+  top: "20px", 
+  right: "20px", 
+  width: "30%",
+  zIndex: "9999", 
+  borderRadius:"0px"
 }
 
 const mapStateToProps = state => ({
