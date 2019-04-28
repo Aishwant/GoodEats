@@ -50,27 +50,27 @@ export class DriverDeliveryHistory extends Component {
                     >
                       <Modal.Header closeButton>
                         <Modal.Title>
-                          <h3 style={{ margin: 0 }}>OrderID</h3>
+                          <h3 style={{ margin: 0 }}>OrderID: {t}</h3>
                         </Modal.Title>
                       </Modal.Header>
                       <Modal.Body>
                         <br />
                         <div style={{ textAlign: "center" }}>
-                          <h4>Delivery Date: Date</h4>
+                          <h4>Delivery Date: {order.orderDate}</h4>
                         </div>
                         <br />
                         <div class="row">
                           <div class="col" style={{ textAlign: "center" }}>
                             <h4>Picked From</h4>
                             <h3>{order.rName}</h3>
-                            <h5>Restaurant Street Address</h5>
-                            <h6>City, Zip Code</h6>
+                            <h5>{order.rAddress}</h5>
+                            <h6>{order.rCity} {order.rZipcode}</h6>
                           </div>
 
                           <div class="col" style={{ textAlign: "center" }}>
                             <h4>Delivered To</h4>
-                            <h5>{order.user_info.address}</h5>
-                            <h6>City, Zip Code</h6>
+                            <h5>{order.user_info.customerAddress1} {order.user_info.customerAddress2}</h5>
+                            <h6>{order.user_info.customerCity} {order.user_info.customerZipcode}</h6>
                           </div>
                         </div>
                         <br />

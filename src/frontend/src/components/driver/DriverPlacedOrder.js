@@ -50,9 +50,7 @@ export class DriverPlacedOrder extends Component {
               return (
                 <div className="container" style={{ marginTop: "10px" }}>
                   <div className="menuItems textM d-flex">
-                  <div className="one-forth">
                     <Timer start={order[i].orderTimeMil}/>
-                  </div>
                     <div className="card-body" style={{ textAlign: "center" }}>
                       <h4 className="card-title">From: {order[i].rName}</h4>
                       <p className="card-text">

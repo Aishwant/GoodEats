@@ -33,9 +33,13 @@ export default class Timer extends Component {
 
   render() {
     return (
-      <div className="text-center pagination-centered">
+      <div style={timeStyle}>
         <h2>{this.state.hours}:{this.state.minutes}:{this.state.seconds}</h2>
       </div>
     )
   }
+}
+
+const timeStyle={
+    marginTop: "8%"
 }
