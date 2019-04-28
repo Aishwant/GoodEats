@@ -45,6 +45,11 @@ export class AddItemModal extends Component {
         const { Name, Description, Price } = this.state;
         const item = { Name, Description, Price,"category":this.props.category, "rID":this.props.rID };
         this.props.addItemToCategory(item);
+        this.setState({
+          Name: "",
+          Description: "",
+          Price: "",
+        })
     }
     
       render() {
@@ -99,8 +104,8 @@ export class AddItemModal extends Component {
                                 name="Price"
                                 onChange={this.onChange}
                                 value={Price}
-                                pattern="(\d+\.\d{1,2})"
-                                title="Price must contain either one or two decimal places e.g. 10.99 or 10.5"
+                                pattern="(\d+\.\d{2})"
+                                title="Price must contain two decimal places e.g. 10.99" 
                                 required
                                 />
                             </div>
