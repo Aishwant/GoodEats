@@ -20,7 +20,7 @@ export class DriverPlacedOrder extends Component {
   }
 
   onclick(rid, oid, data, driverFName) {
-    //this.props.acceptPendingDevOrder(rid, oid, data, driverFName);
+    this.props.acceptPendingDevOrder(rid, oid, data, driverFName);
   }
 
   render() {

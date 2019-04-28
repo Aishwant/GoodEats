@@ -48,9 +48,15 @@ export class OrdersPending extends Component {
 
   render() {
     const handleHide = () => this.setState({ show: false });
-    const handleShow = () => this.setState({ show: true });
+    const handleShow = () => {
+      this.setState({ show: true });
+      setTimeout(handleHide, 2000);
+    }
     const handleHide1 = () => this.setState({ show1: false });
-    const handleShow1 = () => this.setState({ show1: true });
+    const handleShow1 = () => {
+      this.setState({ show1: true });
+      setTimeout(handleHide1, 2000);
+    }
 
     let ordersPendingButton;
     if (this.props.pendingOrderCount > 0) {
@@ -86,31 +92,17 @@ export class OrdersPending extends Component {
           <Alert
             show={this.state.show}
             variant="success"
-            style={{ marginRight: "25%", marginLeft: "25%", marginTop: "20px" }}
+            style={alertStyle}
           >
             <Alert.Heading>Order Accepted</Alert.Heading>
-            <p>Thank you for accepting order. We will inform the customer</p>
-            <hr />
-            <div>
-              <button onClick={handleHide} variant="outline-danger">
-                Close me!
-              </button>
-            </div>
           </Alert>
 
           <Alert
             show={this.state.show1}
             variant="danger"
-            style={{ marginRight: "25%", marginLeft: "25%", marginTop: "20px" }}
+            style={alertStyle}
           >
             <Alert.Heading>Order Declined</Alert.Heading>
-            <p>Thank you for Rejecting Order. We will inform the customer</p>
-            <hr />
-            <div>
-              <button onClick={handleHide1} variant="outline-danger">
-                Close me!
-              </button>
-            </div>
           </Alert>
           <div className="modal-dialog modal-dialog-1">
             <div className="modal-content">
@@ -222,6 +214,15 @@ export class OrdersPending extends Component {
   }
 }
 
+const alertStyle = {
+  position: "fixed", 
+  top: "20px", 
+  right: "20px", 
+  width: "350px",
+  zIndex: "9999", 
+  borderRadius:"0px",
+  textAlign: "center",
+}
 
 const mapStateToProps = state => ({
     restaurants: state.restaurantReducer.restaurants,
