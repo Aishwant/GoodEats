@@ -157,7 +157,7 @@ export class OrdersPending extends Component {
                             <button
                               className="btn btn-danger"
                               onClick={() => {
-                                this.props.rejectPendingOrder.bind(this, t)(),
+                                this.props.rejectPendingOrder.bind(this, this.props.pendingOrders[t], t)(),
                                   handleShow1();
                               }}
                             >

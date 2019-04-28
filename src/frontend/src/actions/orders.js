@@ -198,10 +198,11 @@ export const acceptPendingOrder = (order,id,rID) => (dispatch) => {
 }
 
 //When the user rejects the pending orders
-export const rejectPendingOrder = (orderID) => (dispatch) => {
+export const rejectPendingOrder = (order,orderID) => (dispatch) => {
   const data = {
     ownerID: localStorage.getItem("uID"),
-    orderID: orderID
+    orderID: orderID,
+    order: order
   }
   axios.post('/api/database/rejectPendingOrder',data)
   .then(res => {
@@ -210,6 +211,11 @@ export const rejectPendingOrder = (orderID) => (dispatch) => {
       payload: orderID
     })
   })
+  const emailFields = { 'email': order.user_info.customerEmail, 'status': "Rejected. Sorry, we were not able to Process your Request" }
+  axios
+    .post("/api/sendemail", emailFields)
+    .then()
+    .catch()
 }
 
 //Add an order to the driver's list of pending dev orders
