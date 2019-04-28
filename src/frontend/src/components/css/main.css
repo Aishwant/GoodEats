@@ -319,6 +319,12 @@ Button{
 }
 }
 
+
+.user-img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center; }
+
 .bar-step {
   position:absolute;
   margin-top: 0px;

@@ -60,10 +60,10 @@ export class Index extends Component {
                         <div className="col-md-3">
                             <div className="item text-center">
                                 <div className="testimony-wrap p-4 pb-5">
-                                    <div className="user-img mb-4" style={{backgroundImage: "url()", border: "1px solid red"}}></div>
+                                    <div className="user-img mb-4" style={{ backgroundImage: "url(https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fperson_1.jpg?alt=media&token=f11a0564-42bd-424a-a236-a05e90a7f39a)", border: "1px solid #ccc"}}></div>
                                     <div className="text">
                                         <p className="star-rate"><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star-half-full"></span></p>
-                                        <p className="mb-5">They somehow delivered my food instantly? *dab*</p>
+                                        <p className="mb-5">Love their service. Wonderful. They somehow delivered my food instantly? *dab*</p><br />
                                         <p className="name">Dennis Green</p>
                                         <span className="position">Guests from Italy</span>
                                     </div>
@@ -73,7 +73,7 @@ export class Index extends Component {
                         <div className="col-md-3">
                             <div className="item text-center">
                                 <div className="testimony-wrap p-4 pb-5">
-                                    <div className="user-img mb-4" style={{backgroundImage: "url()", border: "1px solid red"}}></div>
+                                    <div className="user-img mb-4" style={{ backgroundImage: "url(https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fjordan.jpeg?alt=media&token=3a386abf-c5c2-4318-8147-81a1d2d52a15)", border: "1px solid #ccc"}}></div>
                                     <div className="text">
                                         <p className="star-rate"><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star-half-full"></span></p>
                                         <p className="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
@@ -86,7 +86,7 @@ export class Index extends Component {
                         <div className="col-md-3">
                             <div className="item text-center">
                                 <div className="testimony-wrap p-4 pb-5">
-                                    <div className="user-img mb-4" style={{backgroundImage: "url()", border: "1px solid red"}}></div>
+                                    <div className="user-img mb-4" style={{backgroundImage: "url(https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2FIMG_1795.JPG?alt=media&token=d12126c4-bc95-4fcd-bc76-7130b206fb3c)", border: "1px solid #ccc"}}></div>
                                     <div className="text">
                                         <p className="star-rate"><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star-half-full"></span></p>
                                         <p className="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
@@ -100,7 +100,7 @@ export class Index extends Component {
                         <div className="col-md-3">
                             <div className="item text-center">
                                 <div className="testimony-wrap p-4 pb-5">
-                                    <div className="user-img mb-4" style={{backgroundImage: "url()", border: "1px solid red"}}></div>
+                                    <div className="user-img mb-4" style={{ backgroundImage: "url(https://firebasestorage.googleapis.com/v0/b/csci387.appspot.com/o/img%2Fperson_4.jpg?alt=media&token=721fb284-4fc3-4f20-b0d5-3166eede1678)", border: "1px solid #ccc"}}></div>
                                     <div className="text">
                                         <p className="star-rate"><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star-half-full"></span></p>
                                         <p className="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
