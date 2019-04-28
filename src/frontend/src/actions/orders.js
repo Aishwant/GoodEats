@@ -247,7 +247,11 @@ export const acceptPendingDevOrder = (rid,oid,orderData, driverFName) => (dispat
     })
   }
   )
-  .error()
+  const emailFields = { 'email': orderData.user_info.customerEmail, 'status': "picked up by our Driver. And it's on the way!!!" }
+  axios
+    .post("/api/sendemail", emailFields)
+    .then()
+    .catch()
 }
 
 export const addOnDevOrder = (orderData) => (dispatch) => {
@@ -284,7 +288,12 @@ export const deliveredOrder = (rid,oid,orderData) => (dispatch) => {
       oid: oid
     })
   })
-  .error()
+
+  const emailFields = { 'email': orderData.user_info.customerEmail, 'status': "<b>DELIVERED</b>. Thank you and Enjoy your Meal" }
+  axios
+    .post("/api/sendemail", emailFields)
+    .then()
+    .catch()
 }
 
 export const setMyOrders = (data) => (dispatch) => {
