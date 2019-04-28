@@ -8,10 +8,10 @@ export class Contact extends Component{
     render(){
         return (
            <div>
-           <h1>Contact Us</h1>
+           <h1 align="center">Contact Us</h1>
            <div class="col-md-4 team-box">
            <div class="team-img thumbnail">
-                    <div class="team-content">    
+                    <div class="team-content" align="center">    
                         <h3>Jordan Kutz</h3>
                         <div class="border-team"></div>
                         <p>Hi. I am working on this project</p>
@@ -22,7 +22,7 @@ export class Contact extends Component{
                             <a href="mailto:bootsnipp@gmail.com"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>
                         </div>
                     </div>
-                    <div class="team-content">    
+                    <div class="team-content" align="center">    
                         <h3>Aishwant Ghimire</h3>
                         <div class="border-team"></div>
                         <p>Hi. I am working on this project</p>
