@@ -4,16 +4,6 @@ import PropTypes from "prop-types";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-
-
-
-
-
-
-
-
-
-
 export default class DriverCard extends Component{
 
   

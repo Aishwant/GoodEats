@@ -20,6 +20,7 @@ import Menu_Customer from "./customer/Menu_Customer";
 import Cart from "./ordering/Cart";
 import MyProfile from "./pages/MyProfile";
 import MyOrders from "./ordering/MyOrders";
+import MyRestaurantsOrders from "./ordering/MyRestaurantsOrders";
 
 import PrivateRoute from "./private/PrivateRoute";
 import PrivateHomeRoute from "./private/PrivateHomeRoute"
@@ -28,8 +29,6 @@ import { Provider } from "react-redux";
 import store from "../store";
 import { loadUser } from "../actions/authentication";
 
-import OrderHistory from "./customer/OrderHistory";
-import OrderTracker from "./customer/OrderTracker";
 import * as firebase from 'firebase';
 import aboutUS from "./contact/aboutUS";
 
@@ -64,7 +63,7 @@ class App extends Component {
             <Fragment>
               <Header />
               <Alerts />
-              <div className="content">
+              <div className="content" style={{paddingBottom: "300px"}}>
 
                 <Switch>
                   <PrivateHomeRoute exact path="/home" component={Index}/>      
@@ -79,8 +78,8 @@ class App extends Component {
                       <PrivateRoute exact path = "/editmenu/:rName" component={Menu_Owner}/>
                       <PrivateRoute exact path = "/cart" component={Cart} />
                       <PrivateRoute exact path = "/myProfile" component={MyProfile} />
-                      <Route exact path = "/myOrders" component={MyOrders} />
-     
+                      <PrivateRoute exact path = "/myOrders" component={MyOrders} />
+                      <PrivateRoute exact path = "/myRestaurantsOrders" component={MyRestaurantsOrders} />
                 </Switch>
 
               </div>

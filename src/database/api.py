@@ -442,3 +442,12 @@ class orderDeliveredAPI(generics.GenericAPIView):
             return Response({
                 "status":"Disconnected"
             })
+
+class getMyRestaurantsOrdersAPI(generics.GenericAPIView):
+
+    permission_classes=[
+        permissions.AllowAny
+    ]
+
+    def get(self, request, uID):
+        return Response(firebase.getMyRestaurantsOrders(request, uID))

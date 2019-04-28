@@ -1,6 +1,22 @@
 import axios from "axios";
 
-import {GET_CART, ADD_TO_CART, DELETE_CART_ITEM, GET_ITEM_COUNT, EDIT_INSTRUCTIONS, PLACE_ORDER, ADD_PENDING_ORDER, REJECT_PENDING_ORDER, ACCEPT_PENDING_ORDER, ADD_PENDING_DEV_ORDER, ACCEPT_PENDING_DEV_ORDER, ADD_ON_DEV_ORDER, ADD_DELIVERED_ORDER, DELIVERED_ORDER, SET_MY_ORDERS } from './types.js';
+import {GET_CART, 
+        ADD_TO_CART, 
+        DELETE_CART_ITEM, 
+        GET_ITEM_COUNT, 
+        EDIT_INSTRUCTIONS, 
+        PLACE_ORDER, 
+        ADD_PENDING_ORDER, 
+        REJECT_PENDING_ORDER, 
+        ACCEPT_PENDING_ORDER, 
+        ADD_PENDING_DEV_ORDER, 
+        ACCEPT_PENDING_DEV_ORDER, 
+        ADD_ON_DEV_ORDER, 
+        ADD_DELIVERED_ORDER, 
+        DELIVERED_ORDER, 
+        SET_MY_ORDERS, 
+        GET_MY_RESTAURANTS_ORDERS,
+        SET_MY_RESTAURANTS_ORDERS } from './types.js';
 
 //Get user's cart
 export const getCart = () => (dispatch) => {
@@ -129,8 +145,9 @@ export const placeOrder = (orderData, restaurant, userData) => (dispatch) => {
   const orderPlacedTime = new Date();
   const orderDate = orderPlacedTime.toLocaleDateString();
   const orderTime = orderPlacedTime.toLocaleTimeString();
-  const user_info = {'customerFName':userData.fname, 'customerLName':userData.lname, 'customerAddress1':userData.Address1, 'customerAddress2':userData.Address2, 'customerCity':userData.city, 'customerZipcode':userData.zipcode, 'customerEmail':userData.email};
-  const order = { [orderID] : {'orderDate':orderDate, 'orderTime':orderTime, 'status':'PENDING', 'rID':rID, 'rName':rName, 'rAddress':rAddress, 'rCity':rCity, 'rZipcode':rZipcode, 'owner_ID':owner_ID, 'uID':uID, 'total':total, user_info, 'items':orderData}}
+  const orderTimeMil = Date.now();
+  const user_info = { 'customerFName': userData.fname, 'customerLName': userData.lname, 'customerAddress1': userData.Address1, 'customerAddress2': userData.Address2, 'customerCity': userData.city, 'customerZipcode': userData.zipcode, 'customerEmail': userData.email};
+  const order = { [orderID] : {'orderTimeMil':orderTimeMil, 'orderDate':orderDate, 'orderTime':orderTime, 'status':'PENDING', 'rID':rID, 'rName':rName, 'rAddress':rAddress, 'rCity':rCity, 'rZipcode':rZipcode, 'owner_ID':owner_ID, 'uID':uID, 'total':total, user_info, 'items':orderData}}
   axios
     .post("/api/database/placeOrder", order)
     .then(res => {
@@ -267,6 +284,25 @@ export const deliveredOrder = (rid,oid,orderData) => (dispatch) => {
 export const setMyOrders = (data) => (dispatch) => {
   dispatch({
     type: SET_MY_ORDERS,
+    payload: data
+  })
+}
+
+export const getMyRestaurantsOrders = () => (dispatch) => {
+  const uID= localStorage.getItem('uID')
+  axios.get('/api/database/getMyRestaurantsOrders/' + uID)
+  .then(res => {
+    dispatch({
+      type: GET_MY_RESTAURANTS_ORDERS,
+      payload: res.data
+    });
+  })
+  .catch(err => console.log(err));
+}
+
+export const setMyRestaurantsOrders = (data) => (dispatch) => {
+  dispatch({
+    type: SET_MY_RESTAURANTS_ORDERS,
     payload: data
   })
 }
