@@ -56,11 +56,17 @@ export class OrdersPending extends Component {
         const handleHide1 = () => this.setState({ show1: false });
         const handleShow1 = () => this.setState({ show1: true });
         
+        let ordersPendingButton;
+        if(this.props.pendingOrderCount > 0){
+          ordersPendingButton = <a className="nav-link" onClick={this.openModal}><span className="badge badge-pill badge-danger">{this.props.pendingOrderCount}</span>Orders Pending</a>
+        }else{
+          ordersPendingButton = <a className="nav-link" onClick={this.openModal}>Orders Pending</a>
+        }
         
         return (
           <div>
-            <a className="nav-link" onClick={this.openModal}>Orders Pending</a>
-
+            
+            {ordersPendingButton}
             
             <Modal
               isOpen={this.state.modalIsOpen}
@@ -188,7 +194,8 @@ export class OrdersPending extends Component {
 
 const mapStateToProps = state => ({
     restaurants: state.restaurantReducer.restaurants,
-    pendingOrders: state.orderReducer.pendingOrders
+    pendingOrders: state.orderReducer.pendingOrders,
+    pendingOrderCount: state.orderReducer.pendingOrderCount
   });
 
 export default connect(mapStateToProps, { getRestaurantByID,rejectPendingOrder,acceptPendingOrder })(OrdersPending);

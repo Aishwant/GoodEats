@@ -17,25 +17,9 @@ export class Header extends Component {
   componentDidMount(){
     this.props.getOrderCount();
     }
-  
-
-  handleData(data) {
-    let result = JSON.parse(data);
-    console.log(result);
-    console.log(result['message']);
-  }
-
-  sendMessage(message){
-    console.log("Clicked send");
-    this.refWebSocket.sendMessage(JSON.stringify({
-      'message': message
-    }));
-  }
-
 
   render() {
     const contentKeys = Object.keys(this.props.user)
-    const orderNumber=Object.keys(this.props.getOrderCount)
     const { isAuthenticated } = this.props.authReducer;
     let path = location.href+"";
 
@@ -82,13 +66,26 @@ export class Header extends Component {
         </li>
     );
 
+    let myOrdersOption = (contentKeys[0] === "Customer") || (contentKeys[0] === "Owner") ? <Link to="/myOrders" className="dropdown-item">My Orders</Link> : "";
+    switch(contentKeys[0]){
+      case "Customer":
+                      myOrdersOption = <Link to="/myOrders" className="dropdown-item">My Orders</Link>;
+                      break;
+      case "Owner":
+                      myOrdersOption = <Link to="/myRestaurantsOrders" className="dropdown-item">My Orders</Link>;
+                      break;
+      case "Driver":
+                      myOrdersOption = "";
+                      break;
+    }
+
     const settings = (
       <li className="nav-item dropdown">
         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i className="fas fa-user-cog"></i>
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-          <Link to="/myOrders" className="dropdown-item">My Orders</Link>
+          {myOrdersOption}
           <Link to="/myProfile" className="dropdown-item">My Profile</Link>
           <div className="dropdown-divider"></div>
           <li className="dropdown-item">
@@ -116,7 +113,6 @@ export class Header extends Component {
 
     const ordersPending = (
       <li className="nav-item">
-      <span className="badge badge-pill badge-danger">{orderNumber}</span>
         <OrdersPending />
       </li>
     )
@@ -175,7 +171,7 @@ const colorWhite ={
 const mapStateToProps = state => ({
   authReducer: state.authReducer,
   itemCount:  state.cartReducer.itemCount,
-  user: state.authReducer.user
+  user: state.authReducer.user,
 });
 
 export default withRouter(
