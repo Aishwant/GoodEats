@@ -1,10 +1,22 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getCart, deleteCartItem } from '../../actions/orders';
+import { getCart, deleteCartItem, placeOrder } from '../../actions/orders';
 import EditInstructionsModal from './EditInstructionsModal';
+import Total from './Total';
+import PlaceOrder from './PlaceOrder';
 
 export class Cart extends Component {
+    state = {
+        total: 0
+    }
+
+    addToTotal(price){
+        this.setState({
+            total: total+price
+        })
+    }
+
     static propTypes = {
         getCart: PropTypes.func.isRequired,
         deleteCartItem: PropTypes.func.isRequired
@@ -16,39 +28,46 @@ export class Cart extends Component {
 
   render() {
     const contentKeys = Object.keys(this.props.items);
+    console.log(contentKeys);
+    {if(contentKeys.length === 0){
+        return(
+            <div className="container mt-3">
+                <h2>Your Cart is Empty</h2>
+            </div>
+        )
+    }}
     return (
-        <div className="container">
-            <h2 className="mt-3">Cart</h2>
-            <table className="table table-striped">
-            <thead>
-                <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Qty</th>
-                <th>Price</th>
-                <th />
-                </tr>
-            </thead>
-            <tbody>
-            {contentKeys.map(t=>
+        
+        <div className="container mt-3">
+            {contentKeys.map(i =>
 
-                [this.props.items[t]].map(res =>
+                <div>
+                <h2>{this.props.restaurants[i].Name} Cart</h2>
+                <table className="table table-striped">
+                <thead>
+                    <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th />
+                    </tr>
+                </thead>
+                <tbody>
                 
-                // {
-                    // if(res.status){
-                    //     ''
-                    // }
-                    // else{
+                    {Object.keys(this.props.items[i]).map(j => 
+                        [this.props.items[i][j]].map(item =>
+                        {if(j !== "total"){ return(
                         <tr >
-                            <td>{res.Name}</td>
-                            <td>{res.Description}</td>
-                            <td>{res.Quantity}</td>
-                            <td>${res.Price}</td>
-                            <td className="text-right">
-                            <div className="row"><EditInstructionsModal itemID={t} Instructions={res.Instructions}/>
+                            <td width="15%">{item.Name}</td>
+                            <td width="45%">{item.Description}</td>
+                            <td width="10%">{item.Quantity}</td>
+                            <td width="10%">${item.Price}</td>
+                            <td width="20%">
+                            <div className="row"><EditInstructionsModal rID={i} itemID={j} Instructions={item.Instructions}/>
                             <button
                                 className="btn btn-danger btn-sm"
-                                onClick={this.props.deleteCartItem.bind(this, t, res.Quantity)}
+                                onClick={this.props.deleteCartItem.bind(this, i, j, item.Quantity, item.Price)}
                             >
                                 {" "}
                                 Delete
@@ -56,18 +75,31 @@ export class Cart extends Component {
                             </div>
                             </td>
                         </tr>
-                //     }
-                // }
-                ))}
-            </tbody>
-            </table>
+                        )}
+                        else{return(
+                            <tr className="table-info">
+                                <td></td>
+                                <td></td>
+                                <td>Total</td>
+                                <td><Total total={this.props.items[i][j]}/></td>
+                                <td><PlaceOrder items={this.props.items[i]} restaurant={this.props.restaurants[i]}/></td>
+                            </tr>
+                        )}
+                    }
+                    ))}
+                </tbody>
+                </table>
+                </div>
+            )} 
         </div>
+        
     )
   }
 }
 
 const mapStateToProps = state =>({
+    restaurants: state.restaurantReducer.restaurants,
     items: state.cartReducer.items
 });
 
-export default connect(mapStateToProps, { getCart, deleteCartItem } )(Cart);
+export default connect(mapStateToProps, { getCart, deleteCartItem, placeOrder } )(Cart);

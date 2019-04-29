@@ -4,7 +4,9 @@ import PropTypes from "prop-types";
 import { getRestaurantByID, deleteRestaurant } from '../../actions/getRestaurants';
 import {Link} from 'react-router-dom';
 import EditModal from './EditModal';
-import FormRestaurant from './FormRestaurant'
+import FormRestaurant from './FormRestaurant';
+import { addPendingOrder } from '../../actions/orders'
+import * as firebase from 'firebase';
 
 
 
@@ -24,6 +26,14 @@ export class Restaurant extends Component {
 
   componentDidMount(){
     this.props.getRestaurantByID();
+
+    const uId = localStorage.getItem("uID")+"";
+    const rootRef = firebase.database().ref().child('Users').child(uId).child("Owner");
+    const orderRef = rootRef.child('Orders');
+    
+    orderRef.on('value', snap => {
+      if(snap.val()) this.props.addPendingOrder(snap.val())
+    })
   }
   convertTime(data){
     console.log(data);
@@ -72,13 +82,22 @@ export class Restaurant extends Component {
     this.setState({filter:e.target.value});
   }
 
+  toStandardTime(time){
+    const post = time.slice(0,2) < 12 ? ' AM' : ' PM';
+    let hour = time.slice(0,2) % 12;
+    hour = hour === 0 ? "12" : hour+"";
+    return hour.concat(time.slice(2,5), post)
+  }
+
   render() {
+
     const contentKeys = Object.keys(this.props.restaurants)
     const { filter } = this.state;
 
     return (
       <Fragment>
         <div className="col-md-12" style={{borderBottom:"solid 3px #ddd", paddingBottom:'25px', margin:"25px auto"}}>
+          
           <div className="row">
 
             <div className="col-md-6">
@@ -133,7 +152,7 @@ export class Restaurant extends Component {
                           <h6>{res.Address}</h6>
                           <h6>{res.City} {res.zipcode}</h6> 
                           <h6>Type: {res.CuisineType}</h6>
-                          <h6>Hours: {this.convertTime.bind(this,res.Open)}{this.convertTime.bind(this,res.Close)}</h6>
+                          <h6>{this.toStandardTime(res.Open)} - {this.toStandardTime(res.Close)}</h6>
                           <div className="row" style={{marginLeft:"2px"}}>
                             <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
 
@@ -148,7 +167,7 @@ export class Restaurant extends Component {
                           </div>
                         </div>
                       </div>
-                  </div>
+                   </div>
                   </div>
                 )
             }else{
@@ -165,7 +184,7 @@ export class Restaurant extends Component {
                         <h6>{res.Address}</h6>
                         <h6>{res.City} {res.zipcode}</h6>
                         <h6>Type: {res.CuisineType}</h6> 
-                        <h6>Hours: {this.convertTime(res.Open)} - {this.convertTime(res.Close)}</h6>
+                        <h6>{this.toStandardTime(res.Open)} - {this.toStandardTime(res.Close)}</h6>
                       </div>
                       <div className="row" style={{marginLeft:"2px"}}>
                         <Link to={`/editmenu/${res.Name}?id=${t}`} name={res.Name} className="btn btn-primary">Menu</Link>
@@ -189,6 +208,7 @@ export class Restaurant extends Component {
           )}
           </div>
         </div>
+
       </Fragment>
     )
   }
@@ -201,7 +221,7 @@ const cardWidth = {
 
 
 const mapStateToProps = state => ({
-  restaurants: state.restaurantReducer.restaurants
+  restaurants: state.restaurantReducer.restaurants,
 });
 
-export default connect(mapStateToProps, { getRestaurantByID, deleteRestaurant })(Restaurant);
+export default connect(mapStateToProps, { getRestaurantByID, deleteRestaurant, addPendingOrder })(Restaurant);

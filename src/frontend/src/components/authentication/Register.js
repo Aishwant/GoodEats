@@ -24,7 +24,7 @@ export class Register extends Component {
     if(this.state.pwd===this.state.pwd1){
       this.props.register(this.state);
     }else{
-      console.log("Passwords don't match");
+      alert("Passwords don't match");
     }
 
   };

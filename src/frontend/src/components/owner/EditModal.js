@@ -77,6 +77,8 @@ export class EditModal extends Component {
               onRequestClose={this.closeModal}
               contentLabel="Example Modal"
               className="pre-scrollable"
+              style={{overlay:{backgroundColor: "rgba(0, 0, 0, 0.50)"}}}
+              ariaHideApp={false}
             >
               <div className="modal-dialog">
               <div className="modal-content">

@@ -17,8 +17,8 @@ export class EditInstructionsModal extends Component {
         this.closeModal = this.closeModal.bind(this);
       }
 
-    componentDidMount(){
-        this.state.Instructions = this.props.Instructions;
+    componentDidUpdate(){
+      this.state.Instructions = this.props.Instructions;
     }
 
     onChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -39,7 +39,7 @@ export class EditInstructionsModal extends Component {
 
       onSubmit = e => {
         e.preventDefault();
-        this.props.editInstructions(this.props.itemID, this.state.Instructions);
+        this.props.editInstructions(this.props.rID, this.props.itemID, this.state.Instructions);
         this.closeModal();
     }
     
@@ -54,6 +54,8 @@ export class EditInstructionsModal extends Component {
               onRequestClose={this.closeModal}
               contentLabel="add Item Modal"
               className="modal-dialog "
+              style={{overlay:{backgroundColor: "rgba(0, 0, 0, 0.50)"}}}
+              ariaHideApp={false}
             >
               <div className="modal-content">
                 <div className="modal-header">

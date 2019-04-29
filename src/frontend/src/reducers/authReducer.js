@@ -1,6 +1,6 @@
 // import { USER_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, REGISTER_SUCCESS } from "../actions/types";
 
-import { USER_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, GET_RESTAURANTS, REGISTER_SUCCESS, GET_USER } from "../actions/types";
+import { ADD_USER, USER_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, GET_RESTAURANTS, REGISTER_SUCCESS, GET_USER } from "../actions/types";
 
 
 const initialState = {
@@ -35,6 +35,7 @@ export default function(state = initialState, action) {
     }
     case REGISTER_SUCCESS:
       localStorage.setItem("uID",action.payload.uID);
+      localStorage.setItem("token",action.payload.token);
       return{
         ...state,
         uID: localStorage.getItem("uID"),
@@ -58,6 +59,11 @@ export default function(state = initialState, action) {
         ...state,
         user: action.payload
       };
+    case ADD_USER:
+      return {
+        ...state,
+        newUser: false
+      }
     default:
       return state;
   }

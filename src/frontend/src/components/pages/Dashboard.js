@@ -1,16 +1,15 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { getUser } from '../../actions/getUser';
+import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
+import { getUser } from '../../actions/getUser'
 import Customer from '../customer/Customer'
 import Driver from '../driver/Driver'
 import Owner from '../owner/Owner'
-import { getItemCount } from "../../actions/orders"
+import { Redirect } from "react-router-dom"
 
 export class Dashboard extends Component {
 
   componentDidMount(){
     this.props.getUser();
-    this.props.getItemCount();
   }
   
   render(){
@@ -44,13 +43,16 @@ export class Dashboard extends Component {
           ))}
           </div>
         );
+      case "status":
+        return <Redirect to ="/signupinfo" />
+      case "":
+        return <Redirect to ="/signupinfo" />
       default:
-          //direct to new user page so that a the account type can be determined
+          console.log(contentKeys)
           return(
-            <Fragment>
-              {/* <h1>NO USER TYPE</h1> */}
-            </Fragment>
-          );
+            <h1></h1>
+          )
+          
     }
   }
 }
@@ -59,5 +61,5 @@ const mapStateToProps = state => ({
   user: state.authReducer.user
 });
 
-export default connect(mapStateToProps, { getUser, getItemCount })(Dashboard);
+export default connect(mapStateToProps, { getUser })(Dashboard);
 

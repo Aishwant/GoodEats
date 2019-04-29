@@ -7,3 +7,4 @@ Markdown
 django-rest-knox
 pyrebase
 whitenoise==4.1.2
+sendgrid
