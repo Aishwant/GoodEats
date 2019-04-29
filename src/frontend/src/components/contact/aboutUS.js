@@ -14,7 +14,7 @@ export default class aboutUS extends Component {
             return (
 
             <div>
-            <div style={{ 
+            <div style={{backgroundImage: "url(" + "https://images.pexels.com/photos/1565982/pexels-photo-1565982.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" + ")",
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
@@ -23,7 +23,7 @@ export default class aboutUS extends Component {
             <div class="container">
                 
 
-                <div className="container">
+                <div className="container" style={{color:'white'}}>
                  
                  <div  style={{padding:'5% 10%'}}>
                  <div style={{textAlign:'center'}}>
@@ -75,13 +75,90 @@ export default class aboutUS extends Component {
               <p>Madhav Prasad Koirala</p>
               </div> */}
             
-          
-             
+                        
               </div>
               </div>
               </div>
               </div>
-              </div>
+              <div>
+                <h1 align="center"><u>Contact Us</u></h1>
+                <div className="col-md-4 team-box" className = "borderless" style={{padding: '2%  15%'}}>
+                  <div className="team-img thumbnail">
+                    <div className="team-content" align="center">    
+                      <h3>Jordan Kutz</h3>
+                      <div className="border-team" align="center"></div>
+                        <h4><p>Hi. I am the project manager for our group.
+                            Email me at jkutz@go.olemiss.edu
+                        </p></h4>
+                        <br/>
+                    </div>
+                    <div className="team-content" align="center">    
+                        <h3>Aishwant Ghimire</h3>
+                        <div className="border-team" align="center"></div>
+                        <h4><p>Hi. I am the database man for our group.
+                            Email me at aghimire@go.olemiss.edu
+                        </p></h4>
+                        <br/>
+                    </div>
+                    <div className="team-content" align="center">     
+                        <h3>Madhav Koirala</h3>
+                        <div className="border-team" align="center"></div>
+                        <h4><p>Hi. I have worked on the functionality of the project.
+                            Email me at mkoirala@go.olemiss.edunpm
+                        </p></h4>
+                        <br/>
+                    </div>
+                    <div className="team-content" align="center">    
+                        <h3>Jason Wells</h3>
+                        <div className="border-team" align="center"></div>
+                        <h4><p>Hi. I am worked on implementing some unique components of this project.
+                            Email me at jpwells1@go.olemiss.edu
+                        </p></h4>
+                        <br/>
+                    </div>
+                    <div className="team-content" align="center">    
+                        <h3>Andrew Jelson</h3>
+                        <div className="border-team" align="center"></div>
+                        <h4><p>Hi. I am the server guy for our project.
+                            Email me at arjelson@go.olemiss.edu
+                        </p></h4>
+                        <br/>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+                  <h2 style={{textAlign:'center'}}><u>What our customers say</u></h2>
+                  <br/>
+                  <div class="carousel slide text-center" >
+           
+                  <div role="listbox">
+                      <div >
+                      <h4>"Food ordering made very easy"</h4>
+                      <h5 style={{fontStyle:'italic'}}>Pratap Bohara,Oxford, MS</h5>
+                      <br/>
+                      </div>
+                      <div>
+                      <h4>"Just Wow"</h4>
+                      <h5 style={{fontStyle:'italic'}}>Jack Reacher, MS</h5>
+                      <br/>
+                      </div>
+                      <div>
+                      <h4>"This app is the best. I am so happy with the food!"</h4>
+                      <h5 style={{fontStyle:'italic'}}>Denzel Washington, Olive Branch, MS</h5>
+                      <br/>
+                      </div>
+                      <div>
+                      <h4>"Bears. Beats. Battlestar Galactica"</h4>
+                      <h5 style={{fontStyle:'italic'}}>Dwight Shrute, Schrute Farms</h5>
+                      <br/>
+                      </div>
+                  </div>
+                  </div>
+                  </div>
+              
                 
             );
           }

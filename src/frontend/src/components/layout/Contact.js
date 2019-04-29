@@ -7,10 +7,10 @@ export class Contact extends Component{
 
     render(){
         return (
-           <div>
-           <h1 align="center">Contact Us</h1>
+           <div style={{marginTop: '5%'}}>
+           <h1 align="center"><u>Contact Us</u></h1>
            <div className="col-md-4 team-box" className = "borderless">
-           <div className="team-img thumbnail">
+           <div className="team-img thumbnail" style={{margin: '3%'}}>
                     <div className="team-content" align="center">    
                         <h3>Jordan Kutz</h3>
                         <div className="border-team" align="center"></div>
