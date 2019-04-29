@@ -17,6 +17,7 @@ export class UserDefiner extends Component {
     close: "",
     CuisineType: "",
     owner_ID: "",
+    imgURL:"",
     changeO: false,
     changeC: false,
     changeD: false
@@ -88,7 +89,8 @@ export class UserDefiner extends Component {
     const ownerForm = (
       <div style={margin15}>
         Let's add your first restaurant
-        <br /><br />
+        <br />
+        <br />
         <input
           type="text"
           name="name"
@@ -158,6 +160,16 @@ export class UserDefiner extends Component {
           className="form-control"
           required
         />
+        <br />
+        <label>Restaurant Image</label>
+        <input
+          className="form-control"
+          type="text"
+          name="imgURL"
+          onChange={this.onChange}
+          value={imgURL}
+          required
+        />
       </div>
     );
 
@@ -178,7 +190,7 @@ export class UserDefiner extends Component {
       </div>
     );
 
-    const { fname, lname, name, address, city, zipcode, open, close, CuisineType } = this.state;
+    const { fname, lname, name, address, city, zipcode, open, close, CuisineType, imgURL } = this.state;
     // const { changeO, changeC, changeD } = this.state;
     return (
       <div className="row">

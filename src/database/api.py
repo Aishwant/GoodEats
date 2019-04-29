@@ -28,7 +28,7 @@ class getRestaurantByIDAPI(generics.GenericAPIView):
             return Response(firebase.getRestaurantByID(request, uID))
         except:
             return Response({
-                "status":"Disconnected"
+                # "status":"Disconnected"
             })
 
 class addRestaurantAPI(generics.GenericAPIView):

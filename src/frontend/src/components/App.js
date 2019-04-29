@@ -20,6 +20,7 @@ import Menu_Owner from "./owner/Menu_Owner";
 import Menu_Customer from "./customer/Menu_Customer";
 import Cart from "./ordering/Cart";
 import MyProfile from "./pages/MyProfile";
+import MyProfileUD from "./pages/MyProfileUD";
 import MyOrders from "./ordering/MyOrders";
 import MyRestaurantsOrders from "./ordering/MyRestaurantsOrders";
 
@@ -79,8 +80,12 @@ class App extends Component {
                       <PrivateRoute exact path = "/editmenu/:rName" component={Menu_Owner}/>
                       <PrivateRoute exact path = "/cart" component={Cart} />
                       <PrivateRoute exact path = "/myProfile" component={MyProfile} />
+<<<<<<< HEAD
                       <Route exact path="/Contact" component={Contact} />
      
+=======
+                      <PrivateRoute exact path="/Profile" component={MyProfileUD} />
+>>>>>>> d4ead0dca16be63ec4d670f5c6e9b9b44fe7b86d
                       <PrivateRoute exact path = "/myOrders" component={MyOrders} />
                       <PrivateRoute exact path = "/myRestaurantsOrders" component={MyRestaurantsOrders} />
                 </Switch>

@@ -127,6 +127,7 @@ def getMyRestaurantsOrders(request, uID):
 def addCustomer(request):
     db = credentials().database()
 
+    request['data']['email'] = credentials().auth().get_account_info(request['token'])['users'][0]['email']
     
     if (request['data']["changeC"]==True):
         request['data'].pop("changeC")
@@ -136,6 +137,7 @@ def addCustomer(request):
         request['data'].pop("close")
         request['data'].pop("name")
         request['data'].pop('owner_ID')
+        request['data'].pop('imgURL')
         request['data']['cardNumber'] = ""
         request['data']['cardExp'] = ""
         request['data']['cardCVS'] = ""
@@ -157,6 +159,7 @@ def addCustomer(request):
         restaurantData['Open'] = request['data'].pop('open')
         restaurantData['Close'] = request['data'].pop('close')
         restaurantData['owner_ID'] = request['data'].pop('owner_ID')
+        restaurantData['imgURL'] = request['data'].pop('imgURL')
         formattedData = {rID : restaurantData}
 
         addRestaurant(formattedData, request['uID'])
@@ -166,7 +169,7 @@ def addCustomer(request):
         request['data']['Phone'] = ""
         request['data']['city'] = ""
         request['data']['zipcode'] = ""
-        request['data']['email'] = credentials().auth().get_account_info(request['token'])['users'][0]['email']
+        
         db.child('Users').child(request['uID']).child("Owner").update(request['data'])
 
     elif(request['data']["changeD"]==True):
@@ -179,6 +182,7 @@ def addCustomer(request):
         request['data'].pop("name")
         request['data'].pop("city")
         request['data'].pop('owner_ID')
+        request['data'].pop('imgURL')
         db.child('Users').child(request['uID']).child("Driver").set(request['data'])
 
 def addRestaurant(request, uID):
