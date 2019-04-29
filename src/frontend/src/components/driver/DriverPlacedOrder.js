@@ -46,9 +46,9 @@ export class DriverPlacedOrder extends Component {
             return Object.keys(order).map(i => {
               return (
                 <div className="container" style={{ marginTop: "10px" }}>
-                  <div className="menuItems textM d-flex">
+                  <div className="menuItems textM d-flex" style={{ padding: "10px" }}>
                     <Timer start={order[i].orderTimeMil}/>
-                    <div className="card-body" style={{ textAlign: "center" }}>
+                    <div className="card-body" style={{ textAlign: "center"}}>
                       <h4 className="card-title">From: {order[i].rName}</h4>
                       <p className="card-text">
                         <h5>To: {order[i].user_info.customerAddress1} {order[i].user_info.customerAddress2}</h5>
