@@ -86,7 +86,7 @@ export class Header extends Component {
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
           {myOrdersOption}
-          <Link to="/myProfile" className="dropdown-item">My Profile</Link>
+          {contentKeys[0] === "Customer" ? <Link to="/myProfile" className="dropdown-item">My Profile</Link> : <Link to="/Profile" className="dropdown-item">My Profile</Link> }
           <div className="dropdown-divider"></div>
           <li className="dropdown-item">
             <Link to="/home" className="dropdown-item" onClick={this.props.logout}>
