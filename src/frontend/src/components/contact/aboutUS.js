@@ -14,7 +14,7 @@ export default class aboutUS extends Component {
             return (
 
             <div>
-            <div style={{  backgroundImage: "url(" + "https://images.pexels.com/photos/1565982/pexels-photo-1565982.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" + ")",
+            <div style={{ 
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
@@ -23,9 +23,9 @@ export default class aboutUS extends Component {
             <div class="container">
                 
 
-                <div className="container" style={{color:'white'}}>
+                <div className="container">
                  
-                 <div  style={{padding:'5%'}}>
+                 <div  style={{padding:'5% 10%'}}>
                  <div style={{textAlign:'center'}}>
                      <div>
                      <span class="glyphicon glyphicon-globe logo"></span> 
@@ -40,7 +40,7 @@ export default class aboutUS extends Component {
                       <p>We don't just deliver, we carry the taste and love always going extra mile to feed your hunger.</p>
 
                       <p>
-                      In meantime we sit with chef from your favorite restaurant to come up with your dream menu that will arive fresh and full of flavour.
+                      In meantime we sit with chefs from your favorite restaurants to come up with your dream menu that will arive fresh and full of flavour.
                       </p>
                       
 
@@ -81,38 +81,7 @@ export default class aboutUS extends Component {
               </div>
               </div>
               </div>
-           
-                  <br/>
-                  <h2 style={{textAlign:'center'}}>What our customers say</h2>
-                  <br/>
-                  <div class="carousel slide text-center" >
-           
-                  <div role="listbox">
-                      <div >
-                      <h4>"Food ordering made very easy"</h4>
-                      <h5 style={{fontStyle:'italic'}}>Pratap Bohara,Oxford, MS</h5>
-                      <br/>
-                      </div>
-                      <div>
-                      <h4>"Just Wow"</h4>
-                      <h5 style={{fontStyle:'italic'}}>Jack Reacher, MS</h5>
-                      <br/>
-                      </div>
-                      <div>
-                      <h4>"This app is the best. I am so happy with the food!"</h4>
-                      <h5 style={{fontStyle:'italic'}}>Denzel Washington, Olive Branch, MS</h5>
-                      <br/>
-                      </div>
-                      <div>
-                      <h4>"Bears. Beats. Battlestar Galactica"</h4>
-                      <h5 style={{fontStyle:'italic'}}>Dwight Schrute, Schrute Farms</h5>
-                      <br/>
-                      </div>
-                     
-                  </div>
-
-                  </div>
-                  </div>
+              </div>
                 
             );
           }
