@@ -14,31 +14,41 @@ export class Contact extends Component{
                     <div className="team-content" align="center">    
                         <h3>Jordan Kutz</h3>
                         <div className="border-team" align="center"></div>
-                        <p>Hi. I am the project manager for our group.</p>
+                        <p>Hi. I am the project manager for our group.
+                            Email me at jkutz@go.olemiss.edu
+                        </p>
                         <br/>
                     </div>
                     <div className="team-content" align="center">    
                         <h3>Aishwant Ghimire</h3>
                         <div className="border-team" align="center"></div>
-                        <p>Hi. I am the database man for our group.</p>
+                        <p>Hi. I am the database man for our group.
+                            Email me at aghimire@go.olemiss.edu
+                        </p>
                         <br/>
                     </div>
                     <div className="team-content" align="center">     
                         <h3>Madhav Koirala</h3>
                         <div className="border-team" align="center"></div>
-                        <p>Hi. I have worked on the functionality of the project</p>
+                        <p>Hi. I have worked on the functionality of the project.
+                            Email me at mkoirala@go.olemiss.edunpm
+                        </p>
                         <br/>
                     </div>
                     <div className="team-content" align="center">    
                         <h3>Jason Wells</h3>
                         <div className="border-team" align="center"></div>
-                        <p>Hi. I am worked on implementing some unique components of this project</p>
+                        <p>Hi. I am worked on implementing some unique components of this project.
+                            Email me at jpwells1@go.olemiss.edu
+                        </p>
                         <br/>
                     </div>
                     <div className="team-content" align="center">    
                         <h3>Andrew Jelson</h3>
                         <div className="border-team" align="center"></div>
-                        <p>Hi. I am the server guy for our project</p>
+                        <p>Hi. I am the server guy for our project.
+                            Email me at arjelson@go.olemiss.edu
+                        </p>
                         <br/>
                     </div>
                 </div> 
