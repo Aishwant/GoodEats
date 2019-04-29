@@ -16,7 +16,8 @@ import {GET_CART,
         DELIVERED_ORDER, 
         SET_MY_ORDERS, 
         GET_MY_RESTAURANTS_ORDERS,
-        SET_MY_RESTAURANTS_ORDERS } from './types.js';
+        SET_MY_RESTAURANTS_ORDERS,
+        GET_PENDING_ORDER_COUNT } from './types.js';
 
 //Get user's cart
 export const getCart = () => (dispatch) => {
@@ -98,7 +99,7 @@ export const getOrderCount = () => (dispatch) => {
       .get("/api/database/getOrderCount/" + uID)
       .then(res => {
         dispatch({
-          type: GET_ITEM_COUNT,
+          type: GET_PENDING_ORDER_COUNT,
           payload: res.data
         });
       })

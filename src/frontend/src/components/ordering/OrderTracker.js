@@ -26,7 +26,7 @@ export class OrderTracker extends Component {
                         this.state.progress = "14.5%";
                         break;
                     case "ACCEPTED_BY_OWNER":
-                        this.state.progress = "31%";
+                        this.state.progress = "30.5%";
                         break;
                     case "ACCEPTED_BY_DRIVER":
                         this.state.progress = "55.5%";
