@@ -9,7 +9,7 @@ import AlertTemplate from 'react-alert-template-basic'
 import Header from "./layout/Header";
 import Dashboard from "./pages/Dashboard";
 import Alerts from "./layout/Alerts";
-import Contact from "./layout/Contact";
+import Contact from "./contact/Contact";
 import Login from "./authentication/Login";
 import Register from "./authentication/Register";
 import ForgotPwd from "./authentication/ForgotPwd";
