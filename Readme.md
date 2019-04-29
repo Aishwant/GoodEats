@@ -195,6 +195,7 @@ pip install whitenoise
 pip install channels
 pip install service_identity (optional)
 pip install channels_redis
+pip install sendgrid
 ````
 
 install redis for the conda environment.
