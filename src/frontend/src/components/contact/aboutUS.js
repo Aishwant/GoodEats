@@ -104,11 +104,6 @@ export default class aboutUS extends Component {
                       <br/>
                       </div>
                       <div>
-                      <h4>"Great App, Affordable Prices, still waiting on my donuts..."</h4>
-                      <h5 style={{fontStyle:'italic'}}>Felicia, THE SOUF</h5>
-                      <br/>
-                      </div>
-                      <div>
                       <h4>"Bears. Beats. Battlestar Galactica"</h4>
                       <h5 style={{fontStyle:'italic'}}>Dwight Schrute, Schrute Farms</h5>
                       <br/>
