@@ -116,7 +116,7 @@ export class PlaceOrder extends Component {
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
-                <h5 className="text-dark" ref={subtitle => this.subtitle = subtitle}>Fill this our before ordering</h5>
+                <h5 className="text-dark" ref={subtitle => this.subtitle = subtitle}>Fill this out before ordering</h5>
                   <button type="button" className="close" onClick={this.closeModal} aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                   </button>
@@ -146,7 +146,7 @@ export class PlaceOrder extends Component {
                             />
                         </div>
                         <div className="form-group">
-                            <label>Address line 1</label>
+                            <label>Address Line 1</label>
                             <input
                             className="form-control"
                             type="text"
@@ -157,7 +157,7 @@ export class PlaceOrder extends Component {
                             />
                         </div>
                         <div className="form-group">
-                            <label>Address line 2</label>
+                            <label>Address Line 2</label>
                             <input
                             className="form-control"
                             type="text"
@@ -246,7 +246,7 @@ export class PlaceOrder extends Component {
                           </div>
                         </div>
                         <div className="form-group">
-                              <label>Name on Card</label>
+                              <label>Name On Card</label>
                               <input
                               className="form-control"
                               type="text"
