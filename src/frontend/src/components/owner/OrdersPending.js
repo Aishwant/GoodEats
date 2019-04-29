@@ -134,17 +134,7 @@ export class OrdersPending extends Component {
                       <div className="card">
                         <div className="card-header" id={"heading" + t}>
                           <h5 className="mb-0">
-                            <button
-                              className="btn btn-link collapsed"
-                              data-toggle="collapse"
-                              data-target={"#collapse" + t}
-                              aria-expanded="false"
-                              aria-controls={"collapse" + t}
-                            >
-                              Restaurant Name: {orders.rName} Total:{" "}
-                              {orders.total}{" "}
-                            </button>
-                            <button
+                          <button
                               className="btn btn-success"
                               onClick={() => {
                                 this.props.acceptPendingOrder.bind(
@@ -168,6 +158,17 @@ export class OrdersPending extends Component {
                             >
                               Reject
                             </button>
+                            <button
+                              className="btn btn-link collapsed"
+                              data-toggle="collapse"
+                              data-target={"#collapse" + t}
+                              aria-expanded="false"
+                              aria-controls={"collapse" + t}
+                            >
+                              Restaurant Name: {orders.rName} Total:{" "}
+                              {orders.total}{" "}
+                            </button>
+                            
                           </h5>
                         </div>
 
@@ -197,7 +198,7 @@ export class OrdersPending extends Component {
                                         <td>{item.Description}</td>
                                         <td>{item.Instructions}</td>
                                         <td>{item.Quantity}</td>
-                                        <td>{item.Price}</td>
+                                        <td>${item.Price}</td>
                                       </tr>
                                     );
                                   })
