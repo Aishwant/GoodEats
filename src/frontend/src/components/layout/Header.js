@@ -14,10 +14,6 @@ export class Header extends Component {
     logout: PropTypes.func.isRequired
   };
 
-  componentDidMount(){
-    this.props.getOrderCount();
-    }
-
   render() {
     const contentKeys = Object.keys(this.props.user)
     const { isAuthenticated } = this.props.authReducer;

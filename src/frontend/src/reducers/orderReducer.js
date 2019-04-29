@@ -11,6 +11,7 @@ import {
     SET_MY_ORDERS,
     GET_MY_RESTAURANTS_ORDERS,
     SET_MY_RESTAURANTS_ORDERS,
+    GET_PENDING_ORDER_COUNT
 } from "../actions/types";
 
 const initialState = {
@@ -74,6 +75,10 @@ export default function(state = initialState, action) {
         case SET_MY_RESTAURANTS_ORDERS:
             return produce(state, draft => {
                 draft['myRestaurantsOrders'] = action.payload;
+            })
+        case GET_PENDING_ORDER_COUNT:
+            return produce(state, draft => {
+                draft.pendingOrderCount = action.payload;
             })
         default:
             return state;

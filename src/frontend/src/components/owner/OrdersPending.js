@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 import { getRestaurantByID } from "../../actions/getRestaurants";
 import { acceptPendingOrder, rejectPendingOrder } from '../../actions/orders';
 import Alert from 'react-bootstrap/Alert';
+import { getOrderCount } from "../../actions/orders";
 
 export class OrdersPending extends Component {
   constructor() {
@@ -25,6 +26,10 @@ export class OrdersPending extends Component {
 
   componentDidMount() {
     this.state.owner_ID = localStorage.getItem("uID");
+  }
+
+  componentDidUpdate(){
+    this.props.getOrderCount();
   }
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -230,4 +235,4 @@ const mapStateToProps = state => ({
     pendingOrderCount: state.orderReducer.pendingOrderCount
   });
 
-export default connect(mapStateToProps, { getRestaurantByID,rejectPendingOrder,acceptPendingOrder })(OrdersPending);
+export default connect(mapStateToProps, { getRestaurantByID,rejectPendingOrder,acceptPendingOrder, getOrderCount })(OrdersPending);
