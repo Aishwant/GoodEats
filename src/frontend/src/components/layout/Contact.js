@@ -9,7 +9,7 @@ export class Contact extends Component{
         return (
            <div>
            <h1 align="center">Contact Us</h1>
-           <div className="col-md-4 team-box">
+           <div className="col-md-4 team-box" className = "border">
            <div className="team-img thumbnail">
                     <div className="team-content" align="center">    
                         <h3>Jordan Kutz</h3>
