@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import Modal from 'react-modal'
 import * as firebase from 'firebase'
+import Alert from 'react-bootstrap/Alert';
 
 export class OrderTracker extends Component {
     constructor() {
@@ -9,13 +10,15 @@ export class OrderTracker extends Component {
         this.state = { 
            modalIsOpen: false,
            progress: "50%",
+           reject: false
         };
     
         this.openModal = this.openModal.bind(this);
         this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
       }
-    
+
+
     componentDidMount(){
         const uId = localStorage.getItem("uID")+"";
         const rootRef = firebase.database().ref().child('Users').child(uId).child("Customer").child("Orders").child(this.props.orderID).child("status")
@@ -26,7 +29,7 @@ export class OrderTracker extends Component {
                         this.state.progress = "14.5%";
                         break;
                     case "ACCEPTED_BY_OWNER":
-                        this.state.progress = "31%";
+                        this.state.progress = "30.5%";
                         break;
                     case "ACCEPTED_BY_DRIVER":
                         this.state.progress = "55.5%";
@@ -37,6 +40,12 @@ export class OrderTracker extends Component {
                     case "DELIVERED":
                         this.state.progress = "100%";
                         break;
+                    case "REJECTED":
+                        this.state.progress = "99.9%";
+                        console.log("Clicked")
+                        this.bar = "progress-bar bg-danger progress-bar-striped progress-bar-animated";
+                        this.state.reject = true;
+                        break;
                     default:
                         this.state.progress = "0%";
                         break;
@@ -44,6 +53,7 @@ export class OrderTracker extends Component {
             }
         })
     }
+    bar = "progress-bar progress-bar-striped progress-bar-animated";
 
     openModal() {
     this.setState({modalIsOpen: true});
@@ -60,7 +70,15 @@ export class OrderTracker extends Component {
 
   render() {
     const contentKeys = Object.keys(this.props.orderData.items);
-
+    const headings = (
+        <Fragment>
+        <h4 style={{ marginLeft: "5%" }}>Pending</h4>
+        <h4 style={{ marginLeft: "4%" }}>Accepted</h4>
+        <h4 style={{ marginLeft: "4%" }}>Driver Assigned</h4>
+        <h4 style={{ marginLeft: "5%" }}>Out for Delivery</h4>
+        <h4 style={{ marginLeft: "5%" }}>Delivered</h4>
+        </Fragment>
+    );
     //Only show driver name if driver has accepted the order
     let driverName;
     if(this.state.progress === "55.5%" ||
@@ -80,6 +98,7 @@ export class OrderTracker extends Component {
 
     return (
       <div>
+
         <button className="btn btn-success btn-sm" onClick={this.openModal}>Track</button>
         <Modal
             isOpen={this.state.modalIsOpen}
@@ -101,11 +120,10 @@ export class OrderTracker extends Component {
             
             <div className="modal-body">
             <div className="row mt-3">
-                <h4 style={{marginLeft: "5%"}}>Pending</h4>
-                <h4 style={{marginLeft: "4%"}}>Accepted</h4>
-                <h4 style={{marginLeft: "4%"}}>Driver Assigned</h4>
-                <h4 style={{marginLeft: "5%"}}>Out for Delivery</h4>
-                <h4 style={{marginLeft: "5%"}}>Delivered</h4>
+                {
+                    this.state.reject ? <h4 style={{ marginLeft: "45%" }}>Rejected</h4> : headings
+                }
+                
             </div>
 
             <div className="progress mb-3 mx-3 progress-border" style={{height: "50px"}}>
@@ -113,7 +131,7 @@ export class OrderTracker extends Component {
                 <div className="bar-step label-line" style={{left: "32%"}}></div>
                 <div className="bar-step label-line" style={{left: "55%"}}></div>
                 <div className="bar-step label-line" style={{left: "81%"}}></div>
-                <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{width: this.state.progress}}></div>
+                <div className={this.bar} role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{width: this.state.progress}}></div>
             </div>
                 
                 <div >
@@ -174,6 +192,15 @@ export class OrderTracker extends Component {
       </div>
     )
   }
+}
+
+const alertStyle = {
+    position: "fixed",
+    top: "20px",
+    right: "20px",
+    width: "30%",
+    zIndex: "9999",
+    borderRadius: "0px"
 }
 
 export default OrderTracker;

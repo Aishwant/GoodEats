@@ -27,7 +27,7 @@ export class Dashboard extends Component {
         );
       case "Driver":
         return(
-          <div className="container" style={{marginTop:"55px"}}>
+          <div className="w-50 align-items-center" style={{marginTop:"55px", marginLeft:"25%", marginRight:"20%"}}>
             
           {contentKeys.map(t=> [this.props.user[t]].map(res =>
             <Driver name={res.fname}/>

@@ -112,6 +112,8 @@ export class PlaceOrder extends Component {
               onRequestClose={this.closeModal}
               contentLabel="place order info"
               className="pre-scrollable"
+              style={{overlay:{backgroundColor: "rgba(0, 0, 0, 0.50)"}}}
+              ariaHideApp={false}
             >
             <div className="modal-dialog">
               <div className="modal-content">

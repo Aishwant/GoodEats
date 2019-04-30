@@ -30,14 +30,7 @@ export class DriverCurrentOrders extends Component {
             return Object.keys(order).map(i => {
               return (
                 <div class="container" style={{ marginTop: "10px" }}>
-                  <div
-                    class="card"
-                    style={{
-                      width: "100%",
-                      borderRadius: "2%",
-                      border: "4px solid lightgreen"
-                    }}
-                  >
+                  <div className="menuItems textM d-flex">
                     <div class="card-body" style={{ textAlign: "center" }}>
                       <h4 class="card-title">From: {order[i].rName}</h4>
                       <p class="card-text">
