@@ -54,7 +54,7 @@ export class Restaurant extends Component {
       this.setState({nameS:false,zipcodeS:false,cityS:false,openS:false,closeS:true,cuisineTypeS:false,tagS:false})
     }else if(this.state.filter=="openS"){
       this.setState({nameS:false,zipcodeS:false,cityS:false,openS:true,closeS:false,cuisineTypeS:false,tagS:false})
-    }else if(this.state.filter=="cusineTypeS"){
+    }else if(this.state.filter=="cuisineTypeS"){
       this.setState({nameS:false,zipcodeS:false,cityS:false,openS:false,closeS:false,cuisineTypeS:true,tagS:false})
     }else if(this.state.filter=="tagS"){
       this.setState({nameS:false,zipcodeS:false,cityS:false,openS:false,closeS:false,cuisineTypeS:false,tagS:true})

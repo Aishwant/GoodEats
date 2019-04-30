@@ -82,7 +82,7 @@ export class Header extends Component {
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
           {myOrdersOption}
-          <Link to="/myProfile" className="dropdown-item">My Profile</Link>
+          {contentKeys[0] === "Customer" ? <Link to="/myProfile" className="dropdown-item">My Profile</Link> : <Link to="/Profile" className="dropdown-item">My Profile</Link> }
           <div className="dropdown-divider"></div>
           <li className="dropdown-item">
             <Link to="/home" className="dropdown-item" onClick={this.props.logout}>
@@ -135,7 +135,7 @@ export class Header extends Component {
          
             <ul className="navbar-nav ml-auto">
               <li className="nav-item"><Link to="/home" className="nav-link">Home</Link></li>
-              <li className="nav-item"><a href="#" className="nav-link">Contact</a></li>
+              <li className="nav-item"><Link to="/contact" className="nav-link">Contact</Link></li>
               {isAuthenticated ? "" : guestLinks}
               {isAuthenticated ? "" : guestLinks1}
               {isAuthenticated && contentKeys[0] === "Customer" ? cart : ""}

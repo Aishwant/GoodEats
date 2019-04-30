@@ -77,8 +77,8 @@ export class Index extends Component {
                                     <div className="text">
                                         <p className="star-rate"><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star-half-full"></span></p>
                                         <p className="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                        <p className="name">Dennis Green</p>
-                                        <span className="position">Guests from Italy</span>
+                                        <p className="name">Jordan Kutz</p>
+                                        <span className="position">Guests from Canada</span>
                                     </div>
                                 </div>
                             </div>
@@ -90,8 +90,8 @@ export class Index extends Component {
                                     <div className="text">
                                         <p className="star-rate"><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star"></span><span className="icon-star-half-full"></span></p>
                                         <p className="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                        <p className="name">Dennis Green</p>
-                                        <span className="position">Guests from Italy</span>
+                                        <p className="name">Aish Ghimire</p>
+                                        <span className="position">Guests from Nepal</span>
                                     </div>
                                 </div>
                             </div>
