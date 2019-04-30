@@ -2,14 +2,16 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import Modal from 'react-modal'
 import { editInstructions } from '../../actions/orders'
+import { getCart } from '../../actions/orders';
+import * as firebase from 'firebase';
 
 export class EditInstructionsModal extends Component {
     constructor() {
         super();
     
         this.state = {
-           Instructions: "", 
-           modalIsOpen: false
+          Instructions: "",
+          modalIsOpen: false
         };
     
         this.openModal = this.openModal.bind(this);
@@ -17,9 +19,15 @@ export class EditInstructionsModal extends Component {
         this.closeModal = this.closeModal.bind(this);
       }
 
-    componentDidUpdate(){
-      this.state.Instructions = this.props.Instructions;
-    }
+      componentDidMount(){
+        const uId = localStorage.getItem("uID")+"";
+        const rootRef = firebase.database().ref().child('Users').child(uId).child("Customer").child("Cart");
+        const itemRef = rootRef.child(this.props.rID).child(this.props.itemID).child("Instructions");
+        
+        itemRef.on('value', snap => {
+          if(snap.val()) this.setState({Instructions: snap.val()})
+        })
+      }
 
     onChange = e => this.setState({ [e.target.name]: e.target.value });
 
@@ -89,4 +97,4 @@ export class EditInstructionsModal extends Component {
       }
 }
 
-export default connect(null, { editInstructions })(EditInstructionsModal);
+export default connect(null, { editInstructions, getCart })(EditInstructionsModal);

@@ -28,7 +28,6 @@ export class Cart extends Component {
 
   render() {
     const contentKeys = Object.keys(this.props.items);
-    console.log(contentKeys);
     {if(contentKeys.length === 0){
         return(
             <div className="container mt-3">
