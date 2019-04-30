@@ -43,9 +43,9 @@ export class Contact extends Component{
                             <div className="help-block with-errors"></div>
                         </div>
                         <div className="form-submit mt-5">
-                            <button className="btn btn-primary" type="button" id="form-submit"><i class="material-icons mdi mdi-message-outline"></i> Send Message</button>
-                            <div id="msgSubmit" className="h3 text-center hidden"></div>
-                            <div className="clearfix"></div>
+                            <button className="btn btn-primary" type="button" id="form-submit">
+                            <Link to='/home' id="msgSubmit" className="h3 text-center" style={{color: 'white'}}>Send Message</Link>
+                            </button>
                         </div>
                     </form>
                 </div>
