@@ -98,13 +98,13 @@ export class PlaceOrder extends Component {
         }
 
         let orderButton;
-        if(this.state.Phone !== "" && 
-           this.state.Address1 !== "" && 
-           this.state.City !== "" &&
-           this.state.cardNumber !== "" &&
-           this.state.cardExp !== "" &&
-           this.state.cardCVS !== "" &&
-           this.state.cardName !== ""){
+        if(this.props.user.Phone !== "" && 
+           this.props.user.Address1 !== "" && 
+           this.props.user.City !== "" &&
+           this.props.user.cardNumber !== "" &&
+           this.props.user.cardExp !== "" &&
+           this.props.user.cardCVS !== "" &&
+           this.props.user.cardName !== ""){
             orderButton = <button className="btn btn-sm btn-dark" onClick={() =>{this.props.placeOrder.bind(this, this.props.items, this.props.restaurant, this.state)(), handleShow1();}}>Place Order</button>
         }else{
             orderButton = <button className="btn btn-sm btn-dark" onClick={this.openModal}>Place Order</button>
