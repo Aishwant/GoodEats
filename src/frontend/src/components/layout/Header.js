@@ -14,10 +14,6 @@ export class Header extends Component {
     logout: PropTypes.func.isRequired
   };
 
-  componentDidMount(){
-    this.props.getOrderCount();
-    }
-
   render() {
     const contentKeys = Object.keys(this.props.user)
     const { isAuthenticated } = this.props.authReducer;
@@ -139,7 +135,7 @@ export class Header extends Component {
          
             <ul className="navbar-nav ml-auto">
               <li className="nav-item"><Link to="/home" className="nav-link">Home</Link></li>
-              <li className="nav-item"><a href="#" className="nav-link">Contact</a></li>
+              <li className="nav-item"><Link to="/contact" className="nav-link">Contact</Link></li>
               {isAuthenticated ? "" : guestLinks}
               {isAuthenticated ? "" : guestLinks1}
               {isAuthenticated && contentKeys[0] === "Customer" ? cart : ""}

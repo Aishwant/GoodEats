@@ -31,8 +31,10 @@ export class Cart extends Component {
     console.log(contentKeys);
     {if(contentKeys.length === 0){
         return(
-            <div className="container mt-3">
+            <div className="container mt-3" align = "center">
+                <br/>
                 <h2>Your Cart is Empty</h2>
+                <br/>
             </div>
         )
     }}

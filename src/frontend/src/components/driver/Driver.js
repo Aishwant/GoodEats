@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from "react-redux"
 
 import {Tabs,Tab} from 'react-bootstrap';
@@ -38,27 +38,30 @@ export class Driver extends Component {
   }
   render() {
     return (
-      
-      <div className="container h-100 align-items-center driver-tabs">
-      <Tabs 
-        id="controlled-tab-example"
-        activeKey={this.state.key}
-        onSelect={key => this.setState({ key })}
-        style={{width:'100%',flexGrow:1,backgroundColor:"#DOFOCO"}}
-      >
+      <Fragment>
+        <h1 style={{marginBottom: "20px"}}>Welcome {this.props.name}</h1>
+        
+        <Fragment className="h-100 align-items-center driver-tabs">
+        <Tabs 
+          id="controlled-tab-example"
+          activeKey={this.state.key}
+          onSelect={key => this.setState({ key })}
+          style={{width:'100%',flexGrow:1,backgroundColor:"#DOFOCO"}}
+        >
 
-        <Tab eventKey="newOrder" title={<span><i class="fas fa-shopping-bag fa-1x">New Order</i> </span>}>
-          <DriverPlacedOrder/>
-        </Tab>
-        <Tab eventKey="currentOrder"  title={<span><i class="fas fa-truck fa-1x">Current Order</i></span>}>
-        <DriverCurrentOrders/>
-        </Tab>
-        <Tab eventKey="orderHistory"  title={<span><i class="fas fa-history fa-1x">Order History</i> </span>}>
-        <DriverDeliveryHistory/>
-        </Tab>
+          <Tab eventKey="newOrder" title={<span><i class="fas fa-shopping-bag fa-1x">New Order</i> </span>}>
+            <DriverPlacedOrder/>
+          </Tab>
+          <Tab eventKey="currentOrder"  title={<span><i class="fas fa-truck fa-1x">Current Order</i></span>}>
+          <DriverCurrentOrders/>
+          </Tab>
+          <Tab eventKey="orderHistory"  title={<span><i class="fas fa-history fa-1x">Order History</i> </span>}>
+          <DriverDeliveryHistory/>
+          </Tab>
 
-      </Tabs>
-      </div>
+        </Tabs>
+        </Fragment>
+      </Fragment>
     );
   }
 }

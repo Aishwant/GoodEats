@@ -9,6 +9,7 @@ import AlertTemplate from 'react-alert-template-basic'
 import Header from "./layout/Header";
 import Dashboard from "./pages/Dashboard";
 import Alerts from "./layout/Alerts";
+import Contact from "./contact/Contact";
 import Login from "./authentication/Login";
 import Register from "./authentication/Register";
 import ForgotPwd from "./authentication/ForgotPwd";
@@ -79,6 +80,8 @@ class App extends Component {
                       <PrivateRoute exact path = "/editmenu/:rName" component={Menu_Owner}/>
                       <PrivateRoute exact path = "/cart" component={Cart} />
                       <PrivateRoute exact path = "/myProfile" component={MyProfile} />
+                      <Route exact path="/Contact" component={Contact} />
+     
                       <PrivateRoute exact path="/Profile" component={MyProfileUD} />
                       <PrivateRoute exact path = "/myOrders" component={MyOrders} />
                       <PrivateRoute exact path = "/myRestaurantsOrders" component={MyRestaurantsOrders} />
