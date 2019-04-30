@@ -222,12 +222,11 @@ export class OrdersPending extends Component {
 
 const alertStyle = {
   position: "fixed", 
-  top: "20px", 
-  right: "20px", 
-  width: "350px",
+  top: "30px", 
+  right: "45%", 
+  width: "auto",
   zIndex: "9999", 
-  borderRadius:"0px",
-  textAlign: "center",
+  borderRadius:"0px"
 }
 
 const mapStateToProps = state => ({

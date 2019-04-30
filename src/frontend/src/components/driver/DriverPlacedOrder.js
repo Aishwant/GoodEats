@@ -136,9 +136,9 @@ export class DriverPlacedOrder extends Component {
 
 const alertStyle = {
   position: "fixed", 
-  top: "20px", 
-  right: "20px", 
-  width: "30%",
+  top: "30px", 
+  right: "45%", 
+  width: "auto",
   zIndex: "9999", 
   borderRadius:"0px"
 }

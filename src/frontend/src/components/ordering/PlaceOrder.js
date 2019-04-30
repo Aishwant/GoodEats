@@ -4,6 +4,7 @@ import Modal from 'react-modal'
 import { placeOrder } from '../../actions/orders'
 import { getUser } from '../../actions/getUser'
 import { editUser } from '../../actions/addNewUser';
+import Alert from 'react-bootstrap/Alert';
 
 export class PlaceOrder extends Component {
     constructor() {
@@ -23,7 +24,8 @@ export class PlaceOrder extends Component {
             cardNumber:"",
             cardExp:"",
             cardCVS:"",
-            cardName:""
+            cardName:"",
+            show1: false
         };
     
         this.openModal = this.openModal.bind(this);
@@ -52,7 +54,6 @@ export class PlaceOrder extends Component {
                 this.state.cardName = info.cardName
             })
             )
-            console.log(this.state.cardNumber)
     }
 
     onChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -78,6 +79,12 @@ export class PlaceOrder extends Component {
     }
     
       render() {
+        const handleHide1 = () => this.setState({ show1: false });
+        const handleShow1 = () => {
+          this.setState({ show1: true });
+          setTimeout(handleHide1, 2000);
+        }
+
         const {Address1, Address2, city, fname, lname, zipcode, Phone, cardNumber, cardExp, cardCVS, cardName} = this.state;
         const currentDate = new Date();
         const currentYear = currentDate.getFullYear();
@@ -98,7 +105,7 @@ export class PlaceOrder extends Component {
            this.state.cardExp !== "" &&
            this.state.cardCVS !== "" &&
            this.state.cardName !== ""){
-            orderButton = <button className="btn btn-sm btn-dark" onClick={this.props.placeOrder.bind(this, this.props.items, this.props.restaurant, this.props.user['Customer'])}>Place Order</button>
+            orderButton = <button className="btn btn-sm btn-dark" onClick={() =>{this.props.placeOrder.bind(this, this.props.items, this.props.restaurant, this.state)(), handleShow1();}}>Place Order</button>
         }else{
             orderButton = <button className="btn btn-sm btn-dark" onClick={this.openModal}>Place Order</button>
         }
@@ -106,6 +113,13 @@ export class PlaceOrder extends Component {
         return (
           <div>
             {orderButton}
+            <Alert
+              show={this.state.show1}
+              variant="success"
+              style={alertStyle}
+            >
+              <Alert.Heading>Order Placed</Alert.Heading>
+            </Alert>
             <Modal
               isOpen={this.state.modalIsOpen}
               onAfterOpen={this.afterOpenModal}
@@ -272,6 +286,15 @@ export class PlaceOrder extends Component {
           </div>
         );
       }
+}
+
+const alertStyle = {
+  position: "fixed", 
+  top: "30px", 
+  right: "45%", 
+  width: "auto",
+  zIndex: "9999", 
+  borderRadius:"0px"
 }
 
 const mapStateToProps = state => ({

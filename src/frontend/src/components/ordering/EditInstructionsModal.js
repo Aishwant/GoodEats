@@ -2,14 +2,15 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import Modal from 'react-modal'
 import { editInstructions } from '../../actions/orders'
+import { getCart } from '../../actions/orders';
 
 export class EditInstructionsModal extends Component {
     constructor() {
         super();
     
         this.state = {
-           Instructions: "", 
-           modalIsOpen: false
+          Instructions: "",
+          modalIsOpen: false
         };
     
         this.openModal = this.openModal.bind(this);
@@ -17,9 +18,9 @@ export class EditInstructionsModal extends Component {
         this.closeModal = this.closeModal.bind(this);
       }
 
-    componentDidUpdate(){
-      this.state.Instructions = this.props.Instructions;
-    }
+      componentDidUpdate(){
+        this.state.Instructions = this.props.Instructions;
+      }
 
     onChange = e => this.setState({ [e.target.name]: e.target.value });
 
@@ -59,7 +60,7 @@ export class EditInstructionsModal extends Component {
             >
               <div className="modal-content">
                 <div className="modal-header">
-                <h5 className="text-dark" ref={subtitle => this.subtitle = subtitle}>Edit Instructions</h5>
+                <h5 className="text-dark" ref={subtitle => this.subtitle = subtitle}>Instructions</h5>
                   <button type="button" className="close" onClick={this.closeModal} aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                   </button>
@@ -67,19 +68,18 @@ export class EditInstructionsModal extends Component {
               <form>
               <div className="ml-4 mr-4 mt-4 mb-4">
                             <div className="form-group">
-                                <label>Instructions</label>
                                 <textarea 
                                 className="form-control" 
                                 name="Instructions"
                                 onChange={this.onChange}
                                 value={Instructions}
                                 rows="3"
+                                readOnly
                                 ></textarea>
                             </div>
                         </div>
                         <div className="modal-footer">
-                          <button onClick={this.closeModal} className="btn btn-secondary">Cancel</button>
-                          <button type="submit" className="btn btn-primary" onClick={this.onSubmit}>Save</button>
+                          <button onClick={this.closeModal} className="btn btn-secondary">Close</button>
                         </div>
               </form>
               </div>
@@ -89,4 +89,4 @@ export class EditInstructionsModal extends Component {
       }
 }
 
-export default connect(null, { editInstructions })(EditInstructionsModal);
+export default connect(null, { editInstructions, getCart })(EditInstructionsModal);
