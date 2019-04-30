@@ -105,7 +105,7 @@ export class PlaceOrder extends Component {
            this.state.cardExp !== "" &&
            this.state.cardCVS !== "" &&
            this.state.cardName !== ""){
-            orderButton = <button className="btn btn-sm btn-dark" onClick={() =>{this.props.placeOrder.bind(this, this.props.items, this.props.restaurant, this.props.user['Customer'])(), handleShow1();}}>Place Order</button>
+            orderButton = <button className="btn btn-sm btn-dark" onClick={() =>{this.props.placeOrder.bind(this, this.props.items, this.props.restaurant, this.state)(), handleShow1();}}>Place Order</button>
         }else{
             orderButton = <button className="btn btn-sm btn-dark" onClick={this.openModal}>Place Order</button>
         }
